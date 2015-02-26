@@ -1,15 +1,13 @@
 
-#ifndef FILTERKERNEL_HPP_
-#define FILTERKERNEL_HPP_
+#ifndef KWFILTERIMPRESP_HPP_
+#define KWFILTERIMPRESP_HPP_
 
 // =========================================================================
 // Includes
 // =========================================================================
 
 #include <FilterImpResp.hpp>
-#include <complex>
-#include <vector>
-
+#include <cstddef>
 
 // =========================================================================
 // Defines
@@ -19,28 +17,16 @@
 // Type definitions
 // =========================================================================
 
-class FilterKernel
-{
-    private:
-
-        // Config
-
-        // Resources
-        FFT_ComplexVector   H;
-
-    protected:
-
-        FilterKernel() {};
-
-    public:
-
-        FilterKernel( size_t MaxDataLen, FilterImpResp &h );
-        FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 );
-};
-
 // =========================================================================
 // Function declarations
 // =========================================================================
+
+class KwFilterImpResp  : public FilterImpResp
+{
+    public:
+
+        KwFilterImpResp( size_t FilterLen, size_t ResponseLen, double alpha );
+};
 
 
 #endif

@@ -10,6 +10,7 @@
 #include "TdVector.hpp"
 #include "TdFixPoint.hpp"
 #include "WhiteNoiseGenerator.hpp"
+#include "FilterKernel.hpp"
 
 // =========================================================================
 // Defines

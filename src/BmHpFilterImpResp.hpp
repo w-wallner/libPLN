@@ -1,15 +1,12 @@
 
-#ifndef FILTERKERNEL_HPP_
-#define FILTERKERNEL_HPP_
+#ifndef BLACKMANFILTERIMPRESP_HPP_
+#define BLACKMANFILTERIMPRESP_HPP_
 
 // =========================================================================
 // Includes
 // =========================================================================
 
-#include <FilterImpResp.hpp>
-#include <complex>
-#include <vector>
-
+#include "FilterImpResp.hpp"
 
 // =========================================================================
 // Defines
@@ -19,23 +16,11 @@
 // Type definitions
 // =========================================================================
 
-class FilterKernel
+class BmHpFilterImpResp  : public FilterImpResp
 {
-    private:
-
-        // Config
-
-        // Resources
-        FFT_ComplexVector   H;
-
-    protected:
-
-        FilterKernel() {};
-
     public:
 
-        FilterKernel( size_t MaxDataLen, FilterImpResp &h );
-        FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 );
+        BmHpFilterImpResp( size_t FilterLen, size_t ResponseLen, double f_c_nom );
 };
 
 // =========================================================================

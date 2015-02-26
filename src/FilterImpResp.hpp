@@ -1,15 +1,12 @@
 
-#ifndef FILTERKERNEL_HPP_
-#define FILTERKERNEL_HPP_
+#ifndef FILTERIMPRESP_HPP_
+#define FILTERIMPRESP_HPP_
 
 // =========================================================================
 // Includes
 // =========================================================================
 
-#include <FilterImpResp.hpp>
-#include <complex>
-#include <vector>
-
+#include "FFT_Types.hpp"
 
 // =========================================================================
 // Defines
@@ -19,24 +16,35 @@
 // Type definitions
 // =========================================================================
 
-class FilterKernel
+class FilterImpResp
 {
     private:
 
         // Config
+        size_t  FilterLen;
+        size_t  ResponseLen;
 
         // Resources
-        FFT_ComplexVector   H;
 
     protected:
 
-        FilterKernel() {};
+        // Resources
+        FFT_RealVector h_;
+
+        // Internal functions
+        FilterImpResp();
+        FilterImpResp( size_t FilterLen, size_t ResponseLen );
 
     public:
 
-        FilterKernel( size_t MaxDataLen, FilterImpResp &h );
-        FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 );
+        FFT_RealVector &h();
+
+        size_t  GetFilterLen();
+        size_t  GetResponseLen();
+
+        void    IncreaseResponse( size_t ResponseLen );
 };
+
 
 // =========================================================================
 // Function declarations

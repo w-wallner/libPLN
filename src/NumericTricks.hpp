@@ -1,15 +1,14 @@
 
-#ifndef FILTERKERNEL_HPP_
-#define FILTERKERNEL_HPP_
+#ifndef NUMERICTRICKS_HPP_
+#define NUMERICTRICKS_HPP_
 
 // =========================================================================
 // Includes
 // =========================================================================
 
-#include <FilterImpResp.hpp>
-#include <complex>
-#include <vector>
 
+namespace NumericTricks
+{
 
 // =========================================================================
 // Defines
@@ -19,28 +18,12 @@
 // Type definitions
 // =========================================================================
 
-class FilterKernel
-{
-    private:
-
-        // Config
-
-        // Resources
-        FFT_ComplexVector   H;
-
-    protected:
-
-        FilterKernel() {};
-
-    public:
-
-        FilterKernel( size_t MaxDataLen, FilterImpResp &h );
-        FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 );
-};
-
 // =========================================================================
 // Function declarations
 // =========================================================================
 
+    unsigned int nextPowerOf2(unsigned int n);
+
+}
 
 #endif
