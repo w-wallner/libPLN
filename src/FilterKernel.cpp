@@ -77,7 +77,7 @@ FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp 
     FFT_ComplexVector   H2( FFT::MinFftResultSize( FFT_Size ) );
 
     FFT::RealFFT( h1.h(), H1 );
-    FFT::RealFFT( h1.h(), H2 );
+    FFT::RealFFT( h2.h(), H2 );
 
     for( size_t i = 0; i < H1.size(); i ++ )
     {
