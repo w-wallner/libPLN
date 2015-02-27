@@ -13,6 +13,8 @@
 #include <boost/random/normal_distribution.hpp>
 #include <boost/random/variate_generator.hpp>
 
+#include "FFT_Types.hpp"
+
 // =========================================================================
 // Defines
 // =========================================================================
@@ -45,7 +47,7 @@ class WhiteNoiseGenerator
         WhiteNoiseGenerator( unsigned int Seed, double Qd );
         ~WhiteNoiseGenerator();
 
-        std::vector<double> *GetVector( size_t VecLen, size_t FillLen );
+        FFT_RealVector  *GetVector( size_t VecLen, size_t FillLen );
 };
 
 

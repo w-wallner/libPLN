@@ -40,10 +40,10 @@ WhiteNoiseGenerator::~WhiteNoiseGenerator()
 {
 }
 
-std::vector<double> *
+FFT_RealVector *
 WhiteNoiseGenerator::GetVector( size_t VecLen, size_t FillLen )
 {
-    std::vector<double> *pVec = new std::vector<double>(VecLen, 0.0);
+    FFT_RealVector *pVec = new FFT_RealVector(VecLen, 0.0);
 
     for( size_t i = 0; i < FillLen; i ++ )
     {
