@@ -5,6 +5,8 @@
 #include "FilterKernel.hpp"
 
 #include <algorithm>
+#include <functional>
+#include <stdexcept>
 
 #include "FFT.hpp"
 #include "NumericTricks.hpp"
@@ -33,71 +35,157 @@ using namespace std;
 // Function definitions
 // =========================================================================
 
+FilterKernel::FilterKernel()
+{
+    MaxDataLen  = 0;
+    ResponseLen = 0;
+}
+
 FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h )
 {
     size_t  FFT_Size    = NumericTricks::nextPowerOf2( MaxDataLen + h.GetFilterLen() - 1 );
 
     h.IncreaseResponse( FFT_Size );
 
-    H.resize( FFT::MinFftResultSize( FFT_Size ) );
+    H.resize( FFT::MinFftComplexVectorSize( FFT_Size ) );
 
     FFT::RealFFT( h.h(), H );
+
+    this->MaxDataLen    = MaxDataLen;
+    this->ResponseLen   = FFT_Size;
 }
 
 FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 )
 {
     size_t  FFT_Size    = NumericTricks::nextPowerOf2( MaxDataLen + h1.GetFilterLen() + h2.GetFilterLen() - 2 );
 
-    cout << "h1.FilterLen(): " << h1.GetFilterLen() << endl;
-    cout << "h2.FilterLen(): " << h2.GetFilterLen() << endl;
-
-    cout << "FFT Size: " << FFT_Size << endl;
-
     h1.IncreaseResponse( FFT_Size );
     h2.IncreaseResponse( FFT_Size );
 
-    cout << "h1.ResponseLen(): " << h1.GetResponseLen() << endl;
-    cout << "h2.ResponseLen(): " << h2.GetResponseLen() << endl;
+    H.resize( FFT::MinFftComplexVectorSize( FFT_Size ) );
 
-    for( size_t i = 0; i < h1.h().size(); i ++ )
-    {
-        cout << "h1[" << i << "]: " << h1.h()[ i ] << endl;
-    }
-    cout << endl;
-
-    for( size_t i = 0; i < h2.h().size(); i ++ )
-    {
-        cout << "h2[" << i << "]: " << h2.h()[ i ] << endl;
-    }
-    cout << endl;
-
-    H.resize( FFT::MinFftResultSize( FFT_Size ) );
-
-    FFT_ComplexVector   H1( FFT::MinFftResultSize( FFT_Size ) );
-    FFT_ComplexVector   H2( FFT::MinFftResultSize( FFT_Size ) );
+    FFT_ComplexVector   H1( FFT::MinFftComplexVectorSize( FFT_Size ) );
+    FFT_ComplexVector   H2( FFT::MinFftComplexVectorSize( FFT_Size ) );
 
     FFT::RealFFT( h1.h(), H1 );
     FFT::RealFFT( h2.h(), H2 );
 
-    for( size_t i = 0; i < H1.size(); i ++ )
-    {
-        cout << "H1[" << i << "]: " << H1[ i ] << endl;
-    }
-    cout << endl;
-
-    for( size_t i = 0; i < H1.size(); i ++ )
-    {
-        cout << "H2[" << i << "]: " << H2[ i ] << endl;
-    }
-    cout << endl;
-
-
+    // Merge both filters
     std::transform( H1.begin(), H1.end(),
                     H2.begin(), H.begin(),
-                    std::multiplies< std::complex<double> >() );
+                    std::multiplies< std::complex< double > >() );
 
-    for( size_t i = 0; i < H.size(); i ++ )
+    // Scale filter to include FFT scaling
+    double  Scale = 1.0L / ((double) FFT_Size);
+
+    std::transform(H.begin(), H.end(), H.begin(),
+                   std::bind1st(std::multiplies< std::complex<double> >(), Scale));
+
+    this->MaxDataLen    = MaxDataLen;
+    this->ResponseLen   = FFT_Size;
+}
+
+FFT_RealVector  *
+FilterKernel::ApplyToSignal( FFT_RealVector *pw )
+{
+    cout << "w.size: " << pw->size() << endl;
+    cout << "w = [ ";
+    for( size_t i = 0; i < pw->size(); i ++ )
     {
-        cout << "H[" << i << "]: " << H[ i ] << endl;
+        cout << (*pw)[i];
+
+        if( i < pw->size() )
+        {
+            cout << ", ";
+        }
     }
+    cout << " ];" << endl;
+    cout << endl;
+
+    FFT_ComplexVector *pW = fft.GetFrequencyDomain( pw );
+
+    cout << "w.size: " << pw->size() << endl;
+    cout << "w = [ ";
+    for( size_t i = 0; i < pw->size(); i ++ )
+    {
+        cout << (*pw)[i];
+
+        if( i < pw->size() )
+        {
+            cout << ", ";
+        }
+    }
+    cout << " ];" << endl;
+    cout << endl;
+
+    // Check size of W
+    if( pW->size() != H.size() )
+    {
+        throw std::logic_error( "FFT(ImpResp) does not match size of FilterKernel." );
+    }
+
+    cout << "W.size: " << pW->size() << endl;
+    cout << "W = [ ";
+    for( size_t i = 0; i < pW->size(); i ++ )
+    {
+        cout << (*pW)[i];
+
+        if( i < pW->size() )
+        {
+            cout << ", ";
+        }
+    }
+    cout << " ];" << endl;
+
+    // Apply filter
+    /*
+    for( size_t i = 0; i < pW->size(); i ++ )
+    {
+        (*pW)[i] *= H[ i ];
+    }
+    */
+
+//    std::transform( pW->begin(), pW->end(), H.begin(), pW->begin(), std::multiplies< std::complex< std::complex<double> >());
+
+    std::transform( pW->begin(), pW->end(),
+                    H.begin(), pW->begin(),
+                    std::multiplies< std::complex< double > >() );
+
+    // Scale
+    for( size_t i = 0; i < pW->size(); i ++ )
+    {
+//        (*pW) *= H[ i ];
+    }
+
+    FFT_RealVector  w2( pw->size() );
+
+    fft.ConvertToTimeDomain( pW, &w2 );
+
+    cout << "w2.size: " << w2.size() << endl;
+    cout << "w2 = [ ";
+    for( size_t i = 0; i < w2.size(); i ++ )
+    {
+        cout << w2[i];
+
+        if( i < w2.size() )
+        {
+            cout << ", ";
+        }
+    }
+    cout << " ];" << endl;
+    cout << endl;
+
+    return pw;
+}
+
+size_t
+FilterKernel::GetMaxDataLen()
+{
+    return MaxDataLen;
+}
+
+size_t
+FilterKernel::GetResponseLen()
+{
+    return ResponseLen;
 }

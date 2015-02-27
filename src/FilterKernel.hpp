@@ -10,6 +10,7 @@
 #include <complex>
 #include <vector>
 
+#include "FFT.hpp"
 
 // =========================================================================
 // Defines
@@ -24,23 +25,30 @@ class FilterKernel
     private:
 
         // Config
+        size_t  MaxDataLen;
+        size_t  ResponseLen;
 
         // Resources
         FFT_ComplexVector   H;
+        FFT                 fft;
 
     protected:
 
-        FilterKernel() {};
+        FilterKernel();
 
     public:
 
         FilterKernel( size_t MaxDataLen, FilterImpResp &h );
         FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 );
+
+        FFT_RealVector  *ApplyToSignal( FFT_RealVector *pw );
+
+        size_t  GetMaxDataLen();
+        size_t  GetResponseLen();
 };
 
 // =========================================================================
 // Function declarations
 // =========================================================================
-
 
 #endif
