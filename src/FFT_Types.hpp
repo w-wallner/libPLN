@@ -48,6 +48,16 @@ struct FFTW_C_API
         return fftw_plan_dft_c2r_1d(n, reinterpret_cast<fftw_complex*>(in), out, flags);
     }
 
+    static void execute_dft_r2c( const plan p, real *in, complex *out )
+    {
+        fftw_execute_dft_r2c( p, in, reinterpret_cast<fftw_complex*>(out) );
+    }
+
+    static void execute_dft_c2r( const plan p, complex *in, real *out )
+    {
+        fftw_execute_dft_c2r( p, reinterpret_cast<fftw_complex*>(in), out );
+    }
+
     static void destroy_plan(plan p)
     {
         fftw_destroy_plan(p);
