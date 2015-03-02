@@ -24,6 +24,7 @@ class TdVector
         double  TickLen;
         double  t_beg;
         double  t_end;
+        double  TD_0;
 
         // Resources
         std::vector<double> TD;
@@ -33,7 +34,7 @@ class TdVector
 
     public:
 
-                TdVector( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD );
+                TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen );
         virtual ~TdVector();
 
         double  GetBeginTime();

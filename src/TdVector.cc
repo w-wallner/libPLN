@@ -27,16 +27,17 @@
 // Function definitions
 // =========================================================================
 
-TdVector::TdVector( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD )
-    : TD( pFFD->size() + 1 )
+TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen )
+    : TD( ValidLen + 1 )
 {
-    this->t_beg = BeginTime;
-    this->t_end   = BeginTime + TickLen * pFFD->size();
+    this->t_beg     = t_beg;
+    this->t_end     = t_beg + TickLen * ValidLen;
     this->TickLen   = TickLen;
+    this->TD_0      = TD_0;
 
     TD[0] = 0.0L;
 
-    std::partial_sum( pFFD->begin(), pFFD->end(), TD.begin()+1 );
+    std::partial_sum( pFFD->begin(), pFFD->begin() + ValidLen, TD.begin()+1 );
 }
 
 TdVector::~TdVector()
@@ -61,5 +62,5 @@ TdVector::InterpolateTD_nom( double t_req )
     assert( t_req >= t_beg );
     assert( t_req <= t_end );
 
-    return InterpolateAt( t_req );
+    return TD_0 + InterpolateAt( t_req );
 }

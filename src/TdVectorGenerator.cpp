@@ -62,42 +62,74 @@ TdVectorGenerator::TdVectorGenerator( size_t TdVecLen, double TickLen, KW_Filter
     this->TickLen       = TickLen;
     this->IntpolType    = InterpolConf.Type;
 
+    this->State         = UNINITIALIZED;
+    this->Last_t_end    = 0.0;
+    this->Last_TD_nom   = 0.0;
+
+    // Set up house keeping
+    this->pLastFFD      = NULL;
+}
+
+TdVectorGenerator::~TdVectorGenerator()
+{
+    if( pLastFFD != NULL )
+    {
+        delete pLastFFD;
+    }
 }
 
 void
 TdVectorGenerator::ResetToFixPoint( TdFixPoint fp )
 {
-    // TODO
+    this->State         = UNINITIALIZED;
+    this->Last_t_end    = fp.Get_t();
+    this->Last_TD_nom   = fp.GetTD_nom();
+
+    if( pLastFFD != NULL )
+    {
+        delete pLastFFD;
+        pLastFFD = NULL;
+    }
 }
 
 TdVector *
 TdVectorGenerator::GetNextVector()
 {
+    if( State == UNINITIALIZED )
+    {
+        // Set up Last FFD vector
+        pLastFFD = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), H.GetMaxDataLen() );
+        H.ApplyToSignal( pLastFFD );
 
-    FFT_RealVector    *pw = WhiteNoiseGen.GetVector( H.GetResponseLen(), H.GetMaxDataLen() );
+        State = INITIALIZED;
+    }
 
+    FFT_RealVector *pw = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), H.GetMaxDataLen() );
     H.ApplyToSignal( pw );
 
-    // TODO: Handle overlapping FFD part
+    // Handle overlapping FFD part
 
-
+    std::transform( pw->begin(), pw->begin() + H.GetFilterLen(),
+                    pLastFFD->begin() + H.GetMaxDataLen(), pw->begin(), std::plus<double>() );
 
     TdVector *pTdVec;
     switch( IntpolType )
     {
         case LINEAR_INTERPOLATION:
         {
-            pTdVec    = new TdVectorLinear( 0.0, 0.0, TickLen, pw );
+            pTdVec    = new TdVectorLinear( Last_t_end, Last_TD_nom, TickLen, pw, H.GetMaxDataLen() );
             break;
         }
         case CUBIC_SPLINE_INTERPOLATION:
         {
-            pTdVec    = new TdVectorCubSpline( 0.0, 0.0, TickLen, pw );
+            pTdVec    = new TdVectorCubSpline( Last_t_end, Last_TD_nom, TickLen, pw, H.GetMaxDataLen() );
             break;
         }
     }
 
-    // TODO: Handle pw
+    // Remember FFD vector for next call
+    delete pLastFFD;
+    pLastFFD = pw;
 
     return pTdVec;
 }

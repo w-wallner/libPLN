@@ -24,9 +24,23 @@ class TdVectorGenerator
 {
     private:
 
+        // Types
+        typedef enum
+        {
+            UNINITIALIZED,
+            INITIALIZED,
+        }
+        TdGenState;
+
         // Config
         double              TickLen;
         InterpolationType   IntpolType;
+
+        // House keeping
+        TdGenState          State;
+        double              Last_t_end;
+        double              Last_TD_nom;
+        FFT_RealVector      *pLastFFD;
 
         // Resources
         WhiteNoiseGenerator     WhiteNoiseGen;
@@ -35,6 +49,7 @@ class TdVectorGenerator
     public:
 
         TdVectorGenerator( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
+        ~TdVectorGenerator();
 
         void        ResetToFixPoint( TdFixPoint fp );
         TdVector    *GetNextVector();

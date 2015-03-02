@@ -30,7 +30,7 @@ class TdVectorLinear : public TdVector
 
     public:
 
-        TdVectorLinear( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD );
+        TdVectorLinear( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen );
 };
 
 // =========================================================================

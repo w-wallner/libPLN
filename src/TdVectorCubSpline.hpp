@@ -45,7 +45,7 @@ class TdVectorCubSpline : public TdVector
 
     public:
 
-        TdVectorCubSpline( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD );
+        TdVectorCubSpline( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen );
 };
 
 // =========================================================================
