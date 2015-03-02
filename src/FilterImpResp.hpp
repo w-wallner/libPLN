@@ -18,15 +18,11 @@
 
 class FilterImpResp
 {
-    private:
+    protected:
 
         // Config
         size_t  FilterLen;
         size_t  ResponseLen;
-
-        // Resources
-
-    protected:
 
         // Resources
         FFT_RealVector h_;
@@ -43,6 +39,7 @@ class FilterImpResp
         size_t  GetResponseLen();
 
         void    IncreaseResponse( size_t ResponseLen );
+        void    Augment( size_t Cnt );
 };
 
 

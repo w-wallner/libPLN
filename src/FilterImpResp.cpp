@@ -4,6 +4,15 @@
 
 #include <FilterImpResp.hpp>
 
+#include <stdexcept>
+#include <algorithm>
+
+#include "NumericTricks.hpp"
+#include "FFT.hpp"
+
+// Debug only
+#include "VectorOutput.hpp"
+
 // =========================================================================
 // Defines
 // =========================================================================
@@ -68,3 +77,38 @@ FilterImpResp::IncreaseResponse( size_t ResponseLen )
     this->ResponseLen = ResponseLen;
 }
 
+void
+FilterImpResp::Augment( size_t Cnt )
+{
+    if( Cnt < 1 )
+    {
+        throw std::invalid_argument( "ImpResp: Cnt must be at least 1." );
+    }
+
+    if( Cnt == 1 )
+    {
+        return;
+    }
+
+    FilterLen     = (FilterLen-1) * Cnt;
+
+    size_t  FFT_RealSize    = NumericTricks::nextPowerOf2( this->FilterLen );
+    size_t  FFT_CompSize    = FFT::MinFftComplexVectorSize( FFT_RealSize );
+
+    ResponseLen   = FFT_RealSize;
+
+    h_.resize( ResponseLen );
+
+    FFT_ComplexVector   H( FFT_CompSize );
+
+    FFT::RealFFT( h_, H );
+
+    for( size_t i = 1; i < Cnt; i++ )
+    {
+        std::transform( H.begin(), H.end(),
+                        H.begin(), H.begin(),
+                        std::multiplies< std::complex< double > >() );
+    }
+
+    FFT::ComplexFFT( H, h_ );
+}
