@@ -27,13 +27,13 @@
 // =========================================================================
 
 size_t
-FFT::MinFftComplexVectorSize( size_t RealVectorSize )
+FFT::MinFftComplexVectorSize( const size_t RealVectorSize )
 {
   return RealVectorSize / 2 + 1;
 }
 
 size_t
-FFT::MinFftRealVectorSize( size_t ComplexVectorSize )
+FFT::MinFftRealVectorSize( const size_t ComplexVectorSize )
 {
   return (ComplexVectorSize-1) * 2;
 }
