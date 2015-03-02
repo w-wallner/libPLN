@@ -76,7 +76,10 @@ TdEstimator::TdEstimator( SampleConfig SampleConf, KW_ImplOption KwImplOption, K
     TickLen = 1.0L / f_s;
 
     // TODO: Init TD Vec Generator
-    pTdVecGen    = new TdVectorGenerator( SampleConf.TdVecLen, KwFilterConf, HpFilterConf, InterpolConf );
+    pTdVecGen    = new TdVectorGenerator( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+
+    // TODO: Debug only
+    pTdVecGen->GetNextVector();
 
     // TODO: Init TD Vec Storage
     // TODO: Init Fixpoint Storage

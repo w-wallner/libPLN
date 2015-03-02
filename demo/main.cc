@@ -36,7 +36,7 @@ int main()
     HP_FilterConfig         HpFilterConf;
     InterpolationConfig     InterpolConf;
 
-    SampleConf.f_s              = 1E6;
+    SampleConf.f_s              = 10;
     SampleConf.T_val            = 1E-3;
     SampleConf.TdVecLen         = 10;
 

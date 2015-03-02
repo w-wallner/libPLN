@@ -25,15 +25,16 @@ class TdVectorGenerator
     private:
 
         // Config
+        double              TickLen;
+        InterpolationType   IntpolType;
 
         // Resources
         WhiteNoiseGenerator     WhiteNoiseGen;
         FilterKernel            H;
 
-
     public:
 
-        TdVectorGenerator( size_t TdVecLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
+        TdVectorGenerator( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
 
         void        ResetToFixPoint( TdFixPoint fp );
         TdVector    *GetNextVector();

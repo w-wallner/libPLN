@@ -10,6 +10,8 @@
 
 #include "KwFilterImpResp.hpp"
 #include "BmHpFilterImpResp.hpp"
+#include "TdVectorLinear.hpp"
+#include "TdVectorCubSpline.hpp"
 
 #include <numeric>
 
@@ -31,11 +33,9 @@ using namespace std;
 // Function declarations
 // =========================================================================
 
-TdVectorGenerator::TdVectorGenerator( size_t TdVecLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
+TdVectorGenerator::TdVectorGenerator( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
     : WhiteNoiseGen( KwConf.Seed, KwConf.Qd )
 {
-    size_t  MaxDataLen  = 10;
-
     // Set up filter kernel
     KwFilterImpResp   kw( KwConf.FilterLen, KwConf.alpha );
 
@@ -43,7 +43,7 @@ TdVectorGenerator::TdVectorGenerator( size_t TdVecLen, KW_FilterConfig KwConf, H
     {
         case NO_FILTER:
         {
-            H   = FilterKernel( MaxDataLen, kw );
+            H   = FilterKernel( TdVecLen, kw );
             break;
         }
 
@@ -53,10 +53,15 @@ TdVectorGenerator::TdVectorGenerator( size_t TdVecLen, KW_FilterConfig KwConf, H
 
             bm.Augment( HpConf.Cnt );
 
-            H   = FilterKernel( MaxDataLen, kw, bm );
+            H   = FilterKernel( TdVecLen, kw, bm );
             break;
         }
     }
+
+    // Set up config
+    this->TickLen       = TickLen;
+    this->IntpolType    = InterpolConf.Type;
+
 }
 
 void
@@ -68,17 +73,31 @@ TdVectorGenerator::ResetToFixPoint( TdFixPoint fp )
 TdVector *
 TdVectorGenerator::GetNextVector()
 {
-    TdVector *pTdVec    = new TdVector();
 
     FFT_RealVector    *pw = WhiteNoiseGen.GetVector( H.GetResponseLen(), H.GetMaxDataLen() );
 
     H.ApplyToSignal( pw );
 
-//    std::vector<double> TD( pw->size() );
+    // TODO: Handle overlapping FFD part
 
 
-//    std::partial_sum( pw->begin(), pw->end(), TD.begin() );
 
+    TdVector *pTdVec;
+    switch( IntpolType )
+    {
+        case LINEAR_INTERPOLATION:
+        {
+            pTdVec    = new TdVectorLinear( 0.0, 0.0, TickLen, pw );
+            break;
+        }
+        case CUBIC_SPLINE_INTERPOLATION:
+        {
+            pTdVec    = new TdVectorCubSpline( 0.0, 0.0, TickLen, pw );
+            break;
+        }
+    }
+
+    // TODO: Handle pw
 
     return pTdVec;
 }
