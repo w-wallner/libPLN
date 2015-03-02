@@ -11,9 +11,13 @@
 #include "KwFilterImpResp.hpp"
 #include "BmHpFilterImpResp.hpp"
 
+#include <numeric>
+
 // Debug only
 #include <iostream>
 using namespace std;
+
+#include "VectorOutput.hpp"
 
 // =========================================================================
 // Defines
@@ -30,15 +34,29 @@ using namespace std;
 TdVectorGenerator::TdVectorGenerator( size_t TdVecLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
     : WhiteNoiseGen( KwConf.Seed, KwConf.Qd )
 {
-    // TODO: Filter construction
+    size_t  MaxDataLen  = 10;
 
-    KwFilterImpResp   kw( 10, 20, -1.0 );
-    BmHpFilterImpResp bm( 11, 20, 0.1 );
+    // Set up filter kernel
+    KwFilterImpResp   kw( KwConf.FilterLen, KwConf.alpha );
 
-    FilterKernel      KW( 10, kw, bm );
+    switch( HpConf.Type )
+    {
+        case NO_FILTER:
+        {
+            H   = FilterKernel( MaxDataLen, kw );
+            break;
+        }
 
+        case BLACKMAN:
+        {
+            BmHpFilterImpResp bm( HpConf.FilterLen, HpConf.f_c_nom );
 
-//    std::vector<double> *pTest = WhiteNoiseGen.GetVector( 10, 5 );
+            bm.Augment( HpConf.Cnt );
+
+            H   = FilterKernel( MaxDataLen, kw, bm );
+            break;
+        }
+    }
 }
 
 void
@@ -51,6 +69,16 @@ TdVector *
 TdVectorGenerator::GetNextVector()
 {
     TdVector *pTdVec    = new TdVector();
+
+    FFT_RealVector    *pw = WhiteNoiseGen.GetVector( H.GetResponseLen(), H.GetMaxDataLen() );
+
+    H.ApplyToSignal( pw );
+
+//    std::vector<double> TD( pw->size() );
+
+
+//    std::partial_sum( pw->begin(), pw->end(), TD.begin() );
+
 
     return pTdVec;
 }

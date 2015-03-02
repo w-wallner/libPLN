@@ -42,14 +42,15 @@ int main()
 
     KwImplOption                = USE_SHORTCUTS;
 
-    KwFilterConf.alpha          = -1.0;
     KwFilterConf.Qd             = 1E-6;
-    KwFilterConf.FilterLen      = 1000;
+    KwFilterConf.alpha          = -1.0;
+    KwFilterConf.FilterLen      = 10;
 
     HpFilterConf.Type           = BLACKMAN;
-    HpFilterConf.f_c_nom        = 1E-3;
-    HpFilterConf.FilterLen      = 1000;
-    HpFilterConf.Cnt            = 2;
+    HpFilterConf.Type           = NO_FILTER;
+    HpFilterConf.f_c_nom        = 0.1;
+    HpFilterConf.FilterLen      = 11;
+    HpFilterConf.Cnt            = 1;
 
     InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
 

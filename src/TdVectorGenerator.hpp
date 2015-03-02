@@ -27,7 +27,8 @@ class TdVectorGenerator
         // Config
 
         // Resources
-        WhiteNoiseGenerator WhiteNoiseGen;
+        WhiteNoiseGenerator     WhiteNoiseGen;
+        FilterKernel            H;
 
 
     public:

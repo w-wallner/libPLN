@@ -43,7 +43,7 @@ KW_FilterConfig;
 typedef enum
 {
     BLACKMAN,
-    NONE
+    NO_FILTER,
 }
 HP_FilterType;
 
