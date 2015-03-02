@@ -33,7 +33,7 @@ class FilterImpResp
 
         // Internal functions
         FilterImpResp();
-        FilterImpResp( size_t FilterLen, size_t ResponseLen );
+        FilterImpResp( size_t FilterLen );
 
     public:
 

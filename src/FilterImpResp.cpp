@@ -25,22 +25,17 @@
 // =========================================================================
 
 FilterImpResp::FilterImpResp()
+    :h_( 0 )
 {
     this->FilterLen     = 0;
     this->ResponseLen   = 0;
 }
 
-FilterImpResp::FilterImpResp( size_t FilterLen, size_t ResponseLen )
-    :h_( ResponseLen )
+FilterImpResp::FilterImpResp( size_t FilterLen )
+    :h_( FilterLen )
 {
-    // Check input parameters
-    if( FilterLen > ResponseLen )
-    {
-        throw "FilteLen cannot be longer than ResponseLen";
-    }
-
     this->FilterLen     = FilterLen;
-    this->ResponseLen   = ResponseLen;
+    this->ResponseLen   = FilterLen;
 }
 
 FFT_RealVector &

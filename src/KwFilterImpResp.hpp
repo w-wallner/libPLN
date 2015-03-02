@@ -25,7 +25,7 @@ class KwFilterImpResp  : public FilterImpResp
 {
     public:
 
-        KwFilterImpResp( size_t FilterLen, size_t ResponseLen, double alpha );
+        KwFilterImpResp( size_t FilterLen, double alpha );
 };
 
 

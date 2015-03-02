@@ -20,7 +20,7 @@ class BmHpFilterImpResp  : public FilterImpResp
 {
     public:
 
-        BmHpFilterImpResp( size_t FilterLen, size_t ResponseLen, double f_c_nom );
+        BmHpFilterImpResp( size_t FilterLen, double f_c_nom );
 };
 
 // =========================================================================

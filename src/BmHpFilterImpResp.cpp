@@ -43,8 +43,8 @@
 // Function definitions
 // =========================================================================
 
-BmHpFilterImpResp::BmHpFilterImpResp( size_t FilterLen, size_t ResponseLen, double f_c_nom )
-    : FilterImpResp(FilterLen, ResponseLen)
+BmHpFilterImpResp::BmHpFilterImpResp( size_t FilterLen, double f_c_nom )
+    : FilterImpResp(FilterLen)
 {
     // Check input parameters
     if( FilterLen % 2 != 1 )

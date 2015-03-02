@@ -27,8 +27,8 @@ using namespace std;
 // Function definitions
 // =========================================================================
 
-KwFilterImpResp::KwFilterImpResp( size_t FilterLen, size_t ResponseLen, double alpha )
-    : FilterImpResp(FilterLen, ResponseLen)
+KwFilterImpResp::KwFilterImpResp( size_t FilterLen, double alpha )
+    : FilterImpResp( FilterLen )
 {
     double ha = -alpha/2.0;
 
