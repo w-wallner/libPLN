@@ -1,12 +1,15 @@
 
-#ifndef TDVECTOR_HPP_
-#define TDVECTOR_HPP_
+#ifndef TDVECTORCUBSPLINE_HPP_
+#define TDVECTORCUBSPLINE_HPP_
 
 // =========================================================================
 // Includes
 // =========================================================================
 
+#include "TdVector.hpp"
 #include "FFT_Types.hpp"
+
+#include "spline.hpp"
 
 // =========================================================================
 // Defines
@@ -16,36 +19,37 @@
 // Type definitions
 // =========================================================================
 
-class TdVector
+class TdVectorCubSpline : public TdVector
 {
-    protected:
+    private:
+
+        // Types
+        typedef enum
+        {
+            UNINITIALIZED,
+            INITIALIZED,
+        }
+        SplineState;
 
         // Config
-        double  TickLen;
-        double  t_beg;
-        double  t_end;
+
+        // Housekeeping
+        SplineState State;
 
         // Resources
-        std::vector<double> TD;
+        tk::spline          s;
+        std::vector<double> t;
 
         // Internal functions
-        virtual double  InterpolateAt( double t_req ) = 0;
+        double  InterpolateAt( double t_req );
 
     public:
 
-                TdVector( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD );
-        virtual ~TdVector();
-
-        double  GetBeginTime();
-        double  GetEndTime();
-
-        double  InterpolateTD_nom( double t_req );
+        TdVectorCubSpline( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD );
 };
-
 
 // =========================================================================
 // Function declarations
 // =========================================================================
-
 
 #endif

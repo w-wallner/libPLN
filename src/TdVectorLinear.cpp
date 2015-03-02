@@ -2,10 +2,7 @@
 // Includes
 // =========================================================================
 
-#include "TdVector.hpp"
-
-#include <cassert>
-#include <numeric>
+#include "TdVectorLinear.hpp"
 
 // =========================================================================
 // Defines
@@ -27,39 +24,21 @@
 // Function definitions
 // =========================================================================
 
-TdVector::TdVector( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD )
-    : TD( pFFD->size() + 1 )
-{
-    this->t_beg = BeginTime;
-    this->t_end   = BeginTime + TickLen * pFFD->size();
-    this->TickLen   = TickLen;
-
-    TD[0] = 0.0L;
-
-    std::partial_sum( pFFD->begin(), pFFD->end(), TD.begin()+1 );
-}
-
-TdVector::~TdVector()
-{
-}
-
 double
-TdVector::GetBeginTime()
+TdVectorLinear::InterpolateAt( double t_req )
 {
-    return t_beg;
+    double  t   = t_req - t_beg;
+
+    size_t  idxl = std::floor( t / TickLen );
+    size_t  idxr = std::ceil ( t / TickLen );
+
+    double  dx = t - (idxl * TickLen);
+    double  dy = (TD[idxr] - TD[idxl]);
+
+    return TD[idxl] + dy * dx;
 }
 
-double
-TdVector::GetEndTime()
+TdVectorLinear::TdVectorLinear( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD )
+    : TdVector( BeginTime, BeginOffset, TickLen, pFFD )
 {
-    return t_end;
-}
-
-double
-TdVector::InterpolateTD_nom( double t_req )
-{
-    assert( t_req >= t_beg );
-    assert( t_req <= t_end );
-
-    return InterpolateAt( t_req );
 }

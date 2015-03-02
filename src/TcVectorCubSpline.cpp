@@ -2,10 +2,7 @@
 // Includes
 // =========================================================================
 
-#include "TdVector.hpp"
-
-#include <cassert>
-#include <numeric>
+#include "TdVectorCubSpline.hpp"
 
 // =========================================================================
 // Defines
@@ -27,39 +24,29 @@
 // Function definitions
 // =========================================================================
 
-TdVector::TdVector( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD )
-    : TD( pFFD->size() + 1 )
-{
-    this->t_beg = BeginTime;
-    this->t_end   = BeginTime + TickLen * pFFD->size();
-    this->TickLen   = TickLen;
-
-    TD[0] = 0.0L;
-
-    std::partial_sum( pFFD->begin(), pFFD->end(), TD.begin()+1 );
-}
-
-TdVector::~TdVector()
-{
-}
-
 double
-TdVector::GetBeginTime()
+TdVectorCubSpline::InterpolateAt( double t_req )
 {
-    return t_beg;
+    if( State == UNINITIALIZED )
+    {
+        t.resize( TD.size() );
+
+        t[0] = t_beg;
+        for( size_t i = 1; i < t.size(); i ++ )
+        {
+            t[ i ] = t[i-1] + TickLen;
+        }
+
+        s.set_points( t, TD );
+
+        State = INITIALIZED;
+    }
+
+    return s(t_req);
 }
 
-double
-TdVector::GetEndTime()
+TdVectorCubSpline::TdVectorCubSpline( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD )
+    : TdVector( BeginTime, BeginOffset, TickLen, pFFD )
 {
-    return t_end;
-}
-
-double
-TdVector::InterpolateTD_nom( double t_req )
-{
-    assert( t_req >= t_beg );
-    assert( t_req <= t_end );
-
-    return InterpolateAt( t_req );
+    State   = UNINITIALIZED;
 }

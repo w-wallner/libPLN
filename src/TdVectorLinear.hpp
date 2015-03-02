@@ -1,11 +1,12 @@
 
-#ifndef TDVECTOR_HPP_
-#define TDVECTOR_HPP_
+#ifndef TDVECTORLINEAR_HPP_
+#define TDVECTORLINEAR_HPP_
 
 // =========================================================================
 // Includes
 // =========================================================================
 
+#include "TdVector.hpp"
 #include "FFT_Types.hpp"
 
 // =========================================================================
@@ -16,36 +17,24 @@
 // Type definitions
 // =========================================================================
 
-class TdVector
+class TdVectorLinear : public TdVector
 {
-    protected:
+    private:
 
         // Config
-        double  TickLen;
-        double  t_beg;
-        double  t_end;
 
         // Resources
-        std::vector<double> TD;
 
         // Internal functions
-        virtual double  InterpolateAt( double t_req ) = 0;
+        double  InterpolateAt( double t_req );
 
     public:
 
-                TdVector( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD );
-        virtual ~TdVector();
-
-        double  GetBeginTime();
-        double  GetEndTime();
-
-        double  InterpolateTD_nom( double t_req );
+        TdVectorLinear( double BeginTime, double BeginOffset, double TickLen, FFT_RealVector *pFFD );
 };
-
 
 // =========================================================================
 // Function declarations
 // =========================================================================
-
 
 #endif
