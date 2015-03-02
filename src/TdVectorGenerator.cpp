@@ -1,7 +1,4 @@
 
-#ifndef TDVECTORGENERATOR_CPP_
-#define TDVECTORGENERATOR_CPP_
-
 // =========================================================================
 // Includes
 // =========================================================================
@@ -30,7 +27,15 @@ using namespace std;
 // =========================================================================
 
 // =========================================================================
-// Function declarations
+// Global variables
+// =========================================================================
+
+// =========================================================================
+// Locale function prototypes
+// =========================================================================
+
+// =========================================================================
+// Function definitions
 // =========================================================================
 
 TdVectorGenerator::TdVectorGenerator( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
@@ -133,5 +138,3 @@ TdVectorGenerator::GetNextVector()
 
     return pTdVec;
 }
-
-#endif
