@@ -73,25 +73,16 @@ FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp 
     FFT::RealFFT( h1.h(), H1 );
     FFT::RealFFT( h2.h(), H2 );
 
-    PrintFftCompVector( "H1", H1 );
-    PrintFftCompVector( "H2", H2 );
-
     // Merge both filters
     std::transform( H1.begin(), H1.end(),
                     H2.begin(), H.begin(),
                     std::multiplies< std::complex< double > >() );
 
-    PrintFftCompVector( "H (merge)", H );
-
     // Scale filter to include FFT scaling
     double  Scale = 1.0L / ((double) FFT_RealSize);
 
-    cout << "Scale: " << Scale << endl;
-
     std::transform( H.begin(), H.end(), H.begin(),
                    std::bind1st(std::multiplies< std::complex<double> >(), Scale) );
-
-    PrintFftCompVector( "H (scale)", H );
 
     this->MaxDataLen    = MaxDataLen;
     this->ResponseLen   = FFT_RealSize;
