@@ -79,11 +79,12 @@ BmHpFilterImpResp::BmHpFilterImpResp( size_t FilterLen, size_t ResponseLen, doub
     }
 
     // Normalize
-    double Sum = std::accumulate(h_.begin(), h_.end(), 0.0L );
+    double Sum      = std::accumulate(h_.begin(), h_.end(), 0.0L );
+    double Scale    = 1.0L / Sum;
 
     for( size_t i = 0; i < FilterLen; i ++ )
     {
-        h_[ i ] /= Sum;
+        h_[ i ] *= Scale;
     }
 
     // Invert sign and add pulse to convert low pass to high pass
