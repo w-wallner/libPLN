@@ -26,7 +26,9 @@ class FilterKernel
 
         // Config
         size_t  MaxDataLen;
-        size_t  ResponseLen;
+        size_t  FilterLen;
+        size_t  FFT_RealSize;
+        size_t  FFT_ComplexSize;
 
         // Resources
         FFT_ComplexVector   H;
@@ -41,7 +43,8 @@ class FilterKernel
         FFT_RealVector  *ApplyToSignal( FFT_RealVector *pw );
 
         size_t  GetMaxDataLen();
-        size_t  GetResponseLen();
+        size_t  GetFilterLen();
+        size_t  GetFFT_RealSize();
 
         // Debug functions
         void    Print( std::string Name );

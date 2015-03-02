@@ -38,29 +38,32 @@ using namespace std;
 
 FilterKernel::FilterKernel()
 {
-    MaxDataLen  = 0;
-    ResponseLen = 0;
+    MaxDataLen      = 0;
+    FilterLen       = 0;
+    FFT_RealSize    = 0;
+    FFT_ComplexSize = 0;
 }
 
 FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h )
 {
-    size_t  FFT_RealSize    = NumericTricks::nextPowerOf2( MaxDataLen + h.GetFilterLen() - 1 );
-    size_t  FFT_ComplexSize = FFT::MinFftComplexVectorSize( FFT_RealSize );
+    this->MaxDataLen        = MaxDataLen;
+    this->FilterLen         = h.GetFilterLen();
+    this->FFT_RealSize      = NumericTricks::nextPowerOf2( MaxDataLen + FilterLen - 1 );;
+    this->FFT_ComplexSize   = FFT::MinFftComplexVectorSize( FFT_RealSize );
 
     h.IncreaseResponse( FFT_RealSize );
 
     H.resize( FFT_ComplexSize );
 
     FFT::RealFFT( h.h(), H );
-
-    this->MaxDataLen    = MaxDataLen;
-    this->ResponseLen   = FFT_RealSize;
 }
 
 FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 )
 {
-    size_t  FFT_RealSize    = NumericTricks::nextPowerOf2( MaxDataLen + h1.GetFilterLen() + h2.GetFilterLen() - 2 );
-    size_t  FFT_ComplexSize = FFT::MinFftComplexVectorSize( FFT_RealSize );
+    this->MaxDataLen        = MaxDataLen;
+    this->FilterLen         = h1.GetFilterLen() + h2.GetFilterLen() - 1;
+    this->FFT_RealSize      = NumericTricks::nextPowerOf2( MaxDataLen + FilterLen - 1 );;
+    this->FFT_ComplexSize   = FFT::MinFftComplexVectorSize( FFT_RealSize );
 
     h1.IncreaseResponse( FFT_RealSize );
     h2.IncreaseResponse( FFT_RealSize );
@@ -83,9 +86,6 @@ FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp 
 
     std::transform( H.begin(), H.end(), H.begin(),
                    std::bind1st(std::multiplies< std::complex<double> >(), Scale) );
-
-    this->MaxDataLen    = MaxDataLen;
-    this->ResponseLen   = FFT_RealSize;
 }
 
 FFT_RealVector *
@@ -127,9 +127,15 @@ FilterKernel::GetMaxDataLen()
 }
 
 size_t
-FilterKernel::GetResponseLen()
+FilterKernel::GetFilterLen()
 {
-    return ResponseLen;
+    return FilterLen;
+}
+
+size_t
+FilterKernel::GetFFT_RealSize()
+{
+    return FFT_RealSize;
 }
 
 void
