@@ -32,12 +32,9 @@ class FilterKernel
         FFT_ComplexVector   H;
         FFT                 fft;
 
-    protected:
-
-        FilterKernel();
-
     public:
 
+        FilterKernel();
         FilterKernel( size_t MaxDataLen, FilterImpResp &h );
         FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 );
 
