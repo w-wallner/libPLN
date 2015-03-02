@@ -59,7 +59,8 @@ class FFT
         static  size_t  MinFftComplexVectorSize(const size_t RealVectorSize );
         static  size_t  MinFftRealVectorSize( const size_t ComplexVectorSize );
 
-        static FFT_ComplexVector &RealFFT( FFT_RealVector &r, FFT_ComplexVector &c );
+        static FFT_ComplexVector &RealFFT   ( FFT_RealVector    &r, FFT_ComplexVector &c );
+        static FFT_RealVector    &ComplexFFT( FFT_ComplexVector &c, FFT_RealVector    &r );
 
         // -------------------------------------------------------------
         // Individual interface

@@ -59,6 +59,27 @@ FFT::RealFFT( FFT_RealVector &r, FFT_ComplexVector &c )
     return c;
 }
 
+FFT_RealVector &
+FFT::ComplexFFT( FFT_ComplexVector &c, FFT_RealVector &r )
+{
+    if( r.size() < MinFftRealVectorSize(c.size()) )
+    {
+         throw std::invalid_argument( "FFT: real vector must have at least a size of (complex.size()-1) * 2" );
+    }
+
+    // the transform is performed out-of-place, hence the const_cast is safe
+    typename FFTW_C_API::plan p = FFTW_C_API::plan_dft_c2r_1d(
+                r.size(),
+                const_cast<typename FFT_ComplexVector::value_type*>(&c[0]),
+                &r[0],
+                FFTW_ESTIMATE);
+
+    FFTW_C_API::execute(p);
+    FFTW_C_API::destroy_plan(p);
+
+    return r;
+}
+
 FFT::FFT()
 {
     this->R2C_RealSize      = 0;
