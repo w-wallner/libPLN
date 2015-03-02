@@ -42,6 +42,9 @@ class FilterKernel
 
         size_t  GetMaxDataLen();
         size_t  GetResponseLen();
+
+        // Debug functions
+        void    Print( std::string Name );
 };
 
 // =========================================================================

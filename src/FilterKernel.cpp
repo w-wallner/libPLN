@@ -131,3 +131,9 @@ FilterKernel::GetResponseLen()
 {
     return ResponseLen;
 }
+
+void
+FilterKernel::Print( std::string Name )
+{
+    PrintFftCompVector( Name, H );
+}
