@@ -59,13 +59,13 @@ TdVector::GetEndTime()
 double
 TdVector::GetBeginTD()
 {
-    return *TD.begin();
+    return *TD.begin() + TD_0;
 }
 
 double
 TdVector::GetEndTD()
 {
-    return *TD.rbegin();
+    return *TD.rbegin() + TD_0;
 }
 
 double
