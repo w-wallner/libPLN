@@ -1,6 +1,6 @@
 
-#ifndef TDVECTORGENERATOR_HPP_
-#define TDVECTORGENERATOR_HPP_
+#ifndef TDVECGEN_HPP_
+#define TDVECGEN_HPP_
 
 // =========================================================================
 // Includes
@@ -20,7 +20,7 @@
 // Type definitions
 // =========================================================================
 
-class TdVectorGenerator
+class TdVecGen
 {
     private:
 
@@ -48,8 +48,8 @@ class TdVectorGenerator
 
     public:
 
-        TdVectorGenerator( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
-        ~TdVectorGenerator();
+        TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
+        ~TdVecGen();
 
         void        ResetToFixPoint( TdFixPoint fp );
         TdVector    *GetNextVector();

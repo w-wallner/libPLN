@@ -3,8 +3,7 @@
 // Includes
 // =========================================================================
 
-#include "TdVectorGenerator.hpp"
-
+#include <TdVecGen.hpp>
 #include "KwFilterImpResp.hpp"
 #include "BmHpFilterImpResp.hpp"
 #include "TdVectorLinear.hpp"
@@ -38,7 +37,7 @@ using namespace std;
 // Function definitions
 // =========================================================================
 
-TdVectorGenerator::TdVectorGenerator( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
+TdVecGen::TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
     : WhiteNoiseGen( KwConf.Seed, KwConf.Qd )
 {
     // Set up filter kernel
@@ -73,7 +72,7 @@ TdVectorGenerator::TdVectorGenerator( size_t TdVecLen, double TickLen, KW_Filter
     ResetToFixPoint( TdFixPoint(0.0, 0.0, 0.0) );
 }
 
-TdVectorGenerator::~TdVectorGenerator()
+TdVecGen::~TdVecGen()
 {
     if( pLastFFD != NULL )
     {
@@ -82,7 +81,7 @@ TdVectorGenerator::~TdVectorGenerator()
 }
 
 void
-TdVectorGenerator::ResetToFixPoint( TdFixPoint fp )
+TdVecGen::ResetToFixPoint( TdFixPoint fp )
 {
     this->State         = UNINITIALIZED;
     this->Last_t_end    = fp.Get_t();
@@ -96,7 +95,7 @@ TdVectorGenerator::ResetToFixPoint( TdFixPoint fp )
 }
 
 TdVector *
-TdVectorGenerator::GetNextVector()
+TdVecGen::GetNextVector()
 {
     // Startup of overlapping convolution
     if( State == UNINITIALIZED )
