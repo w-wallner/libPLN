@@ -1,6 +1,6 @@
 
-#ifndef TDVECGEN_GENERICTDVECGEN_HPP_
-#define TDVECGEN_GENERICTDVECGEN_HPP_
+#ifndef TDVECGEN_WPMTDVECGEN_HPP_
+#define TDVECGEN_WPMTDVECGEN_HPP_
 
 // =========================================================================
 // Includes
@@ -17,26 +17,27 @@
 // Type definitions
 // =========================================================================
 
-class GenericTdVecGen : public TdVecGen
+// =========================================================================
+// Function declarations
+// =========================================================================
+
+class WpmTdVecGen : public TdVecGen
 {
     private:
 
         // Config
+        bool                EnableHpFilter;
 
         // Resources
         FFT_RealVector      *pLastFFD;
 
     public:
-        GenericTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
-        ~GenericTdVecGen();
+        WpmTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
+        ~WpmTdVecGen();
 
         void        ResetToFixPoint( TdFixPoint fp );
         TdVector    *GetNextVector();
 
 };
-
-// =========================================================================
-// Function declarations
-// =========================================================================
 
 #endif

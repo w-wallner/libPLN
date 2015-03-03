@@ -30,7 +30,7 @@ class TdVectorLinear : public TdVector
 
     public:
 
-        TdVectorLinear( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen );
+        TdVectorLinear( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen, TdVecDataType DataType );
 };
 
 // =========================================================================

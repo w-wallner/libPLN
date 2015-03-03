@@ -38,7 +38,7 @@ TdVectorLinear::InterpolateAt( double t_req )
     return TD[idxl] + dy * dx;
 }
 
-TdVectorLinear::TdVectorLinear( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen )
-    : TdVector( t_beg, TD_0, TickLen, pFFD, ValidLen )
+TdVectorLinear::TdVectorLinear( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType )
+    : TdVector( t_beg, TD_0, TickLen, pData, ValidLen, DataType )
 {
 }

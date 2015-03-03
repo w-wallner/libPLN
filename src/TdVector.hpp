@@ -16,6 +16,13 @@
 // Type definitions
 // =========================================================================
 
+typedef enum
+{
+    FFD_DATA,
+    TD_DATA,
+}
+TdVecDataType;
+
 class TdVector
 {
     protected:
@@ -25,6 +32,7 @@ class TdVector
         double  t_beg;
         double  t_end;
         double  TD_0;
+        bool    EnableTD_0;
 
         // Resources
         std::vector<double> TD;
@@ -34,7 +42,7 @@ class TdVector
 
     public:
 
-                TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen );
+                TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen, TdVecDataType DataType );
         virtual ~TdVector();
 
         double  GetBeginTime();
@@ -44,7 +52,6 @@ class TdVector
 
         double  InterpolateTD_nom( double t_req );
 };
-
 
 // =========================================================================
 // Function declarations

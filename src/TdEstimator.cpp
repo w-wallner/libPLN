@@ -10,6 +10,7 @@
 #include "TdFixPointStorage.hpp"
 #include "TdVecGen.hpp"
 #include "GenericTdVecGen.hpp"
+#include "WpmTdVecGen.hpp"
 
 // Debug only
 #include <iostream>
@@ -97,7 +98,7 @@ TdEstimator::TdEstimator( SampleConfig SampleConf, KW_ImplOption KwImplOption, K
         {
             if( KwFilterConf.alpha == 2.0L )
             {
-                pTdVecGen    = new GenericTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+                pTdVecGen    = new WpmTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
             }
             else
             {

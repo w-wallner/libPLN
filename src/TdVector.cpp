@@ -31,7 +31,7 @@ using namespace std;
 // Function definitions
 // =========================================================================
 
-TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen )
+TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType )
     : TD( ValidLen + 1 )
 {
     this->t_beg     = t_beg;
@@ -39,9 +39,25 @@ TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *p
     this->TickLen   = TickLen;
     this->TD_0      = TD_0;
 
-    TD[0] = 0.0L;
+    switch( DataType )
+    {
+        case FFD_DATA:
+        {
+            TD[0]       = 0.0L;
+            EnableTD_0  = true;
 
-    std::partial_sum( pFFD->begin(), pFFD->begin() + ValidLen, TD.begin()+1 );
+            std::partial_sum( pData->begin(), pData->begin() + ValidLen, TD.begin()+1 );
+            break;
+        }
+        case TD_DATA:
+        {
+            TD[0]       = TD_0;
+            EnableTD_0  = false;
+
+            std::copy( pData->begin(), pData->begin() + ValidLen, TD.begin() + 1 );
+            break;
+        }
+    }
 }
 
 TdVector::~TdVector()
@@ -63,13 +79,27 @@ TdVector::GetEndTime()
 double
 TdVector::GetBeginTD()
 {
-    return *TD.begin() + TD_0;
+    double  TD_ = *TD.begin();
+
+    if( EnableTD_0 )
+    {
+        TD_  += TD_0;
+    }
+
+    return TD_;
 }
 
 double
 TdVector::GetEndTD()
 {
-    return *TD.rbegin() + TD_0;
+    double  TD_ = *TD.rbegin();
+
+    if( EnableTD_0 )
+    {
+        TD_  += TD_0;
+    }
+
+    return TD_;
 }
 
 double
@@ -78,5 +108,12 @@ TdVector::InterpolateTD_nom( double t_req )
     assert( t_req >= t_beg );
     assert( t_req <= t_end );
 
-    return TD_0 + InterpolateAt( t_req );
+    double  TD_ = InterpolateAt( t_req );
+
+    if( EnableTD_0 )
+    {
+        TD_  += TD_0;
+    }
+
+    return TD_;
 }

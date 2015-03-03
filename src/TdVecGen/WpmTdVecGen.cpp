@@ -2,14 +2,17 @@
 // Includes
 // =========================================================================
 
-#include "GenericTdVecGen.hpp"
+#include "WpmTdVecGen.hpp"
 
 #include <numeric>
 
-#include "KwFilterImpResp.hpp"
 #include "BmHpFilterImpResp.hpp"
 #include "TdVectorLinear.hpp"
 #include "TdVectorCubSpline.hpp"
+
+// Debugn only
+#include <iostream>
+using namespace std;
 
 // =========================================================================
 // Defines
@@ -31,27 +34,25 @@
 // Function definitions
 // =========================================================================
 
-GenericTdVecGen::GenericTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
+WpmTdVecGen::WpmTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
     : TdVecGen( TdVecLen, TickLen, KwConf, InterpolConf )
 {
-    // Set up filter kernel
-    KwFilterImpResp   kw( KwConf.FilterLen, KwConf.alpha );
-
     switch( HpConf.Type )
     {
         case NO_FILTER:
         {
-            H   = FilterKernel( TdVecLen, kw );
+            EnableHpFilter  = false;
             break;
         }
 
         case BLACKMAN:
         {
+            EnableHpFilter  = true;
             BmHpFilterImpResp bm( HpConf.FilterLen, HpConf.f_c_nom );
 
             bm.Augment( HpConf.Cnt );
 
-            H   = FilterKernel( TdVecLen, kw, bm );
+            H   = FilterKernel( TdVecLen, bm );
             break;
         }
     }
@@ -60,7 +61,7 @@ GenericTdVecGen::GenericTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConf
     this->pLastFFD = NULL;
 }
 
-GenericTdVecGen::~GenericTdVecGen()
+WpmTdVecGen::~WpmTdVecGen()
 {
     if( pLastFFD != NULL )
     {
@@ -69,7 +70,7 @@ GenericTdVecGen::~GenericTdVecGen()
 }
 
 void
-GenericTdVecGen::ResetToFixPoint( TdFixPoint fp )
+WpmTdVecGen::ResetToFixPoint( TdFixPoint fp )
 {
     if( pLastFFD != NULL )
     {
@@ -81,44 +82,63 @@ GenericTdVecGen::ResetToFixPoint( TdFixPoint fp )
 }
 
 TdVector *
-GenericTdVecGen::GetNextVector()
+WpmTdVecGen::GetNextVector()
 {
     // Startup of overlapping convolution
     if( State == UNINITIALIZED )
     {
-        // Set up Last FFD vector
-        pLastFFD = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), TdVecLen );
-        H.ApplyToSignal( pLastFFD );
+        if( EnableHpFilter )
+        {
+            // Set up Last FFD vector
+            pLastFFD = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), TdVecLen );
+
+            H.ApplyToSignal( pLastFFD );
+        }
 
         State = INITIALIZED;
     }
 
     // Generate new FFD vector
-    FFT_RealVector *pw = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), TdVecLen );
-    H.ApplyToSignal( pw );
+    FFT_RealVector *pw;
+    if( EnableHpFilter )
+    {
+         pw = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), TdVecLen );
+    }
+    else
+    {
+        pw = WhiteNoiseGen.GetFftVector( TdVecLen, TdVecLen );
+    }
 
-    // Handle overlapping convolution part
-    std::transform( pw->begin(), pw->begin() + H.GetFilterLen(),
-                    pLastFFD->begin() + TdVecLen, pw->begin(), std::plus<double>() );
+    if( EnableHpFilter )
+    {
+        H.ApplyToSignal( pw );
+
+        // Handle overlapping convolution part
+        std::transform( pw->begin(), pw->begin() + H.GetFilterLen(),
+                        pLastFFD->begin() + TdVecLen, pw->begin(), std::plus<double>() );
+    }
 
     TdVector *pTdVec;
     switch( IntpolType )
     {
         case LINEAR_INTERPOLATION:
         {
-            pTdVec    = new TdVectorLinear( Last_t_end, Last_TD_nom, TickLen, pw, TdVecLen, FFD_DATA );
+            pTdVec    = new TdVectorLinear( Last_t_end, Last_TD_nom, TickLen, pw, TdVecLen, TD_DATA );
             break;
         }
         case CUBIC_SPLINE_INTERPOLATION:
         {
-            pTdVec    = new TdVectorCubSpline( Last_t_end, Last_TD_nom, TickLen, pw, TdVecLen, FFD_DATA );
+            pTdVec    = new TdVectorCubSpline( Last_t_end, Last_TD_nom, TickLen, pw, TdVecLen, TD_DATA );
             break;
         }
     }
 
     // Remember FFD vector for next call
-    delete pLastFFD;
-    pLastFFD = pw;
+    if( EnableHpFilter )
+    {
+        delete pLastFFD;
+        pLastFFD = pw;
+    }
 
     Last_t_end  = pTdVec->GetEndTime();
     Last_TD_nom = pTdVec->GetEndTD();
