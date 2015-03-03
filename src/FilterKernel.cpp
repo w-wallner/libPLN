@@ -56,6 +56,12 @@ FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h )
     H.resize( FFT_ComplexSize );
 
     FFT::RealFFT( h.h(), H );
+
+    // Scale filter to include FFT scaling
+    double  Scale = 1.0L / ((double) FFT_RealSize);
+
+    std::transform( H.begin(), H.end(), H.begin(),
+                   std::bind1st(std::multiplies< std::complex<double> >(), Scale) );
 }
 
 FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 )
