@@ -34,6 +34,8 @@ using namespace std;
 TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType )
     : TD( ValidLen + 1 )
 {
+    assert( pData->size() >= ValidLen );
+
     this->t_beg     = t_beg;
     this->t_end     = t_beg + TickLen * ValidLen;
     this->TickLen   = TickLen;
