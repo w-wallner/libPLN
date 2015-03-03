@@ -5,6 +5,7 @@
 #include "WhiteNoiseGenerator.hpp"
 
 #include <algorithm>
+#include <cassert>
 
 // Debug only
 #include <iostream>
@@ -43,6 +44,8 @@ WhiteNoiseGenerator::~WhiteNoiseGenerator()
 FFT_RealVector *
 WhiteNoiseGenerator::GetFftVector( size_t VecLen, size_t FillLen )
 {
+    assert( VecLen >= FillLen );
+
     FFT_RealVector *pVec = new FFT_RealVector(VecLen, 0.0);
 
     for( size_t i = 0; i < FillLen; i ++ )
