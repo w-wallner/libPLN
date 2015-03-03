@@ -44,7 +44,6 @@ TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *p
         case FFD_DATA:
         {
             TD[0]       = 0.0L;
-            EnableTD_0  = true;
 
             std::partial_sum( pData->begin(), pData->begin() + ValidLen, TD.begin()+1 );
             break;
@@ -52,7 +51,7 @@ TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *p
         case TD_DATA:
         {
             TD[0]       = TD_0;
-            EnableTD_0  = false;
+            this->TD_0  = 0.0L;
 
             std::copy( pData->begin(), pData->begin() + ValidLen, TD.begin() + 1 );
             break;
@@ -79,27 +78,13 @@ TdVector::GetEndTime()
 double
 TdVector::GetBeginTD()
 {
-    double  TD_ = *TD.begin();
-
-    if( EnableTD_0 )
-    {
-        TD_  += TD_0;
-    }
-
-    return TD_;
+    return *TD.begin() + TD_0;
 }
 
 double
 TdVector::GetEndTD()
 {
-    double  TD_ = *TD.rbegin();
-
-    if( EnableTD_0 )
-    {
-        TD_  += TD_0;
-    }
-
-    return TD_;
+    return *TD.rbegin() + TD_0;
 }
 
 double
@@ -108,12 +93,5 @@ TdVector::InterpolateTD_nom( double t_req )
     assert( t_req >= t_beg );
     assert( t_req <= t_end );
 
-    double  TD_ = InterpolateAt( t_req );
-
-    if( EnableTD_0 )
-    {
-        TD_  += TD_0;
-    }
-
-    return TD_;
+    return TD_0 + InterpolateAt( t_req );
 }

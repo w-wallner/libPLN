@@ -32,7 +32,6 @@ class TdVector
         double  t_beg;
         double  t_end;
         double  TD_0;
-        bool    EnableTD_0;
 
         // Resources
         std::vector<double> TD;
