@@ -48,3 +48,9 @@ TdFixPoint::GetTD_abs() const
 {
     return TD_abs;
 }
+
+bool
+TdFixPoint::operator<( const TdFixPoint& other ) const
+{
+    return this->t < other.t;
+}
