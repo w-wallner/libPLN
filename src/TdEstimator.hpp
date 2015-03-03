@@ -31,6 +31,8 @@ class TdEstimator
         double  f_s;
         double  TickLen;
         double  T_val;
+        size_t  TdVecLen;
+        size_t  MaxTdVecCnt;
 
         // Resources
         TdGuess             LastGuess;

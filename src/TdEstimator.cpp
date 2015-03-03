@@ -9,6 +9,10 @@
 #include "TdGuess.hpp"
 #include "TdFixPointStorage.hpp"
 
+// Debug only
+#include <iostream>
+using namespace std;
+
 // =========================================================================
 // Defines
 // =========================================================================
@@ -75,18 +79,24 @@ TdEstimator::GuessTD( double t_req )
 
 TdEstimator::TdEstimator( SampleConfig SampleConf, KW_ImplOption KwImplOption, KW_FilterConfig KwFilterConf, HP_FilterConfig HpFilterConf, InterpolationConfig InterpolConf )
 {
-    f_s     = SampleConf.f_s;
-    T_val   = SampleConf.T_val;
+    // Config
+    f_s         = SampleConf.f_s;
+    T_val       = SampleConf.T_val;
+    TdVecLen    = SampleConf.TdVecLen;
 
-    TickLen = 1.0L / f_s;
+    // Resulting config
+    TickLen     = 1.0L / f_s;
+    MaxTdVecCnt = T_val / (TickLen * TdVecLen);
 
-    // TODO: Init TD Vec Generator
+    // Set up components
     pTdVecGen    = new TdVectorGenerator( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
 
-    // TODO: Init TD Vec Storage
-    TdVecStorage.ResetToFixPoint( TdFixPoint( 0.0, 0.0, 0.0) );
+    // Init all components to a common starting point
+    TdFixPoint  StartingPoint   = TdFixPoint( 0.0, 0.0, 0.0);
 
-    // TODO: Init Fixpoint Storage
+    pTdVecGen->ResetToFixPoint     ( StartingPoint );
+    TdVecStorage.ResetToFixPoint   ( StartingPoint );
+    FixPointStorage.ResetToFixPoint( StartingPoint );
 }
 
 TdEstimator::~TdEstimator()
@@ -119,12 +129,18 @@ TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
 
         // Request TD vectors until correct answer is known
         size_t  LoopCnt = 0;
+        size_t  MaxCnt  = MaxTdVecCnt;
+
+        cout << "TD Storage time: " << TdVecStorage.GetBeginTime() << "-" << TdVecStorage.GetEndTime() << endl;
+
         while( TdVecStorage.GetEndTime() < t_req )
         {
             TdVecStorage.AddTdVec( pTdVecGen->GetNextVector() );
 
+            cout << "TD Storage time: " << TdVecStorage.GetBeginTime() << "-" << TdVecStorage.GetEndTime() << endl;
+
             LoopCnt ++;
-            assert( LoopCnt < 100 );    // TODO: Set to reasonable value
+            assert( LoopCnt < MaxCnt );
         }
 
         TD_nom  = TdVecStorage.InterpolateTD_nom( t_req );
