@@ -3,6 +3,7 @@
 // =========================================================================
 
 #include <iostream>
+#include <fstream>
 
 #include "libPLN.hpp"
 
@@ -36,6 +37,8 @@ TdBench TdBenches[] =
     { 15,     16.0,  1.0, 0.1, 1 },
     { 16.05,  16.1,  1.0, 0.1, 1 },
     { 16.1,   16.2,  1.0, 0.1, 1 },
+    { 16.1,   16.15, 1.0, 0.1, 1 },
+    { 16.1,   3.35,  1.0, 0.1, 1 },
 };
 
 // =========================================================================
@@ -45,7 +48,8 @@ TdBench TdBenches[] =
 // =========================================================================
 // Function definitions
 // =========================================================================
-void Testbench( TdEstimator &e )
+void
+TestBench( TdEstimator &e )
 {
     double  t_now   = 0.0;
     double  t_req   = 0.0;
@@ -66,6 +70,29 @@ void Testbench( TdEstimator &e )
     }
 }
 
+void
+FileBench( TdEstimator &e )
+{
+    double  dt      = 1E-3;
+    size_t  MaxCnt  = 1000000;
+//    MaxCnt  = 10;
+//    MaxCnt  = 3000;
+
+    ofstream    TdFile;
+
+    TdFile.open( "/main/td.txt" );
+
+    double  t = 0.0;
+    for( size_t i = 0; i < MaxCnt; i ++ )
+    {
+        TdFile << e.EstimateTd( t, t, 1.0 ) << endl;
+
+        t   += dt;
+    }
+
+    TdFile.close();
+}
+
 int main()
 {
     SampleConfig            SampleConf;
@@ -74,28 +101,31 @@ int main()
     HP_FilterConfig         HpFilterConf;
     InterpolationConfig     InterpolConf;
 
-    SampleConf.f_s              = 10;
-    SampleConf.T_val            = 10;
-    SampleConf.TdVecLen         = 10;
+    SampleConf.f_s              = 1E3;
+    SampleConf.T_val            = 2;
+    SampleConf.TdVecLen         = 1000;
 
     KwImplOption                = USE_SHORTCUTS;
 
-    KwFilterConf.Qd             = 1E-6;
-    KwFilterConf.alpha          = -1.0;
-    KwFilterConf.FilterLen      = 10;
+    KwFilterConf.Qd             = 1E-24;
+    KwFilterConf.alpha          = 0.0;
+    KwFilterConf.FilterLen      = 1000;
+    KwFilterConf.Seed           = 123;
 
     HpFilterConf.Type           = BLACKMAN;
-    HpFilterConf.Type           = NO_FILTER;
-    HpFilterConf.f_c_nom        = 0.1;
-    HpFilterConf.FilterLen      = 11;
-    HpFilterConf.Cnt            = 1;
+//    HpFilterConf.Type           = NO_FILTER;
+    HpFilterConf.f_c_nom        = 0.01;
+    HpFilterConf.FilterLen      = 1001;
+    HpFilterConf.Cnt            = 2;
 
     InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
 
     TdEstimator e( SampleConf, KwImplOption, KwFilterConf, HpFilterConf, InterpolConf );
 
 
-    Testbench( e );
+    cout << "Starting" << endl;
+    //TestBench( e );
+    FileBench( e );
 
     cout << "Finished" << endl;
 
