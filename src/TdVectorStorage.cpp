@@ -53,19 +53,13 @@ TdVectorStorage::FindIndex( double t )
     size_t  MaxCnt  = Storage.size();
     while( true )
     {
-        cout << "  Checking Storage[" << i << "]: " << Storage[i]->GetBeginTime() << "-" << Storage[i]->GetEndTime() << endl;
-
         if( Storage[i]->GetBeginTime() > t )
         {
-            cout << "   <--" << endl;
-
             r = i;
             i = (l+r)/2;
         }
         else if( Storage[i]->GetEndTime() < t )
         {
-            cout << "   -->" << endl;
-
             l = i;
             i = (l+r)/2;
 
@@ -76,7 +70,6 @@ TdVectorStorage::FindIndex( double t )
         }
         else
         {
-            cout << "  Found!" << endl;
             return i;
         }
 
@@ -110,8 +103,6 @@ TdVectorStorage::TdVectorStorage( double ForgetTh1, double ForgetTh2 )
 void
 TdVectorStorage::AddTdVec( TdVector *pTdVec )
 {
-    cout << "Trying to add vector with time " << pTdVec->GetBeginTime() << "-" << pTdVec->GetEndTime() << endl;
-
     // Check if new vector matches
     switch( State )
     {
@@ -133,14 +124,6 @@ TdVectorStorage::AddTdVec( TdVector *pTdVec )
     }
 
     Storage.push_back( pTdVec );
-
-    cout << "New state: " << endl;
-    std::vector<TdVector *>::iterator  it = Storage.begin();
-    for( size_t i = 0; i < Storage.size(); i ++ )
-    {
-        cout << "  Storage[" << i << "]: " << (*it)->GetBeginTime() << "-" << (*it)->GetEndTime() << endl;
-        it ++;
-    }
 
     // Adjust state
     State = RUNNING;
@@ -215,13 +198,8 @@ TdVectorStorage::InterpolateTD_nom( double t_req )
     assert( State == RUNNING );
 
     // Find correct TD Vector and interpolate
-    TdVector *pTdVec    = Storage[ FindIndex( t_req ) ];
-
-    cout << "Found Vector for t_req = " << t_req << endl;
-    cout << " Begin: " << pTdVec->GetBeginTime() << endl;
-    cout << " End:   " << pTdVec->GetEndTime() << endl;
-
-    double TD_nom       = pTdVec->InterpolateTD_nom( t_req );
+    TdVector    *pTdVec = Storage[ FindIndex( t_req ) ];
+    double      TD_nom  = pTdVec->InterpolateTD_nom( t_req );
 
     return TD_nom;
 }
