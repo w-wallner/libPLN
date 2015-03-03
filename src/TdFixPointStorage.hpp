@@ -26,6 +26,9 @@ class TdFixPointStorage
         // Resources
         std::set<TdFixPoint>    Storage;
 
+        // Internal functions
+        void        PrintStatus();
+
     public:
         TdFixPointStorage();
 
@@ -33,6 +36,7 @@ class TdFixPointStorage
         double      InterpolateTD_abs( double t_req );
         TdFixPoint  GetLatest();
 
+        void        ResetToFixPoint( TdFixPoint fp );
         void        ForgetPast( double t_now );
 };
 

@@ -8,6 +8,10 @@
 #include <stdexcept>
 #include <cassert>
 
+// Debug only
+#include <iostream>
+using namespace std;
+
 // =========================================================================
 // Defines
 // =========================================================================
@@ -28,10 +32,21 @@
 // Function definitions
 // =========================================================================
 
+void
+TdFixPointStorage::PrintStatus()
+{
+    cout << "FixPoint storage size: " << Storage.size() << endl;
+
+    for( std::set<TdFixPoint>::iterator it = Storage.begin(); it != Storage.end(); ++it )
+    {
+        cout << "  TD(" << it->Get_t() << "): " << it->GetTD_nom() << "/" << it->GetTD_abs() << endl;
+    }
+}
+
 TdFixPointStorage::TdFixPointStorage()
 {
     // Set up [0.0/0.0]@0.0 as initial fixpoint
-    Storage.insert( TdFixPoint( 0.0, 0.0, 0.0 ) );
+    ResetToFixPoint( TdFixPoint( 0.0, 0.0, 0.0 ) );
 }
 
 void
@@ -45,31 +60,42 @@ TdFixPointStorage::InterpolateTD_abs( double t_req )
 {
     assert( Storage.size() != 0 );
 
-    if
-    (
-        ( t_req < Storage.begin()->Get_t() ) ||
-        ( t_req > Storage.end()->Get_t()   )
-    )
+    if( t_req <= Storage.begin()->Get_t() )
     {
-        throw std::invalid_argument( "FixPoint storage: requested time is out of range" );
+        return Storage.begin()->GetTD_abs();
     }
 
-    if( Storage.size() < 2 )
+    if( t_req > Storage.rbegin()->Get_t() )
     {
-        throw std::logic_error( "FixPoint storage: not enough fixpoints available for interpolation" );
+        return Storage.rbegin()->GetTD_abs();
     }
 
-//    Storage.find()
+    std::set<TdFixPoint>::iterator  r = Storage.upper_bound( TdFixPoint( t_req, 0.0, 0.0 ) );
+    std::set<TdFixPoint>::iterator  l = r;
+    std::advance(l, -1);
 
+    double dx   = r->Get_t() - l->Get_t();
+    double dy   = r->GetTD_abs() - l->GetTD_abs();
+    double k    = dy/dx;
+    double x    = t_req - l->Get_t();
+    double d    = l->GetTD_abs();
 
-    // TODO
-    return 0.0;
+    double  TD_abs = k*x + d;
+
+    return TD_abs;
 }
 
 TdFixPoint
 TdFixPointStorage::GetLatest()
 {
     return  *Storage.rbegin();
+}
+
+void
+TdFixPointStorage::ResetToFixPoint( TdFixPoint fp )
+{
+    Storage.clear();
+    Storage.insert( fp );
 }
 
 void
