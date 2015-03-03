@@ -32,12 +32,13 @@
 void
 TdEstimator::ForgetPast( double t_now )
 {
-    // TODO
     // Forward forgetting to storages, etc.
+    TdVecStorage.ForgetPast   ( t_now );
+    FixPointStorage.ForgetPast( t_now );
 }
 
 void
-TdEstimator::CheckLastGuess( double t_now )
+TdEstimator::CheckLastGuess( double t_now, bool ForceReset )
 {
     if( LastGuess.IsActive() )
     {
@@ -47,11 +48,15 @@ TdEstimator::CheckLastGuess( double t_now )
             FixPointStorage.Add( LastGuess.Get() );
 
             // Reset VectorGen and Storage
-            pTdVecGen->ResetToFixPoint ( LastGuess.Get() );
+            pTdVecGen->ResetToFixPoint  ( LastGuess.Get() );
             TdVecStorage.ResetToFixPoint( LastGuess.Get() );
-        }
 
-        LastGuess.Reset();
+            LastGuess.Reset();
+        }
+        else if( ForceReset )
+        {
+            LastGuess.Reset();
+        }
     }
 }
 
@@ -78,10 +83,9 @@ TdEstimator::TdEstimator( SampleConfig SampleConf, KW_ImplOption KwImplOption, K
     // TODO: Init TD Vec Generator
     pTdVecGen    = new TdVectorGenerator( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
 
-    // TODO: Debug only
-    pTdVecGen->GetNextVector();
-
     // TODO: Init TD Vec Storage
+    TdVecStorage.ResetToFixPoint( TdFixPoint( 0.0, 0.0, 0.0) );
+
     // TODO: Init Fixpoint Storage
 }
 
@@ -94,7 +98,7 @@ double
 TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
 {
     // Handle time issues
-    CheckLastGuess( t_now );
+    CheckLastGuess( t_now, true );
     ForgetPast( t_now );
 
     // Evaluate request
@@ -104,6 +108,9 @@ TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
     if( (TdVecStorage.GetEndTime() + T_val) < t_req )
     {
         TD_abs   = GuessTD( t_req );
+
+        // Check if our new guess may become valid immediately
+        CheckLastGuess( t_now, false );
     }
     // Case 2+3: Request is in the near future or recent past
     else if( TdVecStorage.GetBeginTime() < t_req )
@@ -117,13 +124,15 @@ TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
             TdVecStorage.AddTdVec( pTdVecGen->GetNextVector() );
 
             LoopCnt ++;
-            assert( LoopCnt < 100 );
+            assert( LoopCnt < 100 );    // TODO: Set to reasonable value
         }
 
         TD_nom  = TdVecStorage.InterpolateTD_nom( t_req );
 
         // Scale output
-        TD_abs = TD_nom * TickLen * Scaling;
+        TD_abs = TD_nom * f_s * Scaling;
+
+        FixPointStorage.Add( TdFixPoint( t_req, TD_nom, TD_abs ) );
     }
     // Case 4: Request is in the distant past
     else
