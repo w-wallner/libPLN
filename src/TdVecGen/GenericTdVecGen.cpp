@@ -1,21 +1,15 @@
-
 // =========================================================================
 // Includes
 // =========================================================================
 
-#include <TdVecGen.hpp>
+#include "GenericTdVecGen.hpp"
+
+#include <numeric>
+
 #include "KwFilterImpResp.hpp"
 #include "BmHpFilterImpResp.hpp"
 #include "TdVectorLinear.hpp"
 #include "TdVectorCubSpline.hpp"
-
-#include <numeric>
-
-// Debug only
-#include <iostream>
-using namespace std;
-
-#include "VectorOutput.hpp"
 
 // =========================================================================
 // Defines
@@ -37,8 +31,8 @@ using namespace std;
 // Function definitions
 // =========================================================================
 
-TdVecGen::TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
-    : WhiteNoiseGen( KwConf.Seed, KwConf.Qd )
+GenericTdVecGen::GenericTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
+    : TdVecGen( TdVecLen, TickLen, KwConf, InterpolConf )
 {
     // Set up filter kernel
     KwFilterImpResp   kw( KwConf.FilterLen, KwConf.alpha );
@@ -62,17 +56,11 @@ TdVecGen::TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_
         }
     }
 
-    // Set up config
-    this->TickLen       = TickLen;
-    this->IntpolType    = InterpolConf.Type;
-
-    // Set up house keeping
-    this->pLastFFD      = NULL;
-
-    ResetToFixPoint( TdFixPoint(0.0, 0.0, 0.0) );
+    // Set up resources
+    this->pLastFFD = NULL;
 }
 
-TdVecGen::~TdVecGen()
+GenericTdVecGen::~GenericTdVecGen()
 {
     if( pLastFFD != NULL )
     {
@@ -81,51 +69,49 @@ TdVecGen::~TdVecGen()
 }
 
 void
-TdVecGen::ResetToFixPoint( TdFixPoint fp )
+GenericTdVecGen::ResetToFixPoint( TdFixPoint fp )
 {
-    this->State         = UNINITIALIZED;
-    this->Last_t_end    = fp.Get_t();
-    this->Last_TD_nom   = fp.GetTD_nom();
-
     if( pLastFFD != NULL )
     {
         delete pLastFFD;
         pLastFFD = NULL;
     }
+
+    TdVecGen::ResetToFixPoint( fp );
 }
 
 TdVector *
-TdVecGen::GetNextVector()
+GenericTdVecGen::GetNextVector()
 {
     // Startup of overlapping convolution
     if( State == UNINITIALIZED )
     {
         // Set up Last FFD vector
-        pLastFFD = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), H.GetMaxDataLen() );
+        pLastFFD = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), TdVecLen );
         H.ApplyToSignal( pLastFFD );
 
         State = INITIALIZED;
     }
 
     // Generate new FFD vector
-    FFT_RealVector *pw = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), H.GetMaxDataLen() );
+    FFT_RealVector *pw = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), TdVecLen );
     H.ApplyToSignal( pw );
 
     // Handle overlapping convolution part
     std::transform( pw->begin(), pw->begin() + H.GetFilterLen(),
-                    pLastFFD->begin() + H.GetMaxDataLen(), pw->begin(), std::plus<double>() );
+                    pLastFFD->begin() + TdVecLen, pw->begin(), std::plus<double>() );
 
     TdVector *pTdVec;
     switch( IntpolType )
     {
         case LINEAR_INTERPOLATION:
         {
-            pTdVec    = new TdVectorLinear( Last_t_end, Last_TD_nom, TickLen, pw, H.GetMaxDataLen() );
+            pTdVec    = new TdVectorLinear( Last_t_end, Last_TD_nom, TickLen, pw, TdVecLen );
             break;
         }
         case CUBIC_SPLINE_INTERPOLATION:
         {
-            pTdVec    = new TdVectorCubSpline( Last_t_end, Last_TD_nom, TickLen, pw, H.GetMaxDataLen() );
+            pTdVec    = new TdVectorCubSpline( Last_t_end, Last_TD_nom, TickLen, pw, TdVecLen );
             break;
         }
     }

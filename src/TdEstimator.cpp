@@ -8,6 +8,8 @@
 
 #include "TdGuess.hpp"
 #include "TdFixPointStorage.hpp"
+#include "TdVecGen.hpp"
+#include "GenericTdVecGen.hpp"
 
 // Debug only
 #include <iostream>
@@ -89,7 +91,27 @@ TdEstimator::TdEstimator( SampleConfig SampleConf, KW_ImplOption KwImplOption, K
     MaxTdVecCnt = T_val / (TickLen * TdVecLen);
 
     // Set up components
-    pTdVecGen    = new TdVectorGenerator( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+    switch( KwImplOption )
+    {
+        case USE_SHORTCUTS:
+        {
+            if( KwFilterConf.alpha == 2.0L )
+            {
+                pTdVecGen    = new GenericTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+            }
+            else
+            {
+                pTdVecGen    = new GenericTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+            }
+            break;
+        }
+
+        case FORCE_GENERIC:
+        {
+            pTdVecGen    = new GenericTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+            break;
+        }
+    }
 
     // Init all components to a common starting point
     TdFixPoint  StartingPoint   = TdFixPoint( 0.0, 0.0, 0.0);

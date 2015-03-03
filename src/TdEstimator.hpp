@@ -6,12 +6,12 @@
 // Includes
 // =========================================================================
 
+#include <TdVecGen.hpp>
 #include <iostream>
 #include <memory>
 
 #include "Configs.hpp"
 #include "TdGuess.hpp"
-#include "TdVectorGenerator.hpp"
 #include "TdVectorStorage.hpp"
 #include "TdFixPointStorage.hpp"
 
@@ -38,7 +38,7 @@ class TdEstimator
         TdGuess             LastGuess;
         TdFixPointStorage   FixPointStorage;
         TdVectorStorage     TdVecStorage;
-        TdVectorGenerator   *pTdVecGen;
+        TdVecGen   *pTdVecGen;
 
         // Internal functions
         void    ForgetPast( double t_now );

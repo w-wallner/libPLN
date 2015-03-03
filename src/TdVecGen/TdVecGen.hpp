@@ -22,7 +22,7 @@
 
 class TdVecGen
 {
-    private:
+    protected:
 
         // Types
         typedef enum
@@ -35,12 +35,12 @@ class TdVecGen
         // Config
         double              TickLen;
         InterpolationType   IntpolType;
+        size_t              TdVecLen;
 
         // House keeping
         TdGenState          State;
         double              Last_t_end;
         double              Last_TD_nom;
-        FFT_RealVector      *pLastFFD;
 
         // Resources
         WhiteNoiseGenerator     WhiteNoiseGen;
@@ -48,11 +48,11 @@ class TdVecGen
 
     public:
 
-        TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
-        ~TdVecGen();
+        TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, InterpolationConfig InterpolConf );
+        virtual ~TdVecGen();
 
-        void        ResetToFixPoint( TdFixPoint fp );
-        TdVector    *GetNextVector();
+        virtual void        ResetToFixPoint( TdFixPoint fp );
+        virtual TdVector    *GetNextVector() = 0;
 };
 
 // =========================================================================
