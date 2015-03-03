@@ -123,7 +123,7 @@ TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
         CheckLastGuess( t_now, false );
     }
     // Case 2+3: Request is in the near future or recent past
-    else if( TdVecStorage.GetBeginTime() < t_req )
+    else if( TdVecStorage.GetBeginTime() <= t_req )
     {
         double  TD_nom = 0.0;
 
@@ -131,12 +131,12 @@ TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
         size_t  LoopCnt = 0;
         size_t  MaxCnt  = MaxTdVecCnt;
 
-        while( TdVecStorage.GetEndTime() < t_req )
+        while( TdVecStorage.GetEndTime() <= t_req )
         {
             TdVecStorage.AddTdVec( pTdVecGen->GetNextVector() );
 
             LoopCnt ++;
-            assert( LoopCnt < MaxCnt );
+            assert( LoopCnt <= MaxCnt );
         }
 
         TD_nom  = TdVecStorage.InterpolateTD_nom( t_req );
