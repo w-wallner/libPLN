@@ -6,6 +6,8 @@
 // Includes
 // =========================================================================
 
+#include <set>
+
 #include "TdVector.hpp"
 #include "TdFixPoint.hpp"
 
@@ -39,16 +41,22 @@ class TdVectorStorage
         TdVectorStorageState    State;
 
         // Resources
+        std::vector<TdVector *> Storage;
+        TdFixPoint              fp;
+
+        // Internal functions
+        TdVector    *FindContainingVector( double t );
 
     public:
 
         TdVectorStorage();
 
-        void    AddTdVec( TdVector *pVec );
+        void    AddTdVec( TdVector *pTdVec );
         double  GetBeginTime();
         double  GetEndTime();
         void    ResetToFixPoint( TdFixPoint fp );
         double  InterpolateTD_nom( double t_req );
+        void    ForgetPast( double t_now );
 };
 
 #endif
