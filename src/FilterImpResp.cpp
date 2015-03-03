@@ -111,4 +111,9 @@ FilterImpResp::Augment( size_t Cnt )
     }
 
     FFT::ComplexFFT( H, h_ );
+
+    double Scale = 1.0L / (double) FFT_RealSize;
+
+    std::transform( h_.begin(), h_.end(), h_.begin(),
+                   std::bind1st(std::multiplies< double>(), Scale));
 }
