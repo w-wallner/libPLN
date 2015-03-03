@@ -31,10 +31,8 @@ using namespace std;
 // Function definitions
 // =========================================================================
 
-// This function is based on a reference implementation for std::lower_bound
-// URL: http://en.cppreference.com/w/cpp/algorithm/lower_bound
-TdVector *
-TdVectorStorage::FindContainingVector( double t )
+size_t
+TdVectorStorage::FindIndex( double t )
 {
     size_t  l   = 0;
     size_t  r   = Storage.size()-1;
@@ -48,7 +46,7 @@ TdVectorStorage::FindContainingVector( double t )
         ( Storage[r]->GetEndTime()   >= t )
     )
     {
-        return Storage[r];
+        return r;
     }
 
     size_t  LoopCnt = 0;
@@ -79,7 +77,7 @@ TdVectorStorage::FindContainingVector( double t )
         else
         {
             cout << "  Found!" << endl;
-            return Storage[i];
+            return i;
         }
 
         LoopCnt ++;
@@ -202,7 +200,7 @@ TdVectorStorage::InterpolateTD_nom( double t_req )
     assert( State == RUNNING );
 
     // Find correct TD Vector and interpolate
-    TdVector *pTdVec    = FindContainingVector( t_req );
+    TdVector *pTdVec    = Storage[ FindIndex( t_req ) ];
 
     cout << "Found Vector for t_req = " << t_req << endl;
     cout << " Begin: " << pTdVec->GetBeginTime() << endl;

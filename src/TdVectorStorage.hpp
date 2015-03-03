@@ -45,7 +45,7 @@ class TdVectorStorage
         TdFixPoint              fp;
 
         // Internal functions
-        TdVector    *FindContainingVector( double t );
+        size_t  FindIndex( double t );
 
     public:
 
