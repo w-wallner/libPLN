@@ -67,12 +67,10 @@ TdVectorGenerator::TdVectorGenerator( size_t TdVecLen, double TickLen, KW_Filter
     this->TickLen       = TickLen;
     this->IntpolType    = InterpolConf.Type;
 
-    this->State         = UNINITIALIZED;
-    this->Last_t_end    = 0.0;
-    this->Last_TD_nom   = 0.0;
-
     // Set up house keeping
     this->pLastFFD      = NULL;
+
+    ResetToFixPoint( TdFixPoint(0.0, 0.0, 0.0) );
 }
 
 TdVectorGenerator::~TdVectorGenerator()
