@@ -131,13 +131,9 @@ TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
         size_t  LoopCnt = 0;
         size_t  MaxCnt  = MaxTdVecCnt;
 
-        cout << "TD Storage time: " << TdVecStorage.GetBeginTime() << "-" << TdVecStorage.GetEndTime() << endl;
-
         while( TdVecStorage.GetEndTime() < t_req )
         {
             TdVecStorage.AddTdVec( pTdVecGen->GetNextVector() );
-
-            cout << "TD Storage time: " << TdVecStorage.GetBeginTime() << "-" << TdVecStorage.GetEndTime() << endl;
 
             LoopCnt ++;
             assert( LoopCnt < MaxCnt );
