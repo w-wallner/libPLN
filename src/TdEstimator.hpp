@@ -40,7 +40,7 @@ class TdEstimator
 
         // Internal functions
         void    ForgetPast( double t_now );
-        void    CheckLastGuess( double t_now );
+        void    CheckLastGuess( double t_now, bool ForceReset );
         double  GuessTD( double t_req );
 
     public:
