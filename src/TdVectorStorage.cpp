@@ -88,6 +88,21 @@ TdVectorStorage::FindIndex( double t )
 TdVectorStorage::TdVectorStorage()
     : fp( 0.0, 0.0, 0.0 )
 {
+    this->ForgetTh1     = 0.0;
+    this->ForgetTh2     = 0.0;
+    this->EnableForget  = false;
+
+    State   = INVALID;
+    Storage.clear();
+}
+
+TdVectorStorage::TdVectorStorage( double ForgetTh1, double ForgetTh2 )
+    : fp( 0.0, 0.0, 0.0 )
+{
+    this->ForgetTh1     = ForgetTh1;
+    this->ForgetTh2     = ForgetTh2;
+    this->EnableForget  = true;
+
     State   = INVALID;
     Storage.clear();
 }
@@ -214,5 +229,20 @@ TdVectorStorage::InterpolateTD_nom( double t_req )
 void
 TdVectorStorage::ForgetPast( double t_now )
 {
-    // TODO
+    if( EnableForget == false )
+    {
+        return;
+    }
+
+    double  t1  = t_now - ForgetTh1;
+    double  t2  = t_now - ForgetTh2;
+
+    if( GetBeginTime() > t1 )
+    {
+        return;
+    }
+
+    size_t cnt = FindIndex( t2 ) - 1;
+
+    Storage.erase( Storage.begin(), Storage.begin() + cnt );
 }
