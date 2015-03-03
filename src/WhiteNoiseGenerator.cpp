@@ -32,7 +32,7 @@ using namespace std;
 // =========================================================================
 
 WhiteNoiseGenerator::WhiteNoiseGenerator( unsigned int Seed, double Qd )
-    : dist(0, sqrt(Qd) ), gen(eng,dist)
+    : eng(Seed), dist(0.0L, sqrt(Qd) ), gen(eng,dist)
 {
 }
 
