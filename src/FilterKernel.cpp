@@ -91,8 +91,6 @@ FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp 
 FFT_RealVector *
 FilterKernel::ApplyToSignal( FFT_RealVector *pw )
 {
-    PrintFftRealVector( "w", *pw );
-
     FFT_ComplexVector *pW = fft.GetFrequencyDomain( pw );
 
     // Check size of W
@@ -101,21 +99,14 @@ FilterKernel::ApplyToSignal( FFT_RealVector *pw )
         throw std::logic_error( "FFT(ImpResp) does not match size of FilterKernel." );
     }
 
-    PrintFftCompVector( "W", *pW );
-    PrintFftCompVector( "H", H );
-
     // Apply filter
     std::transform( pW->begin(), pW->end(),
                     H.begin(), pW->begin(),
                     std::multiplies< std::complex< double > >() );
 
-    PrintFftCompVector( "W (filt)", *pW );
-
     // Remark: Scaling of 1/N is already containg in the filter kernel
 
     fft.ConvertToTimeDomain( pW, pw );
-
-    PrintFftRealVector( "w", *pw );
 
     return pw;
 }
