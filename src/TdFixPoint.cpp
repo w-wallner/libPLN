@@ -32,19 +32,19 @@ TdFixPoint::TdFixPoint( double t, double TD_nom, double TD_abs )
 }
 
 double
-TdFixPoint::Get_t()
+TdFixPoint::Get_t() const
 {
     return t;
 }
 
 double
-TdFixPoint::GetTD_nom()
+TdFixPoint::GetTD_nom() const
 {
     return TD_nom;
 }
 
 double
-TdFixPoint::GetTD_abs()
+TdFixPoint::GetTD_abs() const
 {
     return TD_abs;
 }

@@ -27,9 +27,9 @@ class TdFixPoint
     public:
         TdFixPoint( double t, double TD_nom, double TD_abs );
 
-        double  Get_t();
-        double  GetTD_nom();
-        double  GetTD_abs();
+        double  Get_t() const;
+        double  GetTD_nom() const;
+        double  GetTD_abs() const;
 };
 
 // =========================================================================
