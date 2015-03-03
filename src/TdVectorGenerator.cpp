@@ -100,6 +100,7 @@ TdVectorGenerator::ResetToFixPoint( TdFixPoint fp )
 TdVector *
 TdVectorGenerator::GetNextVector()
 {
+    // Startup of overlapping convolution
     if( State == UNINITIALIZED )
     {
         // Set up Last FFD vector
@@ -109,11 +110,11 @@ TdVectorGenerator::GetNextVector()
         State = INITIALIZED;
     }
 
+    // Generate new FFD vector
     FFT_RealVector *pw = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), H.GetMaxDataLen() );
     H.ApplyToSignal( pw );
 
-    // Handle overlapping FFD part
-
+    // Handle overlapping convolution part
     std::transform( pw->begin(), pw->begin() + H.GetFilterLen(),
                     pLastFFD->begin() + H.GetMaxDataLen(), pw->begin(), std::plus<double>() );
 
@@ -135,6 +136,9 @@ TdVectorGenerator::GetNextVector()
     // Remember FFD vector for next call
     delete pLastFFD;
     pLastFFD = pw;
+
+    Last_t_end  = pTdVec->GetEndTime();
+    Last_TD_nom = pTdVec->GetEndTD();
 
     return pTdVec;
 }
