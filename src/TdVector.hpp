@@ -39,6 +39,8 @@ class TdVector
 
         double  GetBeginTime();
         double  GetEndTime();
+        double  GetBeginTD();
+        double  GetEndTD();
 
         double  InterpolateTD_nom( double t_req );
 };

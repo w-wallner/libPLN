@@ -57,6 +57,18 @@ TdVector::GetEndTime()
 }
 
 double
+TdVector::GetBeginTD()
+{
+    return *TD.begin();
+}
+
+double
+TdVector::GetEndTD()
+{
+    return *TD.rbegin();
+}
+
+double
 TdVector::InterpolateTD_nom( double t_req )
 {
     assert( t_req >= t_beg );
