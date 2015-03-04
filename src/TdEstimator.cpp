@@ -5,6 +5,8 @@
 #include "TdEstimator.hpp"
 
 #include <cassert>
+#include <numeric>
+
 #include "TdGuess.hpp"
 #include "TdFixPointStorage.hpp"
 #include "TdVecGen.hpp"
@@ -90,7 +92,7 @@ TdEstimator::TdEstimator( SampleConfig SampleConf, KW_ImplOption KwImplOption, K
 
     // Resulting config
     TickLen     = 1.0L / f_s;
-    MaxTdVecCnt = T_val / (TickLen * TdVecLen);
+    MaxTdVecCnt = std::max( 2.0, T_val / (TickLen * TdVecLen) );
 
     // Set up components
     switch( KwImplOption )
