@@ -25,14 +25,20 @@ class RecursiveTdVecGen : public TdVecGen
     protected:
 
         // Config
-        bool        EnableHpFilter;
+        bool            EnableHpFilter;
+        TdVecDataType   DataType;
 
         // Internal functions
-        void        SetUpHpConvFilter( HP_FilterConfig HpConf, size_t TdVecLen );
+        virtual void    ResetRecursiveFilter() = 0;
+        virtual void    ApplyRecursiveFilter( FFT_RealVector *pw ) = 0;
+        void            SetUpHpConvFilter( HP_FilterConfig HpConf, size_t TdVecLen );
 
     public:
 
         RecursiveTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
+
+        TdVector        *GetNextVector();
+        virtual void    ResetToFixPoint( TdFixPoint fp );
 };
 
 #endif

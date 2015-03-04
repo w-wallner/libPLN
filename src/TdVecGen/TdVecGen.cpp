@@ -76,7 +76,7 @@ TdVecGen::ApplyConvFilter( FFT_RealVector *pw )
 }
 
 void
-TdVecGen::CleanUpConvFilter()
+TdVecGen::ResetConvFilter()
 {
     ConvState = UNINITIALIZED;
 
@@ -128,13 +128,13 @@ TdVecGen::TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, Int
 
 TdVecGen::~TdVecGen()
 {
-    CleanUpConvFilter();
+    ResetConvFilter();
 }
 
 void
 TdVecGen::ResetToFixPoint( TdFixPoint fp )
 {
-    CleanUpConvFilter();
+    ResetConvFilter();
 
     Last_t_end  = fp.Get_t();
     Last_TD_nom = fp.GetTD_nom();

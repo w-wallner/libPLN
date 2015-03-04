@@ -27,13 +27,12 @@ class WpmTdVecGen : public RecursiveTdVecGen
         // Config
 
         // Internal functions
+        void    ResetRecursiveFilter();
+        void    ApplyRecursiveFilter( FFT_RealVector *pw );
 
     public:
         WpmTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
         ~WpmTdVecGen();
-
-        TdVector    *GetNextVector();
-
 };
 
 #endif

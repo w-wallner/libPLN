@@ -52,7 +52,7 @@ class TdVecGen
         void        DisableConvFilter();
         void        InitConvFilter();
         void        ApplyConvFilter( FFT_RealVector *pw );
-        void        CleanUpConvFilter();
+        void        ResetConvFilter();
 
         TdVector    *ConstructTdVector( FFT_RealVector *pData, TdVecDataType DataType );
 

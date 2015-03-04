@@ -56,6 +56,32 @@ RecursiveTdVecGen::SetUpHpConvFilter( HP_FilterConfig HpConf, size_t TdVecLen )
 RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
     : TdVecGen( TdVecLen, TickLen, KwConf, InterpolConf )
 {
+    DataType    = FFD_DATA;
+
     SetUpHpConvFilter( HpConf, TdVecLen );
 }
 
+TdVector *
+RecursiveTdVecGen::GetNextVector()
+{
+    // Generate new FFD vector
+    FFT_RealVector *pw;
+    pw = WhiteNoiseGen.GetFftVector( FfdVecLen, TdVecLen );
+
+    if( EnableHpFilter )
+    {
+        ApplyConvFilter( pw );
+    }
+
+    ApplyRecursiveFilter( pw );
+
+    return ConstructTdVector( pw, DataType );
+}
+
+void
+RecursiveTdVecGen::ResetToFixPoint( TdFixPoint fp )
+{
+    ResetRecursiveFilter();
+
+    TdVecGen::ResetToFixPoint( fp );
+}
