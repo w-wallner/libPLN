@@ -129,7 +129,14 @@ int main()
     TdEstimator e( SampleConf, KwImplOption, KwFilterConf, HpFilterConf, InterpolConf );
 
 
-    cout << "Starting" << endl;
+    cout << "Starting";
+    #ifdef _DEBUG
+        cout << " (Debug mode)";
+    #else
+        cout << " (Release mode)";
+    #endif
+    cout << endl;
+
     time_t  start;
     time_t  end;
 
