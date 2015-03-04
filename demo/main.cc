@@ -82,6 +82,8 @@ FileBench( TdEstimator &e )
 
     TdFile.open( "/main/td.txt" );
 
+    TdFile.precision( 30 );
+
     double  t = 0.0;
     for( size_t i = 0; i < MaxCnt; i ++ )
     {
