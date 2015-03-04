@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <functional>
 #include <stdexcept>
+#include <cassert>
 
 #include "FFT.hpp"
 #include "NumericTricks.hpp"
@@ -51,6 +52,9 @@ FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h )
     this->FFT_RealSize      = NumericTricks::nextPowerOf2( MaxDataLen + FilterLen - 1 );;
     this->FFT_ComplexSize   = FFT::MinFftComplexVectorSize( FFT_RealSize );
 
+    // Implementation of overlap-add convolution assumes that vectors are longer than filters
+    assert( MaxDataLen > FilterLen );
+
     h.IncreaseResponse( FFT_RealSize );
 
     H.resize( FFT_ComplexSize );
@@ -70,6 +74,9 @@ FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp 
     this->FilterLen         = h1.GetFilterLen() + h2.GetFilterLen() - 1;
     this->FFT_RealSize      = NumericTricks::nextPowerOf2( MaxDataLen + FilterLen - 1 );;
     this->FFT_ComplexSize   = FFT::MinFftComplexVectorSize( FFT_RealSize );
+
+    // Implementation of overlap-add convolution assumes that vectors are at least as long as filters
+    assert( MaxDataLen >= FilterLen );
 
     h1.IncreaseResponse( FFT_RealSize );
     h2.IncreaseResponse( FFT_RealSize );
