@@ -11,6 +11,8 @@
 #include "TdVecGen.hpp"
 #include "GenericTdVecGen.hpp"
 #include "WpmTdVecGen.hpp"
+#include "WfmTdVecGen.hpp"
+#include "RwTdVecGen.hpp"
 
 // Debug only
 #include <iostream>
@@ -99,6 +101,14 @@ TdEstimator::TdEstimator( SampleConfig SampleConf, KW_ImplOption KwImplOption, K
             if( KwFilterConf.alpha == 2.0L )
             {
                 pTdVecGen    = new WpmTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+            }
+            else if( KwFilterConf.alpha == 0.0L )
+            {
+                pTdVecGen    = new WfmTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+            }
+            else if( KwFilterConf.alpha == -2.0L )
+            {
+                pTdVecGen    = new RwTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
             }
             else
             {
