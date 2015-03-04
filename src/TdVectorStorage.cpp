@@ -132,12 +132,13 @@ TdVectorStorage::AddTdVec( TdVector *pTdVec )
 double
 TdVectorStorage::GetBeginTime()
 {
-    double t;
+    double t = 0.0L;
 
     switch( State )
     {
+        default:
         case INVALID:
-            t = 0.0;
+            t = 0.0L;
             break;
 
         case STARTUP:
@@ -155,12 +156,13 @@ TdVectorStorage::GetBeginTime()
 double
 TdVectorStorage::GetEndTime()
 {
-    double t;
+    double t = 0.0L;
 
     switch( State )
     {
+        default:
         case INVALID:
-            t = 0.0;
+            t = 0.0L;
             break;
 
         case STARTUP:
