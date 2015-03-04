@@ -53,7 +53,10 @@ FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h )
     this->FFT_ComplexSize   = FFT::MinFftComplexVectorSize( FFT_RealSize );
 
     // Implementation of overlap-add convolution assumes that vectors are longer than filters
-    assert( MaxDataLen > FilterLen );
+    if( MaxDataLen < FilterLen )
+    {
+        throw std::invalid_argument( "Data length has to be at least as long as the filter." );
+    }
 
     h.IncreaseResponse( FFT_RealSize );
 
@@ -76,7 +79,10 @@ FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp 
     this->FFT_ComplexSize   = FFT::MinFftComplexVectorSize( FFT_RealSize );
 
     // Implementation of overlap-add convolution assumes that vectors are at least as long as filters
-    assert( MaxDataLen >= FilterLen );
+    if( MaxDataLen < FilterLen )
+    {
+        throw std::invalid_argument( "Data length has to be at least as long as the filter." );
+    }
 
     h1.IncreaseResponse( FFT_RealSize );
     h2.IncreaseResponse( FFT_RealSize );
