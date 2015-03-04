@@ -90,9 +90,11 @@ TdVecGen::ResetConvFilter()
 TdVector *
 TdVecGen::ConstructTdVector( FFT_RealVector *pData, TdVecDataType DataType )
 {
-    TdVector *pTdVec;
+    TdVector *pTdVec = NULL;
+
     switch( IntpolType )
     {
+    default:
         case LINEAR_INTERPOLATION:
         {
             pTdVec    = new TdVectorLinear( Last_t_end, Last_TD_nom, TickLen, pData, TdVecLen, DataType );
