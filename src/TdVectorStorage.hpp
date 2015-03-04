@@ -54,6 +54,7 @@ class TdVectorStorage
 
         TdVectorStorage();
         TdVectorStorage( double ForgetTh1, double ForgetTh2 );
+        ~TdVectorStorage();
 
         void    AddTdVec( TdVector *pTdVec );
         double  GetBeginTime();

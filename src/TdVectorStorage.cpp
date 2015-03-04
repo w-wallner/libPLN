@@ -100,6 +100,15 @@ TdVectorStorage::TdVectorStorage( double ForgetTh1, double ForgetTh2 )
     Storage.clear();
 }
 
+TdVectorStorage::~TdVectorStorage()
+{
+    for( std::vector<TdVector *>::iterator it = Storage.begin(); it < Storage.end(); ++it )
+    {
+        delete *it;
+    }
+    Storage.clear();
+}
+
 void
 TdVectorStorage::AddTdVec( TdVector *pTdVec )
 {
