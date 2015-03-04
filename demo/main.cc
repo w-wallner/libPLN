@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <ctime>
 
 #include "libPLN.hpp"
 
@@ -129,10 +130,17 @@ int main()
 
 
     cout << "Starting" << endl;
+    time_t  start;
+    time_t  end;
+
+    time(&start);
+
     //TestBench( e );
     FileBench( e );
 
-    cout << "Finished" << endl;
+    time(&end);
+
+    cout << "Finished, took " << difftime( end, start ) << " seconds" << endl;
 
     return 0;
 }
