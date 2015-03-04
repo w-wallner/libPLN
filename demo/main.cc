@@ -75,7 +75,7 @@ FileBench( TdEstimator &e )
 {
     double  dt      = 1E-3;
     size_t  MaxCnt  = 1000000;
-//    MaxCnt  = 10;
+//    MaxCnt  = 30;
 //    MaxCnt  = 3000;
 
     ofstream    TdFile;
@@ -88,6 +88,7 @@ FileBench( TdEstimator &e )
     for( size_t i = 0; i < MaxCnt; i ++ )
     {
         TdFile << e.EstimateTd( t, t, 1.0 ) << endl;
+//        e.EstimateTd( t, t, 1.0 );
 
         t   += dt;
     }
@@ -105,20 +106,22 @@ int main()
 
     SampleConf.f_s              = 1E3;
     SampleConf.T_val            = 2;
-    SampleConf.TdVecLen         = 1000;
+    SampleConf.TdVecLen         = 2500;
 
     KwImplOption                = USE_SHORTCUTS;
+    KwImplOption                = FORCE_GENERIC;
 
-    KwFilterConf.Qd             = 1E-24;
-    KwFilterConf.alpha          = 0.0;
+//    KwFilterConf.Qd             = 1E-24;
+    KwFilterConf.Qd             = 1E-14;
+    KwFilterConf.alpha          = -2.0;
     KwFilterConf.FilterLen      = 1000;
     KwFilterConf.Seed           = 123;
 
     HpFilterConf.Type           = BLACKMAN;
-//    HpFilterConf.Type           = NO_FILTER;
+    HpFilterConf.Type           = NO_FILTER;
     HpFilterConf.f_c_nom        = 0.01;
     HpFilterConf.FilterLen      = 1001;
-    HpFilterConf.Cnt            = 2;
+    HpFilterConf.Cnt            = 1;
 
     InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
 
