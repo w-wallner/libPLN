@@ -2,10 +2,9 @@
 // Includes
 // =========================================================================
 
-#include <cassert>
-
 #include "TdEstimator.hpp"
 
+#include <cassert>
 #include "TdGuess.hpp"
 #include "TdFixPointStorage.hpp"
 #include "TdVecGen.hpp"
