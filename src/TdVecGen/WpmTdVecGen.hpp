@@ -27,6 +27,7 @@ class WpmTdVecGen : public TdVecGen
 
         // Config
         bool                EnableHpFilter;
+        size_t              FfdVecLen;
 
         // Resources
         FFT_RealVector      *pLastFFD;

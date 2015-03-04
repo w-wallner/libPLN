@@ -42,17 +42,20 @@ WpmTdVecGen::WpmTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwCon
         case NO_FILTER:
         {
             EnableHpFilter  = false;
+            FfdVecLen       = TdVecLen;
             break;
         }
 
         case BLACKMAN:
         {
-            EnableHpFilter  = true;
             BmHpFilterImpResp bm( HpConf.FilterLen, HpConf.f_c_nom );
 
             bm.Augment( HpConf.Cnt );
 
             H   = FilterKernel( TdVecLen, bm );
+
+            EnableHpFilter  = true;
+            FfdVecLen       = H.GetFFT_RealSize();
             break;
         }
     }
@@ -100,14 +103,8 @@ WpmTdVecGen::GetNextVector()
 
     // Generate new FFD vector
     FFT_RealVector *pw;
-    if( EnableHpFilter )
-    {
-         pw = WhiteNoiseGen.GetFftVector( H.GetFFT_RealSize(), TdVecLen );
-    }
-    else
-    {
-        pw = WhiteNoiseGen.GetFftVector( TdVecLen, TdVecLen );
-    }
+    pw = WhiteNoiseGen.GetFftVector( FfdVecLen, TdVecLen );
+
 
     if( EnableHpFilter )
     {
@@ -116,6 +113,10 @@ WpmTdVecGen::GetNextVector()
         // Handle overlapping convolution part
         std::transform( pw->begin(), pw->begin() + H.GetFilterLen(),
                         pLastFFD->begin() + TdVecLen, pw->begin(), std::plus<double>() );
+
+        // Remember FFD vector for next call
+        delete pLastFFD;
+        pLastFFD = pw;
     }
 
     TdVector *pTdVec;
@@ -131,13 +132,6 @@ WpmTdVecGen::GetNextVector()
             pTdVec    = new TdVectorCubSpline( Last_t_end, Last_TD_nom, TickLen, pw, TdVecLen, TD_DATA );
             break;
         }
-    }
-
-    // Remember FFD vector for next call
-    if( EnableHpFilter )
-    {
-        delete pLastFFD;
-        pLastFFD = pw;
     }
 
     Last_t_end  = pTdVec->GetEndTime();
