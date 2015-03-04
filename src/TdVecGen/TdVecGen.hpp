@@ -38,13 +38,23 @@ class TdVecGen
         size_t              TdVecLen;
 
         // House keeping
-        TdGenState          State;
+        TdGenState          ConvState;
         double              Last_t_end;
         double              Last_TD_nom;
+        size_t              FfdVecLen;
 
         // Resources
         WhiteNoiseGenerator     WhiteNoiseGen;
         FilterKernel            H;
+        FFT_RealVector          *pLastFFD;
+
+        // Internal functions
+        void        DisableConvFilter();
+        void        InitConvFilter();
+        void        ApplyConvFilter( FFT_RealVector *pw );
+        void        CleanUpConvFilter();
+
+        TdVector    *ConstructTdVector( FFT_RealVector *pData, TdVecDataType DataType );
 
     public:
 

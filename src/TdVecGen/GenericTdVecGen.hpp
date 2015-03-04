@@ -26,11 +26,13 @@ class GenericTdVecGen : public TdVecGen
         // Resources
         FFT_RealVector      *pLastFFD;
 
+        // Internal functions
+        void        SetUpKwHpConvFilter( KW_FilterConfig KwConf, HP_FilterConfig HpConf, size_t TdVecLen );
+
     public:
         GenericTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
         ~GenericTdVecGen();
 
-        void        ResetToFixPoint( TdFixPoint fp );
         TdVector    *GetNextVector();
 
 };

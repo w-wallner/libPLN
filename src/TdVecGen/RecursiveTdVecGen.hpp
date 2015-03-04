@@ -1,12 +1,12 @@
 
-#ifndef TDVECGEN_WPMTDVECGEN_HPP_
-#define TDVECGEN_WPMTDVECGEN_HPP_
+#ifndef TDVECGEN_RECURSIVETDVECGEN_HPP_
+#define TDVECGEN_RECURSIVETDVECGEN_HPP_
 
 // =========================================================================
 // Includes
 // =========================================================================
 
-#include "RecursiveTdVecGen.hpp"
+#include "TdVecGen.hpp"
 
 // =========================================================================
 // Defines
@@ -20,20 +20,19 @@
 // Function declarations
 // =========================================================================
 
-class WpmTdVecGen : public RecursiveTdVecGen
+class RecursiveTdVecGen : public TdVecGen
 {
-    private:
+    protected:
 
         // Config
+        bool        EnableHpFilter;
 
         // Internal functions
+        void        SetUpHpConvFilter( HP_FilterConfig HpConf, size_t TdVecLen );
 
     public:
-        WpmTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
-        ~WpmTdVecGen();
 
-        TdVector    *GetNextVector();
-
+        RecursiveTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
 };
 
 #endif

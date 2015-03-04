@@ -2,11 +2,8 @@
 // Includes
 // =========================================================================
 
-#include "GenericTdVecGen.hpp"
+#include "RecursiveTdVecGen.hpp"
 
-#include <numeric>
-
-#include "KwFilterImpResp.hpp"
 #include "BmHpFilterImpResp.hpp"
 
 // =========================================================================
@@ -30,16 +27,14 @@
 // =========================================================================
 
 void
-GenericTdVecGen::SetUpKwHpConvFilter( KW_FilterConfig KwConf, HP_FilterConfig HpConf, size_t TdVecLen )
+RecursiveTdVecGen::SetUpHpConvFilter( HP_FilterConfig HpConf, size_t TdVecLen )
 {
-    // Set up filter kernel
-    KwFilterImpResp   kw( KwConf.FilterLen, KwConf.alpha );
-
     switch( HpConf.Type )
     {
         case NO_FILTER:
         {
-            H   = FilterKernel( TdVecLen, kw );
+            EnableHpFilter  = false;
+            FfdVecLen       = TdVecLen;
             break;
         }
 
@@ -49,32 +44,18 @@ GenericTdVecGen::SetUpKwHpConvFilter( KW_FilterConfig KwConf, HP_FilterConfig Hp
 
             bm.Augment( HpConf.Cnt );
 
-            H   = FilterKernel( TdVecLen, kw, bm );
+            H   = FilterKernel( TdVecLen, bm );
+
+            EnableHpFilter  = true;
+            FfdVecLen       = H.GetFFT_RealSize();
             break;
         }
     }
-
-    FfdVecLen   = H.GetFFT_RealSize();
 }
 
-GenericTdVecGen::GenericTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
+RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
     : TdVecGen( TdVecLen, TickLen, KwConf, InterpolConf )
 {
-    SetUpKwHpConvFilter( KwConf, HpConf, TdVecLen );
+    SetUpHpConvFilter( HpConf, TdVecLen );
 }
 
-GenericTdVecGen::~GenericTdVecGen()
-{
-}
-
-TdVector *
-GenericTdVecGen::GetNextVector()
-{
-    // Generate new FFD vector
-    FFT_RealVector *pw;
-    pw = WhiteNoiseGen.GetFftVector( FfdVecLen, TdVecLen );
-
-    ApplyConvFilter( pw );
-
-    return ConstructTdVector( pw, FFD_DATA );
-}
