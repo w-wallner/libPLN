@@ -32,10 +32,11 @@ TdVectorLinear::InterpolateAt( double t_req )
     size_t  idxl = std::floor( t / TickLen );
     size_t  idxr = std::ceil ( t / TickLen );
 
-    double  dx = t - (idxl * TickLen);
+    double  x  = t - (idxl * TickLen);
+    double  dx = TickLen;
     double  dy = (TD[idxr] - TD[idxl]);
 
-    return TD[idxl] + dy * dx;
+    return TD[idxl] + dy / dx * x;
 }
 
 TdVectorLinear::TdVectorLinear( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType )
