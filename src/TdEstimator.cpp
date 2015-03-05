@@ -90,6 +90,8 @@ TdEstimator::GuessPastTD( double t_req )
 
 
 TdEstimator::TdEstimator( TdEstimatorConfig Conf )
+    : FixPointStorage( Conf.TimeConf.ForgetTh1, Conf.TimeConf.ForgetTh2 ),
+      TdVecStorage   ( Conf.TimeConf.ForgetTh1, Conf.TimeConf.ForgetTh2 )
 {
     // Config
     f_s         = Conf.SampleConf.f_s;
