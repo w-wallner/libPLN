@@ -45,6 +45,20 @@ TdFixPointStorage::PrintStatus()
 
 TdFixPointStorage::TdFixPointStorage()
 {
+    this->ForgetTh1     = 0.0L;
+    this->ForgetTh2     = 0.0L;
+    this->EnableForget  = false;
+
+    // Set up [0.0/0.0]@0.0 as initial fixpoint
+    ResetToFixPoint( TdFixPoint( 0.0, 0.0, 0.0 ) );
+}
+
+TdFixPointStorage::TdFixPointStorage( double ForgetTh1, double ForgetTh2 )
+{
+    this->ForgetTh1     = ForgetTh1;
+    this->ForgetTh2     = ForgetTh2;
+    this->EnableForget  = true;
+
     // Set up [0.0/0.0]@0.0 as initial fixpoint
     ResetToFixPoint( TdFixPoint( 0.0, 0.0, 0.0 ) );
 }

@@ -22,6 +22,9 @@ class TdFixPointStorage
 {
     private:
         // Config
+        double  ForgetTh1;
+        double  ForgetTh2;
+        bool    EnableForget;
 
         // Resources
         std::set<TdFixPoint>    Storage;
@@ -31,6 +34,7 @@ class TdFixPointStorage
 
     public:
         TdFixPointStorage();
+        TdFixPointStorage( double ForgetTh1, double ForgetTh2 );
 
         void        Add( TdFixPoint fp );
         double      InterpolateTD_abs( double t_req );
