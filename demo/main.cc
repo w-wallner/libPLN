@@ -74,7 +74,7 @@ TestBench( TdEstimator &e )
 void
 FileBench( TdEstimator &e )
 {
-    double  dt      = 1E-3;
+    double  dt      = 1E-5;
     size_t  MaxCnt  = 1000000;
 //    MaxCnt  = 30;
 //    MaxCnt  = 3000;
@@ -107,15 +107,15 @@ int main()
 
     SampleConf.f_s              = 1E3;
     SampleConf.T_val            = 2;
-    SampleConf.TdVecLen         = 2500;
+    SampleConf.TdVecLen         = 1000000;
 
     KwImplOption                = USE_SHORTCUTS;
-    KwImplOption                = FORCE_GENERIC;
+//    KwImplOption                = FORCE_GENERIC;
 
 //    KwFilterConf.Qd             = 1E-24;
-    KwFilterConf.Qd             = 1E-14;
-    KwFilterConf.alpha          = -2.0;
-    KwFilterConf.FilterLen      = 1000;
+    KwFilterConf.Qd             = 1E-18;
+    KwFilterConf.alpha          = 0.0;
+    KwFilterConf.FilterLen      = 1000000;
     KwFilterConf.Seed           = 123;
 
     HpFilterConf.Type           = BLACKMAN;
@@ -125,6 +125,7 @@ int main()
     HpFilterConf.Cnt            = 1;
 
     InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
+//    InterpolConf.Type           = LINEAR_INTERPOLATION;
 
     TdEstimator e( SampleConf, KwImplOption, KwFilterConf, HpFilterConf, InterpolConf );
 
