@@ -63,7 +63,7 @@ class TdEstimator
 
     public:
 
-        TdEstimator( SampleConfig SampleConf, KW_ImplOption KwImplOption, KW_FilterConfig KwFilterConf, HP_FilterConfig HpFilterConf, InterpolationConfig InterpolConf );
+        TdEstimator( TdEstimatorConfig Conf );
         ~TdEstimator();
 
         TdEstimate  EstimateTd( double t_now, double t_req, double Scaling );

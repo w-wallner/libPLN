@@ -104,35 +104,34 @@ FileBench( TdEstimator &e )
 
 int main()
 {
-    SampleConfig            SampleConf;
-    KW_ImplOption           KwImplOption;
-    KW_FilterConfig         KwFilterConf;
-    HP_FilterConfig         HpFilterConf;
-    InterpolationConfig     InterpolConf;
+    TdEstimatorConfig Conf;
 
-    SampleConf.f_s              = 1E3;
-    SampleConf.T_val            = 2;
-    SampleConf.TdVecLen         = 1000000;
+    Conf.SampleConf.f_s              = 1E3;
+    Conf.SampleConf.TdVecLen         = 1000000;
 
-    KwImplOption                = USE_SHORTCUTS;
-//    KwImplOption                = FORCE_GENERIC;
+    Conf.KwImplOption                = USE_SHORTCUTS;
+//    Conf.KwImplOption                = FORCE_GENERIC;
 
-//    KwFilterConf.Qd             = 1E-24;
-    KwFilterConf.Qd             = 1E-18;
-    KwFilterConf.alpha          = 0.0;
-    KwFilterConf.FilterLen      = 1000000;
-    KwFilterConf.Seed           = 123;
+//    Conf.KwFilterConf.Qd             = 1E-24;
+    Conf.KwConf.Qd             = 1E-18;
+    Conf.KwConf.alpha          = 0.0;
+    Conf.KwConf.FilterLen      = 1000000;
+    Conf.KwConf.Seed           = 123;
 
-    HpFilterConf.Type           = BLACKMAN;
-    HpFilterConf.Type           = NO_FILTER;
-    HpFilterConf.f_c_nom        = 0.01;
-    HpFilterConf.FilterLen      = 1001;
-    HpFilterConf.Cnt            = 1;
+    Conf.HpConf.Type           = BLACKMAN;
+    Conf.HpConf.Type           = NO_FILTER;
+    Conf.HpConf.f_c_nom        = 0.01;
+    Conf.HpConf.FilterLen      = 1001;
+    Conf.HpConf.Cnt            = 1;
 
-    InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
-//    InterpolConf.Type           = LINEAR_INTERPOLATION;
+    Conf.InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
+//    Conf.InterpolConf.Type           = LINEAR_INTERPOLATION;
 
-    TdEstimator e( SampleConf, KwImplOption, KwFilterConf, HpFilterConf, InterpolConf );
+    Conf.TimeConf.T_val              = 2E-3;
+    Conf.TimeConf.ForgetTh1          = 5E-3;
+    Conf.TimeConf.ForgetTh2          = 1E-3;
+
+    TdEstimator e( Conf );
 
 
     cout << "Starting";

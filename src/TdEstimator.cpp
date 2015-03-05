@@ -89,44 +89,45 @@ TdEstimator::GuessPastTD( double t_req )
 }
 
 
-TdEstimator::TdEstimator( SampleConfig SampleConf, KW_ImplOption KwImplOption, KW_FilterConfig KwFilterConf, HP_FilterConfig HpFilterConf, InterpolationConfig InterpolConf )
+TdEstimator::TdEstimator( TdEstimatorConfig Conf )
 {
     // Config
-    f_s         = SampleConf.f_s;
-    T_val       = SampleConf.T_val;
-    TdVecLen    = SampleConf.TdVecLen;
+    f_s         = Conf.SampleConf.f_s;
+    TdVecLen    = Conf.SampleConf.TdVecLen;
+
+    T_val       = Conf.TimeConf.T_val;
 
     // Resulting config
     TickLen     = 1.0L / f_s;
     MaxTdVecCnt = std::max( 2.0, T_val / (TickLen * TdVecLen) );
 
     // Set up components
-    switch( KwImplOption )
+    switch( Conf.KwImplOption )
     {
         case USE_SHORTCUTS:
         {
-            if( KwFilterConf.alpha == 2.0L )
+            if( Conf.KwConf.alpha == 2.0L )
             {
-                pTdVecGen    = new WpmTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+                pTdVecGen    = new WpmTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
             }
-            else if( KwFilterConf.alpha == 0.0L )
+            else if( Conf.KwConf.alpha == 0.0L )
             {
-                pTdVecGen    = new WfmTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+                pTdVecGen    = new WfmTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
             }
-            else if( KwFilterConf.alpha == -2.0L )
+            else if( Conf.KwConf.alpha == -2.0L )
             {
-                pTdVecGen    = new RwTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+                pTdVecGen    = new RwTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
             }
             else
             {
-                pTdVecGen    = new GenericTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+                pTdVecGen    = new GenericTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
             }
             break;
         }
 
         case FORCE_GENERIC:
         {
-            pTdVecGen    = new GenericTdVecGen( SampleConf.TdVecLen, TickLen, KwFilterConf, HpFilterConf, InterpolConf );
+            pTdVecGen    = new GenericTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
             break;
         }
     }

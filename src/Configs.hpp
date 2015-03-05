@@ -19,7 +19,6 @@
 typedef struct
 {
     double  f_s;
-    double  T_val;
     size_t  TdVecLen;
 }
 SampleConfig;
@@ -68,6 +67,25 @@ typedef struct
     InterpolationType   Type;
 }
 InterpolationConfig;
+
+typedef struct
+{
+    double  ForgetTh1;
+    double  ForgetTh2;
+    double  T_val;
+}
+TimeConfig;
+
+typedef struct
+{
+    SampleConfig            SampleConf;
+    KW_FilterConfig         KwConf;
+    KW_ImplOption           KwImplOption;
+    HP_FilterConfig         HpConf;
+    InterpolationConfig     InterpolConf;
+    TimeConfig              TimeConf;
+}
+TdEstimatorConfig;
 
 // =========================================================================
 // Function declarations
