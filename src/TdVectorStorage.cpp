@@ -231,7 +231,11 @@ TdVectorStorage::ForgetPast( double t_now )
         return;
     }
 
-    size_t cnt = FindIndex( t2 ) - 1;
+    size_t cnt = FindIndex( t2 );
+    if( cnt == 0 )
+    {
+        return;
+    }
 
-    Storage.erase( Storage.begin(), Storage.begin() + cnt );
+    Storage.erase( Storage.begin(), Storage.begin() + (cnt-1) );
 }
