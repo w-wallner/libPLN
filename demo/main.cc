@@ -62,9 +62,12 @@ TestBench( TdEstimator &e )
         t_req   = TdBenches[ i ].t_req;
         Scale   = TdBenches[ i ].Scale;
 
+        TdEstimate  est;
         for( size_t j = 0; j < TdBenches[ i ].cnt; j ++ )
         {
-            cout << "TD[" << t_now << "/" << t_req << "]: " << e.EstimateTd( t_now, t_req, Scale ) << endl;
+            est = e.EstimateTd( t_now, t_req, Scale );
+
+            cout << "TD[" << t_now << "/" << t_req << "]: " << est.TD << endl;
 
             t_req += TdBenches[ i ].dt_req;
         }
@@ -86,10 +89,12 @@ FileBench( TdEstimator &e )
     TdFile.precision( 30 );
 
     double  t = 0.0;
+    TdEstimate  est;
     for( size_t i = 0; i < MaxCnt; i ++ )
     {
-        TdFile << e.EstimateTd( t, t, 1.0 ) << endl;
-//        e.EstimateTd( t, t, 1.0 );
+        est = e.EstimateTd( t, t, 1.0 );
+
+        TdFile << est.TD << endl;
 
         t   += dt;
     }

@@ -71,7 +71,7 @@ TdEstimator::CheckLastGuess( double t_now, bool ForceReset )
 }
 
 double
-TdEstimator::GuessTD( double t_req )
+TdEstimator::GuessFutureTD( double t_req )
 {
     // Estimate future TD based on last FixPoint
     TdFixPoint  LastFP = FixPointStorage.GetLatest();
@@ -138,9 +138,11 @@ TdEstimator::~TdEstimator()
     delete pTdVecGen;
 }
 
-double
+TdEstimate
 TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
 {
+    TdEstimate e;
+
     // Handle time issues
     CheckLastGuess( t_now, true );
     ForgetPast( t_now );
@@ -151,7 +153,8 @@ TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
     // Case 1: Request is in the distant future
     if( (TdVecStorage.GetEndTime() + T_val) < t_req )
     {
-        TD_abs   = GuessTD( t_req );
+        e.TD    = GuessFutureTD( t_req );
+        e.Type  = ESTIMATED_FUTURE;
 
         // Check if our new guess may become valid immediately
         CheckLastGuess( t_now, false );
@@ -178,14 +181,18 @@ TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
         // Scale output
         TD_abs = TD_nom * f_s * Scaling;
 
+        e.TD    = TD_abs;
+        e.Type  = EXACTLY_KNOWN;
+
         FixPointStorage.Add( TdFixPoint( t_req, TD_nom, TD_abs ) );
     }
     // Case 4: Request is in the distant past
     else
     {
         // Interpolate from FixPoints
-        TD_abs = FixPointStorage.InterpolateTD_abs( t_req );
+        e.TD    = FixPointStorage.InterpolateTD_abs( t_req );
+        e.Type  = ESTIMATED_PAST;
     }
 
-    return TD_abs;
+    return e;
 }

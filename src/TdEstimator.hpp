@@ -23,6 +23,21 @@
 // Type definitions
 // =========================================================================
 
+typedef enum
+{
+    ESTIMATED_PAST,
+    EXACTLY_KNOWN,
+    ESTIMATED_FUTURE,
+}
+EstimateType;
+
+typedef struct
+{
+    double          TD;
+    EstimateType    Type;
+}
+TdEstimate;
+
 class TdEstimator
 {
     private:
@@ -43,15 +58,14 @@ class TdEstimator
         // Internal functions
         void    ForgetPast( double t_now );
         void    CheckLastGuess( double t_now, bool ForceReset );
-        double  GuessTD( double t_req );
+        double  GuessFutureTD( double t_req );
 
     public:
 
         TdEstimator( SampleConfig SampleConf, KW_ImplOption KwImplOption, KW_FilterConfig KwFilterConf, HP_FilterConfig HpFilterConf, InterpolationConfig InterpolConf );
         ~TdEstimator();
 
-        // TODO: change return type to TdEstimate
-        double  EstimateTd( double t_now, double t_req, double Scaling );
+        TdEstimate  EstimateTd( double t_now, double t_req, double Scaling );
 };
 
 // =========================================================================
