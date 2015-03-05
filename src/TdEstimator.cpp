@@ -82,6 +82,12 @@ TdEstimator::GuessFutureTD( double t_req )
     return NewFP.GetTD_abs();
 }
 
+double
+TdEstimator::GuessPastTD( double t_req )
+{
+    return FixPointStorage.InterpolateTD_abs( t_req );
+}
+
 
 TdEstimator::TdEstimator( SampleConfig SampleConf, KW_ImplOption KwImplOption, KW_FilterConfig KwFilterConf, HP_FilterConfig HpFilterConf, InterpolationConfig InterpolConf )
 {
@@ -190,7 +196,7 @@ TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
     else
     {
         // Interpolate from FixPoints
-        e.TD    = FixPointStorage.InterpolateTD_abs( t_req );
+        e.TD    = GuessPastTD( t_req );
         e.Type  = ESTIMATED_PAST;
     }
 
