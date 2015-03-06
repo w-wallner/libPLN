@@ -114,7 +114,7 @@ int main()
 
 //    Conf.KwFilterConf.Qd             = 1E-24;
     Conf.KwConf.Qd             = 1E-18;
-    Conf.KwConf.alpha          = 0.0;
+    Conf.KwConf.alpha          = 2.0;
     Conf.KwConf.FilterLen      = 1000000;
     Conf.KwConf.Seed           = 123;
 
