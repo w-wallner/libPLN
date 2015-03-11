@@ -30,7 +30,7 @@
 TdGuess::TdGuess()
     : fp( 0.0, 0.0, 0.0 )
 {
-    Reset();
+    active   = false;
 }
 
 bool
