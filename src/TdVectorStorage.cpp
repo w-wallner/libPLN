@@ -38,6 +38,9 @@ TdVectorStorage::FindIndex( double t )
     size_t  r   = Storage.size()-1;
     size_t  i   = (l+r)/2;
 
+    assert( t <= GetEndTime()   );
+    assert( t >= GetBeginTime() );
+
     // Check if last TD vector is the one that we want
     // This would be the typical case
     if
@@ -74,7 +77,7 @@ TdVectorStorage::FindIndex( double t )
         }
 
         LoopCnt ++;
-        assert( LoopCnt < MaxCnt );
+        assert( LoopCnt <= MaxCnt );
     }
 }
 
@@ -92,6 +95,11 @@ TdVectorStorage::TdVectorStorage()
 TdVectorStorage::TdVectorStorage( double ForgetTh1, double ForgetTh2 )
     : fp( 0.0, 0.0, 0.0 )
 {
+    if( ForgetTh1 < ForgetTh2 )
+    {
+        throw std::invalid_argument( "Forget threshold 1 must be larger or equal than forget threshold 2." );
+    }
+
     this->ForgetTh1     = ForgetTh1;
     this->ForgetTh2     = ForgetTh2;
     this->EnableForget  = true;
