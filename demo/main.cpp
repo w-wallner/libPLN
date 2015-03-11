@@ -22,7 +22,6 @@ typedef struct
 {
     double  t_now;
     double  t_req;
-    double  Scale;
     double  dt_req;
     size_t  cnt;
 }
@@ -34,12 +33,12 @@ TdBench;
 
 TdBench TdBenches[] =
 {
-    { 3.2,    3.2,   1.0, 0.1, 5 },
-    { 15,     16.0,  1.0, 0.1, 1 },
-    { 16.05,  16.1,  1.0, 0.1, 1 },
-    { 16.1,   16.2,  1.0, 0.1, 1 },
-    { 16.1,   16.15, 1.0, 0.1, 1 },
-    { 16.1,   3.35,  1.0, 0.1, 1 },
+    { 3.2,    3.2,   0.1, 5 },
+    { 15,     16.0,  0.1, 1 },
+    { 16.05,  16.1,  0.1, 1 },
+    { 16.1,   16.2,  0.1, 1 },
+    { 16.1,   16.15, 0.1, 1 },
+    { 16.1,   3.35,  0.1, 1 },
 };
 
 // =========================================================================
@@ -50,22 +49,50 @@ TdBench TdBenches[] =
 // Function definitions
 // =========================================================================
 void
-TestBench( TdEstimator &e )
+TestBench()
 {
+    TdEstimatorConfig Conf;
+
+    Conf.SampleConf.f_s              = 1E3;
+    Conf.SampleConf.f_s              = 1E1;
+    Conf.SampleConf.TdVecLen         = 1000;
+
+    Conf.KwImplOption                = USE_SHORTCUTS;
+//    Conf.KwImplOption                = FORCE_GENERIC;
+
+//    Conf.KwFilterConf.Qd             = 1E-24;
+    Conf.KwConf.Qd             = 1E-18 * sqrt(100);
+    Conf.KwConf.alpha          = 2.0;
+    Conf.KwConf.FilterLen      = 100;
+    Conf.KwConf.Seed           = 1234;
+
+    Conf.HpConf.Type           = BLACKMAN;
+//    Conf.HpConf.Type           = NO_FILTER;
+    Conf.HpConf.f_c_nom        = 0.05;
+    Conf.HpConf.FilterLen      = 501;
+    Conf.HpConf.Cnt            = 1;
+
+    Conf.InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
+    Conf.InterpolConf.Type           = LINEAR_INTERPOLATION;
+
+    Conf.TimeConf.T_val              = Conf.KwConf.FilterLen * (1.0L/Conf.SampleConf.f_s);
+    Conf.TimeConf.ForgetTh1          = 200 * Conf.TimeConf.T_val;
+    Conf.TimeConf.ForgetTh2          = 2 * Conf.TimeConf.T_val;
+
+    TdEstimator e( Conf );
+
     double  t_now   = 0.0;
     double  t_req   = 0.0;
-    double  Scale   = 1.0;
 
     for( size_t i = 0; i < sizeof(TdBenches)/sizeof(TdBenches[0]); i ++ )
     {
         t_now   = TdBenches[ i ].t_now;
         t_req   = TdBenches[ i ].t_req;
-        Scale   = TdBenches[ i ].Scale;
 
         TdEstimate  est;
         for( size_t j = 0; j < TdBenches[ i ].cnt; j ++ )
         {
-            est = e.EstimateTd( t_now, t_req, Scale );
+            est = e.EstimateTd( t_now, t_req );
 
             cout << "TD[" << t_now << "/" << t_req << "]: " << est.TD << endl;
 
@@ -75,12 +102,54 @@ TestBench( TdEstimator &e )
 }
 
 void
-FileBench( TdEstimator &e )
+FileBench()
 {
-    double  dt      = 1E-5;
-    size_t  MaxCnt  = 1000000;
+    TdEstimatorConfig Conf;
+
+    Conf.SampleConf.f_s              = 1E3;
+    Conf.SampleConf.f_s              = 1E1;
+    Conf.SampleConf.TdVecLen         = 1000;
+
+    Conf.KwImplOption                = USE_SHORTCUTS;
+//    Conf.KwImplOption                = FORCE_GENERIC;
+
+//    Conf.KwFilterConf.Qd             = 1E-24;
+    Conf.KwConf.Qd             = 1E-18 * sqrt(100);
+    Conf.KwConf.alpha          = 2.0;
+    Conf.KwConf.FilterLen      = 100;
+    Conf.KwConf.Seed           = 1234;
+
+    Conf.HpConf.Type           = BLACKMAN;
+//    Conf.HpConf.Type           = NO_FILTER;
+    Conf.HpConf.f_c_nom        = 0.05;
+    Conf.HpConf.FilterLen      = 501;
+    Conf.HpConf.Cnt            = 1;
+
+    Conf.InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
+    Conf.InterpolConf.Type           = LINEAR_INTERPOLATION;
+
+    Conf.TimeConf.T_val              = Conf.KwConf.FilterLen * (1.0L/Conf.SampleConf.f_s);
+    Conf.TimeConf.ForgetTh1          = 200 * Conf.TimeConf.T_val;
+    Conf.TimeConf.ForgetTh2          = 2 * Conf.TimeConf.T_val;
+
+    TdEstimator e( Conf );
+
+    double  dt;
+    size_t  MaxCnt;
+
+    dt = 1E-3;
+    dt = 1E-1;
+
+    MaxCnt  = 1000000;
 //    MaxCnt  = 30;
 //    MaxCnt  = 3000;
+
+    size_t CntThStep    = MaxCnt / 10;
+    size_t NextTh       = CntThStep;
+    bool PrintTh;
+
+    PrintTh = true;
+    PrintTh = false;
 
     ofstream    TdFile;
 
@@ -92,9 +161,18 @@ FileBench( TdEstimator &e )
     TdEstimate  est;
     for( size_t i = 0; i < MaxCnt; i ++ )
     {
-        est = e.EstimateTd( t, t, 1.0 );
+        est = e.EstimateTd( t, t );
 
         TdFile << est.TD << endl;
+
+        if( PrintTh )
+        {
+            if( i >= NextTh )
+            {
+                cout << "Calculated " << i << " samples (t = " << t << ")." << endl;
+                NextTh += CntThStep;
+            }
+        }
 
         t   += dt;
     }
@@ -102,38 +180,185 @@ FileBench( TdEstimator &e )
     TdFile.close();
 }
 
+void
+ChainBench()
+{
+    double f_s;
+    double dt;
+    double t        = 0.0L;
+    size_t cnt      = 0;
+    size_t MaxCnt   = 1000000;
+
+    f_s = 1E3;
+    f_s = 5E1;
+
+    dt  = 1.0L / f_s;
+
+    TdEstChain c;
+
+    TdEstimatorConfig Conf_1kHz;
+
+    Conf_1kHz.SampleConf.f_s              = 2E3;
+    Conf_1kHz.SampleConf.TdVecLen         = 5100;
+
+    Conf_1kHz.KwImplOption                = FORCE_GENERIC;
+
+    Conf_1kHz.KwConf.Qd             = 1E-18;
+    Conf_1kHz.KwConf.alpha          = 1.0;
+    Conf_1kHz.KwConf.FilterLen      = 10;
+//    Conf_1kHz.KwConf.FilterLen      = 20;
+//    Conf_1kHz.KwConf.FilterLen      = 40;
+    Conf_1kHz.KwConf.Seed           = 1234;
+
+    Conf_1kHz.HpConf.Type           = BLACKMAN;
+//    Conf_1kHz.HpConf.Type           = NO_FILTER;
+    Conf_1kHz.HpConf.f_c_nom        = 0.05;
+    Conf_1kHz.HpConf.f_c_nom        = 0.045;
+    Conf_1kHz.HpConf.f_c_nom        = 0.04;
+//    Conf_1kHz.HpConf.f_c_nom        = 0.02;
+    Conf_1kHz.HpConf.FilterLen      = 101;
+    Conf_1kHz.HpConf.Cnt            = 1;
+
+    Conf_1kHz.InterpolConf.Type           = LINEAR_INTERPOLATION;
+
+    Conf_1kHz.TimeConf.T_val              = Conf_1kHz.KwConf.FilterLen * (1.0L/Conf_1kHz.SampleConf.f_s);
+    Conf_1kHz.TimeConf.ForgetTh1          = 200 * Conf_1kHz.TimeConf.T_val;
+    Conf_1kHz.TimeConf.ForgetTh2          = 2 * Conf_1kHz.TimeConf.T_val;
+
+    TdEstimatorConfig Conf_100Hz;
+
+    Conf_100Hz.SampleConf.f_s              = 2E2;
+    Conf_100Hz.SampleConf.TdVecLen         = 1000;
+
+    Conf_100Hz.KwImplOption                = USE_SHORTCUTS;
+
+    Conf_100Hz.KwConf.Qd             = 1E-18 * 100;
+    Conf_100Hz.KwConf.alpha          = 1.0;
+    Conf_100Hz.KwConf.FilterLen      = 1000;
+    Conf_100Hz.KwConf.Seed           = 1235;
+
+    Conf_100Hz.HpConf.Type           = NO_FILTER;
+    Conf_100Hz.HpConf.f_c_nom        = 0.05;
+    Conf_100Hz.HpConf.FilterLen      = 501;
+    Conf_100Hz.HpConf.Cnt            = 1;
+
+    Conf_100Hz.InterpolConf.Type           = LINEAR_INTERPOLATION;
+    Conf_100Hz.InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
+
+    Conf_100Hz.TimeConf.T_val              = Conf_100Hz.KwConf.FilterLen * (1.0L/Conf_100Hz.SampleConf.f_s);
+    Conf_100Hz.TimeConf.ForgetTh1          = 200 * Conf_100Hz.TimeConf.T_val;
+    Conf_100Hz.TimeConf.ForgetTh2          = 2 * Conf_100Hz.TimeConf.T_val;
+
+
+    c.AddTdEstimator( Conf_1kHz, 1.0L );
+    c.AddTdEstimator( Conf_100Hz, sqrt(2.0544L) );
+
+    ofstream    TdFile;
+
+    TdFile.open( "/main/td.txt" );
+
+    TdFile.precision( 30 );
+    for( cnt = 0; cnt < MaxCnt; cnt ++ )
+    {
+        TdFile << c.EstimateTd( t, t ) << endl;
+
+        t += dt;
+    }
+    TdFile.close();
+
+}
+
+void
+ChainBench2()
+{
+    double f_s;
+    double dt;
+    double t        = 0.0L;
+    size_t cnt      = 0;
+    size_t MaxCnt   = 1000000;
+
+    f_s = 1E3;
+    f_s = 5E1;
+
+    dt  = 1.0L / f_s;
+
+    TdEstChain c;
+
+    TdEstimatorConfig Conf_1kHz;
+
+    Conf_1kHz.SampleConf.f_s              = 2E3;
+    Conf_1kHz.SampleConf.TdVecLen         = 5100;
+
+    Conf_1kHz.KwImplOption                = FORCE_GENERIC;
+
+    Conf_1kHz.KwConf.Qd             = 1E-18;
+    Conf_1kHz.KwConf.alpha          = 2.0;
+    Conf_1kHz.KwConf.FilterLen      = 10;
+//    Conf_1kHz.KwConf.FilterLen      = 20;
+//    Conf_1kHz.KwConf.FilterLen      = 40;
+    Conf_1kHz.KwConf.Seed           = 1234;
+
+    Conf_1kHz.HpConf.Type           = BLACKMAN;
+//    Conf_1kHz.HpConf.Type           = NO_FILTER;
+    Conf_1kHz.HpConf.f_c_nom        = 0.05;
+    Conf_1kHz.HpConf.f_c_nom        = 0.045;
+    Conf_1kHz.HpConf.f_c_nom        = 0.04;
+//    Conf_1kHz.HpConf.f_c_nom        = 0.02;
+    Conf_1kHz.HpConf.FilterLen      = 101;
+    Conf_1kHz.HpConf.Cnt            = 1;
+
+    Conf_1kHz.InterpolConf.Type           = LINEAR_INTERPOLATION;
+
+    Conf_1kHz.TimeConf.T_val              = Conf_1kHz.KwConf.FilterLen * (1.0L/Conf_1kHz.SampleConf.f_s);
+    Conf_1kHz.TimeConf.ForgetTh1          = 200 * Conf_1kHz.TimeConf.T_val;
+    Conf_1kHz.TimeConf.ForgetTh2          = 2 * Conf_1kHz.TimeConf.T_val;
+
+    TdEstimatorConfig Conf_100Hz;
+
+    Conf_100Hz.SampleConf.f_s              = 2E2;
+    Conf_100Hz.SampleConf.TdVecLen         = 1000;
+
+    Conf_100Hz.KwImplOption                = USE_SHORTCUTS;
+
+    Conf_100Hz.KwConf.Qd             = 1E-18 * 15;
+    Conf_100Hz.KwConf.alpha          = 2.0;
+    Conf_100Hz.KwConf.FilterLen      = 1000;
+    Conf_100Hz.KwConf.Seed           = 1235;
+
+    Conf_100Hz.HpConf.Type           = NO_FILTER;
+    Conf_100Hz.HpConf.f_c_nom        = 0.05;
+    Conf_100Hz.HpConf.FilterLen      = 501;
+    Conf_100Hz.HpConf.Cnt            = 1;
+
+    Conf_100Hz.InterpolConf.Type           = LINEAR_INTERPOLATION;
+    Conf_100Hz.InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
+
+    Conf_100Hz.TimeConf.T_val              = Conf_100Hz.KwConf.FilterLen * (1.0L/Conf_100Hz.SampleConf.f_s);
+    Conf_100Hz.TimeConf.ForgetTh1          = 200 * Conf_100Hz.TimeConf.T_val;
+    Conf_100Hz.TimeConf.ForgetTh2          = 2 * Conf_100Hz.TimeConf.T_val;
+
+
+    c.AddTdEstimator( Conf_1kHz, 1.0L );
+//    c.AddTdEstimator( Conf_100Hz, sqrt(10L) );
+    c.AddTdEstimator( Conf_100Hz, sqrt(8L) );
+
+    ofstream    TdFile;
+
+    TdFile.open( "/main/td.txt" );
+
+    TdFile.precision( 30 );
+    for( cnt = 0; cnt < MaxCnt; cnt ++ )
+    {
+        TdFile << c.EstimateTd( t, t ) << endl;
+
+        t += dt;
+    }
+    TdFile.close();
+
+}
+
 int main()
 {
-    TdEstimatorConfig Conf;
-
-    Conf.SampleConf.f_s              = 1E3;
-    Conf.SampleConf.TdVecLen         = 1000000;
-
-    Conf.KwImplOption                = USE_SHORTCUTS;
-//    Conf.KwImplOption                = FORCE_GENERIC;
-
-//    Conf.KwFilterConf.Qd             = 1E-24;
-    Conf.KwConf.Qd             = 1E-18;
-    Conf.KwConf.alpha          = 2.0;
-    Conf.KwConf.FilterLen      = 1000000;
-    Conf.KwConf.Seed           = 123;
-
-    Conf.HpConf.Type           = BLACKMAN;
-    Conf.HpConf.Type           = NO_FILTER;
-    Conf.HpConf.f_c_nom        = 0.01;
-    Conf.HpConf.FilterLen      = 1001;
-    Conf.HpConf.Cnt            = 1;
-
-    Conf.InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
-//    Conf.InterpolConf.Type           = LINEAR_INTERPOLATION;
-
-    Conf.TimeConf.T_val              = 2E-3;
-    Conf.TimeConf.ForgetTh1          = 5E-3;
-    Conf.TimeConf.ForgetTh2          = 1E-3;
-
-    TdEstimator e( Conf );
-
-
     cout << "Starting";
     #ifdef _DEBUG
         cout << " (Debug mode)";
@@ -147,8 +372,10 @@ int main()
 
     time(&start);
 
-    //TestBench( e );
-    FileBench( e );
+    //TestBench();
+    //FileBench();
+//    ChainBench();
+    ChainBench2();
 
     time(&end);
 
