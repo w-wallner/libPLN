@@ -231,10 +231,20 @@ TdVectorStorage::ForgetPast( double t_now )
         return;
     }
 
+    if( Storage.size() == 0 )
+    {
+        return;
+    }
+
     double  t1  = t_now - ForgetTh1;
     double  t2  = t_now - ForgetTh2;
 
-    if( GetBeginTime() > t1 )
+    if( (*Storage.begin())->GetEndTime() > t1 )
+    {
+        return;
+    }
+
+    if( (*Storage.rbegin())->GetEndTime() < t2 )
     {
         return;
     }
