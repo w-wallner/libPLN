@@ -66,7 +66,7 @@ class TdEstimator
         TdEstimator( TdEstimatorConfig Conf );
         ~TdEstimator();
 
-        TdEstimate  EstimateTd( double t_now, double t_req, double Scaling );
+        TdEstimate  EstimateTd( double t_now, double t_req );
 };
 
 // =========================================================================

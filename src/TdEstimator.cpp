@@ -148,7 +148,7 @@ TdEstimator::~TdEstimator()
 }
 
 TdEstimate
-TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
+TdEstimator::EstimateTd( double t_now, double t_req )
 {
     TdEstimate e;
 
@@ -188,7 +188,7 @@ TdEstimator::EstimateTd( double t_now, double t_req, double Scaling )
         TD_nom  = TdVecStorage.InterpolateTD_nom( t_req );
 
         // Scale output
-        TD_abs = TD_nom * f_s * Scaling;
+        TD_abs = TD_nom * f_s;
 
         e.TD    = TD_abs;
         e.Type  = EXACTLY_KNOWN;
