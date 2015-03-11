@@ -103,6 +103,11 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     TickLen     = 1.0L / f_s;
     MaxTdVecCnt = std::max( 2.0, T_val / (TickLen * TdVecLen) );
 
+    if( T_val < TickLen )
+    {
+        throw std::invalid_argument( "T_val is smaller than TickLen, this can't make sense." );
+    }
+
     // Set up components
     switch( Conf.KwImplOption )
     {
