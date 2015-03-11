@@ -53,7 +53,7 @@ class TdEstimator
         TdGuess             LastGuess;
         TdFixPointStorage   FixPointStorage;
         TdVectorStorage     TdVecStorage;
-        TdVecGen   *pTdVecGen;
+        TdVecGen            *pTdVecGen;
 
         // Internal functions
         void    ForgetPast( double t_now );
