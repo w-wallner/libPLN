@@ -88,7 +88,7 @@ TdVectorStorage::TdVectorStorage()
     this->ForgetTh2     = 0.0;
     this->EnableForget  = false;
 
-    State   = INVALID;
+    State   = STARTUP;
     Storage.clear();
 }
 
@@ -104,7 +104,7 @@ TdVectorStorage::TdVectorStorage( double ForgetTh1, double ForgetTh2 )
     this->ForgetTh2     = ForgetTh2;
     this->EnableForget  = true;
 
-    State   = INVALID;
+    State   = STARTUP;
     Storage.clear();
 }
 
@@ -120,24 +120,9 @@ TdVectorStorage::~TdVectorStorage()
 void
 TdVectorStorage::AddTdVec( TdVector *pTdVec )
 {
-    // Check if new vector matches
-    switch( State )
+    if( pTdVec->GetBeginTime() != GetEndTime() )
     {
-        case INVALID:
-        {
-            break;
-        }
-
-        case STARTUP:
-        case RUNNING:
-        {
-            if( pTdVec->GetBeginTime() != GetEndTime() )
-            {
-                throw std::logic_error( "TdStorage: new vector does not continue time frame" );
-            }
-
-            break;
-        }
+        throw std::logic_error( "TdStorage: new vector does not continue time frame" );
     }
 
     Storage.push_back( pTdVec );
@@ -154,10 +139,6 @@ TdVectorStorage::GetBeginTime()
     switch( State )
     {
         default:
-        case INVALID:
-            t = 0.0L;
-            break;
-
         case STARTUP:
             t = fp.Get_t();
             break;
@@ -178,10 +159,6 @@ TdVectorStorage::GetEndTime()
     switch( State )
     {
         default:
-        case INVALID:
-            t = 0.0L;
-            break;
-
         case STARTUP:
             t = fp.Get_t();
             break;

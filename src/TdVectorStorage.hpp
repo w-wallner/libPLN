@@ -21,7 +21,6 @@
 
 typedef enum
 {
-    INVALID,
     STARTUP,
     RUNNING,
 }
