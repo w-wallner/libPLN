@@ -57,7 +57,9 @@ class TdVectorStorage
 
         void    AddTdVec( TdVector *pTdVec );
         double  GetBeginTime();
+        double  GetBeginTD();
         double  GetEndTime();
+        double  GetEndTD();
         void    ResetToFixPoint( TdFixPoint fp );
         double  InterpolateTD_nom( double t_req );
         void    ForgetPast( double t_now );

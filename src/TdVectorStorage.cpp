@@ -145,6 +145,19 @@ TdVectorStorage::GetBeginTime()
 }
 
 double
+TdVectorStorage::GetBeginTD()
+{
+    if( State == RUNNING )
+    {
+        return (*Storage.begin())->GetBeginTD();
+    }
+    else
+    {
+        return fp.TD_nom();
+    }
+}
+
+double
 TdVectorStorage::GetEndTime()
 {
     if( State == RUNNING )
@@ -154,6 +167,19 @@ TdVectorStorage::GetEndTime()
     else
     {
         return fp.Get_t();
+    }
+}
+
+double
+TdVectorStorage::GetEndTD()
+{
+    if( State == RUNNING )
+    {
+        return (*Storage.rbegin())->GetBeginTD();
+    }
+    else
+    {
+        return fp.TD_nom();
     }
 }
 
