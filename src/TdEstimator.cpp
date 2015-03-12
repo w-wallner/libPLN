@@ -85,7 +85,9 @@ TdEstimator::GuessFutureTD( double t_req )
 double
 TdEstimator::GuessPastTD( double t_req )
 {
-    return FixPointStorage.InterpolateTD_abs( t_req );
+    assert( TdVecStorage.GetBeginTime() > t_req );
+
+    return TdVecStorage.GetBeginTD();
 }
 
 
