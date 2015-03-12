@@ -81,6 +81,19 @@ TdVectorStorage::FindIndex( double t )
     }
 }
 
+void
+TdVectorStorage::Print()
+{
+    size_t  size    = Storage.size();
+
+    cout << "Size: " << size << endl;
+
+    for( size_t i = 0; i < size; i ++ )
+    {
+        cout << "[" << i << "]: " << Storage[i]->GetBeginTime() << " - " << Storage[i]->GetEndTime() << endl;
+    }
+}
+
 TdVectorStorage::TdVectorStorage()
     : fp( 0.0, 0.0 )
 {
