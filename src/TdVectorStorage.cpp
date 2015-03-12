@@ -82,7 +82,7 @@ TdVectorStorage::FindIndex( double t )
 }
 
 TdVectorStorage::TdVectorStorage()
-    : fp( 0.0, 0.0, 0.0 )
+    : fp( 0.0, 0.0 )
 {
     this->ForgetTh1     = 0.0;
     this->ForgetTh2     = 0.0;
@@ -93,7 +93,7 @@ TdVectorStorage::TdVectorStorage()
 }
 
 TdVectorStorage::TdVectorStorage( double ForgetTh1, double ForgetTh2 )
-    : fp( 0.0, 0.0, 0.0 )
+    : fp( 0.0, 0.0 )
 {
     if( ForgetTh1 < ForgetTh2 )
     {

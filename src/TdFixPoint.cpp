@@ -24,11 +24,10 @@
 // Function definitions
 // =========================================================================
 
-TdFixPoint::TdFixPoint( double t, double TD_nom, double TD_abs )
+TdFixPoint::TdFixPoint( double t, double TD_nom )
 {
     this->t         = t;
     this->TD_nom    = TD_nom;
-    this->TD_abs    = TD_abs;
 }
 
 double
@@ -41,12 +40,6 @@ double
 TdFixPoint::GetTD_nom() const
 {
     return TD_nom;
-}
-
-double
-TdFixPoint::GetTD_abs() const
-{
-    return TD_abs;
 }
 
 bool

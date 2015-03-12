@@ -72,7 +72,7 @@ TdEstimator::GuessFutureTD( double t_req )
 
     double TD_nom = TdVecStorage.GetEndTD();
 
-    LastGuess.Set( TdFixPoint( t_req, TD_nom, TD_nom * f_s ) );
+    LastGuess.Set( TdFixPoint( t_req, TD_nom ) );
 
     return TD_nom * f_s;
 }
@@ -136,7 +136,7 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     }
 
     // Init all components to a common starting point
-    TdFixPoint  StartingPoint   = TdFixPoint( 0.0, 0.0, 0.0);
+    TdFixPoint  StartingPoint   = TdFixPoint( 0.0, 0.0 );
 
     pTdVecGen->ResetToFixPoint     ( StartingPoint );
     TdVecStorage.ResetToFixPoint   ( StartingPoint );

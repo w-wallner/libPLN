@@ -22,14 +22,12 @@ class TdFixPoint
         // Config
         double  t;
         double  TD_nom;
-        double  TD_abs;
 
     public:
-        TdFixPoint( double t, double TD_nom, double TD_abs );
+        TdFixPoint( double t, double TD_nom );
 
         double  Get_t() const;
         double  GetTD_nom() const;
-        double  GetTD_abs() const;
 
         bool operator<( const TdFixPoint& other ) const;
 };
