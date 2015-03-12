@@ -85,7 +85,6 @@ TdEstimator::GuessPastTD_nom( double t_req )
     return TdVecStorage.GetBeginTD();
 }
 
-
 TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     : TdVecStorage   ( Conf.TimeConf.ForgetTh1, Conf.TimeConf.ForgetTh2 )
 {
