@@ -66,7 +66,7 @@ TdEstimator::CheckLastGuess( double t_now, bool ForceReset )
 }
 
 double
-TdEstimator::GuessFutureTD( double t_req )
+TdEstimator::GuessFutureTD_nom( double t_req )
 {
     assert( TdVecStorage.GetEndTime() < t_req );
 
@@ -74,7 +74,7 @@ TdEstimator::GuessFutureTD( double t_req )
 
     LastGuess.Set( TdFixPoint( t_req, TD_nom ) );
 
-    return TD_nom * f_s;
+    return TD_nom;
 }
 
 double
@@ -160,7 +160,7 @@ TdEstimator::EstimateTd( double t_now, double t_req )
     // Case 1: Request is in the distant future
     if( (TdVecStorage.GetEndTime() + T_val) < t_req )
     {
-        e.TD    = GuessFutureTD( t_req );
+        e.TD    = GuessFutureTD_nom( t_req ) * f_s;
         e.Type  = ESTIMATED_FUTURE;
 
         // Check if our new guess may become valid immediately
