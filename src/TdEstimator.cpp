@@ -157,8 +157,6 @@ TdEstimator::EstimateTd( double t_now, double t_req )
     ForgetPast( t_now );
 
     // Evaluate request
-    double  TD_abs;
-
     // Case 1: Request is in the distant future
     if( (TdVecStorage.GetEndTime() + T_val) < t_req )
     {
@@ -171,8 +169,6 @@ TdEstimator::EstimateTd( double t_now, double t_req )
     // Case 2+3: Request is in the near future or recent past
     else if( TdVecStorage.GetBeginTime() <= t_req )
     {
-        double  TD_nom = 0.0;
-
         // Request TD vectors until correct answer is known
         size_t  LoopCnt = 0;
         size_t  MaxCnt  = MaxTdVecCnt;
@@ -185,12 +181,7 @@ TdEstimator::EstimateTd( double t_now, double t_req )
             assert( LoopCnt <= MaxCnt );
         }
 
-        TD_nom  = TdVecStorage.InterpolateTD_nom( t_req );
-
-        // Scale output
-        TD_abs = TD_nom * f_s;
-
-        e.TD    = TD_abs;
+        e.TD    = TdVecStorage.InterpolateTD_nom( t_req ) * f_s;
         e.Type  = EXACTLY_KNOWN;
     }
     // Case 4: Request is in the distant past
