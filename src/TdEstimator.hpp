@@ -49,9 +49,13 @@ class TdEstimator
         size_t  MaxTdVecCnt;
 
         // Resources
-        TdGuess             LastGuess;
         TdVectorStorage     TdVecStorage;
         TdVecGen            *pTdVecGen;
+
+        // House keeping
+        TdGuess             LastGuess;
+        double              Last_t_req;
+        TdEstimate          LastAnswer;
 
         // Internal functions
         void    ForgetPast( double t_now );

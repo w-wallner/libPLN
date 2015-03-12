@@ -94,6 +94,11 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
 
     T_val       = Conf.TimeConf.T_val;
 
+    // House keeping
+    Last_t_req      = 0.0L;
+    LastAnswer.TD   = 0.0L;
+    LastAnswer.Type = ESTIMATED_FUTURE;
+
     // Resulting config
     TickLen     = 1.0L / f_s;
     MaxTdVecCnt = std::max( 2.0, T_val / (TickLen * TdVecLen) );
@@ -156,6 +161,11 @@ TdEstimator::EstimateTd( double t_now, double t_req )
     ForgetPast( t_now );
 
     // Evaluate request
+    if( t_req == Last_t_req )
+    {
+        return  LastAnswer;
+    }
+
     // Case 1: Request is in the distant future
     if( (TdVecStorage.GetEndTime() + T_val) < t_req )
     {
@@ -190,6 +200,9 @@ TdEstimator::EstimateTd( double t_now, double t_req )
         e.TD    = GuessPastTD_nom( t_req ) * f_s;
         e.Type  = ESTIMATED_PAST;
     }
+
+    LastAnswer  = e;
+    Last_t_req  = t_req;
 
     return e;
 }
