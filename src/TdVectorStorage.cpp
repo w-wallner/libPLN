@@ -134,53 +134,69 @@ TdVectorStorage::AddTdVec( TdVector *pTdVec )
 double
 TdVectorStorage::GetBeginTime()
 {
+    double t = 0.0L;
+
     if( State == RUNNING )
     {
-        return (*Storage.rbegin())->GetBeginTime();
+        t = (*Storage.rbegin())->GetBeginTime();
     }
     else
     {
-        return fp.Get_t();
+        t = fp.Get_t();
     }
+
+    return t;
 }
 
 double
 TdVectorStorage::GetBeginTD()
 {
+    double t = 0.0L;
+
     if( State == RUNNING )
     {
-        return (*Storage.begin())->GetBeginTD();
+        t = (*Storage.begin())->GetBeginTD();
     }
     else
     {
-        return fp.TD_nom();
+        t = fp.GetTD_nom();
     }
+
+    return t;
 }
 
 double
 TdVectorStorage::GetEndTime()
 {
+    double t = 0.0L;
+
     if( State == RUNNING )
     {
-        return (*Storage.rbegin())->GetEndTime();
+        t = (*Storage.rbegin())->GetEndTime();
     }
     else
     {
-        return fp.Get_t();
+        t = fp.Get_t();
     }
+
+    return t;
 }
 
 double
 TdVectorStorage::GetEndTD()
 {
+    double t = 0.0L;
+
     if( State == RUNNING )
     {
-        return (*Storage.rbegin())->GetBeginTD();
+        t = (*Storage.rbegin())->GetBeginTD();
     }
     else
     {
-        return fp.TD_nom();
+        t = fp.GetTD_nom();
     }
+
+    return t;
 }
 
 void
