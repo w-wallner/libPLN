@@ -194,3 +194,9 @@ TdEstimator::EstimateTd( double t_now, double t_req )
 
     return e;
 }
+
+double
+TdEstimator::Get_f_s()
+{
+    return f_s;
+}

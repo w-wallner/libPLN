@@ -65,6 +65,9 @@ class TdEstimator
         ~TdEstimator();
 
         TdEstimate  EstimateTd( double t_now, double t_req );
+
+        // Debug functions
+        double  Get_f_s();
 };
 
 // =========================================================================
