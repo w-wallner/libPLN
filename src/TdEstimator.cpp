@@ -82,7 +82,7 @@ TdEstimator::GuessPastTD( double t_req )
 {
     assert( TdVecStorage.GetBeginTime() > t_req );
 
-    return TdVecStorage.GetBeginTD();
+    return TdVecStorage.GetBeginTD() * f_s;
 }
 
 
