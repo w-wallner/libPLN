@@ -134,41 +134,27 @@ TdVectorStorage::AddTdVec( TdVector *pTdVec )
 double
 TdVectorStorage::GetBeginTime()
 {
-    double t = 0.0L;
-
-    switch( State )
+    if( State == RUNNING )
     {
-        default:
-        case STARTUP:
-            t = fp.Get_t();
-            break;
-
-        case RUNNING:
-            t   = (*Storage.begin())->GetBeginTime();
-            break;
+        return (*Storage.rbegin())->GetBeginTime();
     }
-
-    return t;
+    else
+    {
+        return fp.Get_t();
+    }
 }
 
 double
 TdVectorStorage::GetEndTime()
 {
-    double t = 0.0L;
-
-    switch( State )
+    if( State == RUNNING )
     {
-        default:
-        case STARTUP:
-            t = fp.Get_t();
-            break;
-
-        case RUNNING:
-            t   = (*Storage.rbegin())->GetEndTime();
-            break;
+        return (*Storage.rbegin())->GetEndTime();
     }
-
-    return t;
+    else
+    {
+        return fp.Get_t();
+    }
 }
 
 void
