@@ -78,11 +78,11 @@ TdEstimator::GuessFutureTD( double t_req )
 }
 
 double
-TdEstimator::GuessPastTD( double t_req )
+TdEstimator::GuessPastTD_nom( double t_req )
 {
     assert( TdVecStorage.GetBeginTime() > t_req );
 
-    return TdVecStorage.GetBeginTD() * f_s;
+    return TdVecStorage.GetBeginTD();
 }
 
 
@@ -188,7 +188,7 @@ TdEstimator::EstimateTd( double t_now, double t_req )
     else
     {
         // Interpolate from FixPoints
-        e.TD    = GuessPastTD( t_req );
+        e.TD    = GuessPastTD_nom( t_req ) * f_s;
         e.Type  = ESTIMATED_PAST;
     }
 
