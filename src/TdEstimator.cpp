@@ -42,7 +42,7 @@ void
 TdEstimator::ForgetPast( double t_now )
 {
     // Forward forgetting to storages, etc.
-    TdVecStorage.ForgetPast   ( t_now );
+    TdVecStorage.ForgetPast( t_now );
 }
 
 void
