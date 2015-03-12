@@ -138,7 +138,7 @@ TdVectorStorage::GetBeginTime()
 
     if( State == RUNNING )
     {
-        t = (*Storage.rbegin())->GetBeginTime();
+        t = (*Storage.begin())->GetBeginTime();
     }
     else
     {
@@ -189,7 +189,7 @@ TdVectorStorage::GetEndTD()
 
     if( State == RUNNING )
     {
-        t = (*Storage.rbegin())->GetBeginTD();
+        t = (*Storage.rbegin())->GetEndTD();
     }
     else
     {
