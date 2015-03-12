@@ -273,5 +273,13 @@ TdVectorStorage::ForgetPast( double t_now )
         return;
     }
 
-    Storage.erase( Storage.begin(), Storage.begin() + (cnt-1) );
+    std::vector<TdVector *>::iterator Begin = Storage.begin();
+    std::vector<TdVector *>::iterator End  = Storage.begin() + cnt;
+
+    for( std::vector<TdVector *>::iterator it = Begin; it < End ; ++it )
+    {
+        delete (*it);
+    }
+
+    Storage.erase( Begin, End );
 }
