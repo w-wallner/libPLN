@@ -31,7 +31,7 @@ public:
     bool        IsActive();
     bool        BecameValid( double t_now );
     void        Set( TdFixPoint fp );
-    TdFixPoint  Get();
+    TdFixPoint  GetFP();
     void    Reset();
 };
 

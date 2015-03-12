@@ -55,7 +55,7 @@ TdGuess::Set( TdFixPoint fp )
 }
 
 TdFixPoint
-TdGuess::Get()
+TdGuess::GetFP()
 {
     assert( active == true );
 

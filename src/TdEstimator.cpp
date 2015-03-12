@@ -53,8 +53,8 @@ TdEstimator::CheckLastGuess( double t_now, bool ForceReset )
         if( LastGuess.BecameValid( t_now ) )
         {
             // Reset VectorGen and Storage
-            pTdVecGen->ResetToFixPoint  ( LastGuess.Get() );
-            TdVecStorage.ResetToFixPoint( LastGuess.Get() );
+            pTdVecGen->ResetToFixPoint  ( LastGuess.GetFP() );
+            TdVecStorage.ResetToFixPoint( LastGuess.GetFP() );
 
             LastGuess.Reset();
         }
