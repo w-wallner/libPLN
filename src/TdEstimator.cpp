@@ -8,7 +8,6 @@
 #include <numeric>
 
 #include "TdGuess.hpp"
-#include "TdFixPointStorage.hpp"
 #include "TdVecGen.hpp"
 #include "GenericTdVecGen.hpp"
 #include "WpmTdVecGen.hpp"
@@ -44,7 +43,6 @@ TdEstimator::ForgetPast( double t_now )
 {
     // Forward forgetting to storages, etc.
     TdVecStorage.ForgetPast   ( t_now );
-    FixPointStorage.ForgetPast( t_now );
 }
 
 void
@@ -54,9 +52,6 @@ TdEstimator::CheckLastGuess( double t_now, bool ForceReset )
     {
         if( LastGuess.BecameValid( t_now ) )
         {
-            // Insert into Fixpoint DB
-            FixPointStorage.Add( LastGuess.Get() );
-
             // Reset VectorGen and Storage
             pTdVecGen->ResetToFixPoint  ( LastGuess.Get() );
             TdVecStorage.ResetToFixPoint( LastGuess.Get() );
@@ -92,8 +87,7 @@ TdEstimator::GuessPastTD( double t_req )
 
 
 TdEstimator::TdEstimator( TdEstimatorConfig Conf )
-    : FixPointStorage( Conf.TimeConf.ForgetTh1, Conf.TimeConf.ForgetTh2 ),
-      TdVecStorage   ( Conf.TimeConf.ForgetTh1, Conf.TimeConf.ForgetTh2 )
+    : TdVecStorage   ( Conf.TimeConf.ForgetTh1, Conf.TimeConf.ForgetTh2 )
 {
     // Config
     f_s         = Conf.SampleConf.f_s;
@@ -146,7 +140,6 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
 
     pTdVecGen->ResetToFixPoint     ( StartingPoint );
     TdVecStorage.ResetToFixPoint   ( StartingPoint );
-    FixPointStorage.ResetToFixPoint( StartingPoint );
 }
 
 TdEstimator::~TdEstimator()
@@ -199,8 +192,6 @@ TdEstimator::EstimateTd( double t_now, double t_req )
 
         e.TD    = TD_abs;
         e.Type  = EXACTLY_KNOWN;
-
-        FixPointStorage.Add( TdFixPoint( t_req, TD_nom, TD_abs ) );
     }
     // Case 4: Request is in the distant past
     else

@@ -13,7 +13,6 @@
 #include "Configs.hpp"
 #include "TdGuess.hpp"
 #include "TdVectorStorage.hpp"
-#include "TdFixPointStorage.hpp"
 
 // =========================================================================
 // Defines
@@ -51,7 +50,6 @@ class TdEstimator
 
         // Resources
         TdGuess             LastGuess;
-        TdFixPointStorage   FixPointStorage;
         TdVectorStorage     TdVecStorage;
         TdVecGen            *pTdVecGen;
 
