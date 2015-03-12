@@ -76,5 +76,9 @@ GenericTdVecGen::GetNextVector()
 
     ApplyConvFilter( pw );
 
-    return ConstructTdVector( pw, FFD_DATA );
+    TdVector *pTdVec = ConstructTdVector( pw, FFD_DATA );
+
+    delete pw;
+
+    return pTdVec;
 }
