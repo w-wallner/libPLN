@@ -75,13 +75,11 @@ TdEstimator::GuessFutureTD( double t_req )
 {
     assert( TdVecStorage.GetEndTime() < t_req );
 
-    // Estimate future TD based on last FixPoint
-    TdFixPoint  LastFP = FixPointStorage.GetLatest();
-    TdFixPoint  NewFP( t_req, LastFP.GetTD_nom(), LastFP.GetTD_abs() );
+    double TD_nom = TdVecStorage.GetEndTD();
 
-    LastGuess.Set( NewFP );
+    LastGuess.Set( TdFixPoint( t_req, TD_nom, TD_nom * f_s ) );
 
-    return NewFP.GetTD_abs();
+    return TD_nom * f_s;
 }
 
 double
