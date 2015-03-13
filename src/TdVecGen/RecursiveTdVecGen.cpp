@@ -77,7 +77,10 @@ RecursiveTdVecGen::GetNextVector()
 
     TdVector *pTdVec  = ConstructTdVector( pw, DataType );
 
-    delete pw;
+    if( !EnableHpFilter )
+    {
+        delete pw;
+    }
 
     return pTdVec;
 }
