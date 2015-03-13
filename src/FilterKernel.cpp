@@ -127,6 +127,8 @@ FilterKernel::ApplyToSignal( FFT_RealVector *pw )
 
     fft.ConvertToTimeDomain( pW, pw );
 
+    delete pW;
+
     return pw;
 }
 
