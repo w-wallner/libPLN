@@ -7,9 +7,11 @@
 #include <ctime>
 
 #include "libPLN.hpp"
-#include "TdOracle_20MHz_Paper.hpp"
+
+#include "AverageOscillator_20MHz.hpp"
 
 using namespace std;
+using namespace AverageOscillator_20MHz;
 
 // =========================================================================
 // Defines
@@ -566,7 +568,7 @@ void PaperOracleBench()
     ofstream    TdFile;
     TdFile.open( "/main/td.txt" );
 
-    TdOracle_20MHz_Paper o( 123 );
+    TdOracle_AvgOsc20MHz o( 123 );
 
     TdFile.precision( 30 );
     for( cnt = 0; cnt < MaxCnt; cnt ++ )
