@@ -78,7 +78,5 @@ GenericTdVecGen::GetNextVector()
 
     TdVector *pTdVec = ConstructTdVector( pw, FFD_DATA );
 
-    delete pw;
-
     return pTdVec;
 }
