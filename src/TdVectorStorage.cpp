@@ -135,7 +135,19 @@ TdVectorStorage::AddTdVec( TdVector *pTdVec )
 {
     if( pTdVec->GetBeginTime() != GetEndTime() )
     {
-        throw std::logic_error( "TdStorage: new vector does not continue time frame" );
+        cout << "Current storage: " << endl;
+        Print();
+        cout << endl;
+        cout << "New Vector: " << pTdVec->GetBeginTime() << " - " << pTdVec->GetEndTime() << endl;
+        cout << endl;
+
+        std::ostringstream strs;
+
+        strs << "TdStorage: new vector does not continue time frame.";
+        strs << "New BeginTime (" << pTdVec->GetBeginTime() << ")";
+        strs << " does not match current EndTime (" << GetEndTime() << ")";
+
+        throw std::logic_error( strs.str() );
     }
 
     Storage.push_back( pTdVec );
