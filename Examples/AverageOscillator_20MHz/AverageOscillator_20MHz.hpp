@@ -31,6 +31,16 @@ class TdOracle_AvgOsc20MHz
             public:     TdEstChain_WPM( unsigned int Seed );
         };
 
+        class TdEstChain_WFM : public TdEstChain
+        {
+           public:     TdEstChain_WFM( unsigned int Seed );
+        };
+
+        class TdEstChain_FFM : public TdEstChain
+        {
+           public:     TdEstChain_FFM( unsigned int Seed );
+        };
+
         class TdEstChain_RW : public TdEstChain
         {
             public:     TdEstChain_RW( unsigned int Seed );
@@ -40,6 +50,8 @@ class TdOracle_AvgOsc20MHz
 
         // Resources
         TdEstChain_WPM      WpmChain;
+        TdEstChain_WFM      WfmChain;
+        TdEstChain_FFM      FfmChain;
         TdEstChain_RW       RwChain;
 
     public:

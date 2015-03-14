@@ -28,7 +28,7 @@ namespace AverageOscillator_20MHz
 // =========================================================================
 
 TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( unsigned int Seed )
-    : WpmChain( Seed ), RwChain( Seed )
+    : WpmChain( Seed + 0 ), WfmChain( Seed + 20 ), FfmChain( Seed + 30 ), RwChain( Seed + 40 )
 {
 }
 
@@ -38,6 +38,8 @@ TdOracle_AvgOsc20MHz::EstimateTd( double t_now, double t_req )
     double  TD = 0.0L;
 
     TD  += WpmChain.EstimateTd( t_now, t_req );
+    TD  += WfmChain.EstimateTd( t_now, t_req );
+    TD  += FfmChain.EstimateTd( t_now, t_req );
     TD  += RwChain.EstimateTd ( t_now, t_req );
 
     return TD;
