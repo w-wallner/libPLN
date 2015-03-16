@@ -70,7 +70,7 @@ TdEstimator::GuessFutureTD_nom( double t_req )
 {
     assert( TdVecStorage.GetEndTime() < t_req );
 
-    double TD_nom = TdVecStorage.GetEndTD();
+    double TD_nom = 0;
 
     LastGuess.Set( TdFixPoint( t_req, TD_nom ) );
 
