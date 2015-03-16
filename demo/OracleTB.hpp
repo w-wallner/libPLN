@@ -20,5 +20,6 @@
 
 void    SimpleOracleBench();
 void    DetailedOracleBench();
+void    SpeedOracleBench();
 
 #endif

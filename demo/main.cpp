@@ -56,7 +56,8 @@ int main()
 
 //    SimpleOracleBench();
 
-    DetailedOracleBench();
+    //DetailedOracleBench();
+    SpeedOracleBench();
 
     time(&end);
 

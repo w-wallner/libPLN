@@ -35,17 +35,21 @@ DetailedBench;
 
 DetailedBench   DetailedBenchMarks[]    =
 {
-        {   50E6,   "50MHz"  },
-        {   20E6,   "20MHz"  },
-        {   10E6,   "10MHz"  },
-
         {   5E6,    "5MHz"  },
         {   2E6,    "2MHz"  },
         {   1E6,    "1MHz"  },
 
+        {   50E0,   "50Hz"  },
+        {   20E0,   "20Hz"  },
+        {   10E0,   "10Hz"  },
+
         {   500E3,  "500kHz"  },
         {   200E3,  "200kHz"  },
         {   100E3,  "100kHz"  },
+
+        {   50E6,   "50MHz"  },
+        {   20E6,   "20MHz"  },
+        {   10E6,   "10MHz"  },
 
         {   50E3,   "50kHz"  },
         {   20E3,   "20kHz"  },
@@ -58,10 +62,6 @@ DetailedBench   DetailedBenchMarks[]    =
         {   500E0,  "500Hz"  },
         {   200E0,  "200Hz"  },
         {   100E0,  "100Hz"  },
-
-        {   50E0,   "50Hz"  },
-        {   20E0,   "20Hz"  },
-        {   10E0,   "10Hz"  },
 
         {   5E0,    "5Hz"  },
         {   2E0,    "2Hz"  },
@@ -167,6 +167,8 @@ void DetailedOracleBench()
 
     cout << OutputPath << endl;
 
+    t               = 0.0L;
+
     // Benchmark Oscillator
     for( i = 0; i < sizeof(DetailedBenchMarks) / sizeof(DetailedBenchMarks[0]); i ++ )
     {
@@ -178,10 +180,10 @@ void DetailedOracleBench()
         NextPrintTh     = 0;
         dt              = 1.0L / f_s;
         Filename        = OutputPath + "td_" + Name + ".txt";
-        t               = 0.0L;
 
         cout << endl;
         cout << "Starting benchmark for " << Name << endl;
+        cout << "t = " << t << endl;
 
         TdFile.open( Filename.c_str() );
         TdFile.precision( 30 );
@@ -208,5 +210,91 @@ void DetailedOracleBench()
         TdFile.close( );
         cout << "Finished benchmark for " << Name << endl;
     }
+}
+
+void SpeedOracleBench()
+{
+    double          f_s;
+    double          dt;
+    double          t;
+    size_t          i;
+    size_t          Cnt;
+    size_t          MaxCnt;
+
+    double          MinDuration;
+    double          StartSimTime;
+    double          EndSimTime;
+    double          SimDuration;
+    double          Duration;
+
+    time_t  start;
+    time_t  end;
+
+    std::string     ResultFilename;
+    std::string     Name;
+
+    // Resources
+    TdOracle_AvgOsc20MHz    o( 54321 );
+    ofstream                ResultFile;
+
+    // Config
+    ResultFilename = "/main/speed_results.txt";
+
+
+    MaxCnt = 1000;
+    MaxCnt   = 100000;      // 10^5
+    //MaxCnt   = 1000000;     // 10^6
+
+    t               = 0.0L;
+
+    MinDuration     = 180;
+
+    ResultFile.open( ResultFilename.c_str() );
+    ResultFile.precision( 30 );
+
+    // Benchmark Oscillator
+    for( i = 0; i < sizeof(DetailedBenchMarks) / sizeof(DetailedBenchMarks[0]); i ++ )
+    {
+        // Read config
+        f_s     = DetailedBenchMarks[ i ].f_s;
+        Name    = DetailedBenchMarks[ i ].Name;
+
+        // Init
+        dt              = 1.0L / f_s;
+
+        cout << endl;
+        cout << "Starting benchmark for " << Name << endl;
+        cout << "t = " << t << endl;
+
+        time(&start);
+        StartSimTime    = t;
+        do
+        {
+            for( Cnt = 0; Cnt < MaxCnt; Cnt ++ )
+            {
+                o.EstimateTd( t, t );
+
+                t   += dt;
+            }
+
+            time(&end);
+        }
+        while( difftime( end, start ) < MinDuration );
+
+        EndSimTime  = t;
+        SimDuration = EndSimTime - StartSimTime;
+        Duration    = difftime( end, start );
+
+        cout << "StartSimTime: " << StartSimTime << endl;
+        cout << "EndSimTime: " << EndSimTime << endl;
+
+        cout << "SimDuration: " << SimDuration << endl;
+        cout << "Duration: " << Duration << endl;
+
+        ResultFile << Name << ", " << f_s << ", " << Duration << ", " << SimDuration << endl;
+        cout << "Finished benchmark for " << Name << endl;
+    }
+
+    ResultFile.close( );
 }
 
