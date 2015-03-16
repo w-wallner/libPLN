@@ -77,14 +77,6 @@ TdEstimator::GuessFutureTD_nom( double t_req )
     return TD_nom;
 }
 
-double
-TdEstimator::GuessPastTD_nom( double t_req )
-{
-    assert( TdVecStorage.GetBeginTime() > t_req );
-
-    return TdVecStorage.GetBeginTD();
-}
-
 TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     : TdVecStorage   ( Conf.TimeConf.ForgetTh1, Conf.TimeConf.ForgetTh2 )
 {
@@ -160,6 +152,12 @@ TdEstimator::EstimateTd( double t_now, double t_req )
     CheckLastGuess( t_now, true );
     ForgetPast( t_now );
 
+    // Verify input arguments
+    if( t_req < t_now )
+    {
+        throw std::invalid_argument( "Requests for the past (t_req < t_now) are not supported t" );
+    }
+
     // Evaluate request
     if( t_req == Last_t_req )
     {
@@ -192,13 +190,6 @@ TdEstimator::EstimateTd( double t_now, double t_req )
 
         e.TD    = TdVecStorage.InterpolateTD_nom( t_req ) * f_s;
         e.Type  = EXACTLY_KNOWN;
-    }
-    // Case 4: Request is in the distant past
-    else
-    {
-        // Interpolate from FixPoints
-        e.TD    = GuessPastTD_nom( t_req ) * f_s;
-        e.Type  = ESTIMATED_PAST;
     }
 
     LastAnswer  = e;
