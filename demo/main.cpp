@@ -57,7 +57,8 @@ int main()
 //    SimpleOracleBench();
 
     //DetailedOracleBench();
-    SpeedOracleBench();
+    //SpeedOracleBench();
+    BurstOracleBench();
 
     time(&end);
 

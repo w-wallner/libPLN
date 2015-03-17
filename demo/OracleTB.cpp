@@ -29,6 +29,13 @@ typedef struct
 }
 DetailedBench;
 
+typedef struct
+{
+    double          f_s;
+    size_t          NumSamples;
+}
+BurstBench;
+
 // =========================================================================
 // Global variables
 // =========================================================================
@@ -66,6 +73,16 @@ DetailedBench   DetailedBenchMarks[]    =
         {   5E0,    "5Hz"  },
         {   2E0,    "2Hz"  },
         {   1E0,    "1Hz"  },
+};
+
+BurstBench  BurstBenchMarks[] =
+{
+        {   1E2,    500    },
+        {   1E0,    10     },
+        {   1E2,    500    },
+        {   1E0,    10     },
+        {   1E2,    500    },
+        {   1E0,    10     },
 };
 
 // =========================================================================
@@ -207,7 +224,7 @@ void DetailedOracleBench()
                 }
             }
         }
-        TdFile.close( );
+        TdFile.close();
         cout << "Finished benchmark for " << Name << endl;
     }
 }
@@ -295,6 +312,48 @@ void SpeedOracleBench()
         cout << "Finished benchmark for " << Name << endl;
     }
 
-    ResultFile.close( );
+    ResultFile.close();
 }
+
+void BurstOracleBench()
+{
+    TdOracle_AvgOsc20MHz    o( 2222 );
+    double                  f_s;
+    double                  dt;
+    double                  t;
+    size_t                  Cnt;
+
+    ofstream                ResultFile;
+    std::string             ResultFilename;
+
+    size_t                  i;
+
+    ResultFilename = "/main/burst_bench.txt";
+    ResultFile.open( ResultFilename.c_str() );
+    ResultFile.precision( 30 );
+
+    t = 0.0L;
+    for( i = 0; i < sizeof(BurstBenchMarks) / sizeof(BurstBenchMarks[0]); i ++ )
+    {
+        f_s = BurstBenchMarks[i].f_s;
+        dt  = 1.0L / f_s;
+
+        cout << t << ": Sampling with " << f_s << " Hz for " << BurstBenchMarks[i].NumSamples << " samples now (dt = " << dt << ")." << endl;
+
+        for( Cnt = 0; Cnt < BurstBenchMarks[i].NumSamples; Cnt ++ )
+        {
+            double  TD;
+
+            TD  = o.EstimateTd( t, t );
+
+            ResultFile << t << ", " << TD << endl;
+
+            t   += dt;
+        }
+    }
+    cout << "Final time: " << t << endl;
+
+    ResultFile.close();
+}
+
 
