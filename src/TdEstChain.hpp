@@ -56,5 +56,4 @@ class TdEstChain
         double  EstimateTd( double t_now, double t_req );
 };
 
-
 #endif
