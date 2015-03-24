@@ -6,7 +6,7 @@
 // Includes
 // =========================================================================
 
-#include "TdEstChain.hpp"
+#include "TdOracle.hpp"
 
 namespace AverageOscillator_20MHz
 {
@@ -19,7 +19,7 @@ namespace AverageOscillator_20MHz
 // Type definitions
 // =========================================================================
 
-class TdOracle_AvgOsc20MHz
+class TdOracle_AvgOsc20MHz : public TdOracle
 {
     private:
 
