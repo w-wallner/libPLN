@@ -56,8 +56,9 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
     Conf_20MHz.InterpolConf.Type            = LINEAR_INTERPOLATION;
 
     Conf_20MHz.TimeConf.T_val               = 2E-6;
-    Conf_20MHz.TimeConf.ForgetTh1           = 200 * Conf_20MHz.TimeConf.T_val;
-    Conf_20MHz.TimeConf.ForgetTh2           = 2 * Conf_20MHz.TimeConf.T_val;
+
+    Conf_20MHz.PerformanceConf.ForgetTh1    = 200 * Conf_20MHz.TimeConf.T_val;
+    Conf_20MHz.PerformanceConf.ForgetTh2    = 2 * Conf_20MHz.TimeConf.T_val;
 
     // -------------------------------------------------------------------------------------------
     // Configure 1 MHz
@@ -81,8 +82,9 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
     Conf_1MHz.InterpolConf.Type             = CUBIC_SPLINE_INTERPOLATION;
 
     Conf_1MHz.TimeConf.T_val                = 200E-6;
-    Conf_1MHz.TimeConf.ForgetTh1            = 200 * Conf_1MHz.TimeConf.T_val;
-    Conf_1MHz.TimeConf.ForgetTh2            = 2 * Conf_1MHz.TimeConf.T_val;
+
+    Conf_1MHz.PerformanceConf.ForgetTh1     = 200 * Conf_1MHz.TimeConf.T_val;
+    Conf_1MHz.PerformanceConf.ForgetTh2     = 2 * Conf_1MHz.TimeConf.T_val;
 
     // -------------------------------------------------------------------------------------------
     // Configure 10 kHz
@@ -107,8 +109,9 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
     Conf_10kHz.InterpolConf.Type            = CUBIC_SPLINE_INTERPOLATION;
 
     Conf_10kHz.TimeConf.T_val               = 20E-3;
-    Conf_10kHz.TimeConf.ForgetTh1           = 200 * Conf_10kHz.TimeConf.T_val;
-    Conf_10kHz.TimeConf.ForgetTh2           = 2 * Conf_10kHz.TimeConf.T_val;
+
+    Conf_10kHz.PerformanceConf.ForgetTh1    = 200 * Conf_10kHz.TimeConf.T_val;
+    Conf_10kHz.PerformanceConf.ForgetTh2    = 2 * Conf_10kHz.TimeConf.T_val;
 
     // -------------------------------------------------------------------------------------------
     // Configure 100 Hz
@@ -131,8 +134,9 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
     Conf_100Hz.InterpolConf.Type            = CUBIC_SPLINE_INTERPOLATION;
 
     Conf_100Hz.TimeConf.T_val               = 20;
-    Conf_100Hz.TimeConf.ForgetTh1           = 200 * Conf_100Hz.TimeConf.T_val;
-    Conf_100Hz.TimeConf.ForgetTh2           = 2 * Conf_100Hz.TimeConf.T_val;
+
+    Conf_100Hz.PerformanceConf.ForgetTh1    = 200 * Conf_100Hz.TimeConf.T_val;
+    Conf_100Hz.PerformanceConf.ForgetTh2    = 2 * Conf_100Hz.TimeConf.T_val;
 
     // -------------------------------------------------------------------------------------------
     // Combine

@@ -70,11 +70,16 @@ InterpolationConfig;
 
 typedef struct
 {
-    double  ForgetTh1;
-    double  ForgetTh2;
     double  T_val;
 }
 TimeConfig;
+
+typedef struct
+{
+    double  ForgetTh1;
+    double  ForgetTh2;
+}
+PerformanceConfig;
 
 typedef struct
 {
@@ -84,6 +89,7 @@ typedef struct
     HP_FilterConfig         HpConf;
     InterpolationConfig     InterpolConf;
     TimeConfig              TimeConf;
+    PerformanceConfig       PerformanceConf;
 }
 TdEstimatorConfig;
 
