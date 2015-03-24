@@ -10,10 +10,12 @@
 #include "WpmTdVecGen.hpp"
 #include "WfmTdVecGen.hpp"
 #include "RwTdVecGen.hpp"
+#include "AverageOscillator_20MHz.hpp"
 
 #include <iostream>
 
 using namespace std;
+using namespace AverageOscillator_20MHz;
 
 // =========================================================================
 // Defines
@@ -33,6 +35,7 @@ using namespace std;
 void    TestTdVecStorage();
 void    TestTdVecGen();
 void    TestTdEst();
+void    TestTdOracle();
 
 // =========================================================================
 // Function definitions
@@ -135,12 +138,24 @@ void TestTdVecGen()
 
 void TestTdEst()
 {
+}
 
+void TestTdOracle()
+{
+    TdOracle_AvgOsc20MHz    A(123);
+
+    cout << "A: " << A.EstimateTd( 1.0, 3.0 ) << endl;
+
+    TdOracle_AvgOsc20MHz    B( A );
+
+    cout << "A: " << A.EstimateTd( 2.0, 3.5 ) << endl;
+    cout << "B: " << B.EstimateTd( 2.0, 3.5 ) << endl;
 }
 
 void BasicTest1()
 {
 //    TestTdVecStorage();
 //    TestTdVecGen();
-    TestTdEst();
+//    TestTdEst();
+    TestTdOracle();
 }
