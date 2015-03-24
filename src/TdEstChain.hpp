@@ -38,11 +38,20 @@ class TdEstChain
         // Resources
         std::vector<ChainEntry>     Chain;
 
+        // Internal functions
+        void    ClearChain();
+
     public:
 
+        // Constructors/Destructor
         TdEstChain();
+        TdEstChain( const TdEstChain& other );
         ~TdEstChain();
 
+        // Operators
+        TdEstChain& operator= (const TdEstChain& other);
+
+        // API
         void    AddTdEstimator( TdEstimatorConfig Conf, double Scale );
         double  EstimateTd( double t_now, double t_req );
 };

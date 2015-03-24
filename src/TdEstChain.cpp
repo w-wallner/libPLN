@@ -28,12 +28,8 @@ using namespace std;
 // Function definitions
 // =========================================================================
 
-TdEstChain::TdEstChain()
-{
-    Last_f_s = 0.0L;
-}
-
-TdEstChain::~TdEstChain()
+void
+TdEstChain::ClearChain()
 {
     for( std::vector<ChainEntry>::iterator it = Chain.begin(); it < Chain.end(); ++it )
     {
@@ -41,6 +37,52 @@ TdEstChain::~TdEstChain()
     }
 
     Chain.clear();
+}
+
+TdEstChain::TdEstChain()
+{
+    Last_f_s = 0.0L;
+}
+
+TdEstChain::TdEstChain( const TdEstChain& other )
+    : Last_f_s( other.Last_f_s )
+{
+    for( std::vector<ChainEntry>::const_iterator it = other.Chain.begin(); it != other.Chain.end(); ++it )
+    {
+        ChainEntry  e;
+
+        e.Scale = it->Scale;
+        e.pEst  = new TdEstimator( *it->pEst );
+
+        Chain.push_back( e );
+    }
+}
+
+TdEstChain::~TdEstChain()
+{
+    ClearChain();
+}
+
+TdEstChain&
+TdEstChain::operator= (const TdEstChain& other)
+{
+    ClearChain();
+
+    this->Last_f_s  = other.Last_f_s;
+
+    // Copy storage contents
+    for( std::vector<ChainEntry>::const_iterator it = other.Chain.begin(); it != other.Chain.end(); ++it )
+    {
+        ChainEntry  e;
+
+        e.Scale = it->Scale;
+        e.pEst  = new TdEstimator( *it->pEst );
+
+        Chain.push_back( e );
+    }
+
+    // By convention, always return *this
+    return *this;
 }
 
 void
