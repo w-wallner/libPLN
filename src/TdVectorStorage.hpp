@@ -35,9 +35,7 @@ class TdVectorStorage
     private:
 
         // Config
-        double  ForgetTh1;
-        double  ForgetTh2;
-        bool    EnableForget;
+        size_t  ForgetTh;
 
         // House keeping
         TdVectorStorageState    State;
@@ -54,8 +52,7 @@ class TdVectorStorage
 
     public:
 
-        TdVectorStorage();
-        TdVectorStorage( double ForgetTh1, double ForgetTh2 );
+        TdVectorStorage( size_t ForgetTh );
         ~TdVectorStorage();
 
         void    AddTdVec( TdVector *pTdVec );

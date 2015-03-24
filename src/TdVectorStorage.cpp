@@ -23,6 +23,8 @@ using namespace std;
 // Global variables
 // =========================================================================
 
+static const size_t DefaultForgetTh = 200;
+
 // =========================================================================
 // Locale function prototypes
 // =========================================================================
@@ -94,28 +96,18 @@ TdVectorStorage::Print()
     }
 }
 
-TdVectorStorage::TdVectorStorage()
+TdVectorStorage::TdVectorStorage( size_t ForgetTh )
     : fp( 0.0, 0.0 )
 {
-    this->ForgetTh1     = 0.0;
-    this->ForgetTh2     = 0.0;
-    this->EnableForget  = false;
 
-    State   = STARTUP;
-    Storage.clear();
-}
-
-TdVectorStorage::TdVectorStorage( double ForgetTh1, double ForgetTh2 )
-    : fp( 0.0, 0.0 )
-{
-    if( ForgetTh1 < ForgetTh2 )
+    if( ForgetTh == 0 )
     {
-        throw std::invalid_argument( "Forget threshold 1 must be larger or equal than forget threshold 2." );
+        this->ForgetTh = DefaultForgetTh;
     }
-
-    this->ForgetTh1     = ForgetTh1;
-    this->ForgetTh2     = ForgetTh2;
-    this->EnableForget  = true;
+    else
+    {
+        this->ForgetTh = ForgetTh;
+    }
 
     State   = STARTUP;
     Storage.clear();
@@ -256,37 +248,19 @@ TdVectorStorage::InterpolateTD_nom( double t_req )
 void
 TdVectorStorage::ForgetPast( double t_now )
 {
-    if( EnableForget == false )
+    if( Storage.size() < ForgetTh )
     {
         return;
     }
 
-    if( Storage.size() == 0 )
-    {
-        return;
-    }
-
-    double  t1  = t_now - ForgetTh1;
-    double  t2  = t_now - ForgetTh2;
-
-    if( (*Storage.begin())->GetEndTime() > t1 )
-    {
-        return;
-    }
-
-    if( (*Storage.rbegin())->GetEndTime() < t2 )
-    {
-        return;
-    }
-
-    size_t cnt = FindIndex( t2 );
+    size_t cnt = FindIndex( t_now );
     if( cnt == 0 )
     {
         return;
     }
 
     std::vector<TdVector *>::iterator Begin = Storage.begin();
-    std::vector<TdVector *>::iterator End  = Storage.begin() + cnt;
+    std::vector<TdVector *>::iterator End   = Storage.begin() + cnt;
 
     for( std::vector<TdVector *>::iterator it = Begin; it < End ; ++it )
     {

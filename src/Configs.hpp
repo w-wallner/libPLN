@@ -76,8 +76,7 @@ TimeConfig;
 
 typedef struct
 {
-    double  ForgetTh1;
-    double  ForgetTh2;
+    size_t  ForgetTh;
 }
 PerformanceConfig;
 

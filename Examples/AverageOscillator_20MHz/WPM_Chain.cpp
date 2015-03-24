@@ -57,8 +57,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
 
     Conf_20MHz.TimeConf.T_val               = 2E-6;
 
-    Conf_20MHz.PerformanceConf.ForgetTh1    = 200 * Conf_20MHz.TimeConf.T_val;
-    Conf_20MHz.PerformanceConf.ForgetTh2    = 2 * Conf_20MHz.TimeConf.T_val;
+    Conf_20MHz.PerformanceConf.ForgetTh     = 0;
 
     // -------------------------------------------------------------------------------------------
     // Configure 1 MHz
@@ -83,8 +82,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
 
     Conf_1MHz.TimeConf.T_val                = 200E-6;
 
-    Conf_1MHz.PerformanceConf.ForgetTh1     = 200 * Conf_1MHz.TimeConf.T_val;
-    Conf_1MHz.PerformanceConf.ForgetTh2     = 2 * Conf_1MHz.TimeConf.T_val;
+    Conf_1MHz.PerformanceConf.ForgetTh      = 0;
 
     // -------------------------------------------------------------------------------------------
     // Configure 10 kHz
@@ -110,8 +108,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
 
     Conf_10kHz.TimeConf.T_val               = 20E-3;
 
-    Conf_10kHz.PerformanceConf.ForgetTh1    = 200 * Conf_10kHz.TimeConf.T_val;
-    Conf_10kHz.PerformanceConf.ForgetTh2    = 2 * Conf_10kHz.TimeConf.T_val;
+    Conf_10kHz.PerformanceConf.ForgetTh     = 0;
 
     // -------------------------------------------------------------------------------------------
     // Configure 100 Hz
@@ -135,8 +132,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
 
     Conf_100Hz.TimeConf.T_val               = 20;
 
-    Conf_100Hz.PerformanceConf.ForgetTh1    = 200 * Conf_100Hz.TimeConf.T_val;
-    Conf_100Hz.PerformanceConf.ForgetTh2    = 2 * Conf_100Hz.TimeConf.T_val;
+    Conf_100Hz.PerformanceConf.ForgetTh     = 0;
 
     // -------------------------------------------------------------------------------------------
     // Combine

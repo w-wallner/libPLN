@@ -53,8 +53,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_RW::TdEstChain_RW( unsigned int Seed )
 
     Conf_100Hz.TimeConf.T_val               = 2000;
 
-    Conf_100Hz.PerformanceConf.ForgetTh1    = 5;
-    Conf_100Hz.PerformanceConf.ForgetTh2    = 2;
+    Conf_100Hz.PerformanceConf.ForgetTh     = 0;
 
     // -------------------------------------------------------------------------------------------
     // Combine

@@ -79,8 +79,7 @@ EstimatorTestBench()
 
     Conf.TimeConf.T_val              = Conf.KwConf.FilterLen * (1.0L/Conf.SampleConf.f_s);
 
-    Conf.PerformanceConf.ForgetTh1   = 200 * Conf.TimeConf.T_val;
-    Conf.PerformanceConf.ForgetTh2   = 2 * Conf.TimeConf.T_val;
+    Conf.PerformanceConf.ForgetTh    = 0;
 
     TdEstimator e( Conf );
 
@@ -133,8 +132,7 @@ FileBench()
 
     Conf.TimeConf.T_val              = Conf.KwConf.FilterLen * (1.0L/Conf.SampleConf.f_s);
 
-    Conf.PerformanceConf.ForgetTh1   = 200 * Conf.TimeConf.T_val;
-    Conf.PerformanceConf.ForgetTh2   = 2 * Conf.TimeConf.T_val;
+    Conf.PerformanceConf.ForgetTh    = 0;
 
     TdEstimator e( Conf );
 
@@ -227,8 +225,7 @@ ChainBench_FPM()
 
     Conf_1kHz.TimeConf.T_val              = Conf_1kHz.KwConf.FilterLen * (1.0L/Conf_1kHz.SampleConf.f_s);
 
-    Conf_1kHz.PerformanceConf.ForgetTh1   = 200 * Conf_1kHz.TimeConf.T_val;
-    Conf_1kHz.PerformanceConf.ForgetTh2   = 2 * Conf_1kHz.TimeConf.T_val;
+    Conf_1kHz.PerformanceConf.ForgetTh    = 0;
 
     TdEstimatorConfig Conf_100Hz;
 
@@ -252,8 +249,7 @@ ChainBench_FPM()
 
     Conf_100Hz.TimeConf.T_val              = Conf_100Hz.KwConf.FilterLen * (1.0L/Conf_100Hz.SampleConf.f_s);
 
-    Conf_100Hz.PerformanceConf.ForgetTh1   = 200 * Conf_100Hz.TimeConf.T_val;
-    Conf_100Hz.PerformanceConf.ForgetTh2   = 2 * Conf_100Hz.TimeConf.T_val;
+    Conf_100Hz.PerformanceConf.ForgetTh    = 0;
 
 
     c.AddTdEstimator( Conf_1kHz, 1.0L );
@@ -317,8 +313,7 @@ ChainBench_WPM()
 
     Conf_1kHz.TimeConf.T_val              = Conf_1kHz.KwConf.FilterLen * (1.0L/Conf_1kHz.SampleConf.f_s);
 
-    Conf_1kHz.PerformanceConf.ForgetTh1   = 200 * Conf_1kHz.TimeConf.T_val;
-    Conf_1kHz.PerformanceConf.ForgetTh2   = 2 * Conf_1kHz.TimeConf.T_val;
+    Conf_1kHz.PerformanceConf.ForgetTh    = 0;
 
     TdEstimatorConfig Conf_100Hz;
 
@@ -342,8 +337,7 @@ ChainBench_WPM()
 
     Conf_100Hz.TimeConf.T_val              = Conf_100Hz.KwConf.FilterLen * (1.0L/Conf_100Hz.SampleConf.f_s);
 
-    Conf_100Hz.PerformanceConf.ForgetTh1   = 200 * Conf_100Hz.TimeConf.T_val;
-    Conf_100Hz.PerformanceConf.ForgetTh2   = 2 * Conf_100Hz.TimeConf.T_val;
+    Conf_100Hz.PerformanceConf.ForgetTh    = 0;
 
     c.AddTdEstimator( Conf_1kHz, 1.0L );
 //    c.AddTdEstimator( Conf_100Hz, sqrt(10L) );
@@ -406,8 +400,7 @@ ChainBench_WFM()
 
     Conf_1kHz.TimeConf.T_val              = Conf_1kHz.KwConf.FilterLen * (1.0L/Conf_1kHz.SampleConf.f_s);
 
-    Conf_1kHz.PerformanceConf.ForgetTh1   = 200 * Conf_1kHz.TimeConf.T_val;
-    Conf_1kHz.PerformanceConf.ForgetTh2   = 2 * Conf_1kHz.TimeConf.T_val;
+    Conf_1kHz.PerformanceConf.ForgetTh  = 0;
 
     TdEstimatorConfig Conf_100Hz;
 
@@ -431,8 +424,7 @@ ChainBench_WFM()
 
     Conf_100Hz.TimeConf.T_val              = Conf_100Hz.KwConf.FilterLen * (1.0L/Conf_100Hz.SampleConf.f_s);
 
-    Conf_100Hz.PerformanceConf.ForgetTh1   = 200 * Conf_100Hz.TimeConf.T_val;
-    Conf_100Hz.PerformanceConf.ForgetTh2   = 2 * Conf_100Hz.TimeConf.T_val;
+    Conf_100Hz.PerformanceConf.ForgetTh    = 0;
 
     c.AddTdEstimator( Conf_1kHz, 1.0L );
     c.AddTdEstimator( Conf_100Hz, 1.0L );
@@ -495,8 +487,7 @@ ChainBench_FFM()
 
     Conf_1kHz.TimeConf.T_val              = Conf_1kHz.KwConf.FilterLen * (1.0L/Conf_1kHz.SampleConf.f_s);
 
-    Conf_1kHz.PerformanceConf.ForgetTh1   = 200 * Conf_1kHz.TimeConf.T_val;
-    Conf_1kHz.PerformanceConf.ForgetTh2   = 2 * Conf_1kHz.TimeConf.T_val;
+    Conf_1kHz.PerformanceConf.ForgetTh    = 0;
 
     TdEstimatorConfig Conf_100Hz;
 
@@ -520,8 +511,7 @@ ChainBench_FFM()
 
     Conf_100Hz.TimeConf.T_val              = Conf_100Hz.KwConf.FilterLen * (1.0L/Conf_100Hz.SampleConf.f_s);
 
-    Conf_100Hz.PerformanceConf.ForgetTh1   = 200 * Conf_100Hz.TimeConf.T_val;
-    Conf_100Hz.PerformanceConf.ForgetTh2   = 2 * Conf_100Hz.TimeConf.T_val;
+    Conf_100Hz.PerformanceConf.ForgetTh    = 0;
 
 //    c.AddTdEstimator( Conf_1kHz, 1.0L );
     c.AddTdEstimator( Conf_100Hz, 1.0L );

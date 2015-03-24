@@ -78,7 +78,7 @@ TdEstimator::GuessFutureTD_nom( double t_req )
 }
 
 TdEstimator::TdEstimator( TdEstimatorConfig Conf )
-    : TdVecStorage   ( Conf.PerformanceConf.ForgetTh1, Conf.PerformanceConf.ForgetTh2 )
+    : TdVecStorage( Conf.PerformanceConf.ForgetTh )
 {
     // Config
     f_s         = Conf.SampleConf.f_s;
