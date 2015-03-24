@@ -35,6 +35,8 @@ class TdVectorLinear : public TdVector
         TdVectorLinear( const TdVectorLinear& other );
         ~TdVectorLinear();
 
+        TdVectorLinear* Clone() const;
+
         // Operators
         TdVectorLinear&  operator=( const TdVectorLinear& other );
 };

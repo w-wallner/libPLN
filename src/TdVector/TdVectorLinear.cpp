@@ -53,6 +53,12 @@ TdVectorLinear::~TdVectorLinear()
 {
 }
 
+TdVectorLinear*
+TdVectorLinear::Clone() const
+{
+    return new TdVectorLinear(*this);
+}
+
 TdVectorLinear&
 TdVectorLinear::operator=( const TdVectorLinear& other )
 {

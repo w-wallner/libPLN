@@ -46,6 +46,8 @@ class TdVector
                 TdVector( const TdVector& other );
         virtual ~TdVector();
 
+        virtual TdVector* Clone() const = 0;  // Virtual constructor (copying)
+
         // Operators
         TdVector&  operator=( const TdVector& other );
 

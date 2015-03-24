@@ -63,6 +63,12 @@ TdVectorCubSpline::~TdVectorCubSpline()
 {
 }
 
+TdVectorCubSpline*
+TdVectorCubSpline::Clone() const
+{
+    return new TdVectorCubSpline(*this);
+}
+
 TdVectorCubSpline&
 TdVectorCubSpline::operator=( const TdVectorCubSpline& other )
 {

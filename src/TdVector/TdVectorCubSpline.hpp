@@ -50,6 +50,8 @@ class TdVectorCubSpline : public TdVector
         TdVectorCubSpline( const TdVectorCubSpline& other );
         ~TdVectorCubSpline();
 
+        TdVectorCubSpline* Clone() const;
+
         // Operators
         TdVectorCubSpline&  operator=( const TdVectorCubSpline& other );
 };
