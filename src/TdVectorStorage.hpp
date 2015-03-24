@@ -46,6 +46,7 @@ class TdVectorStorage
 
         // Internal functions
         size_t  FindIndex( double t );
+        void    ClearStorage();
 
         // Debug functions
         void    Print();

@@ -84,6 +84,16 @@ TdVectorStorage::FindIndex( double t )
 }
 
 void
+TdVectorStorage::ClearStorage()
+{
+    for( std::vector<TdVector *>::iterator it = Storage.begin(); it < Storage.end(); ++it )
+    {
+        delete *it;
+    }
+    Storage.clear();
+}
+
+void
 TdVectorStorage::Print()
 {
     size_t  size    = Storage.size();
