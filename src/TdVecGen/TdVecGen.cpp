@@ -142,7 +142,14 @@ TdVecGen::TdVecGen( const TdVecGen& other )
       WhiteNoiseGen ( other.WhiteNoiseGen ),
       H             ( other.H             )
 {
-    pLastFFD    = new FFT_RealVector( *other.pLastFFD );
+    if( other.pLastFFD != NULL )
+    {
+        pLastFFD    = new FFT_RealVector( *other.pLastFFD );
+    }
+    else
+    {
+        pLastFFD    = NULL;
+    }
 }
 
 TdVecGen::~TdVecGen()
