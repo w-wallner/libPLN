@@ -61,8 +61,30 @@ TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *p
     }
 }
 
+TdVector::TdVector( const TdVector& other )
+    : TickLen( other.TickLen ),
+      t_beg  ( other.t_beg   ),
+      t_end  ( other.t_end   ),
+      TD_0   ( other.TD_0    ),
+      TD     ( other.TD      )
+{
+}
+
 TdVector::~TdVector()
 {
+}
+
+TdVector&
+TdVector::operator=( const TdVector& other )
+{
+    this->TickLen   = other.TickLen;
+    this->t_beg     = other.t_beg;
+    this->t_end     = other.t_end;
+    this->TD_0      = other.TD_0;
+    this->TD        = other.TD;
+
+    // By convention, always return *this
+    return *this;
 }
 
 double

@@ -45,7 +45,13 @@ class TdVectorCubSpline : public TdVector
 
     public:
 
+        // Constructors/Destructor
         TdVectorCubSpline( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType );
+        TdVectorCubSpline( const TdVectorCubSpline& other );
+        ~TdVectorCubSpline();
+
+        // Operators
+        TdVectorCubSpline&  operator=( const TdVectorCubSpline& other );
 };
 
 // =========================================================================

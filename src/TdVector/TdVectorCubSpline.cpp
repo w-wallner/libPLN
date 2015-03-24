@@ -50,3 +50,28 @@ TdVectorCubSpline::TdVectorCubSpline( double t_beg, double TD_0, double TickLen,
 {
     State   = UNINITIALIZED;
 }
+
+TdVectorCubSpline::TdVectorCubSpline( const TdVectorCubSpline& other )
+    : TdVector( other )
+{
+    this->State = other.State;
+    this->s     = other.s;
+    this->t     = other.t;
+}
+
+TdVectorCubSpline::~TdVectorCubSpline()
+{
+}
+
+TdVectorCubSpline&
+TdVectorCubSpline::operator=( const TdVectorCubSpline& other )
+{
+    TdVector::operator=( other );
+
+    this->State = other.State;
+    this->s     = other.s;
+    this->t     = other.t;
+
+    // By convention, always return *this
+    return *this;
+}

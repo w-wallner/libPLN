@@ -41,9 +41,15 @@ class TdVector
 
     public:
 
+        // Constructors/Destructor
                 TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen, TdVecDataType DataType );
+                TdVector( const TdVector& other );
         virtual ~TdVector();
 
+        // Operators
+        TdVector&  operator=( const TdVector& other );
+
+        // API
         double  GetBeginTime();
         double  GetEndTime();
         double  GetBeginTD();

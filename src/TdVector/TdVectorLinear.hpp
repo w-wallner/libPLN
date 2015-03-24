@@ -30,7 +30,13 @@ class TdVectorLinear : public TdVector
 
     public:
 
+        // Constructors/Destructor
         TdVectorLinear( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen, TdVecDataType DataType );
+        TdVectorLinear( const TdVectorLinear& other );
+        ~TdVectorLinear();
+
+        // Operators
+        TdVectorLinear&  operator=( const TdVectorLinear& other );
 };
 
 // =========================================================================

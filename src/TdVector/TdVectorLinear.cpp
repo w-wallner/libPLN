@@ -43,3 +43,21 @@ TdVectorLinear::TdVectorLinear( double t_beg, double TD_0, double TickLen, FFT_R
     : TdVector( t_beg, TD_0, TickLen, pData, ValidLen, DataType )
 {
 }
+
+TdVectorLinear::TdVectorLinear( const TdVectorLinear& other )
+    : TdVector( other )
+{
+}
+
+TdVectorLinear::~TdVectorLinear()
+{
+}
+
+TdVectorLinear&
+TdVectorLinear::operator=( const TdVectorLinear& other )
+{
+    TdVector::operator=( other );
+
+    // By convention, always return *this
+    return *this;
+}
