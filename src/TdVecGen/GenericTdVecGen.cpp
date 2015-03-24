@@ -63,8 +63,29 @@ GenericTdVecGen::GenericTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConf
     SetUpKwHpConvFilter( KwConf, HpConf, TdVecLen );
 }
 
+GenericTdVecGen::GenericTdVecGen( const GenericTdVecGen& other )
+    : TdVecGen( other )
+{
+}
+
 GenericTdVecGen::~GenericTdVecGen()
 {
+}
+
+GenericTdVecGen*
+GenericTdVecGen::Clone() const
+{
+    return new GenericTdVecGen(*this);
+}
+
+
+GenericTdVecGen&
+GenericTdVecGen::operator=( const GenericTdVecGen& other )
+{
+    TdVecGen::operator=( other );
+
+    // By convention, always return *this
+    return *this;
 }
 
 TdVector *

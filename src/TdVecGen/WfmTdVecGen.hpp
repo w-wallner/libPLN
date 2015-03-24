@@ -27,8 +27,16 @@ class WfmTdVecGen : public RecursiveTdVecGen
         void    ApplyRecursiveFilter( FFT_RealVector *pw );
 
     public:
+
+        // Constructors/Destructor
         WfmTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
+        WfmTdVecGen( const WfmTdVecGen& other );
         ~WfmTdVecGen();
+
+        WfmTdVecGen* Clone() const;  // Virtual constructor (copying)
+
+        // Operators
+        WfmTdVecGen&  operator=( const WfmTdVecGen& other );
 };
 
 // =========================================================================

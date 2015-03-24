@@ -51,6 +51,29 @@ RwTdVecGen::RwTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf,
     FFD_0       = 0.0L;
 }
 
+RwTdVecGen::RwTdVecGen( const RwTdVecGen& other )
+    : RecursiveTdVecGen( other ),
+      FFD_0( other.FFD_0 )
+{
+}
+
 RwTdVecGen::~RwTdVecGen()
 {
+}
+
+RwTdVecGen*
+RwTdVecGen::Clone() const
+{
+    return new RwTdVecGen(*this);
+}
+
+RwTdVecGen&
+RwTdVecGen::operator=( const RwTdVecGen& other )
+{
+    RecursiveTdVecGen::operator=( other );
+
+    this->FFD_0 = other.FFD_0;
+
+    // By convention, always return *this
+    return *this;
 }

@@ -42,6 +42,26 @@ WfmTdVecGen::WfmTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwCon
     DataType    = FFD_DATA;
 }
 
+WfmTdVecGen::WfmTdVecGen( const WfmTdVecGen& other )
+    : RecursiveTdVecGen( other )
+{
+}
+
 WfmTdVecGen::~WfmTdVecGen()
 {
+}
+
+WfmTdVecGen*
+WfmTdVecGen::Clone() const
+{
+    return new WfmTdVecGen(*this);
+}
+
+WfmTdVecGen&
+WfmTdVecGen::operator=( const WfmTdVecGen& other )
+{
+    RecursiveTdVecGen::operator=( other );
+
+    // By convention, always return *this
+    return *this;
 }

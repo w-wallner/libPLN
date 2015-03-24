@@ -35,8 +35,17 @@ class RecursiveTdVecGen : public TdVecGen
 
     public:
 
+        // Constructors/Destructor
         RecursiveTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
+        RecursiveTdVecGen( const RecursiveTdVecGen& other );
+        virtual ~RecursiveTdVecGen();
 
+        virtual RecursiveTdVecGen* Clone() const = 0;  // Virtual constructor (copying)
+
+        // Operators
+        RecursiveTdVecGen&  operator=( const RecursiveTdVecGen& other );
+
+        // API
         TdVector        *GetNextVector();
         virtual void    ResetToFixPoint( TdFixPoint fp );
 };

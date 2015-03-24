@@ -61,6 +61,29 @@ RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, KW_Filter
     SetUpHpConvFilter( HpConf, TdVecLen );
 }
 
+RecursiveTdVecGen::RecursiveTdVecGen( const RecursiveTdVecGen& other )
+    : TdVecGen( other ),
+      EnableHpFilter( other.EnableHpFilter ),
+      DataType      ( other.DataType       )
+{
+}
+
+RecursiveTdVecGen::~RecursiveTdVecGen()
+{
+}
+
+RecursiveTdVecGen&
+RecursiveTdVecGen::operator=( const RecursiveTdVecGen& other )
+{
+    TdVecGen::operator=( other );
+
+    this->EnableHpFilter    = other.EnableHpFilter;
+    this->DataType          = other.DataType;
+
+    // By convention, always return *this
+    return *this;
+}
+
 TdVector *
 RecursiveTdVecGen::GetNextVector()
 {

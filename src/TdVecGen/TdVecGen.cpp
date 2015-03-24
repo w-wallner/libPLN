@@ -128,9 +128,49 @@ TdVecGen::TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, Int
     DisableConvFilter();
 }
 
+TdVecGen::TdVecGen( const TdVecGen& other )
+    : // Config
+      TickLen   ( other.TickLen     ),
+      IntpolType( other.IntpolType  ),
+      TdVecLen  ( other.TdVecLen    ),
+      // House keeping
+      ConvState     ( other.ConvState   ),
+      Last_t_end    ( other.Last_t_end  ),
+      Last_TD_nom   ( other.Last_TD_nom ),
+      FfdVecLen     ( other.FfdVecLen   ),
+      // Resources
+      WhiteNoiseGen ( other.WhiteNoiseGen ),
+      H             ( other.H             )
+{
+    pLastFFD    = new FFT_RealVector( *other.pLastFFD );
+}
+
 TdVecGen::~TdVecGen()
 {
     ResetConvFilter();
+}
+
+TdVecGen&
+TdVecGen::operator=( const TdVecGen& other )
+{
+    // Config
+    this->TickLen       = other.TickLen;
+    this->IntpolType    = other.IntpolType;
+    this->TdVecLen      = other.TdVecLen;
+
+    // House keeping
+    this->ConvState     = other.ConvState;
+    this->Last_t_end    = other.Last_t_end;
+    this->Last_TD_nom   = other.Last_TD_nom;
+    this->FfdVecLen     = other.FfdVecLen;
+
+    // Resources
+    this->WhiteNoiseGen = other.WhiteNoiseGen;
+    this->H             = other.H;
+    this->pLastFFD      = new FFT_RealVector( *other.pLastFFD );
+
+    // By convention, always return *this
+    return *this;
 }
 
 void

@@ -42,6 +42,26 @@ WpmTdVecGen::WpmTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwCon
     DataType    = TD_DATA;
 }
 
+WpmTdVecGen::WpmTdVecGen( const WpmTdVecGen& other )
+    : RecursiveTdVecGen( other )
+{
+}
+
 WpmTdVecGen::~WpmTdVecGen()
 {
+}
+
+WpmTdVecGen*
+WpmTdVecGen::Clone() const
+{
+    return new WpmTdVecGen(*this);
+}
+
+WpmTdVecGen&
+WpmTdVecGen::operator=( const WpmTdVecGen& other )
+{
+    RecursiveTdVecGen::operator=( other );
+
+    // By convention, always return *this
+    return *this;
 }

@@ -58,9 +58,17 @@ class TdVecGen
 
     public:
 
+        // Constructors/Destructor
         TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, InterpolationConfig InterpolConf );
+        TdVecGen( const TdVecGen& other );
         virtual ~TdVecGen();
 
+        virtual TdVecGen* Clone() const = 0;  // Virtual constructor (copying)
+
+        // Operators
+        TdVecGen&  operator=( const TdVecGen& other );
+
+        // API
         virtual void        ResetToFixPoint( TdFixPoint fp );
         virtual TdVector    *GetNextVector() = 0;
 };

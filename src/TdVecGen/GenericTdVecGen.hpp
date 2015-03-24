@@ -29,11 +29,19 @@ class GenericTdVecGen : public TdVecGen
         void        SetUpKwHpConvFilter( KW_FilterConfig KwConf, HP_FilterConfig HpConf, size_t TdVecLen );
 
     public:
+
+        // Constructors/Destructor
         GenericTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
+        GenericTdVecGen( const GenericTdVecGen& other );
         ~GenericTdVecGen();
 
-        TdVector    *GetNextVector();
+        GenericTdVecGen*    Clone() const;  // Virtual constructor (copying)
 
+        // Operators
+        GenericTdVecGen&    operator=( const GenericTdVecGen& other );
+
+        // API
+        TdVector    *GetNextVector();
 };
 
 // =========================================================================
