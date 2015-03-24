@@ -26,22 +26,50 @@ class TdOracle_AvgOsc20MHz
         // Types
         class TdEstChain_WPM : public TdEstChain
         {
-            public:     TdEstChain_WPM( unsigned int Seed );
+            public:
+                // Constructors/Destructor
+                TdEstChain_WPM( unsigned int Seed );
+                TdEstChain_WPM( const TdEstChain_WPM& other );
+                virtual ~TdEstChain_WPM();
+
+                // Operators
+                virtual TdEstChain_WPM& operator= (const TdEstChain_WPM& other);
         };
 
         class TdEstChain_WFM : public TdEstChain
         {
-           public:     TdEstChain_WFM( unsigned int Seed );
+            public:
+                // Constructors/Destructor
+                TdEstChain_WFM( unsigned int Seed );
+                TdEstChain_WFM( const TdEstChain_WFM& other );
+                virtual ~TdEstChain_WFM();
+
+                // Operators
+                virtual TdEstChain_WFM& operator= (const TdEstChain_WFM& other);
         };
 
         class TdEstChain_FFM : public TdEstChain
         {
-           public:     TdEstChain_FFM( unsigned int Seed );
+            public:
+                // Constructors/Destructor
+                TdEstChain_FFM( unsigned int Seed );
+                TdEstChain_FFM( const TdEstChain_FFM& other );
+                virtual ~TdEstChain_FFM();
+
+                // Operators
+                virtual TdEstChain_FFM& operator= (const TdEstChain_FFM& other);
         };
 
         class TdEstChain_RW : public TdEstChain
         {
-            public:     TdEstChain_RW( unsigned int Seed );
+            public:
+                // Constructors/Destructor
+                TdEstChain_RW( unsigned int Seed );
+                TdEstChain_RW( const TdEstChain_RW& other );
+                virtual ~TdEstChain_RW();
+
+                // Operators
+                virtual TdEstChain_RW& operator= (const TdEstChain_RW& other);
         };
 
         // Config

@@ -144,4 +144,22 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
     AddTdEstimator( Conf_100Hz, sqrt(95.3L) );
 }
 
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( const TdEstChain_WPM& other )
+    : TdEstChain( other )
+{
+}
+
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::~TdEstChain_WPM()
+{
+}
+
+TdOracle_AvgOsc20MHz::TdEstChain_WPM&
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::operator= (const TdEstChain_WPM& other)
+{
+    TdEstChain::operator=( other );
+
+    // By convention, always return *this
+    return *this;
+}
+
 }
