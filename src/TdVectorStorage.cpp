@@ -123,13 +123,44 @@ TdVectorStorage::TdVectorStorage( size_t ForgetTh )
     Storage.clear();
 }
 
+TdVectorStorage::TdVectorStorage( const TdVectorStorage& other )
+    : ForgetTh  ( other.ForgetTh ),
+      State     ( other.State    ),
+      fp        ( other.fp       )
+{
+    // Copy storage contents
+    for( std::vector<TdVector *>::const_iterator it = other.Storage.begin(); it != other.Storage.end(); ++it )
+    {
+        TdVector *pVec = (*it)->Clone();
+
+        Storage.push_back( pVec );
+    }
+}
+
 TdVectorStorage::~TdVectorStorage()
 {
-    for( std::vector<TdVector *>::iterator it = Storage.begin(); it < Storage.end(); ++it )
+    ClearStorage();
+}
+
+TdVectorStorage&
+TdVectorStorage::operator= (const TdVectorStorage& other)
+{
+    ClearStorage();
+
+    this->ForgetTh  = other.ForgetTh;
+    this->State     = other.State;
+    this->fp        = other.fp;
+
+    // Copy storage contents
+    for( std::vector<TdVector *>::const_iterator it = other.Storage.begin(); it != other.Storage.end(); ++it )
     {
-        delete *it;
+        TdVector *pVec = (*it)->Clone();
+
+        Storage.push_back( pVec );
     }
-    Storage.clear();
+
+    // By convention, always return *this
+    return *this;
 }
 
 void

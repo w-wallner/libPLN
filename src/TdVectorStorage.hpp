@@ -53,9 +53,15 @@ class TdVectorStorage
 
     public:
 
+        // Constructors/Destructor
         TdVectorStorage( size_t ForgetTh );
+        TdVectorStorage( const TdVectorStorage& other );
         ~TdVectorStorage();
 
+        // Operators
+        TdVectorStorage&    operator= (const TdVectorStorage& other);
+
+        // API
         void    AddTdVec( TdVector *pTdVec );
         double  GetBeginTime();
         double  GetBeginTD();
