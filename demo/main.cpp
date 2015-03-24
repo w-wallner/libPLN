@@ -54,11 +54,10 @@ int main()
     //ChainBench_WFM();
     //ChainBench_FFM();
 
-//    SimpleOracleBench();
-
+    SimpleOracleBench();
     //DetailedOracleBench();
     //SpeedOracleBench();
-    BurstOracleBench();
+    //BurstOracleBench();
 
     time(&end);
 
