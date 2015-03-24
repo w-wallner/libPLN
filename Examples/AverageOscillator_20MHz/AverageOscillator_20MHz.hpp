@@ -82,12 +82,18 @@ class TdOracle_AvgOsc20MHz : public TdOracle
 
     public:
 
+        // Constructors/Destructor
         TdOracle_AvgOsc20MHz( unsigned int Seed );
+        TdOracle_AvgOsc20MHz( const TdOracle_AvgOsc20MHz& other );
+        virtual ~TdOracle_AvgOsc20MHz();
+
+        // Operators
+        TdOracle_AvgOsc20MHz&  operator=( const TdOracle_AvgOsc20MHz& other );
+
+        // API
+
         double  EstimateTd( double t_now, double t_req );
 };
-
-
-
 
 // =========================================================================
 // Function declarations

@@ -32,6 +32,28 @@ TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( unsigned int Seed )
 {
 }
 
+TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( const TdOracle_AvgOsc20MHz& other )
+    : WpmChain( other.WpmChain ), WfmChain( other.WfmChain ), FfmChain( other.FfmChain ), RwChain( other.RwChain )
+{
+}
+
+TdOracle_AvgOsc20MHz::~TdOracle_AvgOsc20MHz()
+{
+}
+
+// Operators
+TdOracle_AvgOsc20MHz&
+TdOracle_AvgOsc20MHz::operator=( const TdOracle_AvgOsc20MHz& other )
+{
+    this->WpmChain  = other.WpmChain;
+    this->WfmChain  = other.WfmChain;
+    this->FfmChain  = other.FfmChain;
+    this->RwChain   = other.RwChain;
+
+    // By convention, always return *this
+    return *this;
+}
+
 double
 TdOracle_AvgOsc20MHz::EstimateTd( double t_now, double t_req )
 {
