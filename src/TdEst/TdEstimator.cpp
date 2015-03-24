@@ -138,9 +138,49 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     TdVecStorage.ResetToFixPoint   ( StartingPoint );
 }
 
+TdEstimator::TdEstimator( const TdEstimator& other )
+: // Config
+  f_s           ( other.f_s          ),
+  TickLen       ( other.TickLen      ),
+  T_val         ( other.T_val        ),
+  TdVecLen      ( other.TdVecLen     ),
+  MaxTdVecCnt   ( other.MaxTdVecCnt  ),
+  // Resources
+  TdVecStorage  ( other.TdVecStorage ),
+  // House keeping
+  LastGuess     ( other.LastGuess    ),
+  Last_t_req    ( other.Last_t_req   ),
+  LastAnswer    ( other.LastAnswer   )
+{
+    pTdVecGen = pTdVecGen->Clone();
+}
+
 TdEstimator::~TdEstimator()
 {
     delete pTdVecGen;
+}
+
+TdEstimator&
+TdEstimator::operator=( const TdEstimator& other )
+{
+    // Config
+    this->f_s           = other.f_s;
+    this->TickLen       = other.TickLen;
+    this->T_val         = other.T_val;
+    this->TdVecLen      = other.TdVecLen;
+    this->MaxTdVecCnt   = other.MaxTdVecCnt;
+
+    // Resources
+    this->TdVecStorage  = other.TdVecStorage;
+    this->pTdVecGen     = other.pTdVecGen->Clone();
+
+    // House keeping
+    this->LastGuess     = other.LastGuess;
+    this->Last_t_req    = other.Last_t_req;
+    this->LastAnswer    = other.LastAnswer;
+
+    // By convention, always return *this
+    return *this;
 }
 
 TdEstimate

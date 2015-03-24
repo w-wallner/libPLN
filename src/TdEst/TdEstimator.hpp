@@ -62,9 +62,15 @@ class TdEstimator
 
     public:
 
+        // Constructors/Destructor
         TdEstimator( TdEstimatorConfig Conf );
+        TdEstimator( const TdEstimator& other );
         ~TdEstimator();
 
+        // Operators
+        TdEstimator&  operator=( const TdEstimator& other );
+
+        // API
         TdEstimate  EstimateTd( double t_now, double t_req );
 
         // Debug functions
