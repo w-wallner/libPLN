@@ -1,6 +1,6 @@
 
-#ifndef CONFIGS_HPP_
-#define CONFIGS_HPP_
+#ifndef TDESTCONFIG_HPP_
+#define TDESTCONFIG_HPP_
 
 // =========================================================================
 // Includes

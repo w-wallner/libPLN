@@ -6,7 +6,7 @@
 // Includes
 // =========================================================================
 
-#include "Configs.hpp"
+#include "TdEstConfig.hpp"
 #include "TdVector.hpp"
 #include "TdFixPoint.hpp"
 #include "WhiteNoiseGenerator.hpp"

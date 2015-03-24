@@ -6,13 +6,12 @@
 // Includes
 // =========================================================================
 
-#include <TdVecGen.hpp>
-#include <iostream>
-#include <memory>
-
-#include "Configs.hpp"
+#include "TdEstConfig.hpp"
+#include "TdVecGen.hpp"
 #include "TdGuess.hpp"
 #include "TdVectorStorage.hpp"
+
+#include <iostream>
 
 // =========================================================================
 // Defines
@@ -75,6 +74,5 @@ class TdEstimator
 // =========================================================================
 // Function declarations
 // =========================================================================
-
 
 #endif
