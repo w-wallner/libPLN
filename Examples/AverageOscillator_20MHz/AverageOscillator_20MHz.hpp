@@ -19,8 +19,6 @@ namespace AverageOscillator_20MHz
 // Type definitions
 // =========================================================================
 
-
-
 class TdOracle_AvgOsc20MHz
 {
     private:
