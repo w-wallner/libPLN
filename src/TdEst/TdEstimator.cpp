@@ -152,7 +152,7 @@ TdEstimator::TdEstimator( const TdEstimator& other )
   Last_t_req    ( other.Last_t_req   ),
   LastAnswer    ( other.LastAnswer   )
 {
-    pTdVecGen = pTdVecGen->Clone();
+    pTdVecGen = other.pTdVecGen->Clone();
 }
 
 TdEstimator::~TdEstimator()
