@@ -70,7 +70,7 @@ TdEstChain::operator= (const TdEstChain& other)
 
     this->Last_f_s  = other.Last_f_s;
 
-    // Copy storage contents
+    // Copy chain entries
     for( std::vector<ChainEntry>::const_iterator it = other.Chain.begin(); it != other.Chain.end(); ++it )
     {
         ChainEntry  e;
