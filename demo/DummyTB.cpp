@@ -94,7 +94,7 @@ EstimatorTestBench()
         TdEstimate  est;
         for( size_t j = 0; j < TdBenches[ i ].cnt; j ++ )
         {
-            est = e.EstimateTd( t_now, t_req );
+            est = e.EstimateTD( t_now, t_req );
 
             cout << "TD[" << t_now << "/" << t_req << "]: " << est.TD << endl;
 
@@ -163,7 +163,7 @@ FileBench()
     TdEstimate  est;
     for( size_t i = 0; i < MaxCnt; i ++ )
     {
-        est = e.EstimateTd( t, t );
+        est = e.EstimateTD( t, t );
 
         TdFile << est.TD << endl;
 
@@ -262,7 +262,7 @@ ChainBench_FPM()
     TdFile.precision( 30 );
     for( cnt = 0; cnt < MaxCnt; cnt ++ )
     {
-        TdFile << c.EstimateTd( t, t ) << endl;
+        TdFile << c.EstimateTD( t, t ) << endl;
 
         t += dt;
     }
@@ -350,7 +350,7 @@ ChainBench_WPM()
     TdFile.precision( 30 );
     for( cnt = 0; cnt < MaxCnt; cnt ++ )
     {
-        TdFile << c.EstimateTd( t, t ) << endl;
+        TdFile << c.EstimateTD( t, t ) << endl;
 
         t += dt;
     }
@@ -436,7 +436,7 @@ ChainBench_WFM()
     TdFile.precision( 30 );
     for( cnt = 0; cnt < MaxCnt; cnt ++ )
     {
-        TdFile << c.EstimateTd( t, t ) << endl;
+        TdFile << c.EstimateTD( t, t ) << endl;
 
         t += dt;
     }
@@ -523,7 +523,7 @@ ChainBench_FFM()
     TdFile.precision( 30 );
     for( cnt = 0; cnt < MaxCnt; cnt ++ )
     {
-        TdFile << c.EstimateTd( t, t ) << endl;
+        TdFile << c.EstimateTD( t, t ) << endl;
 
         t += dt;
     }

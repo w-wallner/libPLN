@@ -71,7 +71,7 @@ class TdEstimator
         TdEstimator&  operator=( const TdEstimator& other );
 
         // API
-        TdEstimate  EstimateTd( double t_now, double t_req );
+        TdEstimate  EstimateTD( double t_now, double t_req );
 
         // Debug functions
         double  Get_f_s();

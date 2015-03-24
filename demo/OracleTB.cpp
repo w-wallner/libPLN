@@ -134,7 +134,7 @@ void SimpleOracleBench()
     {
         double TD;
 
-        TD = o.EstimateTd( t, t );
+        TD = o.EstimateTD( t, t );
 
         TdFile << TD << endl;
 
@@ -209,7 +209,7 @@ void DetailedOracleBench()
         {
             double TD;
 
-            TD = o.EstimateTd( t, t );
+            TD = o.EstimateTD( t, t );
 
             TdFile << TD << endl;
 
@@ -289,7 +289,7 @@ void SpeedOracleBench()
         {
             for( Cnt = 0; Cnt < MaxCnt; Cnt ++ )
             {
-                o.EstimateTd( t, t );
+                o.EstimateTD( t, t );
 
                 t   += dt;
             }
@@ -344,7 +344,7 @@ void BurstOracleBench()
         {
             double  TD;
 
-            TD  = o.EstimateTd( t, t );
+            TD  = o.EstimateTD( t, t );
 
             ResultFile << t << ", " << TD << endl;
 

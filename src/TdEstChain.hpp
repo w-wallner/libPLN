@@ -53,7 +53,7 @@ class TdEstChain
 
         // API
         void    AddTdEstimator( TdEstimatorConfig Conf, double Scale );
-        double  EstimateTd( double t_now, double t_req );
+        double  EstimateTD( double t_now, double t_req );
 };
 
 #endif

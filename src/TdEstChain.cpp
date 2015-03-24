@@ -107,14 +107,14 @@ TdEstChain::AddTdEstimator( TdEstimatorConfig Conf, double Scale )
 }
 
 double
-TdEstChain::EstimateTd( double t_now, double t_req )
+TdEstChain::EstimateTD( double t_now, double t_req )
 {
     double  TD          = 0.0L;
     double  Scale       = 1.0L;
 
     for( std::vector<ChainEntry>::iterator it = Chain.begin(); it < Chain.end(); ++it )
     {
-        TdEstimate  est = it->pEst->EstimateTd( t_now, t_req );
+        TdEstimate  est = it->pEst->EstimateTD( t_now, t_req );
 
         if( est.Type == EXACTLY_KNOWN )
         {

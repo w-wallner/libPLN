@@ -184,7 +184,7 @@ TdEstimator::operator=( const TdEstimator& other )
 }
 
 TdEstimate
-TdEstimator::EstimateTd( double t_now, double t_req )
+TdEstimator::EstimateTD( double t_now, double t_req )
 {
     TdEstimate e;
 

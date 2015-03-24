@@ -55,14 +55,14 @@ TdOracle_AvgOsc20MHz::operator=( const TdOracle_AvgOsc20MHz& other )
 }
 
 double
-TdOracle_AvgOsc20MHz::EstimateTd( double t_now, double t_req )
+TdOracle_AvgOsc20MHz::EstimateTD( double t_now, double t_req )
 {
     double  TD = 0.0L;
 
-    TD  += WpmChain.EstimateTd( t_now, t_req );
-    TD  += WfmChain.EstimateTd( t_now, t_req );
-    TD  += FfmChain.EstimateTd( t_now, t_req );
-    TD  += RwChain.EstimateTd ( t_now, t_req );
+    TD  += WpmChain.EstimateTD( t_now, t_req );
+    TD  += WfmChain.EstimateTD( t_now, t_req );
+    TD  += FfmChain.EstimateTD( t_now, t_req );
+    TD  += RwChain.EstimateTD ( t_now, t_req );
 
     return TD;
 }

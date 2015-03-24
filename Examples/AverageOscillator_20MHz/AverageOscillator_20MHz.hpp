@@ -92,7 +92,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
 
         // API
 
-        double  EstimateTd( double t_now, double t_req );
+        double  EstimateTD( double t_now, double t_req );
 };
 
 // =========================================================================

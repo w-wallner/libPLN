@@ -144,12 +144,12 @@ void TestTdOracle()
 {
     TdOracle_AvgOsc20MHz    A(123);
 
-    cout << "A: " << A.EstimateTd( 1.0, 3.0 ) << endl;
+    cout << "A: " << A.EstimateTD( 1.0, 3.0 ) << endl;
 
     TdOracle_AvgOsc20MHz    B( A );
 
-    cout << "A: " << A.EstimateTd( 2.0, 3.5 ) << endl;
-    cout << "B: " << B.EstimateTd( 2.0, 3.5 ) << endl;
+    cout << "A: " << A.EstimateTD( 2.0, 3.5 ) << endl;
+    cout << "B: " << B.EstimateTD( 2.0, 3.5 ) << endl;
 }
 
 void BasicTest1()
