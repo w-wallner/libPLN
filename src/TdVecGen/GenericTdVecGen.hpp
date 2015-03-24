@@ -24,7 +24,6 @@ class GenericTdVecGen : public TdVecGen
         // Config
 
         // Resources
-        FFT_RealVector      *pLastFFD;
 
         // Internal functions
         void        SetUpKwHpConvFilter( KW_FilterConfig KwConf, HP_FilterConfig HpConf, size_t TdVecLen );
