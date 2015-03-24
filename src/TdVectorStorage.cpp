@@ -42,7 +42,7 @@ TdVectorStorage::FindIndex( double t )
     assert( t >= GetBeginTime() );
 
     // Check if last TD vector is the one that we want
-    // This would be the typical case
+    // This is expected to be a typical case
     if
     (
         ( Storage[r]->GetBeginTime() <= t ) &&
