@@ -65,9 +65,16 @@ class FFT
         // -------------------------------------------------------------
         // Individual interface
         // -------------------------------------------------------------
+
+        // Constructors/Destructor
         FFT();
+        FFT( const FFT& other );
         ~FFT();
 
+        // Operators
+        FFT&  operator=( const FFT& other );
+
+        // API
         FFT_ComplexVector   *GetFrequencyDomain( FFT_RealVector *pr );
         void                ConvertToTimeDomain( FFT_ComplexVector *pc, FFT_RealVector *pr );
 };

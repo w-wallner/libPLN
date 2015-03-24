@@ -94,6 +94,20 @@ FFT::FFT()
     this->pC2R_Plan = NULL;
 }
 
+FFT::FFT( const FFT& other )
+    : R2C_RealSize   ( other.R2C_RealSize    ),
+      R2C_ComplexSize( other.R2C_ComplexSize ),
+      C2R_RealSize   ( other.C2R_RealSize    ),
+      C2R_ComplexSize( other.C2R_ComplexSize )
+{
+    // FFTW plan is difficult to copy, just re-initialize
+    this->R2C_State = UNINITIALIZED;
+    this->C2R_State = UNINITIALIZED;
+
+    this->pR2C_Plan = NULL;
+    this->pC2R_Plan = NULL;
+}
+
 FFT::~FFT()
 {
     if( this->pR2C_Plan != NULL )
@@ -108,6 +122,25 @@ FFT::~FFT()
 
         delete pC2R_Plan;
     }
+}
+
+FFT&
+FFT::operator=( const FFT& other )
+{
+    this->R2C_RealSize      = other.R2C_RealSize;
+    this->R2C_ComplexSize   = other.R2C_ComplexSize;
+    this->C2R_RealSize      = other.C2R_RealSize;
+    this->C2R_ComplexSize   = other.C2R_ComplexSize;
+
+    // FFTW plan is difficult to copy, just re-initialize
+    this->R2C_State = UNINITIALIZED;
+    this->C2R_State = UNINITIALIZED;
+
+    this->pR2C_Plan = NULL;
+    this->pC2R_Plan = NULL;
+
+    // By convention, always return *this
+    return *this;
 }
 
 void
