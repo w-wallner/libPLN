@@ -40,6 +40,9 @@ class TdEstChain
         }
         ScalePoint;
 
+        // Config
+        double              alpha;
+
         // Housekeeping
         double              Last_f_s;
         ScalePoint          ScaleRef;

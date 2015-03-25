@@ -42,6 +42,7 @@ TdEstChain::ClearChain()
 TdEstChain::TdEstChain()
 {
     Last_f_s = 0.0L;
+    alpha    = -5;
 
     ScaleRef.t      = 0.0L;
     ScaleRef.TD_nom = 0.0L;
@@ -56,6 +57,7 @@ TdEstChain::TdEstChain()
 
 TdEstChain::TdEstChain( const TdEstChain& other )
     : Last_f_s( other.Last_f_s ),
+      alpha( other.alpha ),
       ScaleRef( other.ScaleRef ),
       ScaleRefCandidate( other.ScaleRefCandidate ),
       CandidateValid( other.CandidateValid )
@@ -104,8 +106,17 @@ TdEstChain::operator= (const TdEstChain& other)
 void
 TdEstChain::AddTdEstimator( TdEstimatorConfig Conf, double Scale )
 {
-    if( Chain.size() > 0 )
+    if( Chain.size() == 0 )
     {
+        alpha = Conf.KwConf.alpha;
+    }
+    else
+    {
+        if( Conf.KwConf.alpha != alpha )
+        {
+            throw std::invalid_argument( "Configured alpha value does not match existing value." );
+        }
+
         if( Conf.SampleConf.f_s >= Last_f_s )
         {
             throw std::invalid_argument( "Estimators can only be added in decreasing order of sampling frequency." );
