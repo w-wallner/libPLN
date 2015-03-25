@@ -44,7 +44,6 @@ class TdEstChain
         double              alpha;
 
         // Housekeeping
-        double              Last_f_s;
         ScalePoint          ScaleRef;
         ScalePoint          ScaleRefCandidate;
         bool                CandidateValid;
