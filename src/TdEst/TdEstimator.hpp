@@ -73,8 +73,8 @@ class TdEstimator
         // API
         TdEstimate  EstimateTD( double t_now, double t_req );
 
-        // Debug functions
-        double  Get_f_s();
+        // Getters
+        double      Get_f_s();
 };
 
 // =========================================================================
