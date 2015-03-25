@@ -169,6 +169,10 @@ TdEstChain::EstimateTD( double t_now, double t_req )
         {
             Scale *= it->Scale;
         }
+        else
+        {
+            assert( false );
+        }
     }
 
     // Calculate absolute Time Deviation
