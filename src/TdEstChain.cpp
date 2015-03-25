@@ -125,6 +125,11 @@ TdEstChain::AddTdEstimator( TdEstimatorConfig Conf, double Scale )
 double
 TdEstChain::EstimateTD( double t_now, double t_req )
 {
+    if( t_now > t_req )
+    {
+        throw std::invalid_argument( "Request in the past are not supported." );
+    }
+
     double  TD_nom  = 0.0L;
     double  TD_abs  = 0.0L;
     double  Scale   = 1.0L;
