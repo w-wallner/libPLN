@@ -138,10 +138,10 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
     // Combine
     // -------------------------------------------------------------------------------------------
 
-    AddTdEstimator( Conf_20MHz, 1.0L );
-    AddTdEstimator( Conf_1MHz,  sqrt(14.0L) );
-    AddTdEstimator( Conf_10kHz, sqrt(93.7L) );
-    AddTdEstimator( Conf_100Hz, sqrt(95.3L) );
+    AddTdEstimator( Conf_20MHz, sqrt(14.0L) );
+    AddTdEstimator( Conf_1MHz,  sqrt(93.7L) );
+    AddTdEstimator( Conf_10kHz, sqrt(95.3L) );
+    AddTdEstimator( Conf_100Hz, 1.0L        );
 }
 
 TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( const TdEstChain_WPM& other )
