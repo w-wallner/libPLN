@@ -42,10 +42,23 @@ TdEstChain::ClearChain()
 TdEstChain::TdEstChain()
 {
     Last_f_s = 0.0L;
+
+    ScaleRef.t      = 0.0L;
+    ScaleRef.TD_nom = 0.0L;
+    ScaleRef.TD_abs = 0.0L;
+
+    ScaleRefCandidate.t         = 0.0L;
+    ScaleRefCandidate.TD_nom    = 0.0L;
+    ScaleRefCandidate.TD_abs    = 0.0L;
+
+    CandidateValid  = false;
 }
 
 TdEstChain::TdEstChain( const TdEstChain& other )
-    : Last_f_s( other.Last_f_s )
+    : Last_f_s( other.Last_f_s ),
+      ScaleRef( other.ScaleRef ),
+      ScaleRefCandidate( other.ScaleRefCandidate ),
+      CandidateValid( other.CandidateValid )
 {
     for( std::vector<ChainEntry>::const_iterator it = other.Chain.begin(); it != other.Chain.end(); ++it )
     {
@@ -68,7 +81,10 @@ TdEstChain::operator= (const TdEstChain& other)
 {
     ClearChain();
 
-    this->Last_f_s  = other.Last_f_s;
+    this->Last_f_s          = other.Last_f_s;
+    this->ScaleRef          = other.ScaleRef;
+    this->ScaleRefCandidate = other.ScaleRefCandidate;
+    this->CandidateValid    = other.CandidateValid;
 
     // Copy chain entries
     for( std::vector<ChainEntry>::const_iterator it = other.Chain.begin(); it != other.Chain.end(); ++it )
@@ -113,6 +129,18 @@ TdEstChain::EstimateTD( double t_now, double t_req )
     double  TD_abs  = 0.0L;
     double  Scale   = 1.0L;
 
+    // Update ScaleRef candidate
+    if( CandidateValid )
+    {
+        if( ScaleRefCandidate.t <= t_now )
+        {
+            ScaleRef = ScaleRefCandidate;
+        }
+
+        CandidateValid = false;
+    }
+
+    // Get current nominal Time Deviation and scale factor
     for( std::vector<ChainEntry>::iterator it = Chain.begin(); it < Chain.end(); ++it )
     {
         TdEstimate  est = it->pEst->EstimateTD( t_now, t_req );
@@ -127,7 +155,26 @@ TdEstChain::EstimateTD( double t_now, double t_req )
         }
     }
 
-    TD_abs = TD_nom * Scale;
+    // Calculate absolute Time Deviation
+    double  dTD_nom = TD_nom - ScaleRef.TD_nom;
+
+    TD_abs = ScaleRef.TD_abs + dTD_nom * Scale;
+
+    // Remember scale point
+    if( t_now == t_req )
+    {
+        ScaleRef.t      = t_req;
+        ScaleRef.TD_nom = TD_nom;
+        ScaleRef.TD_abs = TD_abs;
+    }
+    else
+    {
+        ScaleRefCandidate.t      = t_req;
+        ScaleRefCandidate.TD_nom = TD_nom;
+        ScaleRefCandidate.TD_abs = TD_abs;
+
+        CandidateValid = true;
+    }
 
     return TD_abs;
 }

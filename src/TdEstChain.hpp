@@ -32,8 +32,19 @@ class TdEstChain
         }
         ChainEntry;
 
+        typedef struct
+        {
+            double  t;
+            double  TD_nom;
+            double  TD_abs;
+        }
+        ScalePoint;
+
         // Housekeeping
         double              Last_f_s;
+        ScalePoint          ScaleRef;
+        ScalePoint          ScaleRefCandidate;
+        bool                CandidateValid;
 
         // Resources
         std::vector<ChainEntry>     Chain;
