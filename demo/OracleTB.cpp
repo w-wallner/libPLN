@@ -104,13 +104,13 @@ void SimpleOracleBench()
     MaxCnt   = 100000;      // 10^5
     MaxCnt   = 1000000;     // 10^6
     MaxCnt   = 10000000;    // 10^7
-//    MaxCnt   = 100000000;   // 10^8     Max @ Matlab
+    MaxCnt   = 100000000;   // 10^8     Max @ Matlab
 
     f_s = 40E6;
-//    f_s =3E6;
-    f_s = 1E5;
+    f_s =5E6;
+//    f_s = 1E5;
 //    f_s = 1E4;
-    f_s = 1E3;
+//    f_s = 1E3;
 //    f_s = 1E1;
 
 //    f_s = 250000;
@@ -180,7 +180,7 @@ void DetailedOracleBench()
     MaxCnt   = 100000;      // 10^5
     MaxCnt   = 1000000;     // 10^6
 //    MaxCnt   = 10000000;    // 10^7
-    MaxCnt   = 100000000;   // 10^8     Max @ Matlab
+//    MaxCnt   = 100000000;   // 10^8     Max @ Matlab
 
     cout << OutputPath << endl;
 
