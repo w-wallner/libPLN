@@ -228,7 +228,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
             assert( LoopCnt <= MaxCnt );
         }
 
-        e.TD    = TdVecStorage.InterpolateTD_nom( t_req ) * f_s;
+        e.TD    = TdVecStorage.InterpolateTD( t_req ) * f_s;
         e.Type  = EXACTLY_KNOWN;
     }
 

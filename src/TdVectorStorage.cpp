@@ -273,7 +273,7 @@ TdVectorStorage::ResetToFixPoint( TdFixPoint fp )
 }
 
 double
-TdVectorStorage::InterpolateTD_nom( double t_req )
+TdVectorStorage::InterpolateTD( double t_req )
 {
     assert( t_req >= GetBeginTime() );
     assert( t_req <= GetEndTime() );
