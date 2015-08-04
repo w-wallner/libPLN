@@ -27,12 +27,12 @@
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
       <x>60</x>
-      <y>20</y>
+      <y>600</y>
       <w>50</w>
-      <h>650</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;630</additional_attributes>
+    <additional_attributes>30;30;30;50</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Class</type>
@@ -126,14 +126,14 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>80</x>
+      <x>90</x>
       <y>50</y>
-      <w>240</w>
+      <w>230</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 EstimateTD</panel_attributes>
-    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Text</id>
@@ -287,14 +287,14 @@ Estimate future TD</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>80</x>
+      <x>90</x>
       <y>600</y>
-      <w>240</w>
+      <w>230</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 TD</panel_attributes>
-    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
   </element>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
@@ -339,5 +339,38 @@ TD</panel_attributes>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>30;30;30;60</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.SeqObjectActive</type>
+    <coordinates>
+      <x>80</x>
+      <y>60</y>
+      <w>20</w>
+      <h>570</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>60</x>
+      <y>20</y>
+      <w>50</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>30;30;30;40</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>430</y>
+      <w>470</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;20.0;450.0;20.0</additional_attributes>
   </element>
 </diagram>
