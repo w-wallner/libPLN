@@ -31,7 +31,6 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/TdVecGen}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/TdVector}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/Tests}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/Utils}&quot;"/>
 								</option>
@@ -91,7 +90,6 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/TdVecGen}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/TdVector}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/Tests}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/Utils}&quot;"/>
 								</option>
