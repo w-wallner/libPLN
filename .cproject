@@ -24,15 +24,8 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.979771766" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.2078911832" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.973442517" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/Examples/AverageOscillator_20MHz}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/DebugTools}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/Filter}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/TdEst}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/TdVecGen}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/TdVector}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/Tests}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/Utils}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1570475963" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -83,15 +76,8 @@
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.1059664848" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.1951353711" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.63612773" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/Examples/AverageOscillator_20MHz}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/DebugTools}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/Filter}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/TdEst}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/TdVecGen}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/TdVector}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/Tests}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN/src/Utils}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libPLN}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2129311135" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
