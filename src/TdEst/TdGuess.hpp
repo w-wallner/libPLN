@@ -50,7 +50,7 @@ public:
     bool        BecameValid( double t_now );
     void        Set( TdFixPoint fp );
     TdFixPoint  GetFP();
-    void    Reset();
+    void        Reset();
 };
 
 // =========================================================================
