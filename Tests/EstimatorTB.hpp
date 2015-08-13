@@ -17,8 +17,8 @@
 // along with libPLN.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef DUMMYTB_HPP_
-#define DUMMYTB_HPP_
+#ifndef ESTIMATOR_TB_HPP_
+#define ESTIMATOR_TB_HPP_
 
 // =========================================================================
 // Includes

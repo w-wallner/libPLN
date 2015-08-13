@@ -21,7 +21,7 @@
 // Includes
 // =========================================================================
 
-#include "DummyTB.hpp"
+#include "EstimatorTB.hpp"
 
 #include <iostream>
 #include <fstream>

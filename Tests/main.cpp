@@ -26,9 +26,9 @@
 
 #include "libPLN.hpp"
 
-#include "DummyTB.hpp"
-#include "OracleTB.hpp"
 #include "BasicTests.hpp"
+#include "EstimatorTB.hpp"
+#include "OracleTB.hpp"
 
 using namespace std;
 
