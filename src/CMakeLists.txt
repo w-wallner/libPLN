@@ -1,0 +1,35 @@
+
+add_library(PLN STATIC  TdEstChain.cpp
+                        TdOracle.cpp
+                        TdVectorStorage.cpp
+                        WhiteNoiseGenerator.cpp
+                        DebugTools/VectorOutput.cpp
+                        Filter/BmHpFilterImpResp.cpp
+                        Filter/FilterImpResp.cpp
+                        Filter/FilterKernel.cpp 
+                        Filter/KwFilterImpResp.cpp
+                        TdEst/TdEstimator.cpp
+                        TdEst/TdFixPoint.cpp
+                        TdEst/TdGuess.cpp
+                        TdVecGen/GenericTdVecGen.cpp
+                        TdVecGen/RecursiveTdVecGen.cpp
+                        TdVecGen/RwTdVecGen.cpp
+                        TdVecGen/TdVecGen.cpp
+                        TdVecGen/WfmTdVecGen.cpp
+                        TdVecGen/WpmTdVecGen.cpp
+                        TdVector/TdVector.cpp
+                        TdVector/TdVectorCubSpline.cpp
+                        TdVector/TdVectorLinear.cpp
+                        Utils/FFT.cpp
+                        Utils/FFT_Types.cpp
+                        Utils/NumericTricks.cpp 
+                        Utils/spline.cpp)                        
+
+target_include_directories(PLN PUBLIC   ${CMAKE_CURRENT_SOURCE_DIR}
+                                        ${CMAKE_SOURCE_DIR}
+                                        ${CMAKE_SOURCE_DIR}/src)
+                                      
+install(TARGETS PLN
+        RUNTIME DESTINATION ${CMAKE_BINARY_DIR}/bin
+        LIBRARY DESTINATION ${CMAKE_BINARY_DIR}/lib
+        ARCHIVE DESTINATION ${CMAKE_BINARY_DIR}/lib/static)
