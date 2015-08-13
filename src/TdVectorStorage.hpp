@@ -26,8 +26,8 @@
 
 #include <set>
 
-#include "TdVector.hpp"
-#include "TdFixPoint.hpp"
+#include "TdVector/TdVector.hpp"
+#include "TdEst/TdFixPoint.hpp"
 
 // =========================================================================
 // Defines

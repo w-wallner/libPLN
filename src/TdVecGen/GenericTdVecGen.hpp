@@ -24,8 +24,8 @@
 // Includes
 // =========================================================================
 
-#include "TdEstConfig.hpp"
-#include "TdVecGen.hpp"
+#include "TdEst/TdEstConfig.hpp"
+#include "TdVecGen/TdVecGen.hpp"
 
 // =========================================================================
 // Defines

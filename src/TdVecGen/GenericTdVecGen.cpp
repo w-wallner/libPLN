@@ -25,8 +25,8 @@
 
 #include <numeric>
 
-#include "KwFilterImpResp.hpp"
-#include "BmHpFilterImpResp.hpp"
+#include "Filter/KwFilterImpResp.hpp"
+#include "Filter/BmHpFilterImpResp.hpp"
 
 // =========================================================================
 // Defines

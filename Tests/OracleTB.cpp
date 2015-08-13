@@ -24,7 +24,7 @@
 #include "OracleTB.hpp"
 
 #include "libPLN.hpp"
-#include "AverageOscillator_20MHz.hpp"
+#include "Examples/AverageOscillator_20MHz/AverageOscillator_20MHz.hpp"
 
 #include <fstream>
 #include <iostream>

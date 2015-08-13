@@ -24,11 +24,11 @@
 // Includes
 // =========================================================================
 
-#include <FilterImpResp.hpp>
 #include <complex>
 #include <vector>
 
-#include "FFT.hpp"
+#include "Filter/FilterImpResp.hpp"
+#include "Utils/FFT.hpp"
 
 // =========================================================================
 // Defines

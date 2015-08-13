@@ -24,12 +24,12 @@
 #include "BasicTests.hpp"
 
 #include "TdVectorStorage.hpp"
-#include "TdVectorCubSpline.hpp"
-#include "TdVecGen.hpp"
-#include "GenericTdVecGen.hpp"
-#include "WpmTdVecGen.hpp"
-#include "WfmTdVecGen.hpp"
-#include "RwTdVecGen.hpp"
+#include "TdVector/TdVectorCubSpline.hpp"
+#include "TdVecGen/TdVecGen.hpp"
+#include "TdVecGen/GenericTdVecGen.hpp"
+#include "TdVecGen/WpmTdVecGen.hpp"
+#include "TdVecGen/WfmTdVecGen.hpp"
+#include "TdVecGen/RwTdVecGen.hpp"
 
 #include <iostream>
 

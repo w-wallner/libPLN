@@ -21,7 +21,7 @@
 // Includes
 // =========================================================================
 
-#include <AverageOscillator_20MHz.hpp>
+#include "AverageOscillator_20MHz.hpp"
 
 namespace AverageOscillator_20MHz
 {

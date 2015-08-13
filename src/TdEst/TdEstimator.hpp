@@ -24,12 +24,12 @@
 // Includes
 // =========================================================================
 
+#include <iostream>
+
 #include "TdEstConfig.hpp"
-#include "TdVecGen.hpp"
 #include "TdGuess.hpp"
 #include "TdVectorStorage.hpp"
-
-#include <iostream>
+#include "TdVecGen/TdVecGen.hpp"
 
 // =========================================================================
 // Defines

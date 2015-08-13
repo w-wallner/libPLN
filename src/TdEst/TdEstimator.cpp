@@ -27,15 +27,11 @@
 #include <numeric>
 
 #include "TdGuess.hpp"
-#include "TdVecGen.hpp"
-#include "GenericTdVecGen.hpp"
-#include "WpmTdVecGen.hpp"
-#include "WfmTdVecGen.hpp"
-#include "RwTdVecGen.hpp"
-
-// Debug only
-#include <iostream>
-using namespace std;
+#include "TdVecGen/TdVecGen.hpp"
+#include "TdVecGen/GenericTdVecGen.hpp"
+#include "TdVecGen/WpmTdVecGen.hpp"
+#include "TdVecGen/WfmTdVecGen.hpp"
+#include "TdVecGen/RwTdVecGen.hpp"
 
 // =========================================================================
 // Defines

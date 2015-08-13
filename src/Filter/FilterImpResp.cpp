@@ -21,16 +21,14 @@
 // Includes
 // =========================================================================
 
-#include <FilterImpResp.hpp>
+#include "FilterImpResp.hpp"
 
 #include <stdexcept>
 #include <algorithm>
 
-#include "NumericTricks.hpp"
-#include "FFT.hpp"
-
-// Debug only
-#include "VectorOutput.hpp"
+#include "Utils/NumericTricks.hpp"
+#include "Utils/FFT.hpp"
+#include "DebugTools/VectorOutput.hpp"
 
 // =========================================================================
 // Defines

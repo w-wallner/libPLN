@@ -24,10 +24,9 @@
 // Includes
 // =========================================================================
 
-#include "TdVector.hpp"
-#include "FFT_Types.hpp"
-
-#include "spline.hpp"
+#include "TdVector/TdVector.hpp"
+#include "Utils/FFT_Types.hpp"
+#include "Utils/spline.hpp"
 
 // =========================================================================
 // Defines

@@ -25,14 +25,9 @@
 
 #include <algorithm>
 
-#include "TdVectorLinear.hpp"
-#include "TdVectorCubSpline.hpp"
-
-// Debug only
-#include <iostream>
-using namespace std;
-
-#include "VectorOutput.hpp"
+#include "TdVector/TdVectorLinear.hpp"
+#include "TdVector/TdVectorCubSpline.hpp"
+#include "DebugTools/VectorOutput.hpp"
 
 // =========================================================================
 // Defines

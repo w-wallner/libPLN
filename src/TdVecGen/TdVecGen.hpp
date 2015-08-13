@@ -24,11 +24,11 @@
 // Includes
 // =========================================================================
 
-#include "TdEstConfig.hpp"
-#include "TdVector.hpp"
-#include "TdFixPoint.hpp"
+#include "TdEst/TdEstConfig.hpp"
+#include "TdVector/TdVector.hpp"
+#include "TdEst/TdFixPoint.hpp"
+#include "Filter/FilterKernel.hpp"
 #include "WhiteNoiseGenerator.hpp"
-#include "FilterKernel.hpp"
 
 // =========================================================================
 // Defines

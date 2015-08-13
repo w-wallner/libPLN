@@ -31,7 +31,7 @@
 #include <boost/random/normal_distribution.hpp>
 #include <boost/random/variate_generator.hpp>
 
-#include "FFT_Types.hpp"
+#include "Utils/FFT_Types.hpp"
 
 // =========================================================================
 // Defines

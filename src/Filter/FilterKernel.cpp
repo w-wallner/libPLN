@@ -28,13 +28,9 @@
 #include <stdexcept>
 #include <cassert>
 
-#include "FFT.hpp"
-#include "NumericTricks.hpp"
-
-// Debug only
-#include <iostream>
-using namespace std;
-#include "VectorOutput.hpp"
+#include "Utils/FFT.hpp"
+#include "Utils/NumericTricks.hpp"
+#include "DebugTools/VectorOutput.hpp"
 
 // =========================================================================
 // Defines
