@@ -138,7 +138,7 @@ FilterKernel::ApplyToSignal( FFT_RealVector *pw )
                     H.begin(), pW->begin(),
                     std::multiplies< std::complex< double > >() );
 
-    // Remark: Scaling of 1/N is already containg in the filter kernel
+    // Remark: Scaling of 1/N is already contained in the filter kernel
 
     fft.ConvertToTimeDomain( pW, pw );
 
