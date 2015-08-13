@@ -114,6 +114,8 @@ BurstBench  BurstBenchMarks[] =
 
 void SimpleOracleBench()
 {
+    cout << "Running" << __func__ << "()" << endl;
+
     double f_s;
     double dt;
     double t        = 0.0L;
@@ -121,9 +123,9 @@ void SimpleOracleBench()
     size_t MaxCnt;
 
     MaxCnt   = 100000;      // 10^5
-    MaxCnt   = 1000000;     // 10^6
-    MaxCnt   = 10000000;    // 10^7
-    MaxCnt   = 100000000;   // 10^8     Max @ Matlab
+//    MaxCnt   = 1000000;     // 10^6
+//    MaxCnt   = 10000000;    // 10^7
+//    MaxCnt   = 100000000;   // 10^8     Max @ Matlab
 
     f_s = 40E6;
     f_s =5E6;
@@ -173,6 +175,8 @@ void SimpleOracleBench()
 
 void DetailedOracleBench()
 {
+    cout << "Running" << __func__ << "()" << endl;
+
     double          f_s;
     double          dt;
     double          t;
@@ -250,6 +254,8 @@ void DetailedOracleBench()
 
 void SpeedOracleBench()
 {
+    cout << "Running" << __func__ << "()" << endl;
+
     double          f_s;
     double          dt;
     double          t;
@@ -336,6 +342,8 @@ void SpeedOracleBench()
 
 void BurstOracleBench()
 {
+    cout << "Running" << __func__ << "()" << endl;
+
     TdOracle_AvgOsc20MHz    o( 2222 );
     double                  f_s;
     double                  dt;
@@ -374,5 +382,3 @@ void BurstOracleBench()
 
     ResultFile.close();
 }
-
-

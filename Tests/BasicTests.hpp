@@ -36,6 +36,8 @@
 // Function declarations
 // =========================================================================
 
-void    BasicTest1();
+void    TestTdVecStorage();
+void    TestTdVecGen();
+void    TestTdEst();
 
 #endif

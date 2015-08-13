@@ -50,10 +50,6 @@ using namespace std;
 // =========================================================================
 // Locale function prototypes
 // =========================================================================
-void    TestTdVecStorage();
-void    TestTdVecGen();
-void    TestTdEst();
-void    TestTdOracle();
 
 // =========================================================================
 // Function definitions
@@ -61,6 +57,8 @@ void    TestTdOracle();
 
 void    TestTdVecStorage()
 {
+    cout << "Running" << __func__ << "()" << endl;
+
     TdVectorStorage    *pA;
 
     double          TickLen     = 1.0;
@@ -102,10 +100,14 @@ void    TestTdVecStorage()
     pA->ForgetPast( 95 );
 
     cout << "C[3.0] = " << C.InterpolateTD( 3.0 ) << endl;
+
+    cout << __func__ << "() finished" << endl;
 }
 
 void TestTdVecGen()
 {
+    cout << "Running" << __func__ << "()" << endl;
+
     size_t TdVecLen;
     double TickLen;
     KW_FilterConfig KwConf;
@@ -152,15 +154,13 @@ void TestTdVecGen()
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << endl;
+
+    cout << __func__ << "() finished" << endl;
 }
 
 void TestTdEst()
 {
-}
-
-void BasicTest1()
-{
-//    TestTdVecStorage();
-//    TestTdVecGen();
-//    TestTdEst();
+    cout << "Running" << __func__ << "()" << endl;
+    cout << "(Nothing implemented yet)" << endl;
+    cout << __func__ << "() finished" << endl;
 }
