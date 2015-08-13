@@ -23,18 +23,17 @@
 
 #include "BasicTests.hpp"
 
+#include "TdVectorStorage.hpp"
 #include "TdVectorCubSpline.hpp"
 #include "TdVecGen.hpp"
 #include "GenericTdVecGen.hpp"
 #include "WpmTdVecGen.hpp"
 #include "WfmTdVecGen.hpp"
 #include "RwTdVecGen.hpp"
-#include "AverageOscillator_20MHz.hpp"
 
 #include <iostream>
 
 using namespace std;
-using namespace AverageOscillator_20MHz;
 
 // =========================================================================
 // Defines
@@ -159,22 +158,9 @@ void TestTdEst()
 {
 }
 
-void TestTdOracle()
-{
-    TdOracle_AvgOsc20MHz    A(123);
-
-    cout << "A: " << A.EstimateTD( 1.0, 3.0 ) << endl;
-
-    TdOracle_AvgOsc20MHz    B( A );
-
-    cout << "A: " << A.EstimateTD( 2.0, 3.5 ) << endl;
-    cout << "B: " << B.EstimateTD( 2.0, 3.5 ) << endl;
-}
-
 void BasicTest1()
 {
 //    TestTdVecStorage();
 //    TestTdVecGen();
 //    TestTdEst();
-    TestTdOracle();
 }

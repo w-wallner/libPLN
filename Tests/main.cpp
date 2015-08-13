@@ -21,14 +21,13 @@
 // Includes
 // =========================================================================
 
-#include <iostream>
-#include <ctime>
-
-#include "libPLN.hpp"
-
 #include "BasicTests.hpp"
 #include "EstimatorTB.hpp"
 #include "OracleTB.hpp"
+
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
 
 using namespace std;
 
