@@ -114,5 +114,4 @@ TdEstimatorConfig;
 // Function declarations
 // =========================================================================
 
-
 #endif
