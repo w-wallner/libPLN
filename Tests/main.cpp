@@ -121,6 +121,7 @@ void RunOracleTest( int TestID )
         case 1:     DetailedOracleBench();      break;
         case 2:     SpeedOracleBench();         break;
         case 3:     BurstOracleBench();         break;
+        case 4:     PreRecordedOracleBench();    break;
 
         default:    ExitOnInvalidID();
                     break;

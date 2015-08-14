@@ -40,5 +40,6 @@ void    SimpleOracleBench();
 void    DetailedOracleBench();
 void    SpeedOracleBench();
 void    BurstOracleBench();
+void    PreRecordedOracleBench();
 
 #endif

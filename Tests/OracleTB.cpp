@@ -28,6 +28,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 #include <ctime>
 
 using namespace std;
@@ -381,4 +382,47 @@ void BurstOracleBench()
     cout << "Final time: " << t << endl;
 
     ResultFile.close();
+}
+
+void PreRecordedOracleBench()
+{
+    cout << "Running " << __func__ << "()" << endl;
+
+    TdOracle_AvgOsc20MHz    o( 0 );
+    ifstream                ResultFile;
+    std::string             ResultFilename = "/main/CallLog.txt";
+    double                  T_Now;
+    double                  T_Req;
+    double                  TD;
+    size_t                  MaxLineCnt = 1000000;
+
+    ResultFile.open( ResultFilename.c_str(), std::ifstream::in );
+
+    if( !ResultFile )
+    {
+        cerr << "Error opening file" << endl;
+        return;
+    }
+
+    size_t LineCnt = 0;
+    while( LineCnt <= MaxLineCnt )
+    {
+        ResultFile >> T_Now;
+
+        if( ResultFile.eof() )
+            break;
+
+        ResultFile >> T_Req;
+
+        if( ResultFile.eof() )
+            break;
+
+//        cout << std::setprecision( 20 ) << "T_now: " << T_Now << ", T_req: " << T_Req << endl;
+
+        TD = o.EstimateTD( T_Now, T_Req );
+
+//        cout << "  Estimated TD: " << TD << endl;
+
+        LineCnt ++;
+    }
 }
