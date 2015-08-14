@@ -107,7 +107,7 @@ TdVecGen::ConstructTdVector( FFT_RealVector *pData, TdVecDataType DataType )
 
     switch( IntpolType )
     {
-    default:
+        default:
         case LINEAR_INTERPOLATION:
         {
             pTdVec    = new TdVectorLinear( Last_t_end, Last_TD_nom, TickLen, pData, TdVecLen, DataType );
