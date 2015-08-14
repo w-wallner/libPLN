@@ -139,7 +139,7 @@ TdVectorStorage::TdVectorStorage( size_t ForgetTh )
     }
 
     State   = STARTUP;
-    Storage.clear();
+    ClearStorage();
 }
 
 TdVectorStorage::TdVectorStorage( const TdVectorStorage& other )
@@ -288,7 +288,7 @@ TdVectorStorage::ResetToFixPoint( TdFixPoint fp )
     this->fp    = fp;
     this->State = STARTUP;
 
-    Storage.clear();
+    ClearStorage();
 }
 
 double
