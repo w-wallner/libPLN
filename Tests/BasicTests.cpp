@@ -57,7 +57,7 @@ using namespace std;
 
 void    TestTdVecStorage()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     TdVectorStorage    *pA;
 
@@ -100,13 +100,11 @@ void    TestTdVecStorage()
     pA->ForgetPast( 95 );
 
     cout << "C[3.0] = " << C.InterpolateTD( 3.0 ) << endl;
-
-    cout << __func__ << "() finished" << endl;
 }
 
 void TestTdVecGen()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     size_t TdVecLen;
     double TickLen;
@@ -154,13 +152,10 @@ void TestTdVecGen()
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << endl;
-
-    cout << __func__ << "() finished" << endl;
 }
 
 void TestTdEst()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
     cout << "(Nothing implemented yet)" << endl;
-    cout << __func__ << "() finished" << endl;
 }

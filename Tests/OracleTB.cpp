@@ -114,7 +114,7 @@ BurstBench  BurstBenchMarks[] =
 
 void SimpleOracleBench()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     double f_s;
     double dt;
@@ -175,7 +175,7 @@ void SimpleOracleBench()
 
 void DetailedOracleBench()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     double          f_s;
     double          dt;
@@ -254,7 +254,7 @@ void DetailedOracleBench()
 
 void SpeedOracleBench()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     double          f_s;
     double          dt;
@@ -342,7 +342,7 @@ void SpeedOracleBench()
 
 void BurstOracleBench()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     TdOracle_AvgOsc20MHz    o( 2222 );
     double                  f_s;

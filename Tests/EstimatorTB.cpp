@@ -72,7 +72,7 @@ TdBench TdBenches[] =
 void
 EstimatorTestBench()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     TdEstimatorConfig Conf;
 
@@ -127,7 +127,7 @@ EstimatorTestBench()
 void
 FileBench()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     TdEstimatorConfig Conf;
 
@@ -208,7 +208,7 @@ FileBench()
 void
 ChainBench_FPM()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     double f_s;
     double dt;
@@ -298,7 +298,7 @@ ChainBench_FPM()
 void
 ChainBench_WPM()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     double f_s;
     double dt;
@@ -387,7 +387,7 @@ ChainBench_WPM()
 void
 ChainBench_WFM()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     double f_s;
     double dt;
@@ -475,7 +475,7 @@ ChainBench_WFM()
 void
 ChainBench_FFM()
 {
-    cout << "Running" << __func__ << "()" << endl;
+    cout << "Running " << __func__ << "()" << endl;
 
     double f_s;
     double dt;
