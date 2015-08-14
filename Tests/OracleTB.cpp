@@ -123,7 +123,9 @@ void SimpleOracleBench()
     size_t cnt      = 0;
     size_t MaxCnt;
 
-    MaxCnt   = 100000;      // 10^5
+    MaxCnt   = 1000;      // 10^3
+//    MaxCnt   = 10000;      // 10^4
+//    MaxCnt   = 100000;      // 10^5
 //    MaxCnt   = 1000000;     // 10^6
 //    MaxCnt   = 10000000;    // 10^7
 //    MaxCnt   = 100000000;   // 10^8     Max @ Matlab
