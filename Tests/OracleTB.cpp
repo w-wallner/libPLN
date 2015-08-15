@@ -153,6 +153,9 @@ void SimpleOracleBench()
 
     TdOracle_AvgOsc20MHz o( 123 );
 
+//    o.SetSeed( 1000 );
+//    o.SetSeed( 0 );
+
     TdFile.precision( 30 );
     for( cnt = 0; cnt < MaxCnt; cnt ++ )
     {
