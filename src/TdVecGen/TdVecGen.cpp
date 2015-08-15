@@ -201,3 +201,9 @@ TdVecGen::ResetToFixPoint( TdFixPoint fp )
     Last_t_end  = fp.Get_t();
     Last_TD_nom = fp.GetTD_nom();
 }
+
+void
+TdVecGen::SetSeed( unsigned int Seed )
+{
+    WhiteNoiseGen.SetSeed( Seed );
+}

@@ -116,6 +116,19 @@ TdEstChain::operator= (const TdEstChain& other)
 }
 
 void
+TdEstChain::SetSeed( unsigned int Seed )
+{
+    unsigned int Cnt = 0;
+
+    for( std::vector<ChainEntry>::iterator it = Chain.begin(); it < Chain.end(); ++it )
+    {
+        it->pEst->SetSeed( Seed + Cnt );
+
+        Cnt ++;
+    }
+}
+
+void
 TdEstChain::AddTdEstimator( TdEstimatorConfig Conf, double Scale )
 {
     if( Chain.size() == 0 )

@@ -57,6 +57,7 @@ class TdOracle
         TdOracle&  operator=( const TdOracle& other );
 
         // API
+        virtual void    SetSeed( unsigned int Seed ) = 0;
         virtual double  EstimateTD( double t_now, double t_req ) = 0;
 };
 

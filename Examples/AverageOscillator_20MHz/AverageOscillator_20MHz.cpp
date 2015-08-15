@@ -83,6 +83,16 @@ TdOracle_AvgOsc20MHz::operator=( const TdOracle_AvgOsc20MHz& other )
     return *this;
 }
 
+// API
+void
+TdOracle_AvgOsc20MHz::SetSeed( unsigned int Seed )
+{
+    WpmChain.SetSeed( SeedOffsetWpmChain + Seed );
+    WfmChain.SetSeed( SeedOffsetWfmChain + Seed );
+    FfmChain.SetSeed( SeedOffsetFfmChain + Seed );
+    RwChain.SetSeed ( SeedOffsetRwChain  + Seed  );
+}
+
 double
 TdOracle_AvgOsc20MHz::EstimateTD( double t_now, double t_req )
 {

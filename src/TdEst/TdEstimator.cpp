@@ -198,6 +198,12 @@ TdEstimator::operator=( const TdEstimator& other )
     return *this;
 }
 
+void
+TdEstimator::SetSeed( unsigned int Seed )
+{
+    pTdVecGen->SetSeed( Seed );
+}
+
 TdEstimate
 TdEstimator::EstimateTD( double t_now, double t_req )
 {

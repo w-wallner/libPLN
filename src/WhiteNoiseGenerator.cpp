@@ -82,3 +82,10 @@ WhiteNoiseGenerator::GetStdVector( size_t VecLen, size_t FillLen )
 
     return pVec;
 }
+
+void
+WhiteNoiseGenerator::SetSeed( unsigned int Seed )
+{
+    eng.seed( Seed );
+    gen.engine() = eng;
+}

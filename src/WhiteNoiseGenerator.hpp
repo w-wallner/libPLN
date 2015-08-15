@@ -67,6 +67,8 @@ class WhiteNoiseGenerator
 
         FFT_RealVector      *GetFftVector( size_t VecLen, size_t FillLen );
         std::vector<double> *GetStdVector( size_t VecLen, size_t FillLen );
+
+        void    SetSeed( unsigned int Seed );
 };
 
 

@@ -88,6 +88,7 @@ class TdVecGen
 
         // API
         virtual void        ResetToFixPoint( TdFixPoint fp );
+        virtual void        SetSeed( unsigned int Seed );
         virtual TdVector    *GetNextVector() = 0;
 };
 

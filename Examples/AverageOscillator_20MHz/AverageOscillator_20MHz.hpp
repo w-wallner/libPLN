@@ -109,6 +109,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
         TdOracle_AvgOsc20MHz&  operator=( const TdOracle_AvgOsc20MHz& other );
 
         // API
+        void    SetSeed( unsigned int Seed );
         double  EstimateTD( double t_now, double t_req );
 };
 

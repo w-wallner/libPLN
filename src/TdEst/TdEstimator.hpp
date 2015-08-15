@@ -89,6 +89,7 @@ class TdEstimator
         TdEstimator&  operator=( const TdEstimator& other );
 
         // API
+        void        SetSeed( unsigned int Seed );
         TdEstimate  EstimateTD( double t_now, double t_req );
 
         // Getters

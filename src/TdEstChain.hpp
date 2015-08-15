@@ -83,6 +83,7 @@ class TdEstChain
         TdEstChain& operator= (const TdEstChain& other);
 
         // API
+        void    SetSeed( unsigned int Seed );
         void    AddTdEstimator( TdEstimatorConfig Conf, double Scale );
         double  EstimateTD( double t_now, double t_req );
 };
