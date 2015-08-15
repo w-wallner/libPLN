@@ -34,6 +34,16 @@ namespace AverageOscillator_20MHz
 // Type definitions
 // =========================================================================
 
+typedef enum
+{
+    SeedOffsetWpmChain  = 0,
+    SeedOffsetFpmChain  = 10,
+    SeedOffsetWfmChain  = 20,
+    SeedOffsetFfmChain  = 30,
+    SeedOffsetRwChain   = 40,
+}
+tSeedOffset;
+
 // =========================================================================
 // Global variables
 // =========================================================================
@@ -47,7 +57,7 @@ namespace AverageOscillator_20MHz
 // =========================================================================
 
 TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( unsigned int Seed )
-    : WpmChain( Seed + 0 ), WfmChain( Seed + 20 ), FfmChain( Seed + 30 ), RwChain( Seed + 40 )
+    : WpmChain( SeedOffsetWpmChain + Seed ), WfmChain( SeedOffsetWfmChain + Seed ), FfmChain( SeedOffsetFfmChain + Seed ), RwChain( SeedOffsetRwChain + Seed )
 {
 }
 
