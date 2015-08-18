@@ -24,8 +24,6 @@
 // Includes
 // =========================================================================
 
-#ifdef ENABLE_DEBUG_OUTPUT
-
 #include <vector>
 #include <iostream>
 #include <complex>
@@ -63,7 +61,5 @@ void    PrintRealVector( std::string Name, std::vector<double> v );
 void    PrintCompVector( std::string Name, std::vector< std::complex<double> > v );
 void    PrintFftRealVector( std::string Name, FFT_RealVector v );
 void    PrintFftCompVector( std::string Name, FFT_ComplexVector v );
-
-#endif
 
 #endif

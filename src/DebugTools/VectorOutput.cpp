@@ -21,8 +21,6 @@
 // Includes
 // =========================================================================
 
-#ifdef ENABLE_DEBUG_OUTPUT
-
 #include "VectorOutput.hpp"
 
 // =========================================================================
@@ -105,5 +103,3 @@ PrintFftCompVector( std::string Name, FFT_ComplexVector v )
 {
     PrintCompVector( Name, std::vector< std::complex<double> >( v.begin(), v.end() ) );
 }
-
-#endif
