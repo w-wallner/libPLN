@@ -28,6 +28,7 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
