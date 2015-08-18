@@ -24,8 +24,6 @@
 // Includes
 // =========================================================================
 
-#include <iostream>
-
 #include "TdEstConfig.hpp"
 #include "TdGuess.hpp"
 #include "TdVectorStorage.hpp"
