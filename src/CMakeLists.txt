@@ -27,8 +27,10 @@ add_library(PLN STATIC  TdEstChain.cpp
 
 target_include_directories(PLN PUBLIC   ${CMAKE_CURRENT_SOURCE_DIR}
                                         ${CMAKE_SOURCE_DIR}
-                                        ${CMAKE_SOURCE_DIR}/src)
-                                      
+                                        ${CMAKE_SOURCE_DIR}/src
+                                        ${FFTW_BINARY_PATH}
+                                        ${BOOST_BINARY_PATH})
+
 install(TARGETS PLN
         RUNTIME DESTINATION ${CMAKE_BINARY_DIR}/bin
         LIBRARY DESTINATION ${CMAKE_BINARY_DIR}/lib
