@@ -1,6 +1,6 @@
 *~
 Debug
 Release
-build
+build*
 *.a
 *.so
