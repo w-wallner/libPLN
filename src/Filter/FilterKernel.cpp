@@ -168,5 +168,7 @@ FilterKernel::GetFFT_RealSize()
 void
 FilterKernel::Print( std::string Name )
 {
+	#ifdef ENABLE_DEBUG_OUTPUT
     PrintFftCompVector( Name, H );
+	#endif
 }

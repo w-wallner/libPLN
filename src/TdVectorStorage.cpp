@@ -26,9 +26,10 @@
 #include <cassert>
 #include <stdexcept>
 
-// Debug only
+#ifdef ENABLE_DEBUG_OUTPUT
 #include <iostream>
 using namespace std;
+#endif
 
 // =========================================================================
 // Defines
@@ -112,6 +113,7 @@ TdVectorStorage::ClearStorage()
     Storage.clear();
 }
 
+#ifdef ENABLE_DEBUG_OUTPUT
 void
 TdVectorStorage::Print()
 {
@@ -124,6 +126,7 @@ TdVectorStorage::Print()
         cout << "[" << i << "]: " << Storage[i]->GetBeginTime() << " - " << Storage[i]->GetEndTime() << endl;
     }
 }
+#endif
 
 TdVectorStorage::TdVectorStorage( size_t ForgetTh )
     : fp( 0.0, 0.0 )
@@ -187,11 +190,13 @@ TdVectorStorage::AddTdVec( TdVector *pTdVec )
 {
     if( pTdVec->GetBeginTime() != GetEndTime() )
     {
+		#ifdef ENABLE_DEBUG_OUTPUT
         cout << "Current storage: " << endl;
         Print();
         cout << endl;
         cout << "New Vector: " << pTdVec->GetBeginTime() << " - " << pTdVec->GetEndTime() << endl;
         cout << endl;
+		#endif
 
         std::ostringstream strs;
 
