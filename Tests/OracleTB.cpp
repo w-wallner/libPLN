@@ -396,20 +396,34 @@ void PreRecordedOracleBench()
     TdOracle_AvgOsc20MHz    o( 0 );
     ifstream                ResultFile;
     std::string             ResultFilename = "/main/CallLog.txt";
+    ofstream                TdTraceFile;
+    std::string             TdTraceFilename = "/main/TdTrace.txt";
     double                  T_Now;
+    double                  T_Now_Latch;
     double                  T_Req;
     double                  TD;
     size_t                  MaxLineCnt = 1000000;
+
+    MaxLineCnt = 100000;
 
     ResultFile.open( ResultFilename.c_str(), std::ifstream::in );
 
     if( !ResultFile )
     {
-        cerr << "Error opening file" << endl;
+        cerr << "Error opening result file" << endl;
+        return;
+    }
+
+    TdTraceFile.open( TdTraceFilename.c_str(), std::ifstream::out );
+
+    if( !TdTraceFile )
+    {
+        cerr << "Error opening TD trace file" << endl;
         return;
     }
 
     size_t LineCnt = 0;
+    T_Now_Latch = -1.0;
     while( LineCnt <= MaxLineCnt )
     {
         ResultFile >> T_Now;
@@ -426,8 +440,21 @@ void PreRecordedOracleBench()
 
         TD = o.EstimateTD( T_Now, T_Req );
 
+        if( T_Now != T_Now_Latch )
+        {
+            if( T_Now == T_Req )
+            {
+                TdTraceFile << std::setprecision( 20 ) << T_Now << ", " << TD << endl;
+
+                T_Now_Latch = T_Now;
+            }
+        }
+
 //        cout << "  Estimated TD: " << TD << endl;
 
         LineCnt ++;
     }
+
+    ResultFile.close();
+    TdTraceFile.close();
 }
