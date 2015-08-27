@@ -135,6 +135,10 @@ int main( int argc, char *argv[] )
 
     ProgName = argv[0];
 
+    cout << "==================================================================================" << endl;
+    cout << "libPLN TestBench, built on " << __DATE__ << " at " << __TIME__ << endl;
+    cout << "==================================================================================" << endl;
+
     cout << "Starting";
     #ifdef _DEBUG
         cout << " (Debug mode)";
