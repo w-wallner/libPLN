@@ -89,3 +89,9 @@ WhiteNoiseGenerator::SetSeed( unsigned int Seed )
     eng.seed( Seed );
     gen.engine() = eng;
 }
+
+double
+WhiteNoiseGenerator::GetEstimatedValue()
+{
+    return gen();
+}

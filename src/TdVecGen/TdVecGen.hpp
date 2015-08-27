@@ -90,6 +90,7 @@ class TdVecGen
         virtual void        ResetToFixPoint( TdFixPoint fp );
         virtual void        SetSeed( unsigned int Seed );
         virtual TdVector    *GetNextVector() = 0;
+                double      GetEstimatedValue();
 };
 
 // =========================================================================

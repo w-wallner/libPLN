@@ -207,3 +207,9 @@ TdVecGen::SetSeed( unsigned int Seed )
 {
     WhiteNoiseGen.SetSeed( Seed );
 }
+
+double
+TdVecGen::GetEstimatedValue()
+{
+    return WhiteNoiseGen.GetEstimatedValue();
+}
