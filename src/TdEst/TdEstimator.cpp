@@ -85,7 +85,13 @@ TdEstimator::GuessFutureTD_nom( double t_req )
 {
     assert( TdVecStorage.GetEndTime() < t_req );
 
-    double TD_nom = pTdVecGen->GetEstimatedValue();
+    double TD_nom;
+
+    // ---------------------------------------------------------------------------
+    // ATTENTION: This is only an estimate
+    // It won't be equally good for all types of noise
+    // ---------------------------------------------------------------------------
+    TD_nom  = pTdVecGen->GetEstimatedValue();
 
     LastGuess.Set( TdFixPoint( t_req, TD_nom ) );
 
