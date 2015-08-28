@@ -235,7 +235,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
     if( (TdVecStorage.GetEndTime() + T_val) < t_req )
     {
         e.TD    = GuessFutureTD_nom( t_req ) * f_s;
-        e.Type  = ESTIMATED_FUTURE;
+        e.Type  = EXACTLY_KNOWN;
 
         // Check if our new guess may become valid immediately
         CheckLastGuess( t_now, false );
