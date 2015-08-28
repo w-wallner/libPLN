@@ -38,6 +38,7 @@
 
 void    TestTdVecStorage();
 void    TestTdVecGen();
+void    TestWpmTdVecGen();
 void    TestTdEst();
 
 #endif

@@ -91,7 +91,8 @@ void RunBasicTest( int TestID )
     {
         case 0:     TestTdVecStorage();         break;
         case 1:     TestTdVecGen();             break;
-        case 2:     TestTdEst();                break;
+        case 2:     TestWpmTdVecGen();          break;
+        case 3:     TestTdEst();                break;
 
         default:    ExitOnInvalidID();
                     break;

@@ -31,9 +31,13 @@
 #include "TdVecGen/WfmTdVecGen.hpp"
 #include "TdVecGen/RwTdVecGen.hpp"
 
+#include "AverageOscillator_20MHz/AverageOscillator_20MHz.hpp"
+
 #include <iostream>
+#include <fstream>
 
 using namespace std;
+using namespace AverageOscillator_20MHz;
 
 // =========================================================================
 // Defines
@@ -152,6 +156,43 @@ void TestTdVecGen()
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << endl;
+}
+
+void    TestWpmTdVecGen()
+{
+    cout << "Running " << __func__ << "()" << endl;
+
+    std::string     FileName = "/main/VecSums.txt";
+    std::ofstream   OutFile;
+
+    OutFile.open( FileName.c_str(), std::ifstream::out );
+
+    TdEstimatorConfig Conf = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz( 123 );
+    double  TickLen = 1.0L / Conf.SampleConf.f_s;
+
+    GenericTdVecGen g( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
+
+    TdVector *pTdVec;
+
+    for( int i = 0; i < 100000; i ++ )
+    {
+        g.ResetToFixPoint( TdFixPoint( 0.0, 0.0 ) );
+
+        pTdVec = g.GetNextVector();
+
+        /*
+        for( int j = 0; j < 100; j ++ )
+        {
+            cout << pTdVec->InterpolateTD_nom( j * TickLen ) << endl;
+        }
+        */
+
+        OutFile << pTdVec->GetEndTD() << endl;
+
+        delete pTdVec;
+    }
+
+    OutFile.close();
 }
 
 void TestTdEst()
