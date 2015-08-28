@@ -46,121 +46,129 @@ namespace AverageOscillator_20MHz
 // Function definitions
 // =========================================================================
 
+TdEstimatorConfig
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz(unsigned int Seed)
+{
+    TdEstimatorConfig   config;
+
+    config.SampleConf.f_s               = 40E6;
+    config.SampleConf.f_s               = 40E6;
+    config.SampleConf.TdVecLen          = 5100;
+    config.KwImplOption                 = USE_SHORTCUTS;
+
+    config.KwConf.Qd                    = 25E-36;
+    config.KwConf.alpha                 = 2.0;
+    config.KwConf.FilterLen             = 10;
+    config.KwConf.Seed                  = Seed + 0;
+
+    config.HpConf.Type                  = BLACKMAN;
+    config.HpConf.f_c_nom               = 0.024;
+    config.HpConf.FilterLen             = 5001;
+    config.HpConf.Cnt                   = 1;
+
+    config.InterpolConf.Type            = LINEAR_INTERPOLATION;
+
+    config.TimeConf.T_val               = 2E-6;
+
+    config.PerformanceConf.ForgetTh     = 0;
+
+    return config;
+}
+
+TdEstimatorConfig
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz(unsigned int Seed)
+{
+    TdEstimatorConfig   config;
+
+    config.SampleConf.f_s                = 22E5;
+    config.SampleConf.TdVecLen           = 5100;
+
+    config.KwImplOption                  = USE_SHORTCUTS;
+
+    config.KwConf.Qd                     = 6E-34;
+    config.KwConf.alpha                  = 2.0;
+    config.KwConf.FilterLen              = 10;
+    config.KwConf.Seed                   = Seed;
+
+    config.HpConf.Type                   = BLACKMAN;
+    config.HpConf.f_c_nom                = 0.004;
+    config.HpConf.FilterLen              = 1001;
+    config.HpConf.Cnt                    = 1;
+
+    config.InterpolConf.Type             = CUBIC_SPLINE_INTERPOLATION;
+
+    config.TimeConf.T_val                = 200E-6;
+
+    config.PerformanceConf.ForgetTh      = 0;
+
+    return config;
+}
+
+TdEstimatorConfig
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz(unsigned int Seed)
+{
+    TdEstimatorConfig   config;
+
+    config.SampleConf.f_s               = 20E3;
+    config.SampleConf.TdVecLen          = 5100;
+
+    config.KwImplOption                 = USE_SHORTCUTS;
+
+    config.KwConf.Qd                    = 730E-34;
+    config.KwConf.alpha                 = 2.0;
+    config.KwConf.FilterLen             = 10;
+    config.KwConf.Seed                  = Seed;
+
+    config.HpConf.Type                  = BLACKMAN;
+    config.HpConf.f_c_nom               = 0.004;
+    config.HpConf.f_c_nom               = 0.0035;
+    config.HpConf.FilterLen             = 501;
+    config.HpConf.Cnt                   = 1;
+
+    config.InterpolConf.Type            = CUBIC_SPLINE_INTERPOLATION;
+
+    config.TimeConf.T_val               = 20E-3;
+
+    config.PerformanceConf.ForgetTh     = 0;
+
+    return config;
+}
+
+TdEstimatorConfig
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz(unsigned int Seed)
+{
+    TdEstimatorConfig   config;
+
+    config.SampleConf.f_s               = 200;
+    config.SampleConf.TdVecLen          = 5100;
+
+    config.KwImplOption                 = USE_SHORTCUTS;
+
+    config.KwConf.Qd                    = 730E-32;
+    config.KwConf.alpha                 = 2.0;
+    config.KwConf.FilterLen             = 10;
+    config.KwConf.Seed                  = Seed;
+
+    config.HpConf.Type                  = NO_FILTER;
+    config.HpConf.f_c_nom               = 0.01;
+    config.HpConf.FilterLen             = 5001;
+    config.HpConf.Cnt                   = 1;
+
+    config.InterpolConf.Type            = CUBIC_SPLINE_INTERPOLATION;
+
+    config.TimeConf.T_val               = 20;
+
+    config.PerformanceConf.ForgetTh     = 0;
+
+    return config;
+}
+
 TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
 {
-    TdEstimatorConfig   Conf_20MHz;
-    TdEstimatorConfig   Conf_1MHz;
-    TdEstimatorConfig   Conf_10kHz;
-    TdEstimatorConfig   Conf_100Hz;
-
-    // -------------------------------------------------------------------------------------------
-    // Configure 20 MHz
-    // -------------------------------------------------------------------------------------------
-
-    Conf_20MHz.SampleConf.f_s               = 40E6;
-    Conf_20MHz.SampleConf.TdVecLen          = 5100;
-
-    Conf_20MHz.KwImplOption                 = USE_SHORTCUTS;
-
-    Conf_20MHz.KwConf.Qd                    = 25E-36;
-    Conf_20MHz.KwConf.alpha                 = 2.0;
-    Conf_20MHz.KwConf.FilterLen             = 10;
-    Conf_20MHz.KwConf.Seed                  = Seed + 0;
-
-    Conf_20MHz.HpConf.Type                  = BLACKMAN;
-    Conf_20MHz.HpConf.f_c_nom               = 0.024;
-    Conf_20MHz.HpConf.FilterLen             = 5001;
-    Conf_20MHz.HpConf.Cnt                   = 1;
-
-    Conf_20MHz.InterpolConf.Type            = LINEAR_INTERPOLATION;
-
-    Conf_20MHz.TimeConf.T_val               = 2E-6;
-
-    Conf_20MHz.PerformanceConf.ForgetTh     = 0;
-
-    // -------------------------------------------------------------------------------------------
-    // Configure 1 MHz
-    // -------------------------------------------------------------------------------------------
-
-    Conf_1MHz.SampleConf.f_s                = 22E5;
-    Conf_1MHz.SampleConf.TdVecLen           = 5100;
-
-    Conf_1MHz.KwImplOption                  = USE_SHORTCUTS;
-
-    Conf_1MHz.KwConf.Qd                     = 6E-34;
-    Conf_1MHz.KwConf.alpha                  = 2.0;
-    Conf_1MHz.KwConf.FilterLen              = 10;
-    Conf_1MHz.KwConf.Seed                   = Seed + 1;
-
-    Conf_1MHz.HpConf.Type                   = BLACKMAN;
-    Conf_1MHz.HpConf.f_c_nom                = 0.004;
-    Conf_1MHz.HpConf.FilterLen              = 1001;
-    Conf_1MHz.HpConf.Cnt                    = 1;
-
-    Conf_1MHz.InterpolConf.Type             = CUBIC_SPLINE_INTERPOLATION;
-
-    Conf_1MHz.TimeConf.T_val                = 200E-6;
-
-    Conf_1MHz.PerformanceConf.ForgetTh      = 0;
-
-    // -------------------------------------------------------------------------------------------
-    // Configure 10 kHz
-    // -------------------------------------------------------------------------------------------
-
-    Conf_10kHz.SampleConf.f_s               = 20E3;
-    Conf_10kHz.SampleConf.TdVecLen          = 5100;
-
-    Conf_10kHz.KwImplOption                 = USE_SHORTCUTS;
-
-    Conf_10kHz.KwConf.Qd                    = 730E-34;
-    Conf_10kHz.KwConf.alpha                 = 2.0;
-    Conf_10kHz.KwConf.FilterLen             = 10;
-    Conf_10kHz.KwConf.Seed                  = Seed + 2;
-
-    Conf_10kHz.HpConf.Type                  = BLACKMAN;
-    Conf_10kHz.HpConf.f_c_nom               = 0.004;
-    Conf_10kHz.HpConf.f_c_nom               = 0.0035;
-    Conf_10kHz.HpConf.FilterLen             = 501;
-    Conf_10kHz.HpConf.Cnt                   = 1;
-
-    Conf_10kHz.InterpolConf.Type            = CUBIC_SPLINE_INTERPOLATION;
-
-    Conf_10kHz.TimeConf.T_val               = 20E-3;
-
-    Conf_10kHz.PerformanceConf.ForgetTh     = 0;
-
-    // -------------------------------------------------------------------------------------------
-    // Configure 100 Hz
-    // -------------------------------------------------------------------------------------------
-    Conf_100Hz.SampleConf.f_s               = 200;
-    Conf_100Hz.SampleConf.TdVecLen          = 5100;
-
-    Conf_100Hz.KwImplOption                 = USE_SHORTCUTS;
-
-    Conf_100Hz.KwConf.Qd                    = 730E-32;
-    Conf_100Hz.KwConf.alpha                 = 2.0;
-    Conf_100Hz.KwConf.FilterLen             = 10;
-    Conf_100Hz.KwConf.Seed                  = Seed + 3;
-
-    Conf_100Hz.HpConf.Type                  = NO_FILTER;
-    Conf_100Hz.HpConf.f_c_nom               = 0.01;
-    Conf_100Hz.HpConf.FilterLen             = 5001;
-    Conf_100Hz.HpConf.Cnt                   = 1;
-
-    Conf_100Hz.InterpolConf.Type            = CUBIC_SPLINE_INTERPOLATION;
-
-    Conf_100Hz.TimeConf.T_val               = 20;
-
-    Conf_100Hz.PerformanceConf.ForgetTh     = 0;
-
-    // -------------------------------------------------------------------------------------------
-    // Combine
-    // -------------------------------------------------------------------------------------------
-
-    AddTdEstimator( Conf_20MHz, sqrt(14.0L) );
-//    AddTdEstimator( Conf_1MHz,  sqrt(93.7L) );
-//    AddTdEstimator( Conf_10kHz, sqrt(95.3L) );
-//    AddTdEstimator( Conf_100Hz, 1.0L        );
+    AddTdEstimator( GetConfig_WPM_20MHz( Seed + 0 ), sqrt(14.0L) );
+    AddTdEstimator( GetConfig_WPM_1MHz ( Seed + 1 ), sqrt(93.7L) );
+    AddTdEstimator( GetConfig_WPM_10kHz( Seed + 2 ), sqrt(95.3L) );
+    AddTdEstimator( GetConfig_WPM_100Hz( Seed + 3),  1.0L        );
 }
 
 TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( const TdEstChain_WPM& other )

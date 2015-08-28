@@ -50,6 +50,12 @@ class TdOracle_AvgOsc20MHz : public TdOracle
                 TdEstChain_WPM( const TdEstChain_WPM& other );
                 virtual ~TdEstChain_WPM();
 
+                // Getters
+                TdEstimatorConfig   GetConfig_WPM_20MHz(unsigned int Seed);
+                TdEstimatorConfig   GetConfig_WPM_1MHz (unsigned int Seed);
+                TdEstimatorConfig   GetConfig_WPM_10kHz(unsigned int Seed);
+                TdEstimatorConfig   GetConfig_WPM_100Hz(unsigned int Seed);
+
                 // Operators
                 virtual TdEstChain_WPM& operator= (const TdEstChain_WPM& other);
         };
