@@ -77,7 +77,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_RW::GetConfig_RW_100Hz(unsigned int Seed)
 
 TdOracle_AvgOsc20MHz::TdEstChain_RW::TdEstChain_RW( unsigned int Seed )
 {
-    AddTdEstimator( GetConfig_RW_100Hz(Seed + 0), 1.0L );
+    AddTdEstimator( GetConfig_RW_100Hz(Seed + 0) );
 }
 
 TdOracle_AvgOsc20MHz::TdEstChain_RW::TdEstChain_RW( const TdEstChain_RW& other )

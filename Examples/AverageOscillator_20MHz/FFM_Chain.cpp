@@ -78,7 +78,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_FFM_100Hz(unsigned int Seed)
 TdOracle_AvgOsc20MHz::TdEstChain_FFM::TdEstChain_FFM( unsigned int Seed )
 {
 
-    AddTdEstimator( GetConfig_FFM_100Hz(Seed + 0), 1.0L );
+    AddTdEstimator( GetConfig_FFM_100Hz(Seed + 0) );
 }
 
 TdOracle_AvgOsc20MHz::TdEstChain_FFM::TdEstChain_FFM( const TdEstChain_FFM& other )

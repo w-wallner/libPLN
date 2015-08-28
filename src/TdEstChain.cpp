@@ -66,7 +66,6 @@ TdEstChain::TdEstChain( const TdEstChain& other )
     {
         ChainEntry  e;
 
-        e.Scale = it->Scale;
         e.pEst  = new TdEstimator( *it->pEst );
 
         Chain.push_back( e );
@@ -88,7 +87,6 @@ TdEstChain::operator= (const TdEstChain& other)
     {
         ChainEntry  e;
 
-        e.Scale = it->Scale;
         e.pEst  = new TdEstimator( *it->pEst );
 
         Chain.push_back( e );
@@ -112,7 +110,7 @@ TdEstChain::SetSeed( unsigned int Seed )
 }
 
 void
-TdEstChain::AddTdEstimator( TdEstimatorConfig Conf, double Scale )
+TdEstChain::AddTdEstimator( TdEstimatorConfig Conf )
 {
     if( Chain.size() == 0 )
     {
@@ -133,7 +131,6 @@ TdEstChain::AddTdEstimator( TdEstimatorConfig Conf, double Scale )
 
     ChainEntry  e;
 
-    e.Scale = Scale;
     e.pEst  = new TdEstimator( Conf );
 
     Chain.push_back( e );
@@ -147,21 +144,20 @@ TdEstChain::EstimateTD( double t_now, double t_req )
         throw std::invalid_argument( "Request in the past are not supported." );
     }
 
-    double  TD_nom  = 0.0L;
-    double  TD_abs  = 0.0L;
+    double  TD  = 0.0L;
 
-    // Get current nominal Time Deviation and scale factor
+    // Sum up over all chain entries
     for( std::vector<ChainEntry>::iterator it = Chain.begin(); it < Chain.end(); ++it )
     {
         TdEstimate  est = it->pEst->EstimateTD( t_now, t_req );
 
         if( est.Type == EXACTLY_KNOWN )
         {
-            TD_nom += est.TD;
+            TD  += est.TD;
         }
         else if( est.Type == ESTIMATED_FUTURE )
         {
-            TD_nom += est.TD;
+            TD  += est.TD;
         }
         else
         {
@@ -169,8 +165,5 @@ TdEstChain::EstimateTD( double t_now, double t_req )
         }
     }
 
-    // Calculate absolute Time Deviation
-    TD_abs = TD_nom;
-
-    return TD_abs;
+    return TD;
 }

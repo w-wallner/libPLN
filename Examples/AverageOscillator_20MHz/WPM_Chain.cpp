@@ -165,10 +165,10 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz(unsigned int Seed)
 
 TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
 {
-    AddTdEstimator( GetConfig_WPM_20MHz( Seed + 0 ), sqrt(14.0L) );
-    AddTdEstimator( GetConfig_WPM_1MHz ( Seed + 1 ), sqrt(93.7L) );
-    AddTdEstimator( GetConfig_WPM_10kHz( Seed + 2 ), sqrt(95.3L) );
-    AddTdEstimator( GetConfig_WPM_100Hz( Seed + 3),  1.0L        );
+    AddTdEstimator( GetConfig_WPM_20MHz( Seed + 0 ) );
+    AddTdEstimator( GetConfig_WPM_1MHz ( Seed + 1 ) );
+    AddTdEstimator( GetConfig_WPM_10kHz( Seed + 2 ) );
+    AddTdEstimator( GetConfig_WPM_100Hz( Seed + 3 ) );
 }
 
 TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( const TdEstChain_WPM& other )

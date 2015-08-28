@@ -277,8 +277,8 @@ ChainBench_FPM()
     Conf_100Hz.PerformanceConf.ForgetTh    = 0;
 
 
-    c.AddTdEstimator( Conf_1kHz, 1.0L );
-    c.AddTdEstimator( Conf_100Hz, sqrt(2.0544L) );
+    c.AddTdEstimator( Conf_1kHz );
+    c.AddTdEstimator( Conf_100Hz );
 
     ofstream    TdFile;
 
@@ -366,9 +366,9 @@ ChainBench_WPM()
 
     Conf_100Hz.PerformanceConf.ForgetTh    = 0;
 
-    c.AddTdEstimator( Conf_1kHz, 1.0L );
-//    c.AddTdEstimator( Conf_100Hz, sqrt(10L) );
-    c.AddTdEstimator( Conf_100Hz, sqrt(8L) );
+    c.AddTdEstimator( Conf_1kHz );
+//    c.AddTdEstimator( Conf_100Hz );
+    c.AddTdEstimator( Conf_100Hz );
 
     ofstream    TdFile;
 
@@ -455,8 +455,8 @@ ChainBench_WFM()
 
     Conf_100Hz.PerformanceConf.ForgetTh    = 0;
 
-    c.AddTdEstimator( Conf_1kHz, 1.0L );
-    c.AddTdEstimator( Conf_100Hz, 1.0L );
+    c.AddTdEstimator( Conf_1kHz );
+    c.AddTdEstimator( Conf_100Hz );
 
     ofstream    TdFile;
 
@@ -544,8 +544,8 @@ ChainBench_FFM()
 
     Conf_100Hz.PerformanceConf.ForgetTh    = 0;
 
-//    c.AddTdEstimator( Conf_1kHz, 1.0L );
-    c.AddTdEstimator( Conf_100Hz, 1.0L );
+//    c.AddTdEstimator( Conf_1kHz );
+    c.AddTdEstimator( Conf_100Hz );
 
     ofstream    TdFile;
 

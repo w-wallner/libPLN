@@ -45,7 +45,6 @@ class TdEstChain
         // Types
         typedef struct
         {
-            double          Scale;
             TdEstimator     *pEst;
         }
         ChainEntry;
@@ -73,7 +72,7 @@ class TdEstChain
 
         // API
         void    SetSeed( unsigned int Seed );
-        void    AddTdEstimator( TdEstimatorConfig Conf, double Scale );
+        void    AddTdEstimator( TdEstimatorConfig Conf );
         double  EstimateTD( double t_now, double t_req );
 };
 
