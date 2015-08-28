@@ -166,7 +166,6 @@ TdEstChain::EstimateTD( double t_now, double t_req )
 
     double  TD_nom  = 0.0L;
     double  TD_abs  = 0.0L;
-    double  Scale   = 1.0L;
 
     // Update ScaleRef candidate
     if( CandidateValid )
@@ -190,7 +189,7 @@ TdEstChain::EstimateTD( double t_now, double t_req )
         }
         else if( est.Type == ESTIMATED_FUTURE )
         {
-            Scale *= it->Scale;
+            TD_nom += est.TD;
         }
         else
         {
@@ -199,9 +198,7 @@ TdEstChain::EstimateTD( double t_now, double t_req )
     }
 
     // Calculate absolute Time Deviation
-    double  dTD_nom = TD_nom - ScaleRef.TD_nom;
-
-    TD_abs = ScaleRef.TD_abs + dTD_nom * Scale;
+    TD_abs = TD_nom;
 
     // Remember scale point
     if( t_now == t_req )
