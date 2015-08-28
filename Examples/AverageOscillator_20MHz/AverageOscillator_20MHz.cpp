@@ -99,9 +99,9 @@ TdOracle_AvgOsc20MHz::EstimateTD( double t_now, double t_req )
     double  TD = 0.0L;
 
     TD  += WpmChain.EstimateTD( t_now, t_req );
-//    TD  += WfmChain.EstimateTD( t_now, t_req );
-//    TD  += FfmChain.EstimateTD( t_now, t_req );
-//    TD  += RwChain.EstimateTD ( t_now, t_req );
+    TD  += WfmChain.EstimateTD( t_now, t_req );
+    TD  += FfmChain.EstimateTD( t_now, t_req );
+    TD  += RwChain.EstimateTD ( t_now, t_req );
 
     return TD;
 }
