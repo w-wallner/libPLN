@@ -46,38 +46,39 @@ namespace AverageOscillator_20MHz
 // Function definitions
 // =========================================================================
 
+TdEstimatorConfig
+TdOracle_AvgOsc20MHz::TdEstChain_WFM::GetConfig_WFM_100Hz(unsigned int Seed)
+{
+    TdEstimatorConfig   config;
+
+    config.SampleConf.f_s               = 200;
+    config.SampleConf.TdVecLen          = 5100;
+
+    config.KwImplOption                 = USE_SHORTCUTS;
+
+    config.KwConf.Qd                    = 28E-27;
+    config.KwConf.alpha                 = 0.0;
+    config.KwConf.FilterLen             = 10;
+    config.KwConf.Seed                  = Seed;
+
+    config.HpConf.Type                  = NO_FILTER;
+    config.HpConf.f_c_nom               = 0.01;
+    config.HpConf.FilterLen             = 5001;
+    config.HpConf.Cnt                   = 1;
+
+    config.InterpolConf.Type            = CUBIC_SPLINE_INTERPOLATION;
+
+    config.TimeConf.T_val               = 20;
+
+    config.PerformanceConf.ForgetTh     = 0;
+
+    return config;
+}
+
+
 TdOracle_AvgOsc20MHz::TdEstChain_WFM::TdEstChain_WFM( unsigned int Seed )
 {
-    TdEstimatorConfig   Conf_100Hz;
-
-    // -------------------------------------------------------------------------------------------
-    // Configure 100 Hz
-    // -------------------------------------------------------------------------------------------
-    Conf_100Hz.SampleConf.f_s               = 200;
-    Conf_100Hz.SampleConf.TdVecLen          = 5100;
-
-    Conf_100Hz.KwImplOption                 = USE_SHORTCUTS;
-
-    Conf_100Hz.KwConf.Qd                    = 28E-27;
-    Conf_100Hz.KwConf.alpha                 = 0.0;
-    Conf_100Hz.KwConf.FilterLen             = 10;
-    Conf_100Hz.KwConf.Seed                  = Seed + 0;
-
-    Conf_100Hz.HpConf.Type                  = NO_FILTER;
-    Conf_100Hz.HpConf.f_c_nom               = 0.01;
-    Conf_100Hz.HpConf.FilterLen             = 5001;
-    Conf_100Hz.HpConf.Cnt                   = 1;
-
-    Conf_100Hz.InterpolConf.Type            = CUBIC_SPLINE_INTERPOLATION;
-
-    Conf_100Hz.TimeConf.T_val               = 20;
-
-    Conf_100Hz.PerformanceConf.ForgetTh     = 0;
-
-    // -------------------------------------------------------------------------------------------
-    // Combine
-    // -------------------------------------------------------------------------------------------
-    AddTdEstimator( Conf_100Hz, 1.0L );
+    AddTdEstimator( GetConfig_WFM_100Hz( Seed + 0 ), 1.0L );
 }
 
 TdOracle_AvgOsc20MHz::TdEstChain_WFM::TdEstChain_WFM( const TdEstChain_WFM& other )
