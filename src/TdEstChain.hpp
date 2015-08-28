@@ -50,21 +50,10 @@ class TdEstChain
         }
         ChainEntry;
 
-        typedef struct
-        {
-            double  t;
-            double  TD_nom;
-            double  TD_abs;
-        }
-        ScalePoint;
-
         // Config
         double              alpha;
 
         // Housekeeping
-        ScalePoint          ScaleRef;
-        ScalePoint          ScaleRefCandidate;
-        bool                CandidateValid;
 
         // Resources
         std::vector<ChainEntry>     Chain;
