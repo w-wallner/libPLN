@@ -98,6 +98,9 @@ class TdOracle_AvgOsc20MHz : public TdOracle
                 TdEstChain_RW( const TdEstChain_RW& other );
                 virtual ~TdEstChain_RW();
 
+                // Getters
+                TdEstimatorConfig   GetConfig_RW_100Hz(unsigned int Seed);
+
                 // Operators
                 virtual TdEstChain_RW& operator= (const TdEstChain_RW& other);
         };
