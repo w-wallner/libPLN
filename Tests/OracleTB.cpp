@@ -404,7 +404,7 @@ void PreRecordedOracleBench()
     double                  TD;
     size_t                  MaxLineCnt = 1000000;
 
-    MaxLineCnt = 100000;
+//    MaxLineCnt = 100000;
 
     ResultFile.open( ResultFilename.c_str(), std::ifstream::in );
 
