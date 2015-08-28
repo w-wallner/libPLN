@@ -83,6 +83,9 @@ class TdOracle_AvgOsc20MHz : public TdOracle
                 TdEstChain_FFM( const TdEstChain_FFM& other );
                 virtual ~TdEstChain_FFM();
 
+                // Getters
+                TdEstimatorConfig   GetConfig_FFM_100Hz(unsigned int Seed);
+
                 // Operators
                 virtual TdEstChain_FFM& operator= (const TdEstChain_FFM& other);
         };
