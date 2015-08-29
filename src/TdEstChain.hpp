@@ -71,6 +71,8 @@ class TdEstChain
         TdEstChain& operator= (const TdEstChain& other);
 
         // API
+        void    EnableIntervalSkipping();
+        void    DisableIntervalSkipping();
         void    SetSeed( unsigned int Seed );
         void    AddTdEstimator( TdEstimatorConfig Conf );
         double  EstimateTD( double t_now, double t_req );

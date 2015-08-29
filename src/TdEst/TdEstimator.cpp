@@ -107,6 +107,8 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
 
     T_val       = Conf.TimeConf.T_val;
 
+    IntervalSkippingEnabled = true;
+
     // House keeping
     Last_t_req      = 0.0L;
     LastAnswer.TD   = 0.0L;
@@ -161,17 +163,18 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
 
 TdEstimator::TdEstimator( const TdEstimator& other )
 : // Config
-  f_s           ( other.f_s          ),
-  TickLen       ( other.TickLen      ),
-  T_val         ( other.T_val        ),
-  TdVecLen      ( other.TdVecLen     ),
-  MaxTdVecCnt   ( other.MaxTdVecCnt  ),
+  f_s                       ( other.f_s          ),
+  TickLen                   ( other.TickLen      ),
+  T_val                     ( other.T_val        ),
+  TdVecLen                  ( other.TdVecLen     ),
+  MaxTdVecCnt               ( other.MaxTdVecCnt  ),
+  IntervalSkippingEnabled   ( other.IntervalSkippingEnabled ),
   // Resources
-  TdVecStorage  ( other.TdVecStorage ),
+  TdVecStorage              ( other.TdVecStorage ),
   // House keeping
-  LastGuess     ( other.LastGuess    ),
-  Last_t_req    ( other.Last_t_req   ),
-  LastAnswer    ( other.LastAnswer   )
+  LastGuess                 ( other.LastGuess    ),
+  Last_t_req                ( other.Last_t_req   ),
+  LastAnswer                ( other.LastAnswer   )
 {
     pTdVecGen = other.pTdVecGen->Clone();
 }
@@ -185,11 +188,12 @@ TdEstimator&
 TdEstimator::operator=( const TdEstimator& other )
 {
     // Config
-    this->f_s           = other.f_s;
-    this->TickLen       = other.TickLen;
-    this->T_val         = other.T_val;
-    this->TdVecLen      = other.TdVecLen;
-    this->MaxTdVecCnt   = other.MaxTdVecCnt;
+    this->f_s                       = other.f_s;
+    this->TickLen                   = other.TickLen;
+    this->T_val                     = other.T_val;
+    this->TdVecLen                  = other.TdVecLen;
+    this->MaxTdVecCnt               = other.MaxTdVecCnt;
+    this->IntervalSkippingEnabled   = other.IntervalSkippingEnabled;
 
     // Resources
     this->TdVecStorage  = other.TdVecStorage;
@@ -202,6 +206,18 @@ TdEstimator::operator=( const TdEstimator& other )
 
     // By convention, always return *this
     return *this;
+}
+
+void
+TdEstimator::EnableIntervalSkipping()
+{
+    IntervalSkippingEnabled = true;
+}
+
+void
+TdEstimator::DisableIntervalSkipping()
+{
+    IntervalSkippingEnabled = false;
 }
 
 void
@@ -232,7 +248,11 @@ TdEstimator::EstimateTD( double t_now, double t_req )
     }
 
     // Case 1: Request is in the distant future
-    if( (TdVecStorage.GetEndTime() + T_val) < t_req )
+    if
+    (
+        ( IntervalSkippingEnabled                     ) &&
+        ( t_req > (TdVecStorage.GetEndTime() + T_val) )
+    )
     {
         e.TD    = GuessFutureTD_nom( t_req ) * f_s;
         e.Type  = EXACTLY_KNOWN;
@@ -252,7 +272,10 @@ TdEstimator::EstimateTD( double t_now, double t_req )
             TdVecStorage.AddTdVec( pTdVecGen->GetNextVector() );
 
             LoopCnt ++;
-            assert( LoopCnt <= MaxCnt );
+
+            // If interval skipping is enabled,
+            // this implies that the loop cnt has an upper bound
+            assert(( !IntervalSkippingEnabled ) || ( LoopCnt <= MaxCnt ) );
         }
 
         e.TD    = TdVecStorage.InterpolateTD( t_req ) * f_s;

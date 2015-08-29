@@ -61,6 +61,7 @@ class TdEstimator
         double  T_val;
         size_t  TdVecLen;
         size_t  MaxTdVecCnt;
+        bool    IntervalSkippingEnabled;
 
         // Resources
         TdVectorStorage     TdVecStorage;
@@ -87,6 +88,8 @@ class TdEstimator
         TdEstimator&  operator=( const TdEstimator& other );
 
         // API
+        void        EnableIntervalSkipping();
+        void        DisableIntervalSkipping();
         void        SetSeed( unsigned int Seed );
         TdEstimate  EstimateTD( double t_now, double t_req );
 

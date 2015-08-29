@@ -97,6 +97,24 @@ TdEstChain::operator= (const TdEstChain& other)
 }
 
 void
+TdEstChain::EnableIntervalSkipping()
+{
+    for( std::vector<ChainEntry>::iterator it = Chain.begin(); it < Chain.end(); ++it )
+    {
+        it->pEst->EnableIntervalSkipping();
+    }
+}
+
+void
+TdEstChain::DisableIntervalSkipping()
+{
+    for( std::vector<ChainEntry>::iterator it = Chain.begin(); it < Chain.end(); ++it )
+    {
+        it->pEst->DisableIntervalSkipping();
+    }
+}
+
+void
 TdEstChain::SetSeed( unsigned int Seed )
 {
     unsigned int Cnt = 0;

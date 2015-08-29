@@ -406,6 +406,10 @@ void PreRecordedOracleBench()
 
 //    MaxLineCnt = 100000;
 
+    o.DisableIntervalSkipping();
+    o.EnableIntervalSkipping();
+//    o.DisableIntervalSkipping();
+
     ResultFile.open( ResultFilename.c_str(), std::ifstream::in );
 
     if( !ResultFile )

@@ -85,6 +85,24 @@ TdOracle_AvgOsc20MHz::operator=( const TdOracle_AvgOsc20MHz& other )
 
 // API
 void
+TdOracle_AvgOsc20MHz::EnableIntervalSkipping()
+{
+    WpmChain.EnableIntervalSkipping();
+    WfmChain.EnableIntervalSkipping();
+    FfmChain.EnableIntervalSkipping();
+    RwChain.EnableIntervalSkipping ();
+}
+
+void
+TdOracle_AvgOsc20MHz::DisableIntervalSkipping()
+{
+    WpmChain.DisableIntervalSkipping();
+    WfmChain.DisableIntervalSkipping();
+    FfmChain.DisableIntervalSkipping();
+    RwChain.DisableIntervalSkipping ();
+}
+
+void
 TdOracle_AvgOsc20MHz::SetSeed( unsigned int Seed )
 {
     WpmChain.SetSeed( SeedOffsetWpmChain + Seed );
