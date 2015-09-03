@@ -71,6 +71,10 @@ FilterImpResp::FilterImpResp( size_t FilterLen )
     this->ResponseLen   = FilterLen;
 }
 
+FilterImpResp::~FilterImpResp()
+{
+}
+
 FFT_RealVector &
 FilterImpResp::h()
 {
