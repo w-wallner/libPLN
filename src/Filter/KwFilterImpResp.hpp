@@ -2,11 +2,10 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of the powerlaw noise filter as proposed by Kasdin
+///         and Walter.
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_filter
 ///
 // ============================================================================
 
@@ -54,12 +53,30 @@
 // Function declarations
 // =========================================================================
 
+/// Implementation of a powerlaw noise filter as proposed by Kasdin and Walter.
+///
+/// This class implements the filter impulse response for an FIR filter that
+/// can be used to generate PowerLaw Noise that fulfills
+/// S_y(f) ~ f^alpha
+/// where S_y(f) is the power spectral density of the powerlaw noise.
+///
+/// The method is described in [1].
+///
+/// [1] Discrete simulation of power law noise
+///     N.J. Kasdin, T. Walter
+///     Frequency Control Symposium, 1992
 class KwFilterImpResp  : public FilterImpResp
 {
     public:
 
+        /// Constructor
+        ///
+        /// Generates a KW filter impulse response for the given value of alpha
+        /// of length FilerLen
+        ///
+        /// \param FilterLen    Length of the filter impulse response
+        /// \param alpha        Exponent of the power spectral density
         KwFilterImpResp( size_t FilterLen, double alpha );
 };
-
 
 #endif

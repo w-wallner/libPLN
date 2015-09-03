@@ -2,11 +2,10 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of the powerlaw noise filter as proposed by Kasdin
+///         and Walter.
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_filter
 ///
 // ============================================================================
 

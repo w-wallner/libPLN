@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of a filter impulse response
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_filter
 ///
 // ============================================================================
 

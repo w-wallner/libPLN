@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Blackman window high pass filter
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_filter
 ///
 // ============================================================================
 
@@ -48,10 +46,26 @@
 // Type definitions
 // =========================================================================
 
+/// Implementation of a Blackman window high pass filter impulse response
+///
+/// This class implements a Blackman window high pass filter.
+/// For more information, see either the wikipedia article on the Blackman
+/// window function [1] or have a look in your signal processing book
+/// of choice (recommendation: [2]).
+///
+/// [1] https://en.wikipedia.org/wiki/Window_function#Blackman_windows
+/// [2] The Scientist and Engineer's Guide to Digital Signal Processing
 class BmHpFilterImpResp  : public FilterImpResp
 {
     public:
 
+        /// Constructor
+        ///
+        /// Initializes the filter impulse response with the coefficients
+        /// as given by the Blackman window function (for a high pass filter).
+        ///
+        /// \param FilterLen    Length of the filter impulse response
+        /// \param f_c_nom      Nominal cut frequency
         BmHpFilterImpResp( size_t FilterLen, double f_c_nom );
 };
 

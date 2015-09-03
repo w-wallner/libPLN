@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Blackman window high pass filter
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_filter
 ///
 // ============================================================================
 
