@@ -1,3 +1,16 @@
+// ============================================================================
+///
+/// \file
+///
+/// \brief  Main header file for libPLN.
+///
+/// This is the main header file for libPLN usage.
+///
+/// \ingroup module_main
+///
+// ============================================================================
+
+// ============================================================================
 // 
 // Copyright 2015 Wolfgang Wallner (wolfgang-wallner AT gmx.at)
 // 
@@ -16,6 +29,7 @@
 // You should have received a copy of the GNU General Public License.com
 // along with libPLN.  If not, see <http://www.gnu.org/licenses/>.
 //
+// ============================================================================
 
 #ifndef LIBPLN_HPP_
 #define LIBPLN_HPP_

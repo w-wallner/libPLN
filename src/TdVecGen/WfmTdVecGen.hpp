@@ -1,3 +1,16 @@
+// ============================================================================
+///
+/// \file
+///
+/// \brief  TODO
+///
+/// TODO
+///
+/// \ingroup module_main
+///
+// ============================================================================
+
+// ============================================================================
 // 
 // Copyright 2015 Wolfgang Wallner (wolfgang-wallner AT gmx.at)
 // 
@@ -16,6 +29,7 @@
 // You should have received a copy of the GNU General Public License.com
 // along with libPLN.  If not, see <http://www.gnu.org/licenses/>.
 //
+// ============================================================================
 
 #ifndef TDVECGEN_WFMTDGEN_CPP_
 #define TDVECGEN_WFMTDGEN_CPP_
