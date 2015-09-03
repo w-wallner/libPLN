@@ -65,7 +65,7 @@
 // =========================================================================
 
 FilterImpResp::FilterImpResp( size_t FilterLen )
-    :h_( FilterLen )
+    :h_( FilterLen, 0.0L )
 {
     this->FilterLen     = FilterLen;
     this->ResponseLen   = FilterLen;
