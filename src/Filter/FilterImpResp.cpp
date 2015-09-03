@@ -64,13 +64,6 @@
 // Function definitions
 // =========================================================================
 
-FilterImpResp::FilterImpResp()
-    :h_( 0 )
-{
-    this->FilterLen     = 0;
-    this->ResponseLen   = 0;
-}
-
 FilterImpResp::FilterImpResp( size_t FilterLen )
     :h_( FilterLen )
 {

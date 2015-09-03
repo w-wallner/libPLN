@@ -60,7 +60,6 @@ class FilterImpResp
         FFT_RealVector h_;
 
         // Internal functions
-        FilterImpResp();
         FilterImpResp( size_t FilterLen );
 
     public:
