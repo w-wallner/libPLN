@@ -37,7 +37,7 @@
 
 #include "BasicTests.hpp"
 
-#include "TdVectorStorage.hpp"
+#include "TdEst/TdVectorStorage/TdVectorStorage.hpp"
 #include "TdVector/TdVectorCubSpline.hpp"
 #include "TdVecGen/TdVecGen.hpp"
 #include "TdVecGen/GenericTdVecGen.hpp"

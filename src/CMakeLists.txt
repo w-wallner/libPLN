@@ -1,7 +1,6 @@
 
 add_library(PLN STATIC  TdEstChain.cpp
                         TdOracle.cpp
-                        TdVectorStorage.cpp
                         DebugTools/VectorOutput.cpp
                         Filter/BmHpFilterImpResp.cpp
                         Filter/FilterImpResp.cpp
@@ -10,6 +9,7 @@ add_library(PLN STATIC  TdEstChain.cpp
                         TdEst/TdEstimator.cpp
                         TdEst/TdFixPoint.cpp
                         TdEst/TdGuess.cpp
+                        TdEst/TdVectorStorage/TdVectorStorage.cpp
                         TdVecGen/GenericTdVecGen.cpp
                         TdVecGen/RecursiveTdVecGen.cpp
                         TdVecGen/RwTdVecGen.cpp

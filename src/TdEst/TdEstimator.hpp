@@ -40,7 +40,7 @@
 
 #include "TdEstConfig.hpp"
 #include "TdGuess.hpp"
-#include "TdVectorStorage.hpp"
+#include "TdEst/TdVectorStorage/TdVectorStorage.hpp"
 #include "TdVecGen/TdVecGen.hpp"
 
 // =========================================================================
