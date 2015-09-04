@@ -11,6 +11,74 @@
 // ============================================================================
 
 // ============================================================================
+/// \mainpage
+///
+/// \image html Mainpage/Burst_TD_Plot.png "Example plot showing PowerLaw Noise generated with libPLN"
+///
+/// ---------------------------------------------------------------------------
+/// \section sec_descr Description
+/// ---------------------------------------------------------------------------
+///
+/// LibPLN is a library that can efficiently produced PowerLaw Noise (PLN).
+/// This is done by implementing a modified version of the filter approach
+/// that was proposed by Kasdin and Walter in [1].
+///
+/// [1] Discrete simulation of power law noise
+///     N.J. Kasdin, T. Walter
+///     Frequency Control Symposium, 1992
+///
+/// ---------------------------------------------------------------------------
+/// \section sec_about About
+/// ---------------------------------------------------------------------------
+///
+/// LibPLN was developed by Wolfgang Wallner as part of his master thesis.
+/// It is the result of an ongoing effort from 2013-2015 during which time
+/// he was dealing with the simulation PLN and time synchronization via
+/// IEEE 1588.
+///
+/// LibPLN is licensed under the GPL v3
+///
+/// Contact information:    wolfgang-wallner AT gmx.at
+///
+/// ---------------------------------------------------------------------------
+/// \section sec_install Installation
+/// ---------------------------------------------------------------------------
+///
+/// TODO
+///
+/// ---------------------------------------------------------------------------
+/// \section sec_usage Usage
+/// ---------------------------------------------------------------------------
+///
+/// TODO
+///
+/// ---------------------------------------------------------------------------
+/// \section sec_tools Tools
+/// ---------------------------------------------------------------------------
+///
+/// When dealing with the generation of PLN, one needs tools to efficiently
+/// analyze the generated noise.
+///
+/// TODO: List resources
+
+/// ---------------------------------------------------------------------------
+/// \section sec_credits Credits
+/// ---------------------------------------------------------------------------
+///
+/// LibPLN uses code from several open source projects:
+///
+/// - FFTW: the Fastest Fourier Transform in the West
+///     http://www.fftw.org/
+///
+/// - Spline: a cubic spline implementation in C++
+///     http://kluge.in-chemnitz.de/opensource/spline/
+///
+/// - Numeric tricks:
+///     http://www.geeksforgeeks.org/next-power-of-2/
+///
+// ============================================================================
+
+// ============================================================================
 // 
 // Copyright 2015 Wolfgang Wallner (wolfgang-wallner AT gmx.at)
 // 
