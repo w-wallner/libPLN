@@ -154,6 +154,13 @@ class TdVector
         /// \return Time deviation (in seconds) at the end of this TD vector
         double  GetEndTD();
 
+
+        /// Interpolates the TD in between samples in the time frame stored in this vector
+        ///
+        /// \param t_req    Requested time where the should be interpolated.
+        ///                 Must fulfill t_beg <= t_req <= t_end
+        ///
+        /// \return         Interpolated TD at t_req
         double  InterpolateTD( double t_req );
 };
 

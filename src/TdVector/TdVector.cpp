@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of a Time Deviation vector
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vector
 ///
 // ============================================================================
 
