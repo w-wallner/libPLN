@@ -217,7 +217,7 @@ int main( int argc, char *argv[] )
 
     switch( TestType )
     {
-        case NUMERIC_TEST:       RunNumericTest( TestID );
+        case NUMERIC_TEST:      RunNumericTest( TestID );
                                 break;
 
         default:
