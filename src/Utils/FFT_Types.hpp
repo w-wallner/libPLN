@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  FFT API to interface with FFTW library
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_fft
 ///
 // ============================================================================
 

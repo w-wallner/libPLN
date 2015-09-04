@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  FFT implementation
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_fft
 ///
 // ============================================================================
 
