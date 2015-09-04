@@ -72,7 +72,7 @@ WhiteNoiseGenerator::~WhiteNoiseGenerator()
 FFT_RealVector *
 WhiteNoiseGenerator::GetFftVector( size_t VecLen, size_t FillLen )
 {
-    assert( VecLen >= FillLen );
+    assert( FillLen <= VecLen );
 
     FFT_RealVector *pVec = new FFT_RealVector(VecLen, 0.0);
 
@@ -87,6 +87,8 @@ WhiteNoiseGenerator::GetFftVector( size_t VecLen, size_t FillLen )
 std::vector<double> *
 WhiteNoiseGenerator::GetStdVector( size_t VecLen, size_t FillLen )
 {
+    assert( FillLen <= VecLen );
+
     std::vector<double> *pVec = new std::vector<double>(VecLen, 0.0);
 
     for( size_t i = 0; i < FillLen; i ++ )
