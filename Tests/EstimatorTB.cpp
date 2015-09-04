@@ -42,8 +42,10 @@
 
 #include "libPLN.hpp"
 #include "Utils/NumericTricks.hpp"
+#include "Examples/AverageOscillator_20MHz/AverageOscillator_20MHz.hpp"
 
 using namespace std;
+using namespace AverageOscillator_20MHz;
 
 // =========================================================================
 // Defines
@@ -144,45 +146,18 @@ FileBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-    TdEstimatorConfig Conf;
-
-    Conf.SampleConf.f_s              = 1E3;
-//    Conf.SampleConf.f_s              = 1E1;
-    Conf.SampleConf.TdVecLen         = 1000;
-
-    Conf.KwImplOption                = USE_SHORTCUTS;
-//    Conf.KwImplOption                = FORCE_GENERIC;
-
-//    Conf.KwFilterConf.Qd             = 1E-24;
-    Conf.KwConf.Qd             = 1E-18 * sqrt(100);
-    Conf.KwConf.alpha          = 0.0;
-    Conf.KwConf.FilterLen      = 100;
-    Conf.KwConf.Seed           = 1234;
-
-    Conf.HpConf.Type           = BLACKMAN;
-    Conf.HpConf.Type           = NO_FILTER;
-    Conf.HpConf.f_c_nom        = 0.05;
-    Conf.HpConf.FilterLen      = 501;
-    Conf.HpConf.Cnt            = 1;
-
-    Conf.InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
-//    Conf.InterpolConf.Type           = LINEAR_INTERPOLATION;
-
-    Conf.TimeConf.T_val              = Conf.KwConf.FilterLen * (1.0L/Conf.SampleConf.f_s);
-
-    Conf.PerformanceConf.ForgetTh    = 0;
+    TdEstimatorConfig Conf  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz( 123 );
 
     TdEstimator e( Conf );
 
+    double  fs;
     double  dt;
     size_t  MaxCnt;
 
-    dt = 1E-3;
-    //dt = 1E-1;
+    fs = 4020E-6;
+    dt = 1.0L / fs;
 
     MaxCnt  = 100000;
-//    MaxCnt  = 30;
-//    MaxCnt  = 3000;
 
     size_t CntThStep    = MaxCnt / 10;
     size_t NextTh       = CntThStep;
