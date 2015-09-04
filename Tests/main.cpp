@@ -132,10 +132,6 @@ void RunEstimatorTest( int TestID )
     {
         case 0:     EstimatorTestBench();       break;
         case 1:     FileBench();                break;
-        case 2:     ChainBench_FPM();           break;
-        case 3:     ChainBench_WPM();           break;
-        case 4:     ChainBench_WFM();           break;
-        case 5:     ChainBench_FFM();           break;
 
         default:    ExitOnInvalidID();
                     break;

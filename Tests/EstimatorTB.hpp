@@ -52,9 +52,5 @@
 
 void    EstimatorTestBench();
 void    FileBench();
-void    ChainBench_FPM();
-void    ChainBench_WPM();
-void    ChainBench_WFM();
-void    ChainBench_FFM();
 
 #endif
