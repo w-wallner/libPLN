@@ -81,7 +81,6 @@ class TdVecGen
         FFT_RealVector          *pLastFFD;
 
         // Internal functions
-        void        DisableConvFilter();
         void        InitConvFilter();
         void        ApplyConvFilter( FFT_RealVector *pw );
         void        ResetConvFilter();

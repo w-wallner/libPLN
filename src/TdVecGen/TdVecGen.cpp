@@ -64,14 +64,6 @@
 // =========================================================================
 
 void
-TdVecGen::DisableConvFilter()
-{
-    ConvState   = UNINITIALIZED;
-    FfdVecLen   = 0;
-    pLastFFD    = NULL;
-}
-
-void
 TdVecGen::InitConvFilter()
 {
     if( ConvState == UNINITIALIZED )
@@ -152,7 +144,9 @@ TdVecGen::TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, Int
     this->Last_t_end    = 0.0L;
     this->Last_TD_nom   = 0.0L;
 
-    DisableConvFilter();
+    this->ConvState     = UNINITIALIZED;
+    this->FfdVecLen     = 0;
+    this->pLastFFD      = NULL;
 }
 
 TdVecGen::TdVecGen( const TdVecGen& other )
