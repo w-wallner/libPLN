@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Cubic spline implementation
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_spline
 ///
 // ============================================================================
 
@@ -45,9 +43,10 @@
 #include <vector>
 #include <algorithm>
 
-
-// unnamed namespace only because the implementation is in this
-// header file and we don't want to export symbols to the obj files
+/// Namespece for the spline implementation of Tino Kluge
+///
+/// For details on this code, visit the original website:
+/// http://kluge.in-chemnitz.de/opensource/spline/
 namespace tk {
 
 // band matrix solver
@@ -78,9 +77,7 @@ public:
    std::vector<double> l_solve(const std::vector<double>& b) const;
    std::vector<double> lu_solve(const std::vector<double>& b,
                                 bool is_lu_decomposed=false);
-
 };
-
 
 // spline interpolation
 class spline {
@@ -95,7 +92,6 @@ public:
    double operator() (double x) const;
 };
 
-
-} // namespace tk
+}
 
 #endif

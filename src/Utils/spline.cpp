@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Cubic spline implementation
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_spline
 ///
 // ============================================================================
 
@@ -196,10 +194,6 @@ std::vector<double> band_matrix::lu_solve(const std::vector<double>& b,
    x=this->r_solve(y);
    return x;
 }
-
-
-
-
 
 // spline implementation
 // -----------------------
