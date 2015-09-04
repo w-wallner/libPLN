@@ -35,6 +35,7 @@
 // Includes
 // =========================================================================
 
+#include "NumericTests.hpp"
 #include "BasicTests.hpp"
 #include "EstimatorTB.hpp"
 #include "OracleTB.hpp"
@@ -56,6 +57,7 @@ using namespace std;
 
 typedef enum
 {
+    NUMERIC_TEST,
     BASIC_TEST,
     ESTIMATOR_TEST,
     ORACLE_TEST,
@@ -82,7 +84,7 @@ void ExitOnFailure( std::string ErrMsg );
 void PrintUsage()
 {
     cout << "Usage: " << ProgName << " TestType TestID" << endl;
-    cout << "TestTypes: Basic, Estimator, Oracle" << endl;
+    cout << "TestTypes: Numeric, Basic, Estimator, Oracle" << endl;
 }
 
 void ExitOnFailure( std::string ErrMsg )
@@ -97,6 +99,17 @@ void ExitOnFailure( std::string ErrMsg )
 void ExitOnInvalidID()
 {
     ExitOnFailure( std::string( "TestID is out of range." ) );
+}
+
+void RunNumericTest( int TestID )
+{
+    switch( TestID )
+    {
+        case 0:     TestPowerOfTwo();           break;
+
+        default:    ExitOnInvalidID();
+                    break;
+    }
 }
 
 void RunBasicTest( int TestID )
@@ -170,7 +183,11 @@ int main( int argc, char *argv[] )
         ExitOnFailure( std::string( "Not enough arguments" ) );
     }
 
-    if( 0 == strcmp( "Basic", argv[1]) )
+    if( 0 == strcmp( "Numeric", argv[1]) )
+    {
+        TestType = NUMERIC_TEST;
+    }
+    else if( 0 == strcmp( "Basic", argv[1]) )
     {
         TestType = BASIC_TEST;
     }
@@ -200,6 +217,9 @@ int main( int argc, char *argv[] )
 
     switch( TestType )
     {
+        case NUMERIC_TEST:       RunNumericTest( TestID );
+                                break;
+
         default:
         case BASIC_TEST:        RunBasicTest( TestID );
                                 break;
