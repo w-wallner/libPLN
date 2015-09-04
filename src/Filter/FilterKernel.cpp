@@ -2,11 +2,12 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of a filter kernel
 ///
-/// TODO
+/// The filter kernel can be applied to time domain data, and used to
+/// shape this data.
 ///
-/// \ingroup module_main
+/// \ingroup module_filter
 ///
 // ============================================================================
 

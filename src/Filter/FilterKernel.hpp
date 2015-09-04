@@ -2,11 +2,12 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of a filter kernel
 ///
-/// TODO
+/// The filter kernel can be applied to time domain data, and used to
+/// shape this data.
 ///
-/// \ingroup module_main
+/// \ingroup module_filter
 ///
 // ============================================================================
 
@@ -52,33 +53,92 @@
 // Type definitions
 // =========================================================================
 
+/// Filter kernel
+///
+/// This class implements a filter kernel (i.e. the filter impulse response
+/// in the frequency domain. The filter kernel can be used to apply the
+/// given filter to a signal.
 class FilterKernel
 {
     private:
 
         // Config
-        size_t  MaxDataLen;
-        size_t  FilterLen;
-        size_t  FFT_RealSize;
-        size_t  FFT_ComplexSize;
+        size_t  MaxDataLen;             ///< Maximum legth of data that will be filtered
+        size_t  FilterLen;              ///< Filter length
+        size_t  FFT_RealSize;           ///< Length of the vectors in the time domain (where the data is real)
+        size_t  FFT_ComplexSize;        ///< Length of the vectors in the frequency domain (wherer the data is complex)
 
         // Resources
-        FFT_ComplexVector   H;
-        FFT                 fft;
+        FFT_ComplexVector   H;          ///< Vector to store complex frequency domain data
+        FFT                 fft;        ///< FFT instance
 
     public:
 
+        /// Default constructor, constructs an empty filter kernel.
         FilterKernel();
+
+        /// Constructor to create a filter kernel from one filter impulse response.
+        ///
+        /// The given filter impulse response will be converted to the frequency
+        /// domain using the FFT algorithm.
+        ///
+        /// \note The resulting filter kernel will contain the 1/N scaling that is
+        /// necessary when going from the time domain to the frequency domain and
+        /// back again.
+        ///
+        /// \param MaxDataLen   The maximum length of the data for which this filter
+        ///                     will be used.
+        /// \param h            The filter impulse response from which the
+        ///                     filter kernel will be created
         FilterKernel( size_t MaxDataLen, FilterImpResp &h );
+
+        /// Constructor to create a filter kernel from two filter impulse responses.
+        ///
+        /// The given filter impulse responses will be converted to the frequency
+        /// domain using the FFT algorithm and multiplied (as if they would be
+        /// connected one after the other).
+        ///
+        /// \note The resulting filter kernel will contain the 1/N scaling that is
+        /// necessary when going from the time domain to the frequency domain and
+        /// back again.
+        ///
+        /// \param MaxDataLen   The maximum length of the data for which this filter
+        ///                     will be used.
+        /// \param h1           The first filter impulse response from which the
+        ///                     filter kernel will be created
+        /// \param h2           The second filter impulse response from which the
+        ///                     filter kernel will be created
         FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 );
 
+        /// Apply the configured filter kernel to a signal
+        ///
+        /// Applies the configured filter kernel to a time domain signal.
+        /// The signal is converted to the frequency domain, multiplied with
+        /// filter kernel, and converted back to the time domain.
+        ///
+        /// \param pw   Time domain signal to which the filter kernel should be applied.
+        ///
+        /// \return     The time domain signal on which
         FFT_RealVector  *ApplyToSignal( FFT_RealVector *pw );
 
+        /// Getter for the maximum data length
         size_t  GetMaxDataLen();
+
+        /// Getter for the filter length
+        ///
+        /// \return Filter length
         size_t  GetFilterLen();
+
+        /// Getter for the configured length of the time domain data for the FFT
+        ///
+        /// \return Length of the time domain data
         size_t  GetFFT_RealSize();
 
-        // Debug functions
+        /// Prints the data of the filter kernel
+        ///
+        /// This function is only for debugging.
+        ///
+        /// \param Name Human-readable name of the filter that is printed
         void    Print( std::string Name );
 };
 
