@@ -141,7 +141,7 @@ TdVector::GetEndTD()
 }
 
 double
-TdVector::InterpolateTD_nom( double t_req )
+TdVector::InterpolateTD( double t_req )
 {
     assert( t_req >= t_beg );
     assert( t_req <= t_end );

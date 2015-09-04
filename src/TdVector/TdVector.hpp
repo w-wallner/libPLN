@@ -154,7 +154,7 @@ class TdVector
         /// \return Time deviation (in seconds) at the end of this TD vector
         double  GetEndTD();
 
-        double  InterpolateTD_nom( double t_req );
+        double  InterpolateTD( double t_req );
 };
 
 // =========================================================================

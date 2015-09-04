@@ -314,7 +314,7 @@ TdVectorStorage::InterpolateTD( double t_req )
 
     // Find correct TD Vector and interpolate
     TdVector    *pTdVec = Storage[ FindIndex( t_req ) ];
-    double      TD      = pTdVec->InterpolateTD_nom( t_req );
+    double      TD      = pTdVec->InterpolateTD( t_req );
 
     return TD;
 }
