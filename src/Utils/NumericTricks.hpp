@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Various numerical tricks
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_numeric_tricks
 ///
 // ============================================================================
 
@@ -38,6 +36,7 @@
 // Includes
 // =========================================================================
 
+/// Namespace with function to solve numerical problems
 namespace NumericTricks
 {
 
@@ -45,7 +44,7 @@ namespace NumericTricks
 // Defines
 // =========================================================================
 
-/// Macro to calculate the numer of elements in a standard C array
+/// Macro to calculate the number of elements in a standard C array
 #define NumElements(A) (sizeof(A)/sizeof(A[0]))
 
 // =========================================================================

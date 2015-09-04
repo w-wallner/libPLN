@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Various numerical tricks
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_numeric_tricks
 ///
 // ============================================================================
 
