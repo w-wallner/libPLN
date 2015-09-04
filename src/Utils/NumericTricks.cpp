@@ -60,16 +60,21 @@ namespace NumericTricks
 // Function definitions
 // =========================================================================
 
-    // URL: http://www.geeksforgeeks.org/next-power-of-2/
     unsigned int nextPowerOf2(unsigned int n)
     {
-        unsigned int p = 1;
-        if (n && !(n & (n - 1)))
-            return n;
-
-        while (p < n) {
-            p <<= 1;
+        if( n == 0 )
+        {
+            return 1;
         }
-        return p;
+
+        n--;
+        n |= n >> 1;
+        n |= n >> 2;
+        n |= n >> 4;
+        n |= n >> 8;
+        n |= n >> 16;
+        n++;
+
+        return n;
     }
 }

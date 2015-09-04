@@ -62,7 +62,7 @@
 ///     http://kluge.in-chemnitz.de/opensource/spline/
 ///
 /// - Numeric tricks:
-///     http://www.geeksforgeeks.org/next-power-of-2/
+///     https://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
 ///
 // ============================================================================
 

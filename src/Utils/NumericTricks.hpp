@@ -56,8 +56,20 @@ namespace NumericTricks
 // Function declarations
 // =========================================================================
 
+    /// Round up to the next power of 2
+    ///
+    /// Accepts an integer n, and rounds it up to the next strictly
+    /// positive power of 2. If n itself is already a power of 2,
+    /// it is not changed.
+    ///
+    /// Credits:
+    /// This function is based on public domain code from
+    /// https://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
+    ///
+    /// \param n    Integer that should be rounded up
+    ///
+    /// \return     Rounded value
     unsigned int nextPowerOf2(unsigned int n);
-
 }
 
 #endif
