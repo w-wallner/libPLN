@@ -148,7 +148,9 @@ FileBench()
 
     TdEstimatorConfig Conf  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz( 123 );
 
-    TdEstimator e( Conf );
+    TdEstChain  c;
+
+    c.AddTdEstimator( Conf );
 
     double  fs;
     double  dt;
@@ -173,12 +175,12 @@ FileBench()
     TdFile.precision( 30 );
 
     double  t = 0.0;
-    TdEstimate  est;
+    double  TD;
     for( size_t i = 0; i < MaxCnt; i ++ )
     {
-        est = e.EstimateTD( t, t );
+        TD = c.EstimateTD( t, t );
 
-        TdFile << est.TD << endl;
+        TdFile << TD << endl;
 
         if( PrintTh )
         {
