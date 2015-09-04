@@ -58,6 +58,9 @@
 /// - FFTW: the Fastest Fourier Transform in the West
 ///     http://www.fftw.org/
 ///
+/// - C++ Bricks interface for FFTW
+///     https://gitorious.org/cpp-bricks
+///
 /// - Spline: a cubic spline implementation in C++
 ///     http://kluge.in-chemnitz.de/opensource/spline/
 ///
