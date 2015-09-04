@@ -70,7 +70,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WFM::GetConfig_WFM_100Hz(unsigned int Seed)
 
     config.KwImplOption                 = USE_SHORTCUTS;
 
-    config.KwConf.Qd                    = 28E-27;
+    config.KwConf.Qd                    = 4.5420E-17;
     config.KwConf.alpha                 = 0.0;
     config.KwConf.FilterLen             = 10;
     config.KwConf.Seed                  = Seed;

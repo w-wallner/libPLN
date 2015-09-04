@@ -70,7 +70,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz(unsigned int Seed)
     config.SampleConf.TdVecLen          = 5100;
     config.KwImplOption                 = USE_SHORTCUTS;
 
-    config.KwConf.Qd                    = 25E-36;
+    config.KwConf.Qd                    = 5.5360E-5;
     config.KwConf.alpha                 = 2.0;
     config.KwConf.FilterLen             = 10;
     config.KwConf.Seed                  = Seed + 0;
@@ -99,7 +99,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz(unsigned int Seed)
 
     config.KwImplOption                  = USE_SHORTCUTS;
 
-    config.KwConf.Qd                     = 6E-34;
+    config.KwConf.Qd                     = 9.2105E-09;
     config.KwConf.alpha                  = 2.0;
     config.KwConf.FilterLen              = 10;
     config.KwConf.Seed                   = Seed;
@@ -128,7 +128,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz(unsigned int Seed)
 
     config.KwImplOption                 = USE_SHORTCUTS;
 
-    config.KwConf.Qd                    = 730E-34;
+    config.KwConf.Qd                    = 6.9200E-15;
     config.KwConf.alpha                 = 2.0;
     config.KwConf.FilterLen             = 10;
     config.KwConf.Seed                  = Seed;
@@ -158,7 +158,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz(unsigned int Seed)
 
     config.KwImplOption                 = USE_SHORTCUTS;
 
-    config.KwConf.Qd                    = 730E-32;
+    config.KwConf.Qd                    = 6.9200E-21;
     config.KwConf.alpha                 = 2.0;
     config.KwConf.FilterLen             = 10;
     config.KwConf.Seed                  = Seed;
