@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Tools that are helpful for debugging
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_debug_tools
 ///
 // ============================================================================
 

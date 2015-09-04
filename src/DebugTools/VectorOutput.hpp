@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Tools that are helpful for debugging
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_debug_tools
 ///
 // ============================================================================
 
@@ -56,9 +54,28 @@
 // Function declarations
 // =========================================================================
 
+/// Print a real vector to the command line, and prefix it with an arbitrary name
+///
+/// \param Name A human-readable name for the data vector
+/// \param v    The data vector that should be printed
 void    PrintRealVector( std::string Name, std::vector<double> v );
+
+/// Print a complex vector to the command line, and prefix it with an arbitrary name
+///
+/// \param Name A human-readable name for the data vector
+/// \param v    The data vector that should be printed
 void    PrintCompVector( std::string Name, std::vector< std::complex<double> > v );
+
+/// Print a real vector to the command line, and prefix it with an arbitrary name
+///
+/// \param Name A human-readable name for the data vector
+/// \param v    The data vector that should be printed
 void    PrintFftRealVector( std::string Name, FFT_RealVector v );
+
+/// Print a complex vector to the command line, and prefix it with an arbitrary name
+///
+/// \param Name A human-readable name for the data vector
+/// \param v    The data vector that should be printed
 void    PrintFftCompVector( std::string Name, FFT_ComplexVector v );
 
 #endif
