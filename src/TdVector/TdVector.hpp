@@ -64,31 +64,43 @@ class TdVector
 
     protected:
 
+        // -----------------------------------------------------------------
         // Config
+        // -----------------------------------------------------------------
         double  TickLen;
         double  t_beg;
         double  t_end;
         double  TD_0;
 
+        // -----------------------------------------------------------------
         // Resources
+        // -----------------------------------------------------------------
         std::vector<double> TD;
 
+        // -----------------------------------------------------------------
         // Internal functions
+        // -----------------------------------------------------------------
         virtual double  InterpolateAt( double t_req ) = 0;
 
     public:
 
+        // -----------------------------------------------------------------
         // Constructors/Destructor
+        // -----------------------------------------------------------------
                 TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen, TdVecDataType DataType );
                 TdVector( const TdVector& other );
         virtual ~TdVector();
 
         virtual TdVector* Clone() const = 0;  // Virtual constructor (copying)
 
+        // -----------------------------------------------------------------
         // Operators
+        // -----------------------------------------------------------------
         TdVector&  operator=( const TdVector& other );
 
+        // -----------------------------------------------------------------
         // API
+        // -----------------------------------------------------------------
         double  GetBeginTime();
         double  GetEndTime();
         double  GetBeginTD();
@@ -100,6 +112,5 @@ class TdVector
 // =========================================================================
 // Function declarations
 // =========================================================================
-
 
 #endif
