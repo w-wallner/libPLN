@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  White noise generator
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_white_noise_gen
 ///
 // ============================================================================
 
@@ -55,37 +53,82 @@
 // Type definitions
 // =========================================================================
 
-typedef boost::mt19937                     ENG;    // Mersenne Twister
-typedef boost::normal_distribution<double> DIST;   // Normal Distribution
-typedef boost::variate_generator<ENG,DIST> GEN;    // Variate generator
+typedef boost::mt19937                     ENG;    ///< Mersenne Twister
+typedef boost::normal_distribution<double> DIST;   ///<  Normal Distribution
+typedef boost::variate_generator<ENG,DIST> GEN;    ///<  Variate generator
 
 // =========================================================================
 // Function declarations
 // =========================================================================
 
+/// White noise generator using the Gaussian noise implementation of the Boost library
 class WhiteNoiseGenerator
 {
     private:
 
+        // -----------------------------------------------------------------
         // Config
+        // -----------------------------------------------------------------
 
+        // -----------------------------------------------------------------
         // Resources
-        ENG  eng;
-        DIST dist;
-        GEN  gen;
+        // -----------------------------------------------------------------
+        ENG  eng;       ///< Mersenne Twister
+        DIST dist;      ///<  Normal Distribution
+        GEN  gen;       ///<  Variate generator
 
     public:
 
+        // -----------------------------------------------------------------
+        // Constructor/Destructor
+        // -----------------------------------------------------------------
+
+        /// Constructor
+        ///
+        /// \param Seed     The seed for the white noise generator
+        /// \param Qd       The standard variance of the generated Gaussian noise
         WhiteNoiseGenerator( unsigned int Seed, double Qd );
+
+        /// Destructor
         ~WhiteNoiseGenerator();
 
+        // -----------------------------------------------------------------
+        // Noise generation functions
+        // -----------------------------------------------------------------
+
+        /// Generates a white noise vector suitable for FFT calculations
+        ///
+        /// \param VecLen   Length of the requested vector
+        /// \param FillLen  Length of the vector that is filled with random data.
+        ///                 The rest of the vector is set to 0.0L.
+        ///                 FillLen must be smaller or equal to VecLen
+        ///
+        /// \return         The requested vector
         FFT_RealVector      *GetFftVector( size_t VecLen, size_t FillLen );
+
+        /// Generates a white noise std::vector
+        ///
+        /// \param VecLen   Length of the requested vector
+        /// \param FillLen  Length of the vector that is filled with random data.
+        ///                 The rest of the vector is set to 0.0L.
+        ///                 FillLen must be smaller or equal to VecLen
+        ///
+        /// \return         The requested vector
         std::vector<double> *GetStdVector( size_t VecLen, size_t FillLen );
 
-        void    SetSeed( unsigned int Seed );
-
+        /// Returns a single random value from the configured distribution
+        ///
+        /// \return     Random value
         double  GetRandomValue();
-};
 
+        // -----------------------------------------------------------------
+        // Configuration API
+        // -----------------------------------------------------------------
+
+        /// Configures the random number generator with a new seed
+        ///
+        /// \param Seed     New seed for the random number generator
+        void    SetSeed( unsigned int Seed );
+};
 
 #endif
