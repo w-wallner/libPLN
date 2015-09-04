@@ -21,7 +21,6 @@ add_library(PLN STATIC  TdEstChain.cpp
                         TdVector/TdVectorCubSpline.cpp
                         TdVector/TdVectorLinear.cpp
                         Utils/FFT.cpp
-                        Utils/FFT_Types.cpp
                         Utils/NumericTricks.cpp 
                         Utils/spline.cpp)                        
 
