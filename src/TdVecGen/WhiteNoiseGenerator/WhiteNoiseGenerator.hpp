@@ -84,7 +84,7 @@ class WhiteNoiseGenerator
 
         void    SetSeed( unsigned int Seed );
 
-        double  GetEstimatedValue();
+        double  GetRandomValue();
 };
 
 

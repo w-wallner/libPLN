@@ -105,7 +105,7 @@ WhiteNoiseGenerator::SetSeed( unsigned int Seed )
 }
 
 double
-WhiteNoiseGenerator::GetEstimatedValue()
+WhiteNoiseGenerator::GetRandomValue()
 {
     return gen();
 }

@@ -225,5 +225,5 @@ TdVecGen::SetSeed( unsigned int Seed )
 double
 TdVecGen::GetEstimatedValue()
 {
-    return WhiteNoiseGen.GetEstimatedValue();
+    return WhiteNoiseGen.GetRandomValue();
 }
