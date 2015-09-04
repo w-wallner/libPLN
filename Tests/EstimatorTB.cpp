@@ -41,6 +41,7 @@
 #include <fstream>
 
 #include "libPLN.hpp"
+#include "Utils/NumericTricks.hpp"
 
 using namespace std;
 
@@ -121,7 +122,7 @@ EstimatorTestBench()
     double  t_now   = 0.0;
     double  t_req   = 0.0;
 
-    for( size_t i = 0; i < sizeof(TdBenches)/sizeof(TdBenches[0]); i ++ )
+    for( size_t i = 0; i < NumElements(TdBenches); i ++ )
     {
         t_now   = TdBenches[ i ].t_now;
         t_req   = TdBenches[ i ].t_req;

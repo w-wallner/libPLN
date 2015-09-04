@@ -39,6 +39,7 @@
 
 #include "libPLN.hpp"
 #include "Examples/AverageOscillator_20MHz/AverageOscillator_20MHz.hpp"
+#include "Utils/NumericTricks.hpp"
 
 #include <fstream>
 #include <iostream>
@@ -230,7 +231,7 @@ void DetailedOracleBench()
     t               = 0.0L;
 
     // Benchmark Oscillator
-    for( i = 0; i < sizeof(DetailedBenchMarks) / sizeof(DetailedBenchMarks[0]); i ++ )
+    for( i = 0; i < NumElements(DetailedBenchMarks); i ++ )
     {
         // Read config
         f_s     = DetailedBenchMarks[ i ].f_s;
@@ -315,7 +316,7 @@ void SpeedOracleBench()
     ResultFile.precision( 30 );
 
     // Benchmark Oscillator
-    for( i = 0; i < sizeof(DetailedBenchMarks) / sizeof(DetailedBenchMarks[0]); i ++ )
+    for( i = 0; i < NumElements(DetailedBenchMarks); i ++ )
     {
         // Read config
         f_s     = DetailedBenchMarks[ i ].f_s;
@@ -380,7 +381,7 @@ void BurstOracleBench()
     ResultFile.precision( 30 );
 
     t = 0.0L;
-    for( i = 0; i < sizeof(BurstBenchMarks) / sizeof(BurstBenchMarks[0]); i ++ )
+    for( i = 0; i < NumElements(BurstBenchMarks); i ++ )
     {
         f_s = BurstBenchMarks[i].f_s;
         dt  = 1.0L / f_s;
