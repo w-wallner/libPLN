@@ -89,7 +89,7 @@ class TdVector
         // -----------------------------------------------------------------
                 TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen, TdVecDataType DataType );
                 TdVector( const TdVector& other );
-        virtual ~TdVector();
+        virtual ~TdVector() = 0;
 
         virtual TdVector* Clone() const = 0;  // Virtual constructor (copying)
 
