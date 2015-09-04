@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of a TD vector that is interpolated using cubic splines
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vector
 ///
 // ============================================================================
 
@@ -50,40 +48,85 @@
 // Type definitions
 // =========================================================================
 
+/// Implements a TD deviation vector that can be interpolated using cubic splines
 class TdVectorCubSpline : public TdVector
 {
     private:
 
+        // -----------------------------------------------------------------
         // Types
+        // -----------------------------------------------------------------
+
+        /// Enumeration to encode the current state of the
+        /// interpolation data structures
         typedef enum
         {
-            UNINITIALIZED,
-            INITIALIZED,
+            UNINITIALIZED,          ///< Uninitialized: Before interpolation, initialization is needed
+            INITIALIZED,            ///< Initialized:   Ready to interpolate
         }
         SplineState;
 
+        // -----------------------------------------------------------------
         // Config
+        // -----------------------------------------------------------------
 
+        // -----------------------------------------------------------------
         // Housekeeping
-        SplineState State;
+        // -----------------------------------------------------------------
+        SplineState State;          ///< Current state of the interpolation data structures
 
+        // -----------------------------------------------------------------
         // Resources
-        tk::spline          s;
-        std::vector<double> t;
+        // -----------------------------------------------------------------
+        tk::spline          s;      ///< The main spline interpolation data structure
+        std::vector<double> t;      ///< The times corresponding to the time deviation values
 
+        // -----------------------------------------------------------------
         // Internal functions
+        // -----------------------------------------------------------------
+
+        /// Interpolates the TD in between samples in the time frame stored in this vector
+        ///
+        /// \param t_req    Requested time where the should be interpolated.
+        ///                 Must fulfill t_beg <= t_req <= t_end
+        ///
+        /// \return         Interpolated TD at t_req
         double  InterpolateAt( double t_req );
 
     public:
 
+        // -----------------------------------------------------------------
         // Constructors/Destructor
+        // -----------------------------------------------------------------
+
+        /// Constructor
+        ///
+        /// \param t_beg        Time (in seconds) when this TD vector begins
+        /// \param TD_0         Initial time deviation (in seconds) at the beginning of this TD vector
+        /// \param TickLen      TickLen of the sampled vector (i.e. inverse of the sampling frequency)
+        /// \param pData        Input data from which the TD vector is generated
+        /// \param ValidLen     Length of the input data that is valid
+        /// \param DataType     Type of the input data
         TdVectorCubSpline( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType );
+
+        /// Copy constructor
         TdVectorCubSpline( const TdVectorCubSpline& other );
+
+        /// Destructor
         ~TdVectorCubSpline();
 
+        /// Clone method
+        ///
+        /// Duplicates the current instance
+        ///
+        /// \return  A pointer to a duplicate of the current instance
         TdVectorCubSpline* Clone() const;
 
+        // -----------------------------------------------------------------
         // Operators
+        // -----------------------------------------------------------------
+
+        /// Copy operator
         TdVectorCubSpline&  operator=( const TdVectorCubSpline& other );
 };
 

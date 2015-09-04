@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of a TD vector that is interpolated using cubic splines
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vector
 ///
 // ============================================================================
 

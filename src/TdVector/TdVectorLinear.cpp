@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of a TD vector that is linearly interpolated
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vector
 ///
 // ============================================================================
 

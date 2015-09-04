@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of a TD vector that is linearly interpolated
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vector
 ///
 // ============================================================================
 
@@ -53,23 +51,60 @@ class TdVectorLinear : public TdVector
 {
     private:
 
+        // -----------------------------------------------------------------
         // Config
+        // -----------------------------------------------------------------
 
+        // -----------------------------------------------------------------
         // Resources
+        // -----------------------------------------------------------------
 
+        // -----------------------------------------------------------------
         // Internal functions
+        // -----------------------------------------------------------------
+
+        /// Interpolates the TD in between samples in the time frame stored in this vector
+        ///
+        /// \param t_req    Requested time where the should be interpolated.
+        ///                 Must fulfill t_beg <= t_req <= t_end
+        ///
+        /// \return         Interpolated TD at t_re
         double  InterpolateAt( double t_req );
 
     public:
 
+        // -----------------------------------------------------------------
         // Constructors/Destructor
+        // -----------------------------------------------------------------
+
+        /// Constructor
+        ///
+        /// \param t_beg        Time (in seconds) when this TD vector begins
+        /// \param TD_0         Initial time deviation (in seconds) at the beginning of this TD vector
+        /// \param TickLen      TickLen of the sampled vector (i.e. inverse of the sampling frequency)
+        /// \param pData        Input data from which the TD vector is generated
+        /// \param ValidLen     Length of the input data that is valid
+        /// \param DataType     Type of the input data
         TdVectorLinear( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType );
+
+        /// Copy constructor
         TdVectorLinear( const TdVectorLinear& other );
+
+        /// Destructor
         ~TdVectorLinear();
 
+        /// Clone method
+        ///
+        /// Duplicates the current instance
+        ///
+        /// \return  A pointer to a duplicate of the current instance
         TdVectorLinear* Clone() const;
 
+        // -----------------------------------------------------------------
         // Operators
+        // -----------------------------------------------------------------
+
+        /// Copy operator
         TdVectorLinear&  operator=( const TdVectorLinear& other );
 };
 
