@@ -87,7 +87,7 @@ class TdVector
         // -----------------------------------------------------------------
         // Constructors/Destructor
         // -----------------------------------------------------------------
-                TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pFFD, size_t ValidLen, TdVecDataType DataType );
+                TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType );
                 TdVector( const TdVector& other );
         virtual ~TdVector() = 0;
 
