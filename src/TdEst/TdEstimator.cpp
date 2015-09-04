@@ -268,7 +268,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
         ( t_req > (TdVecStorage.GetEndTime() + T_val) )
     )
     {
-        e.TD    = GuessFutureTD_nom( t_req ) * f_s;
+        e.TD    = GuessFutureTD_nom( t_req ) / f_s;
         e.Type  = EXACTLY_KNOWN;
 
         // Check if our new guess may become valid immediately
@@ -292,7 +292,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
             assert(( !IntervalSkippingEnabled ) || ( LoopCnt <= MaxCnt ) );
         }
 
-        e.TD    = TdVecStorage.InterpolateTD( t_req ) * f_s;
+        e.TD    = TdVecStorage.InterpolateTD( t_req ) / f_s;
         e.Type  = EXACTLY_KNOWN;
     }
 
