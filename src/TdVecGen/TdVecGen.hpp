@@ -42,7 +42,7 @@
 #include "TdVector/TdVector.hpp"
 #include "TdEst/TdFixPoint.hpp"
 #include "Filter/FilterKernel.hpp"
-#include "WhiteNoiseGenerator.hpp"
+#include "TdVecGen/WhiteNoiseGenerator/WhiteNoiseGenerator.hpp"
 
 // =========================================================================
 // Defines

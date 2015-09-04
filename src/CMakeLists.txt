@@ -2,7 +2,6 @@
 add_library(PLN STATIC  TdEstChain.cpp
                         TdOracle.cpp
                         TdVectorStorage.cpp
-                        WhiteNoiseGenerator.cpp
                         DebugTools/VectorOutput.cpp
                         Filter/BmHpFilterImpResp.cpp
                         Filter/FilterImpResp.cpp
@@ -17,6 +16,7 @@ add_library(PLN STATIC  TdEstChain.cpp
                         TdVecGen/TdVecGen.cpp
                         TdVecGen/WfmTdVecGen.cpp
                         TdVecGen/WpmTdVecGen.cpp
+                        TdVecGen/WhiteNoiseGenerator/WhiteNoiseGenerator.cpp
                         TdVector/TdVector.cpp
                         TdVector/TdVectorCubSpline.cpp
                         TdVector/TdVectorLinear.cpp
