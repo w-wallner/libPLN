@@ -80,7 +80,7 @@ RwTdVecGen::ApplyRecursiveFilter( FFT_RealVector *pw )
 RwTdVecGen::RwTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
     : RecursiveTdVecGen( TdVecLen, TickLen, KwConf, HpConf, InterpolConf )
 {
-    DataType    = FFD_DATA;
+    DataType    = TdVector::FFD_DATA;
     FFD_0       = 0.0L;
 }
 

@@ -130,7 +130,7 @@ GenericTdVecGen::GetNextVector()
 
     ApplyConvFilter( pw );
 
-    TdVector *pTdVec = ConstructTdVector( pw, FFD_DATA );
+    TdVector *pTdVec = ConstructTdVector( pw, TdVector::FFD_DATA );
 
     return pTdVec;
 }

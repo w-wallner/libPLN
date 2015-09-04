@@ -48,15 +48,20 @@
 // Type definitions
 // =========================================================================
 
-typedef enum
-{
-    FFD_DATA,
-    TD_DATA,
-}
-TdVecDataType;
-
 class TdVector
 {
+    public:
+
+        // -----------------------------------------------------------------
+        // Types
+        // -----------------------------------------------------------------
+        typedef enum
+        {
+            FFD_DATA,
+            TD_DATA,
+        }
+        TdVecDataType;
+
     protected:
 
         // Config

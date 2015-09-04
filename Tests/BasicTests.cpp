@@ -79,9 +79,9 @@ void    TestTdVecStorage()
 
     TdVectorStorage    *pA;
 
-    double          TickLen     = 1.0;
-    size_t          ValidLen    = 10;
-    TdVecDataType   DataType    = FFD_DATA;
+    double                      TickLen     = 1.0;
+    size_t                      ValidLen    = 10;
+    TdVector::TdVecDataType     DataType    = TdVector::FFD_DATA;
     FFT_RealVector *pFFD = new FFT_RealVector(10);
 
     std::fill( pFFD->begin(), pFFD->end(), 1);

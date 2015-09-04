@@ -57,8 +57,8 @@ class RecursiveTdVecGen : public TdVecGen
     protected:
 
         // Config
-        bool            EnableHpFilter;
-        TdVecDataType   DataType;
+        bool                        EnableHpFilter;
+        TdVector::TdVecDataType     DataType;
 
         // Internal functions
         virtual void    ResetRecursiveFilter() = 0;

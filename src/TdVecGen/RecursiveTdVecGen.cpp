@@ -89,7 +89,7 @@ RecursiveTdVecGen::SetUpHpConvFilter( HP_FilterConfig HpConf, size_t TdVecLen )
 RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
     : TdVecGen( TdVecLen, TickLen, KwConf, InterpolConf )
 {
-    DataType    = FFD_DATA;
+    DataType    = TdVector::FFD_DATA;
 
     SetUpHpConvFilter( HpConf, TdVecLen );
 }

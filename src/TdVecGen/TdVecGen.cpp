@@ -115,7 +115,7 @@ TdVecGen::ResetConvFilter()
 }
 
 TdVector *
-TdVecGen::ConstructTdVector( FFT_RealVector *pData, TdVecDataType DataType )
+TdVecGen::ConstructTdVector( FFT_RealVector *pData, TdVector::TdVecDataType DataType )
 {
     TdVector *pTdVec = NULL;
 

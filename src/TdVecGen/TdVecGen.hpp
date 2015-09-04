@@ -86,7 +86,7 @@ class TdVecGen
         void        ApplyConvFilter( FFT_RealVector *pw );
         void        ResetConvFilter();
 
-        TdVector    *ConstructTdVector( FFT_RealVector *pData, TdVecDataType DataType );
+        TdVector    *ConstructTdVector( FFT_RealVector *pData, TdVector::TdVecDataType DataType );
 
     public:
 
