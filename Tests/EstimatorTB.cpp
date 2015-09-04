@@ -146,20 +146,51 @@ FileBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-    TdEstimatorConfig Conf  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz( 123 );
+    TdEstimatorConfig Conf_WPM_20MHz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz( 1 );
+    TdEstimatorConfig Conf_WPM_1MHz   = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz ( 2 );
+    TdEstimatorConfig Conf_WPM_10kHz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz( 3 );
+    TdEstimatorConfig Conf_WPM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz( 4 );
 
+    TdEstimatorConfig Conf_WFM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_WFM::GetConfig_WFM_100Hz( 5 );
+
+    TdEstimatorConfig Conf_FFM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_FFM_100Hz( 6 );
+
+    TdEstimatorConfig Conf_RW_100Hz   = TdOracle_AvgOsc20MHz::TdEstChain_RW::GetConfig_RW_100Hz  ( 7 );
+
+    TdEstChain  WpmChain;
+    TdEstChain  WfmChain;
+    TdEstChain  FfmChain;
+    TdEstChain  RwChain;
     TdEstChain  c;
 
-    c.AddTdEstimator( Conf );
+    WpmChain.AddTdEstimator( Conf_WPM_20MHz );
+    WpmChain.AddTdEstimator( Conf_WPM_1MHz  );
+    WpmChain.AddTdEstimator( Conf_WPM_10kHz );
+    WpmChain.AddTdEstimator( Conf_WPM_100Hz );
+
+    WfmChain.AddTdEstimator( Conf_WFM_100Hz );
+
+    FfmChain.AddTdEstimator( Conf_FFM_100Hz );
+
+    RwChain.AddTdEstimator( Conf_RW_100Hz );
+
+    c = WpmChain;
+    c = WfmChain;
+    c = FfmChain;
+    c = RwChain;
 
     double  fs;
     double  dt;
     size_t  MaxCnt;
 
-    fs = 4020E-6;
+    fs = 40E6;
+    fs = 4E6;
+    fs = 1E5;
+    fs = 400;
     dt = 1.0L / fs;
 
     MaxCnt  = 100000;
+    MaxCnt  = 1000000;
 
     size_t CntThStep    = MaxCnt / 10;
     size_t NextTh       = CntThStep;
