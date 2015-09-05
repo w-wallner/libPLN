@@ -242,18 +242,18 @@ TdVectorStorage::GetBeginTime()
 double
 TdVectorStorage::GetBeginTD()
 {
-    double t = 0.0L;
+    double TD = 0.0L;
 
     if( State == RUNNING )
     {
-        t = (*Storage.begin())->GetBeginTD();
+        TD = (*Storage.begin())->GetBeginTD();
     }
     else
     {
-        t = fp.GetRelativeTD();
+        TD = fp.GetRelativeTD();
     }
 
-    return t;
+    return TD;
 }
 
 double
@@ -276,18 +276,18 @@ TdVectorStorage::GetEndTime()
 double
 TdVectorStorage::GetEndTD()
 {
-    double t = 0.0L;
+    double TD = 0.0L;
 
     if( State == RUNNING )
     {
-        t = (*Storage.rbegin())->GetEndTD();
+        TD = (*Storage.rbegin())->GetEndTD();
     }
     else
     {
-        t = fp.GetRelativeTD();
+        TD = fp.GetRelativeTD();
     }
 
-    return t;
+    return TD;
 }
 
 void
