@@ -116,19 +116,19 @@ TdVecGen::ConstructTdVector( FFT_RealVector *pData, TdVector::TdVecDataType Data
         default:
         case LINEAR_INTERPOLATION:
         {
-            pTdVec    = new TdVectorLinear( Last_t_end, Last_TD_nom, TickLen, pData, TdVecLen, DataType );
+            pTdVec    = new TdVectorLinear( Last_t_end, LastRelativeTD, TickLen, pData, TdVecLen, DataType );
             break;
         }
         case CUBIC_SPLINE_INTERPOLATION:
         {
-            pTdVec    = new TdVectorCubSpline( Last_t_end, Last_TD_nom, TickLen, pData, TdVecLen, DataType );
+            pTdVec    = new TdVectorCubSpline( Last_t_end, LastRelativeTD, TickLen, pData, TdVecLen, DataType );
             break;
         }
     }
 
     // Remember TD vector endpoint
     Last_t_end  = pTdVec->GetEndTime();
-    Last_TD_nom = pTdVec->GetEndTD();
+    LastRelativeTD = pTdVec->GetEndTD();
 
     return pTdVec;
 }
@@ -137,16 +137,16 @@ TdVecGen::TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, Int
     : WhiteNoiseGen( KwConf.Seed, KwConf.Qd )
 {
     // Set up config
-    this->TdVecLen      = TdVecLen;
-    this->TickLen       = TickLen;
-    this->IntpolType    = InterpolConf.Type;
+    this->TdVecLen          = TdVecLen;
+    this->TickLen           = TickLen;
+    this->IntpolType        = InterpolConf.Type;
 
-    this->Last_t_end    = 0.0L;
-    this->Last_TD_nom   = 0.0L;
+    this->Last_t_end        = 0.0L;
+    this->LastRelativeTD    = 0.0L;
 
-    this->ConvState     = UNINITIALIZED;
-    this->FfdVecLen     = 0;
-    this->pLastFFD      = NULL;
+    this->ConvState         = UNINITIALIZED;
+    this->FfdVecLen         = 0;
+    this->pLastFFD          = NULL;
 }
 
 TdVecGen::TdVecGen( const TdVecGen& other )
@@ -157,7 +157,7 @@ TdVecGen::TdVecGen( const TdVecGen& other )
       // House keeping
       ConvState     ( other.ConvState   ),
       Last_t_end    ( other.Last_t_end  ),
-      Last_TD_nom   ( other.Last_TD_nom ),
+      LastRelativeTD   ( other.LastRelativeTD ),
       FfdVecLen     ( other.FfdVecLen   ),
       // Resources
       WhiteNoiseGen ( other.WhiteNoiseGen ),
@@ -182,20 +182,20 @@ TdVecGen&
 TdVecGen::operator=( const TdVecGen& other )
 {
     // Config
-    this->TickLen       = other.TickLen;
-    this->IntpolType    = other.IntpolType;
-    this->TdVecLen      = other.TdVecLen;
+    this->TickLen           = other.TickLen;
+    this->IntpolType        = other.IntpolType;
+    this->TdVecLen          = other.TdVecLen;
 
     // House keeping
-    this->ConvState     = other.ConvState;
-    this->Last_t_end    = other.Last_t_end;
-    this->Last_TD_nom   = other.Last_TD_nom;
-    this->FfdVecLen     = other.FfdVecLen;
+    this->ConvState         = other.ConvState;
+    this->Last_t_end        = other.Last_t_end;
+    this->LastRelativeTD    = other.LastRelativeTD;
+    this->FfdVecLen         = other.FfdVecLen;
 
     // Resources
-    this->WhiteNoiseGen = other.WhiteNoiseGen;
-    this->H             = other.H;
-    this->pLastFFD      = new FFT_RealVector( *other.pLastFFD );
+    this->WhiteNoiseGen     = other.WhiteNoiseGen;
+    this->H                 = other.H;
+    this->pLastFFD          = new FFT_RealVector( *other.pLastFFD );
 
     // By convention, always return *this
     return *this;
@@ -206,8 +206,8 @@ TdVecGen::ResetToFixPoint( TdFixPoint fp )
 {
     ResetConvFilter();
 
-    Last_t_end  = fp.Get_t();
-    Last_TD_nom = fp.GetTD_nom();
+    Last_t_end      = fp.Get_t();
+    LastRelativeTD  = fp.GetRelativeTD();
 }
 
 void

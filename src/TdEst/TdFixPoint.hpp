@@ -51,13 +51,13 @@ class TdFixPoint
     private:
         // Config
         double  t;
-        double  TD_nom;
+        double  RelativeTD;
 
     public:
-        TdFixPoint( double t, double TD_nom );
+        TdFixPoint( double t, double RelativeTD );
 
         double  Get_t() const;
-        double  GetTD_nom() const;
+        double  GetRelativeTD() const;
 
         bool operator<( const TdFixPoint& other ) const;
 };

@@ -197,7 +197,7 @@ void    TestWpmTdVecGen()
         /*
         for( int j = 0; j < 100; j ++ )
         {
-            cout << pTdVec->InterpolateTD_nom( j * TickLen ) << endl;
+            cout << pTdVec->GetRelativeTD( j * TickLen ) << endl;
         }
         */
 

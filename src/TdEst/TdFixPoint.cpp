@@ -57,10 +57,10 @@
 // Function definitions
 // =========================================================================
 
-TdFixPoint::TdFixPoint( double t, double TD_nom )
+TdFixPoint::TdFixPoint( double t, double RelativeTD )
 {
-    this->t         = t;
-    this->TD_nom    = TD_nom;
+    this->t             = t;
+    this->RelativeTD    = RelativeTD;
 }
 
 double
@@ -70,9 +70,9 @@ TdFixPoint::Get_t() const
 }
 
 double
-TdFixPoint::GetTD_nom() const
+TdFixPoint::GetRelativeTD() const
 {
-    return TD_nom;
+    return RelativeTD;
 }
 
 bool

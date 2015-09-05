@@ -70,25 +70,25 @@ class TdVecGen
         /// before or not.
         typedef enum
         {
-            UNINITIALIZED,      ///< Uninitialized: We can't base the vector on an existing one.
-            INITIALIZED,        ///< Initialized    We already have data from an existing old vector.
+            UNINITIALIZED,                          ///< Uninitialized: We can't base the vector on an existing one.
+            INITIALIZED,                            ///< Initialized    We already have data from an existing old vector.
         }
         ConvState_t;
 
         // -----------------------------------------------------------------
         // Config
         // -----------------------------------------------------------------
-        double              TickLen;        ///< Time (in seconds) between two simulated TD values
-        InterpolationType   IntpolType;     ///< Interpolation type for the generated TD vectors
-        size_t              TdVecLen;       ///< Length of the generated TD vectors
+        double              TickLen;                ///< Time (in seconds) between two simulated TD values
+        InterpolationType   IntpolType;             ///< Interpolation type for the generated TD vectors
+        size_t              TdVecLen;               ///< Length of the generated TD vectors
 
         // -----------------------------------------------------------------
         // House keeping
         // -----------------------------------------------------------------
-        ConvState_t         ConvState;      ///< Current state of the convolution
-        double              Last_t_end;     ///< Time (in seconds) at the end of the last generated TD vector
-        double              Last_TD_nom;    ///< Time deviation (in seconds) at the end of the last generated vector
-        size_t              FfdVecLen;      ///< Length of the Fractional Frequency Deviation vectors that are used to generate Time Deviation vectors
+        ConvState_t         ConvState;              ///< Current state of the convolution
+        double              Last_t_end;             ///< Time (in seconds) at the end of the last generated TD vector
+        double              LastRelativeTD;         ///< Time deviation (in seconds) at the end of the last generated vector
+        size_t              FfdVecLen;              ///< Length of the Fractional Frequency Deviation vectors that are used to generate Time Deviation vectors
 
         // -----------------------------------------------------------------
         // Resources

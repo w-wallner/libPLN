@@ -250,7 +250,7 @@ TdVectorStorage::GetBeginTD()
     }
     else
     {
-        t = fp.GetTD_nom();
+        t = fp.GetRelativeTD();
     }
 
     return t;
@@ -284,7 +284,7 @@ TdVectorStorage::GetEndTD()
     }
     else
     {
-        t = fp.GetTD_nom();
+        t = fp.GetRelativeTD();
     }
 
     return t;
