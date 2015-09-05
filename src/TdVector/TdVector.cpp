@@ -139,7 +139,7 @@ TdVector::GetEndTD()
 }
 
 double
-TdVector::InterpolateTD( double t_req )
+TdVector::GetRelativeTD( double t_req )
 {
     assert( t_req >= t_beg );
     assert( t_req <= t_end );

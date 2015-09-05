@@ -100,7 +100,7 @@ class TdVectorStorage
         double  GetEndTime();
         double  GetEndTD();
         void    ResetToFixPoint( TdFixPoint fp );
-        double  InterpolateTD( double t_req );
+        double  GetRelativeTD( double t_req );
         void    ForgetPast( double t_now );
 };
 

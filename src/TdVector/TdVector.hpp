@@ -161,7 +161,7 @@ class TdVector
         ///                 Must fulfill t_beg <= t_req <= t_end
         ///
         /// \return         Interpolated TD at t_req
-        double  InterpolateTD( double t_req );
+        double  GetRelativeTD( double t_req );
 };
 
 // =========================================================================

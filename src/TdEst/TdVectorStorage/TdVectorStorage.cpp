@@ -306,7 +306,7 @@ TdVectorStorage::ResetToFixPoint( TdFixPoint fp )
 }
 
 double
-TdVectorStorage::InterpolateTD( double t_req )
+TdVectorStorage::GetRelativeTD( double t_req )
 {
     assert( t_req >= GetBeginTime() );
     assert( t_req <= GetEndTime() );
@@ -314,7 +314,7 @@ TdVectorStorage::InterpolateTD( double t_req )
 
     // Find correct TD Vector and interpolate
     TdVector    *pTdVec = Storage[ FindIndex( t_req ) ];
-    double      TD      = pTdVec->InterpolateTD( t_req );
+    double      TD      = pTdVec->GetRelativeTD( t_req );
 
     return TD;
 }

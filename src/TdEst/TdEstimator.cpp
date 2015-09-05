@@ -292,7 +292,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
             assert(( !IntervalSkippingEnabled ) || ( LoopCnt <= MaxCnt ) );
         }
 
-        e.TD    = TdVecStorage.InterpolateTD( t_req ) / f_s;
+        e.TD    = TdVecStorage.GetRelativeTD( t_req ) / f_s;
         e.Type  = EXACTLY_KNOWN;
     }
 
