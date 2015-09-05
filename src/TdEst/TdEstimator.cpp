@@ -95,21 +95,21 @@ TdEstimator::CheckLastGuess( double t_now, bool ForceReset )
 }
 
 double
-TdEstimator::GuessFutureTD_nom( double t_req )
+TdEstimator::GuessFutureRelativeTD( double t_req )
 {
     assert( TdVecStorage.GetEndTime() < t_req );
 
-    double TD_nom;
+    double RelativeTD;
 
     // ---------------------------------------------------------------------------
     // ATTENTION: This is only an estimate
     // It won't be equally good for all types of noise
     // ---------------------------------------------------------------------------
-    TD_nom  = pTdVecGen->GetEstimatedValue();
+    RelativeTD  = pTdVecGen->GetEstimatedValue();
 
-    LastGuess.Set( TdFixPoint( t_req, TD_nom ) );
+    LastGuess.Set( TdFixPoint( t_req, RelativeTD ) );
 
-    return TD_nom;
+    return RelativeTD;
 }
 
 TdEstimator::TdEstimator( TdEstimatorConfig Conf )
@@ -268,7 +268,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
         ( t_req > (TdVecStorage.GetEndTime() + T_val) )
     )
     {
-        e.TD    = GuessFutureTD_nom( t_req ) / f_s;
+        e.TD    = GuessFutureRelativeTD( t_req ) / f_s;
         e.Type  = EXACTLY_KNOWN;
 
         // Check if our new guess may become valid immediately
