@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Storage for time deviation vectors.
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vector_storage
 ///
 // ============================================================================
 
