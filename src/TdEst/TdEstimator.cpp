@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Estimator for time deviation values
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_estimator
 ///
 // ============================================================================
 
