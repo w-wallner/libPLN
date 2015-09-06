@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Guess of a future time deviation value
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_estimator
 ///
 // ============================================================================
 
