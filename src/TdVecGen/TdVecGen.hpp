@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of a generator class for time deviation vectors.
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vec_gen
 ///
 // ============================================================================
 
@@ -109,14 +107,12 @@ class TdVecGen
         /// \param pw   Data vector that should be filtered
         void        ApplyConvFilter( FFT_RealVector *pw );
 
-        /// Reset the convoultion filter
+        /// Reset the convolution filter
         void        ResetConvFilter();
 
         /// Construct a Time Deviation vector from given input data
         ///
-        /// Depending on the type of input data different operations are performed:
-        /// - FFD data: FFD -> TD conversion is done
-        /// - TD data:  no conversion needed
+
         /// \param
         TdVector    *ConstructTdVector( FFT_RealVector *pData, TdVector::TdVecDataType DataType );
 
@@ -126,8 +122,16 @@ class TdVecGen
 
         /// Constructor
         ///
-        /// \param
+        /// \param TdVecLen         Length of TD vectors that should be created
+        /// \param TickLen          Time (in seconds) between simulated TD samples
+        /// \param KW_FilterConfig  Config for the Kasdin/Walter filter
+        /// \param InterpolConfig   Interpolation configuration
+        ///
         TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, InterpolationConfig InterpolConf );
+
+        /// Copy constructor
+        ///
+        /// \param other    The instance from which we want to copy
         TdVecGen( const TdVecGen& other );
 
     public:
@@ -135,21 +139,56 @@ class TdVecGen
         // -----------------------------------------------------------------
         // Constructors/Destructor
         // -----------------------------------------------------------------
+
+        /// Destructor
         virtual ~TdVecGen();
+
+        /// Clone method
+        ///
+        /// This method has to be overloaded by subclasses and needs to return a pointer
+        /// to a subclass instance.
         virtual TdVecGen* Clone() const = 0;  // Virtual constructor (copying)
 
         // -----------------------------------------------------------------
         // Operators
         // -----------------------------------------------------------------
+        /// Assignmnet operator
+        ///
+        /// \param other    The instance from which we want to copy
         TdVecGen&  operator=( const TdVecGen& other );
 
         // -----------------------------------------------------------------
         // API
         // -----------------------------------------------------------------
+
+        /// Reset to a new fix point
+        ///
+        /// The new fixpoint will be the starting point for future generated TD vectors.
+        ///
+        /// \param fp   The new fixpoint we want to configure.
         virtual void        ResetToFixPoint( TdFixPoint fp );
+
+        /// Set a new seed for the generation of random time deviation values.
+        ///
+        /// \param Seed     The new seed that should be usd for the random number
+        ///                 generator.
         virtual void        SetSeed( unsigned int Seed );
+
+        /// Generate a new random time deviation vector.
+        ///
+        /// The new time deviation vector should start at the end of the last
+        /// generated TD vector, or if no such vector is available, at the last
+        /// fixpoint.
+        ///
+        /// This function has to be implemented by subclasses.
+        ///
+        /// \return     A new time deviation vector.
         virtual TdVector    *GetNextVector() = 0;
-                double      GetEstimatedValue();
+
+        /// Get a single random value.
+        ///
+        /// \return A single random value.
+        double              GetEstimatedValue();
 };
 
 // =========================================================================
