@@ -240,7 +240,7 @@ TdEstimator::SetSeed( unsigned int Seed )
     pTdVecGen->SetSeed( Seed );
 }
 
-TdEstimate
+double
 TdEstimator::EstimateTD( double t_now, double t_req )
 {
     TdEstimate e;
@@ -258,7 +258,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
     // Evaluate request
     if( t_req == Last_t_req )
     {
-        return  LastAnswer;
+        return  LastAnswer.TD;
     }
 
     // Case 1: Request is in the distant future
@@ -299,7 +299,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
     LastAnswer  = e;
     Last_t_req  = t_req;
 
-    return e;
+    return e.TD;
 }
 
 double

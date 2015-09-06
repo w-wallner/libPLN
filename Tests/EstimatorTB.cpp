@@ -128,12 +128,12 @@ EstimatorTestBench()
         t_now   = TdBenches[ i ].t_now;
         t_req   = TdBenches[ i ].t_req;
 
-        TdEstimate  est;
+        double TD;
         for( size_t j = 0; j < TdBenches[ i ].cnt; j ++ )
         {
-            est = e.EstimateTD( t_now, t_req );
+            TD = e.EstimateTD( t_now, t_req );
 
-            cout << "TD[" << t_now << "/" << t_req << "]: " << est.TD << endl;
+            cout << "TD[" << t_now << "/" << t_req << "]: " << TD << endl;
 
             t_req += TdBenches[ i ].dt_req;
         }

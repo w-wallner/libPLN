@@ -181,20 +181,7 @@ TdEstChain::EstimateTD( double t_now, double t_req )
     // Sum up over all chain entries
     for( std::vector<ChainEntry>::iterator it = Chain.begin(); it < Chain.end(); ++it )
     {
-        TdEstimate  est = it->pEst->EstimateTD( t_now, t_req );
-
-        if( est.Type == EXACTLY_KNOWN )
-        {
-            TD  += est.TD;
-        }
-        else if( est.Type == ESTIMATED_FUTURE )
-        {
-            TD  += est.TD;
-        }
-        else
-        {
-            assert( false );
-        }
+        TD += it->pEst->EstimateTD( t_now, t_req );
     }
 
     return TD;

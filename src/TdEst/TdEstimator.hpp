@@ -102,10 +102,10 @@ class TdEstimator
         TdEstimator&  operator=( const TdEstimator& other );
 
         // API
-        void        EnableIntervalSkipping();
-        void        DisableIntervalSkipping();
-        void        SetSeed( unsigned int Seed );
-        TdEstimate  EstimateTD( double t_now, double t_req );
+        void    EnableIntervalSkipping();
+        void    DisableIntervalSkipping();
+        void    SetSeed( unsigned int Seed );
+        double  EstimateTD( double t_now, double t_req );
 
         // Getters
         double      Get_f_s();
