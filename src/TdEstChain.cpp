@@ -2,11 +2,9 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Chain of time deviation estimators
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_estimator
 ///
 // ============================================================================
 
