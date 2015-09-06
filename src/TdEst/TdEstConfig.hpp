@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef TDESTCONFIG_HPP_
-#define TDESTCONFIG_HPP_
+#ifndef TD_EST_CONFIG_HPP_
+#define TD_EST_CONFIG_HPP_
 
 // =========================================================================
 // Includes
