@@ -51,20 +51,6 @@
 // Type definitions
 // =========================================================================
 
-typedef enum
-{
-    EXACTLY_KNOWN,
-    ESTIMATED_FUTURE,
-}
-EstimateType;
-
-typedef struct
-{
-    double          TD;
-    EstimateType    Type;
-}
-TdEstimate;
-
 class TdEstimator
 {
     private:
@@ -84,7 +70,7 @@ class TdEstimator
         // House keeping
         TdGuess             LastGuess;
         double              Last_t_req;
-        TdEstimate          LastAnswer;
+        double              Last_TD_abs;
 
         // Internal functions
         void    ForgetPast( double t_now );

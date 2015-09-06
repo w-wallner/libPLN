@@ -125,8 +125,7 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
 
     // House keeping
     Last_t_req      = 0.0L;
-    LastAnswer.TD   = 0.0L;
-    LastAnswer.Type = ESTIMATED_FUTURE;
+    Last_TD_abs     = 0.0L;
 
     // Resulting config
     TickLen     = 1.0L / f_s;
@@ -188,7 +187,7 @@ TdEstimator::TdEstimator( const TdEstimator& other )
   // House keeping
   LastGuess                 ( other.LastGuess    ),
   Last_t_req                ( other.Last_t_req   ),
-  LastAnswer                ( other.LastAnswer   )
+  Last_TD_abs               ( other.Last_TD_abs   )
 {
     pTdVecGen = other.pTdVecGen->Clone();
 }
@@ -216,7 +215,7 @@ TdEstimator::operator=( const TdEstimator& other )
     // House keeping
     this->LastGuess     = other.LastGuess;
     this->Last_t_req    = other.Last_t_req;
-    this->LastAnswer    = other.LastAnswer;
+    this->Last_TD_abs   = other.Last_TD_abs;
 
     // By convention, always return *this
     return *this;
@@ -243,7 +242,7 @@ TdEstimator::SetSeed( unsigned int Seed )
 double
 TdEstimator::EstimateTD( double t_now, double t_req )
 {
-    TdEstimate e;
+    double  TD_abs;
 
     // Handle time issues
     CheckLastGuess( t_now, true );
@@ -258,7 +257,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
     // Evaluate request
     if( t_req == Last_t_req )
     {
-        return  LastAnswer.TD;
+        return  Last_TD_abs;
     }
 
     // Case 1: Request is in the distant future
@@ -268,8 +267,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
         ( t_req > (TdVecStorage.GetEndTime() + T_val) )
     )
     {
-        e.TD    = GuessFutureRelativeTD( t_req ) / f_s;
-        e.Type  = EXACTLY_KNOWN;
+        TD_abs  = GuessFutureRelativeTD( t_req ) / f_s;
 
         // Check if our new guess may become valid immediately
         CheckLastGuess( t_now, false );
@@ -292,14 +290,13 @@ TdEstimator::EstimateTD( double t_now, double t_req )
             assert(( !IntervalSkippingEnabled ) || ( LoopCnt <= MaxCnt ) );
         }
 
-        e.TD    = TdVecStorage.GetRelativeTD( t_req ) / f_s;
-        e.Type  = EXACTLY_KNOWN;
+        TD_abs  = TdVecStorage.GetRelativeTD( t_req ) / f_s;
     }
 
-    LastAnswer  = e;
+    Last_TD_abs = TD_abs;
     Last_t_req  = t_req;
 
-    return e.TD;
+    return TD_abs;
 }
 
 double
