@@ -50,26 +50,25 @@
 
 class  TdGuess
 {
-private:
+    private:
 
-    bool        active;
+        bool        active;
 
-    TdFixPoint  fp;
+        TdFixPoint  fp;
 
-public:
+    public:
 
-    TdGuess();
+        TdGuess();
 
-    bool        IsActive();
-    bool        BecameValid( double t_now );
-    void        Set( TdFixPoint fp );
-    TdFixPoint  GetFP();
-    void        Reset();
+        bool        IsActive();
+        bool        BecameValid( double t_now );
+        void        Set( TdFixPoint fp );
+        TdFixPoint  GetFP();
+        void        Reset();
 };
 
 // =========================================================================
 // Function declarations
 // =========================================================================
-
 
 #endif
