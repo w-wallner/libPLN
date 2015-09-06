@@ -253,11 +253,9 @@ TdEstimator::EstimateTD( double t_now, double t_req )
     // Evaluate request
     if( t_req == LastResult.Get_t() )
     {
-        return  LastResult.GetRelativeTD() / f_s;
+        TD_nom  = LastResult.GetRelativeTD();
     }
-
-    // Case 1: Request is in the distant future
-    if
+    else if // Case 1: Request is in the distant future
     (
         ( IntervalSkippingEnabled                     ) &&
         ( t_req > (TdVecStorage.GetEndTime() + T_val) )
