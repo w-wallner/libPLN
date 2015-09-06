@@ -152,13 +152,11 @@ TdVectorStorage::TdVectorStorage( size_t ForgetTh )
         this->ForgetTh = ForgetTh;
     }
 
-    State   = STARTUP;
     ClearStorage();
 }
 
 TdVectorStorage::TdVectorStorage( const TdVectorStorage& other )
     : ForgetTh  ( other.ForgetTh ),
-      State     ( other.State    ),
       fp        ( other.fp       )
 {
     // Copy storage contents
@@ -181,7 +179,6 @@ TdVectorStorage::operator= (const TdVectorStorage& other)
     ClearStorage();
 
     this->ForgetTh  = other.ForgetTh;
-    this->State     = other.State;
     this->fp        = other.fp;
 
     // Copy storage contents
@@ -217,9 +214,6 @@ TdVectorStorage::AddTdVec( TdVector *pTdVec )
     }
 
     Storage.push_back( pTdVec );
-
-    // Adjust state
-    State = RUNNING;
 }
 
 double
@@ -227,13 +221,13 @@ TdVectorStorage::GetBeginTime()
 {
     double t = 0.0L;
 
-    if( State == RUNNING )
+    if( Storage.empty() )
     {
-        t = (*Storage.begin())->GetBeginTime();
+        t = fp.Get_t();
     }
     else
     {
-        t = fp.Get_t();
+
     }
 
     return t;
@@ -244,13 +238,13 @@ TdVectorStorage::GetBeginTD()
 {
     double TD = 0.0L;
 
-    if( State == RUNNING )
+    if( Storage.empty() )
     {
-        TD = (*Storage.begin())->GetBeginTD();
+        TD = fp.GetRelativeTD();
     }
     else
     {
-        TD = fp.GetRelativeTD();
+        TD = (*Storage.begin())->GetBeginTD();
     }
 
     return TD;
@@ -261,13 +255,13 @@ TdVectorStorage::GetEndTime()
 {
     double t = 0.0L;
 
-    if( State == RUNNING )
+    if( Storage.empty() )
     {
-        t = (*Storage.rbegin())->GetEndTime();
+        t = fp.Get_t();
     }
     else
     {
-        t = fp.Get_t();
+        t = (*Storage.rbegin())->GetEndTime();
     }
 
     return t;
@@ -278,13 +272,13 @@ TdVectorStorage::GetEndTD()
 {
     double TD = 0.0L;
 
-    if( State == RUNNING )
+    if( Storage.empty() )
     {
-        TD = (*Storage.rbegin())->GetEndTD();
+        TD = fp.GetRelativeTD();
     }
     else
     {
-        TD = fp.GetRelativeTD();
+        TD = (*Storage.rbegin())->GetEndTD();
     }
 
     return TD;
@@ -300,7 +294,6 @@ TdVectorStorage::ResetToFixPoint( TdFixPoint fp )
     }
 
     this->fp    = fp;
-    this->State = STARTUP;
 
     ClearStorage();
 }
@@ -310,7 +303,7 @@ TdVectorStorage::GetRelativeTD( double t_req )
 {
     assert( t_req >= GetBeginTime() );
     assert( t_req <= GetEndTime() );
-    assert( State == RUNNING );
+    assert( !Storage.empty() );
 
     // Find correct TD Vector and interpolate
     TdVector    *pTdVec = Storage[ FindIndex( t_req ) ];
