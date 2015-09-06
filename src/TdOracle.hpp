@@ -2,11 +2,10 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Time deviation oracle, a combination of multiple time deviation
+///         estimator chains.
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_oracle
 ///
 // ============================================================================
 
@@ -52,28 +51,74 @@
 // Function declarations
 // =========================================================================
 
+/// Time deviation oracle, a combination of multiple time deviation
+/// estimator chains.
 class TdOracle
 {
     private:
 
+        // -----------------------------------------------------------------
         // Config
+        // -----------------------------------------------------------------
 
+        // -----------------------------------------------------------------
         // Resources
+        // -----------------------------------------------------------------
 
     public:
 
+        // -----------------------------------------------------------------
         // Constructors/Destructor
+        // -----------------------------------------------------------------
+
+        /// Constructor
         TdOracle();
+
+        /// Copy constructor
+        ///
+        /// \param other    The instance that should be copied
         TdOracle( const TdOracle& other );
+
+        /// Destructor
         virtual ~TdOracle();
 
+        // -----------------------------------------------------------------
         // Operators
+        // -----------------------------------------------------------------
+
+        /// Assignment operator
+        ///
+        /// \param other    The instance that should be assigned
+        ///
+        /// \return         An assigned instance
         TdOracle&  operator=( const TdOracle& other );
 
+        // -----------------------------------------------------------------
         // API
+        // -----------------------------------------------------------------
+
+        /// Enable the individual time deviation estimator to skip time intervals
+        /// for requests in the distant future.
         virtual void    EnableIntervalSkipping() = 0;
+
+        /// Disable the skipping of time intervals in the individual time deviation
+        /// estimator.
         virtual void    DisableIntervalSkipping() = 0;
+
+        /// Set a new seed for the random number generators
+        ///
+        /// \param Seed     The new seed for the random number generators
         virtual void    SetSeed( unsigned int Seed ) = 0;
+
+        /// Request an estimate for the time deviation at a given point in time
+        ///
+        /// The resulting time deviation will be the sum of the individual results from
+        /// all estimator chains in this oracle.
+        ///
+        /// \param t_now    The current time (in seconds)
+        /// \param t_req    The time (in seconds) for which the time deviation is requested
+        ///
+        /// \return         Estimated time deviation (in seconds) at the requested time
         virtual double  EstimateTD( double t_now, double t_req ) = 0;
 };
 

@@ -2,11 +2,10 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Time deviation oracle, a combination of multiple time deviation
+///         estimator chains.
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_oracle
 ///
 // ============================================================================
 
