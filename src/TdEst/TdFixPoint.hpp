@@ -72,6 +72,18 @@ class TdFixPoint
         /// \param RelativeTD   Relative time deviation
         TdFixPoint( double t, double RelativeTD );
 
+        /// Copy constructor
+        ///
+        /// \param other        The instance that we want to copy
+        TdFixPoint( const TdFixPoint& other );
+
+        /// Assignment operator
+        ///
+        /// \param other        The instance that we want to assign
+        ///
+        /// \return     An assigned instance
+        TdFixPoint&     operator= (const TdFixPoint& other);
+
         // -----------------------------------------------------------------
         // API
         // -----------------------------------------------------------------

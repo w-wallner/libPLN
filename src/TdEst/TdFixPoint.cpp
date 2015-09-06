@@ -62,6 +62,22 @@ TdFixPoint::TdFixPoint( double t, double RelativeTD )
     this->RelativeTD    = RelativeTD;
 }
 
+TdFixPoint::TdFixPoint( const TdFixPoint& other )
+{
+    this->t             = other.t;
+    this->RelativeTD    = other.RelativeTD;
+}
+
+TdFixPoint&
+TdFixPoint::operator= (const TdFixPoint& other)
+{
+    this->t             = other.t;
+    this->RelativeTD    = other.RelativeTD;
+
+    // By convention, always return *this
+    return *this;
+}
+
 double
 TdFixPoint::Get_t() const
 {
