@@ -2,11 +2,10 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of time deviation generator for RW noise using
+///         recursive filters.
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vec_gen
 ///
 // ============================================================================
 
@@ -74,6 +73,7 @@ RwTdVecGen::ApplyRecursiveFilter( FFT_RealVector *pw )
     std::transform( pw->begin(), pw->end(), pw->begin(),
               bind2nd(std::plus<double>(), FFD_0) );
 
+    // Save last FDD value for the next iteration
     FFD_0 = *pw->rbegin();
 }
 

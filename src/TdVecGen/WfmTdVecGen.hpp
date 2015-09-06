@@ -2,11 +2,10 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of time deviation generator for WFM noise using
+///         recursive filters.
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vec_gen
 ///
 // ============================================================================
 
@@ -48,26 +47,59 @@
 // Type definitions
 // =========================================================================
 
+/// Time deviation vector generator for WFM noise using a recursive filter.
 class WfmTdVecGen : public RecursiveTdVecGen
 {
     private:
 
+        // -----------------------------------------------------------------
         // Config
+        // -----------------------------------------------------------------
 
+        // -----------------------------------------------------------------
         // Internal functions
+        // -----------------------------------------------------------------
+
+        /// Reset the internal data structures of the recursive filter
         void    ResetRecursiveFilter();
+
+        /// Apply the recursive filter on the generated random white noise data
         void    ApplyRecursiveFilter( FFT_RealVector *pw );
 
     public:
 
+        // -----------------------------------------------------------------
         // Constructors/Destructor
+        // -----------------------------------------------------------------
+
+        /// Constructor
+        ///
+        /// \param TdVecLen         Length of TD vectors that should be created
+        /// \param TickLen          Time (in seconds) between simulated TD samples
+        /// \param PLN_FilterConf   Configuration for the PLN filtering process
+        /// \param InterpolConfig   Interpolation configuration
         WfmTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
+
+        /// Copy constructor
+        ///
+        /// \param other    The instance from which we want to copy
         WfmTdVecGen( const WfmTdVecGen& other );
+
+        /// Destructor
         ~WfmTdVecGen();
 
+        /// Clone method
+        ///
+        /// \return         Returns a cloned instance
         WfmTdVecGen* Clone() const;  // Virtual constructor (copying)
 
+        // -----------------------------------------------------------------
         // Operators
+        // -----------------------------------------------------------------
+
+        /// Assignment operator
+        ///
+        /// \param other    The instance from which we want to copy
         WfmTdVecGen&  operator=( const WfmTdVecGen& other );
 };
 

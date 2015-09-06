@@ -2,11 +2,11 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of time deviation generator using recursive filters.
+///         This approach is valid for several classes of powerlaw noise, i.e.
+///         those where alpha is an even number (WPM, WFM and RW noise).
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vec_gen
 ///
 // ============================================================================
 

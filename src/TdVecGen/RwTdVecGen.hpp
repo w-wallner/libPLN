@@ -2,11 +2,10 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of time deviation generator for RW noise using
+///         recursive filters.
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vec_gen
 ///
 // ============================================================================
 
@@ -52,29 +51,69 @@
 // Function declarations
 // =========================================================================
 
+/// Time deviation vector generator for RW noise using a recursive filter.
+///
+/// The white noise vectors are filtered using a cumulative sum filter to
+/// get RW shaped FFD data. Each new generated vector needs to continue
+/// where the last vector ended, thus the last FFD value is stored.
 class RwTdVecGen : public RecursiveTdVecGen
 {
     private:
 
+        // -----------------------------------------------------------------
         // Config
+        // -----------------------------------------------------------------
 
+        // -----------------------------------------------------------------
         // House keeping
-        double          FFD_0;
+        // -----------------------------------------------------------------
+        double          FFD_0;      ///< Last value of the last FFD vector.
+                                    ///< This is the starting point for the next vector.
 
+        // -----------------------------------------------------------------
         // Internal functions
+        // -----------------------------------------------------------------
+
+        /// Reset the internal data structures of the recursive filter
         void    ResetRecursiveFilter();
+
+        /// Apply the recursive filter on the generated random white noise data
         void    ApplyRecursiveFilter( FFT_RealVector *pw );
 
     public:
 
+        // -----------------------------------------------------------------
         // Constructors/Destructor
+        // -----------------------------------------------------------------
+
+        /// Constructor
+        ///
+        /// \param TdVecLen         Length of TD vectors that should be created
+        /// \param TickLen          Time (in seconds) between simulated TD samples
+        /// \param PLN_FilterConf   Configuration for the PLN filtering process
+        /// \param InterpolConfig   Interpolation configuration
         RwTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
+
+        /// Copy constructor
+        ///
+        /// \param other    The instance from which we want to copy
         RwTdVecGen( const RwTdVecGen& other );
+
+        /// Destructor
         ~RwTdVecGen();
 
+        /// Clone method
+        ///
+        /// \return         Returns a cloned instance
         RwTdVecGen* Clone() const;  // Virtual constructor (copying)
 
+        // -----------------------------------------------------------------
         // Operators
+        // -----------------------------------------------------------------
+
+        /// Assignment operator
+        ///
+        /// \param other    The instance from which we want to copy
         RwTdVecGen&  operator=( const RwTdVecGen& other );
 };
 

@@ -2,11 +2,11 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of time deviation generator using recursive filters.
+///         This approach is valid for several classes of powerlaw noise, i.e.
+///         those where alpha is an even number (WPM, WFM and RW noise).
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vec_gen
 ///
 // ============================================================================
 
@@ -52,31 +52,85 @@
 // Function declarations
 // =========================================================================
 
+/// Time deviation vector generator using recursive filters
+///
+/// Several classes of powerlaw noise can be implemented using recursive
+/// filters instead of the generic Kasdin/Walter filter approach:
+/// - WFM noise: The white noise generator produces ... white noise. Thus if
+///     it is interpreted as fractional frequency deviation data, we don't
+///     need any further filtering. In this case, we still need to calculate
+///     the cumulative sum of the FFD data to get relative time deviation
+///     data.
+/// - RW noise: The filter to get RW-shaped powerlaw noise from white noise
+///     is a cumulative sum. To get relative time deviation data, we need
+///     to calculate again a cumulative sum.
+/// - WPM noise: the filter to get WPM-shaped powerlaw noise from white noise
+///     is a discrete derivative filter. This cancels with the cumulative sum
+///     needed for the FFD->TD step. Thus, the random values from the white
+///     noise generator can be directly interpreted as WPM noise.
+///
+/// These recursive filter options are implemented in the subclasses of this
+/// class.
 class RecursiveTdVecGen : public TdVecGen
 {
     protected:
 
+        // -----------------------------------------------------------------
         // Config
-        bool                        EnableHpFilter;
-        TdVector::TdVecDataType     DataType;
+        // -----------------------------------------------------------------
+        bool                        EnableHpFilter;     ///< Configuration option to use a high pass filter
+        TdVector::TdVecDataType     DataType;           ///< How the generated noise data should be interpreted
 
+        // -----------------------------------------------------------------
         // Internal functions
+        // -----------------------------------------------------------------
+
+        /// Reset the internal data structures of the recursive filter
         virtual void    ResetRecursiveFilter() = 0;
+
+        /// Apply the recursive filter on the generated random white noise data
         virtual void    ApplyRecursiveFilter( FFT_RealVector *pw ) = 0;
 
     public:
 
+        // -----------------------------------------------------------------
         // Constructors/Destructor
+        // -----------------------------------------------------------------
+
+        /// Constructor
+        ///
+        /// \param TdVecLen         Length of TD vectors that should be created
+        /// \param TickLen          Time (in seconds) between simulated TD samples
+        /// \param PLN_FilterConf   Configuration for the PLN filtering process
+        /// \param InterpolConfig   Interpolation configuration
         RecursiveTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
+
+        /// Copy constructor
+        ///
+        /// \param other    The instance from which we want to copy
         RecursiveTdVecGen( const RecursiveTdVecGen& other );
+
+        /// Destructor
         virtual ~RecursiveTdVecGen();
 
+        /// Clone method
+        ///
+        /// This method has to be overloaded by subclasses and needs to return a pointer
+        /// to a subclass instance.
         virtual RecursiveTdVecGen* Clone() const = 0;  // Virtual constructor (copying)
 
+        // -----------------------------------------------------------------
         // Operators
+        // -----------------------------------------------------------------
+
+        /// Assignment operator
+        ///
+        /// \param other    The instance from which we want to copy
         RecursiveTdVecGen&  operator=( const RecursiveTdVecGen& other );
 
+        // -----------------------------------------------------------------
         // API
+        // -----------------------------------------------------------------
         TdVector        *GetNextVector();
         virtual void    ResetToFixPoint( TdFixPoint fp );
 };

@@ -59,7 +59,6 @@ class TdVecGen
         // Types
         // -----------------------------------------------------------------
 
-
         /// Enumeration to encode the state of internal convolution
         ///
         /// The time deviation vector generator works by overlapping convolution.
@@ -126,7 +125,6 @@ class TdVecGen
         /// \param TickLen          Time (in seconds) between simulated TD samples
         /// \param PLN_FilterConf   Configuration for the PLN filtering process
         /// \param InterpolConfig   Interpolation configuration
-        ///
         TdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, InterpolationConfig_t InterpolConf );
 
         /// Copy constructor
@@ -152,7 +150,7 @@ class TdVecGen
         // -----------------------------------------------------------------
         // Operators
         // -----------------------------------------------------------------
-        /// Assignmnet operator
+        /// Assignment operator
         ///
         /// \param other    The instance from which we want to copy
         TdVecGen&  operator=( const TdVecGen& other );
