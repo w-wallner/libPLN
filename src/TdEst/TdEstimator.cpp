@@ -138,32 +138,32 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     }
 
     // Set up components
-    switch( Conf.KwImplOption )
+    switch( Conf.PLN_FilterImpl )
     {
-        case USE_SHORTCUTS:
+        case RECURSIVE_FILTER:
         {
-            if( Conf.KwConf.alpha == 2.0L )
+            if( Conf.PLN_FilterConf.alpha == 2.0L )
             {
-                pTdVecGen    = new WpmTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
+                pTdVecGen    = new WpmTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
             }
-            else if( Conf.KwConf.alpha == 0.0L )
+            else if( Conf.PLN_FilterConf.alpha == 0.0L )
             {
-                pTdVecGen    = new WfmTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
+                pTdVecGen    = new WfmTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
             }
-            else if( Conf.KwConf.alpha == -2.0L )
+            else if( Conf.PLN_FilterConf.alpha == -2.0L )
             {
-                pTdVecGen    = new RwTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
+                pTdVecGen    = new RwTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
             }
             else
             {
-                pTdVecGen    = new GenericTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
+                pTdVecGen    = new GenericTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
             }
             break;
         }
 
-        case FORCE_GENERIC:
+        case KASDIN_WALTER_FILTER:
         {
-            pTdVecGen    = new GenericTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
+            pTdVecGen    = new GenericTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
             break;
         }
     }

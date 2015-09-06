@@ -65,7 +65,7 @@ class WpmTdVecGen : public RecursiveTdVecGen
     public:
 
         // Constructors/Destructor
-        WpmTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
+        WpmTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
         WpmTdVecGen( const WpmTdVecGen& other );
         ~WpmTdVecGen();
 

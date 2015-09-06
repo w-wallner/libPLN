@@ -53,14 +53,14 @@ typedef struct
     double  f_s;
     size_t  TdVecLen;
 }
-SampleConfig;
+SampleConfig_t;
 
 typedef enum
 {
-    USE_SHORTCUTS,
-    FORCE_GENERIC
+    RECURSIVE_FILTER,
+    KASDIN_WALTER_FILTER,
 }
-KW_ImplOption;
+PLN_FilterImpl_t;
 
 typedef struct
 {
@@ -69,58 +69,58 @@ typedef struct
     double          alpha;
     size_t          FilterLen;
 }
-KW_FilterConfig;
+PLN_FilterConfig_t;
 
 typedef enum
 {
     BLACKMAN,
     NO_FILTER,
 }
-HP_FilterType;
+HP_FilterType_t;
 
 typedef struct
 {
-    HP_FilterType   Type;
-    double          f_c_nom;
-    size_t          FilterLen;
-    size_t          Cnt;
+    HP_FilterType_t     FilterType;
+    double              f_c_nom;
+    size_t              FilterLen;
+    size_t              Cnt;
 }
-HP_FilterConfig;
+HP_FilterConfig_t;
 
 typedef enum
 {
     LINEAR_INTERPOLATION,
     CUBIC_SPLINE_INTERPOLATION
 }
-InterpolationType;
+InterpolationType_t;
 
 typedef struct
 {
-    InterpolationType   Type;
+    InterpolationType_t  InterPolType;
 }
-InterpolationConfig;
+InterpolationConfig_t;
 
 typedef struct
 {
     double  T_val;
 }
-TimeConfig;
+TimeConfig_t;
 
 typedef struct
 {
     size_t  ForgetTh;
 }
-PerformanceConfig;
+PerformanceConfig_t;
 
 typedef struct
 {
-    SampleConfig            SampleConf;
-    KW_FilterConfig         KwConf;
-    KW_ImplOption           KwImplOption;
-    HP_FilterConfig         HpConf;
-    InterpolationConfig     InterpolConf;
-    TimeConfig              TimeConf;
-    PerformanceConfig       PerformanceConf;
+    SampleConfig_t          SampleConf;
+    PLN_FilterConfig_t      PLN_FilterConf;
+    PLN_FilterImpl_t        PLN_FilterImpl;
+    HP_FilterConfig_t       HP_FilterConf;
+    InterpolationConfig_t   InterpolConf;
+    TimeConfig_t            TimeConf;
+    PerformanceConfig_t     PerformanceConf;
 }
 TdEstimatorConfig;
 

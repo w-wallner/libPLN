@@ -126,31 +126,31 @@ void TestTdVecGen()
 
     size_t TdVecLen;
     double TickLen;
-    KW_FilterConfig KwConf;
-    HP_FilterConfig HpConf;
-    InterpolationConfig InterpolConf;
+    PLN_FilterConfig_t PLN_FilterConf;
+    HP_FilterConfig_t HP_FilterConf;
+    InterpolationConfig_t InterpolConf;
 
     TdVecLen = 100;
     TickLen  = 1.0;
 
-    KwConf.FilterLen    = 10;
-    KwConf.Qd           = 10E-2;
-    KwConf.Seed         = 5432;
-    KwConf.alpha        = -2.0;
+    PLN_FilterConf.FilterLen    = 10;
+    PLN_FilterConf.Qd           = 10E-2;
+    PLN_FilterConf.Seed         = 5432;
+    PLN_FilterConf.alpha        = -2.0;
 
-    HpConf.Cnt          = 1;
-    HpConf.FilterLen    = 11;
-    HpConf.Type         = BLACKMAN;
-    HpConf.f_c_nom      = 0.5;
+    HP_FilterConf.Cnt           = 1;
+    HP_FilterConf.FilterLen     = 11;
+    HP_FilterConf.FilterType    = BLACKMAN;
+    HP_FilterConf.f_c_nom       = 0.5;
 
-    InterpolConf.Type   = CUBIC_SPLINE_INTERPOLATION;
+    InterpolConf.InterPolType   = CUBIC_SPLINE_INTERPOLATION;
 
     TdVecGen *pA;
 
-    //pA = new GenericTdVecGen( TdVecLen, TickLen, KwConf, HpConf, InterpolConf );
-    //pA = new WpmTdVecGen( TdVecLen, TickLen, KwConf, HpConf, InterpolConf );
-    //pA = new WfmTdVecGen( TdVecLen, TickLen, KwConf, HpConf, InterpolConf );
-    pA = new RwTdVecGen( TdVecLen, TickLen, KwConf, HpConf, InterpolConf );
+    //pA = new GenericTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
+    //pA = new WpmTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
+    //pA = new WfmTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
+    pA = new RwTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
 
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << pA->GetNextVector()->GetEndTD() << endl;
@@ -184,7 +184,7 @@ void    TestWpmTdVecGen()
     TdEstimatorConfig Conf = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz( 123 );
     double  TickLen = 1.0L / Conf.SampleConf.f_s;
 
-    GenericTdVecGen g( Conf.SampleConf.TdVecLen, TickLen, Conf.KwConf, Conf.HpConf, Conf.InterpolConf );
+    GenericTdVecGen g( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
 
     TdVector *pTdVec;
 

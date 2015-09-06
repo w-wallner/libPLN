@@ -63,12 +63,12 @@ class RecursiveTdVecGen : public TdVecGen
         // Internal functions
         virtual void    ResetRecursiveFilter() = 0;
         virtual void    ApplyRecursiveFilter( FFT_RealVector *pw ) = 0;
-        void            SetUpHpConvFilter( HP_FilterConfig HpConf, size_t TdVecLen );
+        void            SetUpHpConvFilter( HP_FilterConfig_t HP_FilterConf, size_t TdVecLen );
 
     public:
 
         // Constructors/Destructor
-        RecursiveTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
+        RecursiveTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
         RecursiveTdVecGen( const RecursiveTdVecGen& other );
         virtual ~RecursiveTdVecGen();
 

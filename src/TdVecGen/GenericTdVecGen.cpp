@@ -63,12 +63,12 @@
 // =========================================================================
 
 void
-GenericTdVecGen::SetUpKwHpConvFilter( KW_FilterConfig KwConf, HP_FilterConfig HpConf, size_t TdVecLen )
+GenericTdVecGen::SetUpKwHpConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, size_t TdVecLen )
 {
     // Set up filter kernel
-    KwFilterImpResp   kw( KwConf.FilterLen, KwConf.alpha );
+    KwFilterImpResp   kw( PLN_FilterConf.FilterLen, PLN_FilterConf.alpha );
 
-    switch( HpConf.Type )
+    switch( HP_FilterConf.FilterType )
     {
         case NO_FILTER:
         {
@@ -78,9 +78,9 @@ GenericTdVecGen::SetUpKwHpConvFilter( KW_FilterConfig KwConf, HP_FilterConfig Hp
 
         case BLACKMAN:
         {
-            BmHpFilterImpResp bm( HpConf.FilterLen, HpConf.f_c_nom );
+            BmHpFilterImpResp bm( HP_FilterConf.FilterLen, HP_FilterConf.f_c_nom );
 
-            bm.Augment( HpConf.Cnt );
+            bm.Augment( HP_FilterConf.Cnt );
 
             H   = FilterKernel( TdVecLen, kw, bm );
             break;
@@ -90,10 +90,10 @@ GenericTdVecGen::SetUpKwHpConvFilter( KW_FilterConfig KwConf, HP_FilterConfig Hp
     FfdVecLen   = H.GetFFT_RealSize();
 }
 
-GenericTdVecGen::GenericTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
-    : TdVecGen( TdVecLen, TickLen, KwConf, InterpolConf )
+GenericTdVecGen::GenericTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
+    : TdVecGen( TdVecLen, TickLen, PLN_FilterConf, InterpolConf )
 {
-    SetUpKwHpConvFilter( KwConf, HpConf, TdVecLen );
+    SetUpKwHpConvFilter( PLN_FilterConf, HP_FilterConf, TdVecLen );
 }
 
 GenericTdVecGen::GenericTdVecGen( const GenericTdVecGen& other )

@@ -97,25 +97,24 @@ EstimatorTestBench()
     Conf.SampleConf.f_s              = 1E1;
     Conf.SampleConf.TdVecLen         = 1000;
 
-    Conf.KwImplOption                = USE_SHORTCUTS;
-//    Conf.KwImplOption                = FORCE_GENERIC;
+    Conf.PLN_FilterImpl              = RECURSIVE_FILTER;
+//    Conf.PLN_FilterImpl              = KASDIN_WALTER_FILTER;
 
-//    Conf.KwFilterConf.Qd             = 1E-24;
-    Conf.KwConf.Qd             = 1E-18 * sqrt(100);
-    Conf.KwConf.alpha          = 2.0;
-    Conf.KwConf.FilterLen      = 100;
-    Conf.KwConf.Seed           = 1234;
+    Conf.PLN_FilterConf.Qd           = 1E-18 * sqrt(100);
+    Conf.PLN_FilterConf.alpha        = 2.0;
+    Conf.PLN_FilterConf.FilterLen    = 100;
+    Conf.PLN_FilterConf.Seed         = 1234;
 
-    Conf.HpConf.Type           = BLACKMAN;
-//    Conf.HpConf.Type           = NO_FILTER;
-    Conf.HpConf.f_c_nom        = 0.05;
-    Conf.HpConf.FilterLen      = 501;
-    Conf.HpConf.Cnt            = 1;
+    Conf.HP_FilterConf.FilterType    = BLACKMAN;
+//    Conf.HP_FilterConf.Type          = NO_FILTER;
+    Conf.HP_FilterConf.f_c_nom       = 0.05;
+    Conf.HP_FilterConf.FilterLen     = 501;
+    Conf.HP_FilterConf.Cnt           = 1;
 
-    Conf.InterpolConf.Type           = CUBIC_SPLINE_INTERPOLATION;
-    Conf.InterpolConf.Type           = LINEAR_INTERPOLATION;
+    Conf.InterpolConf.InterPolType   = CUBIC_SPLINE_INTERPOLATION;
+    Conf.InterpolConf.InterPolType   = LINEAR_INTERPOLATION;
 
-    Conf.TimeConf.T_val              = Conf.KwConf.FilterLen * (1.0L/Conf.SampleConf.f_s);
+    Conf.TimeConf.T_val              = Conf.PLN_FilterConf.FilterLen * (1.0L/Conf.SampleConf.f_s);
 
     Conf.PerformanceConf.ForgetTh    = 0;
 

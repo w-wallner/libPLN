@@ -131,13 +131,13 @@ TdVecGen::ConstructTdVector( FFT_RealVector *pData, TdVector::TdVecDataType Data
     return pTdVec;
 }
 
-TdVecGen::TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, InterpolationConfig InterpolConf )
-    : WhiteNoiseGen( KwConf.Seed, KwConf.Qd )
+TdVecGen::TdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, InterpolationConfig_t InterpolConf )
+    : WhiteNoiseGen( PLN_FilterConf.Seed, PLN_FilterConf.Qd )
 {
     // Set up config
     this->TdVecLen          = TdVecLen;
     this->TickLen           = TickLen;
-    this->IntpolType        = InterpolConf.Type;
+    this->IntpolType        = InterpolConf.InterPolType;
 
     this->Last_t_end        = 0.0L;
     this->LastRelativeTD    = 0.0L;

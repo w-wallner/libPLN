@@ -69,8 +69,8 @@ WfmTdVecGen::ApplyRecursiveFilter( FFT_RealVector *pw )
     // For WFM there is nothing to do here
 }
 
-WfmTdVecGen::WfmTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
-    : RecursiveTdVecGen( TdVecLen, TickLen, KwConf, HpConf, InterpolConf )
+WfmTdVecGen::WfmTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
+    : RecursiveTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf )
 {
     DataType    = TdVector::FFD_DATA;
 }

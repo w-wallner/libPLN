@@ -60,9 +60,9 @@
 // =========================================================================
 
 void
-RecursiveTdVecGen::SetUpHpConvFilter( HP_FilterConfig HpConf, size_t TdVecLen )
+RecursiveTdVecGen::SetUpHpConvFilter( HP_FilterConfig_t HP_FilterConf, size_t TdVecLen )
 {
-    switch( HpConf.Type )
+    switch( HP_FilterConf.FilterType )
     {
         case NO_FILTER:
         {
@@ -73,9 +73,9 @@ RecursiveTdVecGen::SetUpHpConvFilter( HP_FilterConfig HpConf, size_t TdVecLen )
 
         case BLACKMAN:
         {
-            BmHpFilterImpResp bm( HpConf.FilterLen, HpConf.f_c_nom );
+            BmHpFilterImpResp bm( HP_FilterConf.FilterLen, HP_FilterConf.f_c_nom );
 
-            bm.Augment( HpConf.Cnt );
+            bm.Augment( HP_FilterConf.Cnt );
 
             H   = FilterKernel( TdVecLen, bm );
 
@@ -86,12 +86,12 @@ RecursiveTdVecGen::SetUpHpConvFilter( HP_FilterConfig HpConf, size_t TdVecLen )
     }
 }
 
-RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf )
-    : TdVecGen( TdVecLen, TickLen, KwConf, InterpolConf )
+RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
+    : TdVecGen( TdVecLen, TickLen, PLN_FilterConf, InterpolConf )
 {
     DataType    = TdVector::FFD_DATA;
 
-    SetUpHpConvFilter( HpConf, TdVecLen );
+    SetUpHpConvFilter( HP_FilterConf, TdVecLen );
 }
 
 RecursiveTdVecGen::RecursiveTdVecGen( const RecursiveTdVecGen& other )

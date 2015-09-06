@@ -76,17 +76,17 @@ class TdVecGen
         // -----------------------------------------------------------------
         // Config
         // -----------------------------------------------------------------
-        double              TickLen;                ///< Time (in seconds) between two simulated TD values
-        InterpolationType   IntpolType;             ///< Interpolation type for the generated TD vectors
-        size_t              TdVecLen;               ///< Length of the generated TD vectors
+        double                  TickLen;            ///< Time (in seconds) between two simulated TD values
+        InterpolationType_t     IntpolType;         ///< Interpolation type for the generated TD vectors
+        size_t                  TdVecLen;           ///< Length of the generated TD vectors
 
         // -----------------------------------------------------------------
         // House keeping
         // -----------------------------------------------------------------
-        ConvState_t         ConvState;              ///< Current state of the convolution
-        double              Last_t_end;             ///< Time (in seconds) at the end of the last generated TD vector
-        double              LastRelativeTD;         ///< Time deviation (in seconds) at the end of the last generated vector
-        size_t              FfdVecLen;              ///< Length of the Fractional Frequency Deviation vectors that are used to generate Time Deviation vectors
+        ConvState_t             ConvState;          ///< Current state of the convolution
+        double                  Last_t_end;         ///< Time (in seconds) at the end of the last generated TD vector
+        double                  LastRelativeTD;     ///< Time deviation (in seconds) at the end of the last generated vector
+        size_t                  FfdVecLen;          ///< Length of the Fractional Frequency Deviation vectors that are used to generate Time Deviation vectors
 
         // -----------------------------------------------------------------
         // Resources
@@ -124,10 +124,10 @@ class TdVecGen
         ///
         /// \param TdVecLen         Length of TD vectors that should be created
         /// \param TickLen          Time (in seconds) between simulated TD samples
-        /// \param KW_FilterConfig  Config for the Kasdin/Walter filter
+        /// \param TODO
         /// \param InterpolConfig   Interpolation configuration
         ///
-        TdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, InterpolationConfig InterpolConf );
+        TdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, InterpolationConfig_t InterpolConf );
 
         /// Copy constructor
         ///

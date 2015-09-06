@@ -68,19 +68,19 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz(unsigned int Seed)
     config.SampleConf.f_s               = 40E6;
     config.SampleConf.f_s               = 40E6;
     config.SampleConf.TdVecLen          = 5100;
-    config.KwImplOption                 = USE_SHORTCUTS;
+    config.PLN_FilterImpl               = RECURSIVE_FILTER;
 
-    config.KwConf.Qd                    = 5.5360E-5;
-    config.KwConf.alpha                 = 2.0;
-    config.KwConf.FilterLen             = 10;
-    config.KwConf.Seed                  = Seed + 0;
+    config.PLN_FilterConf.Qd            = 5.5360E-5;
+    config.PLN_FilterConf.alpha         = 2.0;
+    config.PLN_FilterConf.FilterLen     = 10;
+    config.PLN_FilterConf.Seed          = Seed + 0;
 
-    config.HpConf.Type                  = BLACKMAN;
-    config.HpConf.f_c_nom               = 0.024;
-    config.HpConf.FilterLen             = 5001;
-    config.HpConf.Cnt                   = 1;
+    config.HP_FilterConf.FilterType     = BLACKMAN;
+    config.HP_FilterConf.f_c_nom        = 0.024;
+    config.HP_FilterConf.FilterLen      = 5001;
+    config.HP_FilterConf.Cnt            = 1;
 
-    config.InterpolConf.Type            = LINEAR_INTERPOLATION;
+    config.InterpolConf.InterPolType    = LINEAR_INTERPOLATION;
 
     config.TimeConf.T_val               = 2E-6;
 
@@ -97,19 +97,19 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz(unsigned int Seed)
     config.SampleConf.f_s                = 22E5;
     config.SampleConf.TdVecLen           = 5100;
 
-    config.KwImplOption                  = USE_SHORTCUTS;
+    config.PLN_FilterImpl                = RECURSIVE_FILTER;
 
-    config.KwConf.Qd                     = 9.2105E-09;
-    config.KwConf.alpha                  = 2.0;
-    config.KwConf.FilterLen              = 10;
-    config.KwConf.Seed                   = Seed;
+    config.PLN_FilterConf.Qd             = 9.2105E-09;
+    config.PLN_FilterConf.alpha          = 2.0;
+    config.PLN_FilterConf.FilterLen      = 10;
+    config.PLN_FilterConf.Seed           = Seed;
 
-    config.HpConf.Type                   = BLACKMAN;
-    config.HpConf.f_c_nom                = 0.004;
-    config.HpConf.FilterLen              = 1001;
-    config.HpConf.Cnt                    = 1;
+    config.HP_FilterConf.FilterType      = BLACKMAN;
+    config.HP_FilterConf.f_c_nom         = 0.004;
+    config.HP_FilterConf.FilterLen       = 1001;
+    config.HP_FilterConf.Cnt             = 1;
 
-    config.InterpolConf.Type             = CUBIC_SPLINE_INTERPOLATION;
+    config.InterpolConf.InterPolType     = CUBIC_SPLINE_INTERPOLATION;
 
     config.TimeConf.T_val                = 200E-6;
 
@@ -126,20 +126,19 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz(unsigned int Seed)
     config.SampleConf.f_s               = 20E3;
     config.SampleConf.TdVecLen          = 5100;
 
-    config.KwImplOption                 = USE_SHORTCUTS;
+    config.PLN_FilterImpl               = RECURSIVE_FILTER;
 
-    config.KwConf.Qd                    = 6.9200E-15;
-    config.KwConf.alpha                 = 2.0;
-    config.KwConf.FilterLen             = 10;
-    config.KwConf.Seed                  = Seed;
+    config.PLN_FilterConf.Qd            = 6.9200E-15;
+    config.PLN_FilterConf.alpha         = 2.0;
+    config.PLN_FilterConf.FilterLen     = 10;
+    config.PLN_FilterConf.Seed          = Seed;
 
-    config.HpConf.Type                  = BLACKMAN;
-    config.HpConf.f_c_nom               = 0.004;
-    config.HpConf.f_c_nom               = 0.0035;
-    config.HpConf.FilterLen             = 501;
-    config.HpConf.Cnt                   = 1;
+    config.HP_FilterConf.FilterType     = BLACKMAN;
+    config.HP_FilterConf.f_c_nom        = 0.0035;
+    config.HP_FilterConf.FilterLen      = 501;
+    config.HP_FilterConf.Cnt            = 1;
 
-    config.InterpolConf.Type            = CUBIC_SPLINE_INTERPOLATION;
+    config.InterpolConf.InterPolType    = CUBIC_SPLINE_INTERPOLATION;
 
     config.TimeConf.T_val               = 20E-3;
 
@@ -156,19 +155,19 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz(unsigned int Seed)
     config.SampleConf.f_s               = 200;
     config.SampleConf.TdVecLen          = 5100;
 
-    config.KwImplOption                 = USE_SHORTCUTS;
+    config.PLN_FilterImpl               = RECURSIVE_FILTER;
 
-    config.KwConf.Qd                    = 6.9200E-21;
-    config.KwConf.alpha                 = 2.0;
-    config.KwConf.FilterLen             = 10;
-    config.KwConf.Seed                  = Seed;
+    config.PLN_FilterConf.Qd            = 6.9200E-21;
+    config.PLN_FilterConf.alpha         = 2.0;
+    config.PLN_FilterConf.FilterLen     = 10;
+    config.PLN_FilterConf.Seed          = Seed;
 
-    config.HpConf.Type                  = NO_FILTER;
-    config.HpConf.f_c_nom               = 0.01;
-    config.HpConf.FilterLen             = 5001;
-    config.HpConf.Cnt                   = 1;
+    config.HP_FilterConf.FilterType     = NO_FILTER;
+    config.HP_FilterConf.f_c_nom        = 0.01;
+    config.HP_FilterConf.FilterLen      = 5001;
+    config.HP_FilterConf.Cnt            = 1;
 
-    config.InterpolConf.Type            = CUBIC_SPLINE_INTERPOLATION;
+    config.InterpolConf.InterPolType    = CUBIC_SPLINE_INTERPOLATION;
 
     config.TimeConf.T_val               = 20;
 

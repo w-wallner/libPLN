@@ -146,11 +146,11 @@ TdEstChain::AddTdEstimator( TdEstimatorConfig Conf )
 {
     if( Chain.size() == 0 )
     {
-        alpha = Conf.KwConf.alpha;
+        alpha = Conf.PLN_FilterConf.alpha;
     }
     else
     {
-        if( Conf.KwConf.alpha != alpha )
+        if( Conf.PLN_FilterConf.alpha != alpha )
         {
             throw std::invalid_argument( "Configured alpha value does not match existing value." );
         }

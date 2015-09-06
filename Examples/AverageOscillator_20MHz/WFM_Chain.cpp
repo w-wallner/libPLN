@@ -68,19 +68,19 @@ TdOracle_AvgOsc20MHz::TdEstChain_WFM::GetConfig_WFM_100Hz(unsigned int Seed)
     config.SampleConf.f_s               = 200;
     config.SampleConf.TdVecLen          = 5100;
 
-    config.KwImplOption                 = USE_SHORTCUTS;
+    config.PLN_FilterImpl               = RECURSIVE_FILTER;
 
-    config.KwConf.Qd                    = 4.5420E-17;
-    config.KwConf.alpha                 = 0.0;
-    config.KwConf.FilterLen             = 10;
-    config.KwConf.Seed                  = Seed;
+    config.PLN_FilterConf.Qd            = 4.5420E-17;
+    config.PLN_FilterConf.alpha         = 0.0;
+    config.PLN_FilterConf.FilterLen     = 10;
+    config.PLN_FilterConf.Seed          = Seed;
 
-    config.HpConf.Type                  = NO_FILTER;
-    config.HpConf.f_c_nom               = 0.01;
-    config.HpConf.FilterLen             = 5001;
-    config.HpConf.Cnt                   = 1;
+    config.HP_FilterConf.FilterType     = NO_FILTER;
+    config.HP_FilterConf.f_c_nom        = 0.01;
+    config.HP_FilterConf.FilterLen      = 5001;
+    config.HP_FilterConf.Cnt            = 1;
 
-    config.InterpolConf.Type            = CUBIC_SPLINE_INTERPOLATION;
+    config.InterpolConf.InterPolType    = CUBIC_SPLINE_INTERPOLATION;
 
     config.TimeConf.T_val               = 20;
 

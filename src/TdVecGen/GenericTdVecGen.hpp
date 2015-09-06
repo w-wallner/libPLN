@@ -58,12 +58,12 @@ class GenericTdVecGen : public TdVecGen
         // Resources
 
         // Internal functions
-        void        SetUpKwHpConvFilter( KW_FilterConfig KwConf, HP_FilterConfig HpConf, size_t TdVecLen );
+        void        SetUpKwHpConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, size_t TdVecLen );
 
     public:
 
         // Constructors/Destructor
-        GenericTdVecGen( size_t TdVecLen, double TickLen, KW_FilterConfig KwConf, HP_FilterConfig HpConf, InterpolationConfig InterpolConf );
+        GenericTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
         GenericTdVecGen( const GenericTdVecGen& other );
         ~GenericTdVecGen();
 
