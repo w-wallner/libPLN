@@ -69,8 +69,7 @@ class TdEstimator
 
         // House keeping
         TdGuess             LastGuess;
-        double              Last_t_req;
-        double              Last_TD_abs;
+        TdFixPoint          LastResult;
 
         // Internal functions
         void    ForgetPast( double t_now );

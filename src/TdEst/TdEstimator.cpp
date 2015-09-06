@@ -113,7 +113,8 @@ TdEstimator::GuessFutureRelativeTD( double t_req )
 }
 
 TdEstimator::TdEstimator( TdEstimatorConfig Conf )
-    : TdVecStorage( Conf.PerformanceConf.ForgetTh )
+    : TdVecStorage( Conf.PerformanceConf.ForgetTh ),
+      LastResult( 0.0L, 0.0L )
 {
     // Config
     f_s         = Conf.SampleConf.f_s;
@@ -122,10 +123,6 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     T_val       = Conf.TimeConf.T_val;
 
     IntervalSkippingEnabled = true;
-
-    // House keeping
-    Last_t_req      = 0.0L;
-    Last_TD_abs     = 0.0L;
 
     // Resulting config
     TickLen     = 1.0L / f_s;
@@ -186,8 +183,7 @@ TdEstimator::TdEstimator( const TdEstimator& other )
   TdVecStorage              ( other.TdVecStorage ),
   // House keeping
   LastGuess                 ( other.LastGuess    ),
-  Last_t_req                ( other.Last_t_req   ),
-  Last_TD_abs               ( other.Last_TD_abs   )
+  LastResult                ( other.LastResult   )
 {
     pTdVecGen = other.pTdVecGen->Clone();
 }
@@ -214,8 +210,7 @@ TdEstimator::operator=( const TdEstimator& other )
 
     // House keeping
     this->LastGuess     = other.LastGuess;
-    this->Last_t_req    = other.Last_t_req;
-    this->Last_TD_abs   = other.Last_TD_abs;
+    this->LastResult    = other.LastResult;
 
     // By convention, always return *this
     return *this;
@@ -256,9 +251,9 @@ TdEstimator::EstimateTD( double t_now, double t_req )
     }
 
     // Evaluate request
-    if( t_req == Last_t_req )
+    if( t_req == LastResult.Get_t() )
     {
-        return  Last_TD_abs;
+        return  LastResult.GetRelativeTD() / f_s;
     }
 
     // Case 1: Request is in the distant future
@@ -296,8 +291,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
 
     TD_abs  = TD_nom / f_s;
 
-    Last_TD_abs = TD_abs;
-    Last_t_req  = t_req;
+    LastResult  = TdFixPoint( t_req, TD_nom );
 
     return TD_abs;
 }
