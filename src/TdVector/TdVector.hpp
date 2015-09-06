@@ -51,6 +51,13 @@
 /// This class implements a data vector of equal-spaced time deviation values.
 /// For more information on time deviation and related notations, have a
 /// look in IEEE 1139 the excellent 'Handbook of Frequency Stability Analysis'.
+///
+/// \remark This class only implements relative Time Deviation!
+///         The relative Fractional Frequency values are summed up, but to
+///         become absolute Time Deviation values they would need to be
+///         divided by the sampling frequency.
+///         This is handled outside of this class.
+///
 class TdVector
 {
     public:
@@ -108,6 +115,12 @@ class TdVector
         /// \param pData        Input data from which the TD vector is generated
         /// \param ValidLen     Length of the input data that is valid
         /// \param DataType     Type of the input data
+        ///
+        /// Depending on the type of input data different operations are performed:
+        /// - FFD data: The FFD values are summed up, to get relative Time Deviation values.
+        ///             To get absolute TD values, the values need to be divided by the sample rate.
+        ///             This is done outside of this class.
+        /// - TD data:  No conversion is needed
         TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType );
 
         /// Copy constructor
