@@ -75,8 +75,3 @@ TdFixPoint::GetRelativeTD() const
     return RelativeTD;
 }
 
-bool
-TdFixPoint::operator<( const TdFixPoint& other ) const
-{
-    return this->t < other.t;
-}

@@ -58,8 +58,6 @@ class TdFixPoint
 
         double  Get_t() const;
         double  GetRelativeTD() const;
-
-        bool operator<( const TdFixPoint& other ) const;
 };
 
 // =========================================================================
