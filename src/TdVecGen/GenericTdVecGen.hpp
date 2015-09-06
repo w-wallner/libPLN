@@ -58,7 +58,7 @@ class GenericTdVecGen : public TdVecGen
         // Resources
 
         // Internal functions
-        void        SetUpKwHpConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, size_t TdVecLen );
+        void        SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, size_t TdVecLen );
 
     public:
 

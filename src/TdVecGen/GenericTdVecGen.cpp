@@ -63,7 +63,7 @@
 // =========================================================================
 
 void
-GenericTdVecGen::SetUpKwHpConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, size_t TdVecLen )
+GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, size_t TdVecLen )
 {
     // Set up filter kernel
     KwFilterImpResp   kw( PLN_FilterConf.FilterLen, PLN_FilterConf.alpha );
@@ -93,7 +93,7 @@ GenericTdVecGen::SetUpKwHpConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filt
 GenericTdVecGen::GenericTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
     : TdVecGen( TdVecLen, TickLen, PLN_FilterConf, InterpolConf )
 {
-    SetUpKwHpConvFilter( PLN_FilterConf, HP_FilterConf, TdVecLen );
+    SetUpPLNConvFilter( PLN_FilterConf, HP_FilterConf, TdVecLen );
 }
 
 GenericTdVecGen::GenericTdVecGen( const GenericTdVecGen& other )
