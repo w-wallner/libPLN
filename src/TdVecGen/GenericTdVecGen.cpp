@@ -2,11 +2,11 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Generic implementation of a time deviation generator based
+///         on the powerlaw noise simulation approach proposed by Kasdin
+///         and Walter.
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vec_gen
 ///
 // ============================================================================
 

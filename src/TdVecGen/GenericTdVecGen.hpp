@@ -2,11 +2,11 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Generic implementation of a time deviation generator based
+///         on the powerlaw noise simulation approach proposed by Kasdin
+///         and Walter.
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_vec_gen
 ///
 // ============================================================================
 
@@ -49,30 +49,92 @@
 // Type definitions
 // =========================================================================
 
+/// Generic generator for TdVectors
+///
+/// This kind of time deviation vector generator is suitable for all values
+/// of alpha between -2 and 2, including non-integer values.
+///
+/// The method that is used is based on the one described in [1].
+///
+/// [1] Discrete simulation of power law noise
+///     N.J. Kasdin, T. Walter
+///     Frequency Control Symposium, 1992
 class GenericTdVecGen : public TdVecGen
 {
     private:
 
+        //------------------------------------------------------------------
         // Config
+        //------------------------------------------------------------------
 
+        //------------------------------------------------------------------
         // Resources
+        //------------------------------------------------------------------
 
+        //------------------------------------------------------------------
         // Internal functions
+        //------------------------------------------------------------------
+
+        /// Setup the PLN convolution filter
+        ///
+        /// Sets up a filter kernel that corresponds to a combination of a
+        /// Kasdin/Walter filter followed by a specified number of high pass
+        /// filters.
         void        SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, size_t TdVecLen );
 
     public:
 
+        //------------------------------------------------------------------
         // Constructors/Destructor
+        //------------------------------------------------------------------
+
+        /// Construtor
+        ///
+        /// Creates a new instance of generic time deviation generator,
+        /// based on the Kasdin/Walter powerlaw noise simulation approach.
+        ///
+        /// \param TdVecLen             Length of the simulated time deviation vectors
+        /// \param TickLen              Time (in seconds) between two simulated samples
+        /// \param PLN_FilterConf       Configuration for the powerlaw noise filter
+        /// \param HP_FilterConf        Configuration for the high pass filter
+        /// \param InterpolConf         Interpolation configuration
         GenericTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
+
+        /// Copy constructor
+        ///
+        /// \param other    The instance that should be copied
         GenericTdVecGen( const GenericTdVecGen& other );
+
+        /// Destructor
         ~GenericTdVecGen();
 
+        /// Clone method
+        ///
+        /// \return         Returns a cloned instance
         GenericTdVecGen*    Clone() const;  // Virtual constructor (copying)
 
+        //------------------------------------------------------------------
         // Operators
+        //------------------------------------------------------------------
+
+        /// Assignment operator
+        ///
+        /// \param other    The instance that should be copied
+        ///
+        /// \return         Assigned instance
         GenericTdVecGen&    operator=( const GenericTdVecGen& other );
 
+        //------------------------------------------------------------------
         // API
+        //------------------------------------------------------------------
+
+        /// Get a new time deviation vector
+        ///
+        /// This creates a new time deviation vector, that continuous either
+        /// either from the last generated time deviation vector, or from the
+        /// last configured fixpoint.
+        ///
+        /// \return     A new simulated time deviation vector
         TdVector    *GetNextVector();
 };
 
