@@ -65,7 +65,7 @@ class TdOracle
         // Resources
         // -----------------------------------------------------------------
 
-    public:
+    protected:
 
         // -----------------------------------------------------------------
         // Constructors/Destructor
@@ -80,7 +80,9 @@ class TdOracle
         TdOracle( const TdOracle& other );
 
         /// Destructor
-        virtual ~TdOracle();
+        virtual ~TdOracle() = 0;
+
+    public:
 
         // -----------------------------------------------------------------
         // Operators
