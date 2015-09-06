@@ -243,7 +243,7 @@ void DetailedOracleBench()
         Filename        = OutputPath + "td_" + Name + ".txt";
 
         cout << endl;
-        cout << "Starting benchmark for " << Name << endl;
+        cout << "Starting benchmark " << i + 1 << "/" << NumElements(DetailedBenchMarks) << " for " << Name << endl;
         cout << "t = " << t << endl;
 
         TdFile.open( Filename.c_str() );
