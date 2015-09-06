@@ -2,11 +2,10 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of 'fixpoints': ordered pairs of the form
+///         (real-time, relative time deviation).
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_estimator
 ///
 // ============================================================================
 

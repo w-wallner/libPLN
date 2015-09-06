@@ -2,11 +2,10 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Implementation of 'fixpoints': ordered pairs of the form
+///         (real-time, relative time deviation).
 ///
-/// TODO
-///
-/// \ingroup module_main
+/// \ingroup module_td_estimator
 ///
 // ============================================================================
 
@@ -46,23 +45,46 @@
 // Type definitions
 // =========================================================================
 
+/// Class to store fixpoints: ordered pairs of the form
+/// (real-time, relative time deviation).
+///
+/// A fixpoint is an ordered pair consisting of the real time in seconds (t), and the
+/// relative time deviation (RelativeTD) that point in time.
 class TdFixPoint
 {
     private:
+
+        // -----------------------------------------------------------------
         // Config
-        double  t;
-        double  RelativeTD;
+        // -----------------------------------------------------------------
+        double  t;                  ///< Real time (in seconds)
+        double  RelativeTD;         ///< Relative time deviation
 
     public:
+
+        // -----------------------------------------------------------------
+        // Constructor
+        // -----------------------------------------------------------------
+
+        /// Constructor
+        ///
+        /// \param t            Real time (in seconds)
+        /// \param RelativeTD   Relative time deviation
         TdFixPoint( double t, double RelativeTD );
 
+        // -----------------------------------------------------------------
+        // API
+        // -----------------------------------------------------------------
+
+        /// Getter for the real time stored in this fixpoint
         double  Get_t() const;
+
+        /// Getter for the  relative time deviation stored in this fixpoint
         double  GetRelativeTD() const;
 };
 
 // =========================================================================
 // Function declarations
 // =========================================================================
-
 
 #endif
