@@ -31,8 +31,8 @@
 //
 // ============================================================================
 
-#ifndef TDVECGEN_RECURSIVETDVECGEN_HPP_
-#define TDVECGEN_RECURSIVETDVECGEN_HPP_
+#ifndef _RECURSIVE_TD_VEC_GEN_HPP_
+#define _RECURSIVE_TD_VEC_GEN_HPP_
 
 // =========================================================================
 // Includes
@@ -63,7 +63,6 @@ class RecursiveTdVecGen : public TdVecGen
         // Internal functions
         virtual void    ResetRecursiveFilter() = 0;
         virtual void    ApplyRecursiveFilter( FFT_RealVector *pw ) = 0;
-        void            SetUpHpConvFilter( HP_FilterConfig_t HP_FilterConf, size_t TdVecLen );
 
     public:
 

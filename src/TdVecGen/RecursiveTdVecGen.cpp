@@ -59,9 +59,12 @@
 // Function definitions
 // =========================================================================
 
-void
-RecursiveTdVecGen::SetUpHpConvFilter( HP_FilterConfig_t HP_FilterConf, size_t TdVecLen )
+RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
+    : TdVecGen( TdVecLen, TickLen, PLN_FilterConf, InterpolConf )
 {
+    DataType    = TdVector::FFD_DATA;
+
+    // Set up high pass convolution filter
     switch( HP_FilterConf.FilterType )
     {
         case NO_FILTER:
@@ -84,14 +87,6 @@ RecursiveTdVecGen::SetUpHpConvFilter( HP_FilterConfig_t HP_FilterConf, size_t Td
             break;
         }
     }
-}
-
-RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
-    : TdVecGen( TdVecLen, TickLen, PLN_FilterConf, InterpolConf )
-{
-    DataType    = TdVector::FFD_DATA;
-
-    SetUpHpConvFilter( HP_FilterConf, TdVecLen );
 }
 
 RecursiveTdVecGen::RecursiveTdVecGen( const RecursiveTdVecGen& other )
