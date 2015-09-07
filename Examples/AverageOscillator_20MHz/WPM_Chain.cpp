@@ -66,8 +66,8 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz(unsigned int Seed)
     TdEstimatorConfig   config;
 
     config.SampleConf.f_s               = 40E6;
-    config.SampleConf.f_s               = 40E6;
     config.SampleConf.TdVecLen          = 5100;
+
     config.PLN_FilterImpl               = RECURSIVE_FILTER;
 
     config.PLN_FilterConf.Qd            = 5.5360E-5;
