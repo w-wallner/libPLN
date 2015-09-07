@@ -73,7 +73,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz(unsigned int Seed)
     config.PLN_FilterConf.Qd            = 5.5360E-5;
     config.PLN_FilterConf.alpha         = 2.0;
     config.PLN_FilterConf.FilterLen     = 10;
-    config.PLN_FilterConf.Seed          = Seed + 0;
+    config.PLN_FilterConf.Seed          = Seed;
 
     config.HP_FilterConf.FilterType     = BLACKMAN;
     config.HP_FilterConf.f_c_nom        = 0.024;
