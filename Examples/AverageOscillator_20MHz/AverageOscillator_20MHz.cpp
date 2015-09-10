@@ -71,74 +71,38 @@ tSeedOffset;
 // =========================================================================
 
 TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( unsigned int Seed, bool EnableIntervalSkipping )
-    : WpmChain( SeedOffsetWpmChain + Seed, EnableIntervalSkipping ),
-      WfmChain( SeedOffsetWfmChain + Seed, EnableIntervalSkipping ),
-      FfmChain( SeedOffsetFfmChain + Seed, EnableIntervalSkipping ),
-      RwChain ( SeedOffsetRwChain  + Seed, EnableIntervalSkipping )
+    : GenericTdOracle()
 {
+    ChainVecEntry   WpmEntry;
+    ChainVecEntry   WfmEntry;
+    ChainVecEntry   FfmEntry;
+    ChainVecEntry   RwEntry;
+
+    WpmEntry.pChain     = new TdEstChain_WPM( Seed + SeedOffsetWpmChain, EnableIntervalSkipping );
+    WpmEntry.SeedOffset = SeedOffsetWpmChain;
+
+    WfmEntry.pChain     = new TdEstChain_WFM( Seed + SeedOffsetWfmChain, EnableIntervalSkipping );
+    WfmEntry.SeedOffset = SeedOffsetWfmChain;
+
+    FfmEntry.pChain     = new TdEstChain_FFM( Seed + SeedOffsetFfmChain, EnableIntervalSkipping );
+    FfmEntry.SeedOffset = SeedOffsetFfmChain;
+
+    RwEntry.pChain      = new TdEstChain_RW ( Seed + SeedOffsetRwChain,  EnableIntervalSkipping );
+    RwEntry.SeedOffset  = SeedOffsetRwChain;
+
+    ChainVec.push_back( WpmEntry );
+    ChainVec.push_back( WfmEntry );
+    ChainVec.push_back( FfmEntry );
+    ChainVec.push_back( RwEntry  );
 }
 
 TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( const TdOracle_AvgOsc20MHz& other )
-    : WpmChain( other.WpmChain ), WfmChain( other.WfmChain ), FfmChain( other.FfmChain ), RwChain( other.RwChain )
+    : GenericTdOracle( other )
 {
 }
 
 TdOracle_AvgOsc20MHz::~TdOracle_AvgOsc20MHz()
 {
-}
-
-// Operators
-TdOracle_AvgOsc20MHz&
-TdOracle_AvgOsc20MHz::operator=( const TdOracle_AvgOsc20MHz& other )
-{
-    this->WpmChain  = other.WpmChain;
-    this->WfmChain  = other.WfmChain;
-    this->FfmChain  = other.FfmChain;
-    this->RwChain   = other.RwChain;
-
-    // By convention, always return *this
-    return *this;
-}
-
-// API
-void
-TdOracle_AvgOsc20MHz::EnableIntervalSkipping()
-{
-    WpmChain.EnableIntervalSkipping();
-    WfmChain.EnableIntervalSkipping();
-    FfmChain.EnableIntervalSkipping();
-    RwChain.EnableIntervalSkipping ();
-}
-
-void
-TdOracle_AvgOsc20MHz::DisableIntervalSkipping()
-{
-    WpmChain.DisableIntervalSkipping();
-    WfmChain.DisableIntervalSkipping();
-    FfmChain.DisableIntervalSkipping();
-    RwChain.DisableIntervalSkipping ();
-}
-
-void
-TdOracle_AvgOsc20MHz::SetSeed( unsigned int Seed )
-{
-    WpmChain.SetSeed( SeedOffsetWpmChain + Seed );
-    WfmChain.SetSeed( SeedOffsetWfmChain + Seed );
-    FfmChain.SetSeed( SeedOffsetFfmChain + Seed );
-    RwChain.SetSeed ( SeedOffsetRwChain  + Seed  );
-}
-
-double
-TdOracle_AvgOsc20MHz::EstimateTD( double t_now, double t_req )
-{
-    double  TD = 0.0L;
-
-    TD  += WpmChain.EstimateTD( t_now, t_req );
-    TD  += WfmChain.EstimateTD( t_now, t_req );
-    TD  += FfmChain.EstimateTD( t_now, t_req );
-    TD  += RwChain.EstimateTD ( t_now, t_req );
-
-    return TD;
 }
 
 }

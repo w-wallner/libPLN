@@ -38,7 +38,7 @@
 // Includes
 // =========================================================================
 
-#include "TdOracle.hpp"
+#include "GenericTdOracle.hpp"
 
 namespace AverageOscillator_20MHz
 {
@@ -51,7 +51,7 @@ namespace AverageOscillator_20MHz
 // Type definitions
 // =========================================================================
 
-class TdOracle_AvgOsc20MHz : public TdOracle
+class TdOracle_AvgOsc20MHz : public GenericTdOracle
 {
     public:
 
@@ -124,10 +124,6 @@ class TdOracle_AvgOsc20MHz : public TdOracle
          // Config
 
         // Resources
-        TdEstChain_WPM      WpmChain;
-        TdEstChain_WFM      WfmChain;
-        TdEstChain_FFM      FfmChain;
-        TdEstChain_RW       RwChain;
 
     public:
 
@@ -135,15 +131,6 @@ class TdOracle_AvgOsc20MHz : public TdOracle
         TdOracle_AvgOsc20MHz( unsigned int Seed, bool EnableIntervalSkipping );
         TdOracle_AvgOsc20MHz( const TdOracle_AvgOsc20MHz& other );
         virtual ~TdOracle_AvgOsc20MHz();
-
-        // Operators
-        TdOracle_AvgOsc20MHz&  operator=( const TdOracle_AvgOsc20MHz& other );
-
-        // API
-        void    EnableIntervalSkipping();
-        void    DisableIntervalSkipping();
-        void    SetSeed( unsigned int Seed );
-        double  EstimateTD( double t_now, double t_req );
 };
 
 // =========================================================================
