@@ -99,6 +99,7 @@
 
 #include "TdEst/TdEstimator.hpp"
 #include "TdEstChain.hpp"
+#include "TdOracle.hpp"
 
 // =========================================================================
 // Defines
