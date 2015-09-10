@@ -57,6 +57,20 @@ class TdOracle
 {
     private:
 
+    protected:
+
+        // -----------------------------------------------------------------
+        // Types
+        // -----------------------------------------------------------------
+
+        /// Entry in the time deviation oracle
+        typedef struct
+        {
+            TdEstChain      *pChain;        ///< Pointer to a time deviation estimator chain
+            unsigned int    SeedOffset;     ///< Seed offset to have individual seeds for individual chains
+        }
+        ChainVecEntry;
+
         // -----------------------------------------------------------------
         // Config
         // -----------------------------------------------------------------
@@ -65,7 +79,12 @@ class TdOracle
         // Resources
         // -----------------------------------------------------------------
 
-    protected:
+        std::vector<ChainVecEntry>  ChainVec;   ///< Storage for the individual time deviation estimator chains.
+
+        // -----------------------------------------------------------------
+        // Internal functions
+        // -----------------------------------------------------------------
+        void    ClearChainStorage();
 
         // -----------------------------------------------------------------
         // Constructors/Destructor
@@ -101,16 +120,16 @@ class TdOracle
 
         /// Enable the individual time deviation estimator to skip time intervals
         /// for requests in the distant future.
-        virtual void    EnableIntervalSkipping() = 0;
+        virtual void    EnableIntervalSkipping();
 
         /// Disable the skipping of time intervals in the individual time deviation
         /// estimator.
-        virtual void    DisableIntervalSkipping() = 0;
+        virtual void    DisableIntervalSkipping();
 
         /// Set a new seed for the random number generators
         ///
         /// \param Seed     The new seed for the random number generators
-        virtual void    SetSeed( unsigned int Seed ) = 0;
+        virtual void    SetSeed( unsigned int Seed );
 
         /// Request an estimate for the time deviation at a given point in time
         ///
@@ -121,7 +140,7 @@ class TdOracle
         /// \param t_req    The time (in seconds) for which the time deviation is requested
         ///
         /// \return         Estimated time deviation (in seconds) at the requested time
-        virtual double  EstimateTD( double t_now, double t_req ) = 0;
+        virtual double  EstimateTD( double t_now, double t_req );
 };
 
 #endif

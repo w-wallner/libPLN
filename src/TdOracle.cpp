@@ -56,22 +56,106 @@
 // Function definitions
 // =========================================================================
 
+// -----------------------------------------------------------------
+// Internal functions
+// -----------------------------------------------------------------
+void
+TdOracle::ClearChainStorage()
+{
+    for( std::vector<ChainVecEntry>::iterator it = ChainVec.begin(); it < ChainVec.end(); ++it )
+    {
+        delete it->pChain;
+    }
+
+    ChainVec.clear();
+}
+
 TdOracle::TdOracle()
 {
 }
 
 TdOracle::TdOracle( const TdOracle& other )
 {
+    for( std::vector<ChainVecEntry>::const_iterator it = other.ChainVec.begin(); it != other.ChainVec.end(); ++it )
+    {
+        ChainVecEntry   e;
+
+        e.pChain        = new TdEstChain( *it->pChain );
+        e.SeedOffset    = it->SeedOffset;
+
+        ChainVec.push_back( e );
+    }
 }
 
 TdOracle::~TdOracle()
 {
+    ClearChainStorage();
 }
 
+// -----------------------------------------------------------------
 // Operators
+// -----------------------------------------------------------------
+
 TdOracle&
 TdOracle::operator=( const TdOracle& other )
 {
+    ClearChainStorage();
+
+    for( std::vector<ChainVecEntry>::const_iterator it = other.ChainVec.begin(); it != other.ChainVec.end(); ++it )
+    {
+        ChainVecEntry   e;
+
+        e.pChain        = new TdEstChain( *it->pChain );
+        e.SeedOffset    = it->SeedOffset;
+
+        ChainVec.push_back( e );
+    }
+
     // By convention, always return *this
     return *this;
+}
+
+// -----------------------------------------------------------------
+// API
+// -----------------------------------------------------------------
+
+void
+TdOracle::EnableIntervalSkipping()
+{
+    for( std::vector<ChainVecEntry>::const_iterator it = ChainVec.begin(); it != ChainVec.end(); ++it )
+    {
+        it->pChain->EnableIntervalSkipping();
+    }
+}
+
+void
+TdOracle::DisableIntervalSkipping()
+{
+    for( std::vector<ChainVecEntry>::const_iterator it = ChainVec.begin(); it != ChainVec.end(); ++it )
+    {
+        it->pChain->DisableIntervalSkipping();
+    }
+}
+
+
+void
+TdOracle::SetSeed( unsigned int Seed )
+{
+    for( std::vector<ChainVecEntry>::const_iterator it = ChainVec.begin(); it != ChainVec.end(); ++it )
+    {
+        it->pChain->SetSeed( Seed + it->SeedOffset );
+    }
+}
+
+double
+TdOracle::EstimateTD( double t_now, double t_req )
+{
+    double  TD = 0.0L;
+
+    for( std::vector<ChainVecEntry>::const_iterator it = ChainVec.begin(); it != ChainVec.end(); ++it )
+    {
+        TD  += it->pChain->EstimateTD( t_now, t_req );
+    }
+
+    return TD;
 }

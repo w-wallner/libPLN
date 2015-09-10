@@ -71,7 +71,7 @@ tSeedOffset;
 // =========================================================================
 
 TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( unsigned int Seed, bool EnableIntervalSkipping )
-    : GenericTdOracle()
+    : TdOracle()
 {
     ChainVecEntry   WpmEntry;
     ChainVecEntry   WfmEntry;
@@ -97,7 +97,7 @@ TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( unsigned int Seed, bool EnableInterv
 }
 
 TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( const TdOracle_AvgOsc20MHz& other )
-    : GenericTdOracle( other )
+    : TdOracle( other )
 {
 }
 

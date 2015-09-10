@@ -1,7 +1,6 @@
 
 add_library(PLN STATIC  TdEstChain.cpp
                         TdOracle.cpp
-                        GenericTdOracle.cpp
                         DebugTools/VectorOutput.cpp
                         Filter/BmHpFilterImpResp.cpp
                         Filter/FilterImpResp.cpp
