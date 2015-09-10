@@ -109,7 +109,7 @@ class TdEstChain
         TdEstChain( const TdEstChain& other );
 
         /// Destructor
-        ~TdEstChain();
+        virtual ~TdEstChain();
 
         // -----------------------------------------------------------------
         // Operators
