@@ -109,7 +109,8 @@ InterpolationConfig_t;
 /// Time configuration
 typedef struct
 {
-    double  T_val;          ///< Time in seconds between samples where this estimator is considered to be 'valid'.
+    bool    EnableIntervalSkipping;         ///< Allows the estimator to guess time deviation values for requests in the distant future.
+    double  T_val;                          ///< Time in seconds between samples where this estimator is considered to be 'valid'.
 }
 TimeConfig_t;
 

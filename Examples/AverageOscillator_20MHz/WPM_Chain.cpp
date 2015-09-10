@@ -61,127 +61,131 @@ namespace AverageOscillator_20MHz
 // =========================================================================
 
 TdEstimatorConfig
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz(unsigned int Seed)
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz(unsigned int Seed, bool EnableIntervalSkipping)
 {
     TdEstimatorConfig   config;
 
-    config.SampleConf.f_s               = 40E6;
-    config.SampleConf.TdVecLen          = 5100;
+    config.SampleConf.f_s                   = 40E6;
+    config.SampleConf.TdVecLen              = 5100;
 
-    config.PLN_FilterImpl               = RECURSIVE_FILTER;
+    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd            = 5.5360E-5;
-    config.PLN_FilterConf.alpha         = 2.0;
-    config.PLN_FilterConf.FilterLen     = 10;
-    config.PLN_FilterConf.Seed          = Seed;
+    config.PLN_FilterConf.Qd                = 5.5360E-5;
+    config.PLN_FilterConf.alpha             = 2.0;
+    config.PLN_FilterConf.FilterLen         = 10;
+    config.PLN_FilterConf.Seed              = Seed;
 
-    config.HP_FilterConf.FilterType     = BLACKMAN;
-    config.HP_FilterConf.f_c_nom        = 0.024;
-    config.HP_FilterConf.FilterLen      = 5001;
-    config.HP_FilterConf.Cnt            = 1;
+    config.HP_FilterConf.FilterType         = BLACKMAN;
+    config.HP_FilterConf.f_c_nom            = 0.024;
+    config.HP_FilterConf.FilterLen          = 5001;
+    config.HP_FilterConf.Cnt                = 1;
 
-    config.InterpolConf.InterPolType    = LINEAR_INTERPOLATION;
+    config.InterpolConf.InterPolType        = LINEAR_INTERPOLATION;
 
-    config.TimeConf.T_val               = 2E-6;
+    config.TimeConf.T_val                   = 2E-6;
+    config.TimeConf.EnableIntervalSkipping  = EnableIntervalSkipping;
 
-    config.PerformanceConf.ForgetTh     = 0;
+    config.PerformanceConf.ForgetTh         = 0;
 
     return config;
 }
 
 TdEstimatorConfig
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz(unsigned int Seed)
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz(unsigned int Seed, bool EnableIntervalSkipping)
 {
     TdEstimatorConfig   config;
 
-    config.SampleConf.f_s                = 22E5;
-    config.SampleConf.TdVecLen           = 5100;
+    config.SampleConf.f_s                   = 22E5;
+    config.SampleConf.TdVecLen              = 5100;
 
-    config.PLN_FilterImpl                = RECURSIVE_FILTER;
+    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd             = 9.2105E-09;
-    config.PLN_FilterConf.alpha          = 2.0;
-    config.PLN_FilterConf.FilterLen      = 10;
-    config.PLN_FilterConf.Seed           = Seed;
+    config.PLN_FilterConf.Qd                = 9.2105E-09;
+    config.PLN_FilterConf.alpha             = 2.0;
+    config.PLN_FilterConf.FilterLen         = 10;
+    config.PLN_FilterConf.Seed              = Seed;
 
-    config.HP_FilterConf.FilterType      = BLACKMAN;
-    config.HP_FilterConf.f_c_nom         = 0.004;
-    config.HP_FilterConf.FilterLen       = 1001;
-    config.HP_FilterConf.Cnt             = 1;
+    config.HP_FilterConf.FilterType         = BLACKMAN;
+    config.HP_FilterConf.f_c_nom            = 0.004;
+    config.HP_FilterConf.FilterLen          = 1001;
+    config.HP_FilterConf.Cnt                = 1;
 
-    config.InterpolConf.InterPolType     = CUBIC_SPLINE_INTERPOLATION;
+    config.InterpolConf.InterPolType        = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                = 200E-6;
+    config.TimeConf.T_val                   = 200E-6;
+    config.TimeConf.EnableIntervalSkipping  = EnableIntervalSkipping;
 
-    config.PerformanceConf.ForgetTh      = 0;
+    config.PerformanceConf.ForgetTh         = 0;
 
     return config;
 }
 
 TdEstimatorConfig
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz(unsigned int Seed)
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz(unsigned int Seed, bool EnableIntervalSkipping)
 {
     TdEstimatorConfig   config;
 
-    config.SampleConf.f_s               = 20E3;
-    config.SampleConf.TdVecLen          = 5100;
+    config.SampleConf.f_s                   = 20E3;
+    config.SampleConf.TdVecLen              = 5100;
 
-    config.PLN_FilterImpl               = RECURSIVE_FILTER;
+    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd            = 6.9200E-15;
-    config.PLN_FilterConf.alpha         = 2.0;
-    config.PLN_FilterConf.FilterLen     = 10;
-    config.PLN_FilterConf.Seed          = Seed;
+    config.PLN_FilterConf.Qd                = 6.9200E-15;
+    config.PLN_FilterConf.alpha             = 2.0;
+    config.PLN_FilterConf.FilterLen         = 10;
+    config.PLN_FilterConf.Seed              = Seed;
 
-    config.HP_FilterConf.FilterType     = BLACKMAN;
-    config.HP_FilterConf.f_c_nom        = 0.0035;
-    config.HP_FilterConf.FilterLen      = 501;
-    config.HP_FilterConf.Cnt            = 1;
+    config.HP_FilterConf.FilterType         = BLACKMAN;
+    config.HP_FilterConf.f_c_nom            = 0.0035;
+    config.HP_FilterConf.FilterLen          = 501;
+    config.HP_FilterConf.Cnt                = 1;
 
-    config.InterpolConf.InterPolType    = CUBIC_SPLINE_INTERPOLATION;
+    config.InterpolConf.InterPolType        = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val               = 20E-3;
+    config.TimeConf.T_val                   = 20E-3;
+    config.TimeConf.EnableIntervalSkipping  = EnableIntervalSkipping;
 
-    config.PerformanceConf.ForgetTh     = 0;
+    config.PerformanceConf.ForgetTh         = 0;
 
     return config;
 }
 
 TdEstimatorConfig
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz(unsigned int Seed)
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz(unsigned int Seed, bool EnableIntervalSkipping)
 {
     TdEstimatorConfig   config;
 
-    config.SampleConf.f_s               = 200;
-    config.SampleConf.TdVecLen          = 5100;
+    config.SampleConf.f_s                   = 200;
+    config.SampleConf.TdVecLen              = 5100;
 
-    config.PLN_FilterImpl               = RECURSIVE_FILTER;
+    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd            = 6.9200E-21;
-    config.PLN_FilterConf.alpha         = 2.0;
-    config.PLN_FilterConf.FilterLen     = 10;
-    config.PLN_FilterConf.Seed          = Seed;
+    config.PLN_FilterConf.Qd                = 6.9200E-21;
+    config.PLN_FilterConf.alpha             = 2.0;
+    config.PLN_FilterConf.FilterLen         = 10;
+    config.PLN_FilterConf.Seed              = Seed;
 
-    config.HP_FilterConf.FilterType     = NO_FILTER;
-    config.HP_FilterConf.f_c_nom        = 0.01;
-    config.HP_FilterConf.FilterLen      = 5001;
-    config.HP_FilterConf.Cnt            = 1;
+    config.HP_FilterConf.FilterType         = NO_FILTER;
+    config.HP_FilterConf.f_c_nom            = 0.01;
+    config.HP_FilterConf.FilterLen          = 5001;
+    config.HP_FilterConf.Cnt                = 1;
 
-    config.InterpolConf.InterPolType    = CUBIC_SPLINE_INTERPOLATION;
+    config.InterpolConf.InterPolType        = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val               = 20;
+    config.TimeConf.T_val                   = 20;
+    config.TimeConf.EnableIntervalSkipping  = EnableIntervalSkipping;
 
-    config.PerformanceConf.ForgetTh     = 0;
+    config.PerformanceConf.ForgetTh         = 0;
 
     return config;
 }
 
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed )
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int Seed, bool EnableIntervalSkipping )
 {
-    AddTdEstimator( GetConfig_WPM_20MHz( Seed + 0 ) );
-    AddTdEstimator( GetConfig_WPM_1MHz ( Seed + 1 ) );
-    AddTdEstimator( GetConfig_WPM_10kHz( Seed + 2 ) );
-    AddTdEstimator( GetConfig_WPM_100Hz( Seed + 3 ) );
+    AddTdEstimator( GetConfig_WPM_20MHz( Seed + 0, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_WPM_1MHz ( Seed + 1, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_WPM_10kHz( Seed + 2, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_WPM_100Hz( Seed + 3, EnableIntervalSkipping ) );
 }
 
 TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( const TdEstChain_WPM& other )

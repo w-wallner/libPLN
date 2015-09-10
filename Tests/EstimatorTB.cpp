@@ -145,16 +145,16 @@ FileBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-    TdEstimatorConfig Conf_WPM_20MHz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz( 1 );
-    TdEstimatorConfig Conf_WPM_1MHz   = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz ( 2 );
-    TdEstimatorConfig Conf_WPM_10kHz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz( 3 );
-    TdEstimatorConfig Conf_WPM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz( 4 );
+    TdEstimatorConfig Conf_WPM_20MHz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz( 1, true );
+    TdEstimatorConfig Conf_WPM_1MHz   = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz ( 2, true );
+    TdEstimatorConfig Conf_WPM_10kHz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz( 3, true );
+    TdEstimatorConfig Conf_WPM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz( 4, true );
 
-    TdEstimatorConfig Conf_WFM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_WFM::GetConfig_WFM_100Hz( 5 );
+    TdEstimatorConfig Conf_WFM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_WFM::GetConfig_WFM_100Hz( 5, true );
 
-    TdEstimatorConfig Conf_FFM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_FFM_100Hz( 6 );
+    TdEstimatorConfig Conf_FFM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_FFM_100Hz( 6, true );
 
-    TdEstimatorConfig Conf_RW_100Hz   = TdOracle_AvgOsc20MHz::TdEstChain_RW::GetConfig_RW_100Hz  ( 7 );
+    TdEstimatorConfig Conf_RW_100Hz   = TdOracle_AvgOsc20MHz::TdEstChain_RW::GetConfig_RW_100Hz  ( 7, true );
 
     TdEstChain  WpmChain;
     TdEstChain  WfmChain;

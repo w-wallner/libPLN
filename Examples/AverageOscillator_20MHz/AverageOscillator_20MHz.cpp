@@ -70,8 +70,11 @@ tSeedOffset;
 // Function definitions
 // =========================================================================
 
-TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( unsigned int Seed )
-    : WpmChain( SeedOffsetWpmChain + Seed ), WfmChain( SeedOffsetWfmChain + Seed ), FfmChain( SeedOffsetFfmChain + Seed ), RwChain( SeedOffsetRwChain + Seed )
+TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( unsigned int Seed, bool EnableIntervalSkipping )
+    : WpmChain( SeedOffsetWpmChain + Seed, EnableIntervalSkipping ),
+      WfmChain( SeedOffsetWfmChain + Seed, EnableIntervalSkipping ),
+      FfmChain( SeedOffsetFfmChain + Seed, EnableIntervalSkipping ),
+      RwChain ( SeedOffsetRwChain  + Seed, EnableIntervalSkipping )
 {
 }
 

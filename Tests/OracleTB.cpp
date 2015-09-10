@@ -166,7 +166,7 @@ void SimpleOracleBench()
     ofstream    TdFile;
     TdFile.open( "/main/td.txt" );
 
-    TdOracle_AvgOsc20MHz o( 123 );
+    TdOracle_AvgOsc20MHz o( 123, true );
 
 //    o.SetSeed( 1000 );
 //    o.SetSeed( 0 );
@@ -213,7 +213,7 @@ void DetailedOracleBench()
     std::string     Filename;
 
     // Resources
-    TdOracle_AvgOsc20MHz    o( 54321 );
+    TdOracle_AvgOsc20MHz    o( 54321, true );
     ofstream                TdFile;
 
     // Config
@@ -297,7 +297,7 @@ void SpeedOracleBench()
     std::string     Name;
 
     // Resources
-    TdOracle_AvgOsc20MHz    o( 54321 );
+    TdOracle_AvgOsc20MHz    o( 54321, true );
     ofstream                ResultFile;
 
     // Config
@@ -365,7 +365,7 @@ void BurstOracleBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-    TdOracle_AvgOsc20MHz    o( 2222 );
+    TdOracle_AvgOsc20MHz    o( 2222, true );
     double                  f_s;
     double                  dt;
     double                  t;
@@ -408,7 +408,7 @@ void PreRecordedOracleBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-    TdOracle_AvgOsc20MHz    o( 0 );
+    TdOracle_AvgOsc20MHz    o( 0, true );
     ifstream                ResultFile;
     std::string             ResultFilename = "/main/CallLog.txt";
     ofstream                TdTraceFile;

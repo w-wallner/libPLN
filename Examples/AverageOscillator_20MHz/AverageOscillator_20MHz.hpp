@@ -60,15 +60,15 @@ class TdOracle_AvgOsc20MHz : public TdOracle
          {
              public:
                  // Constructors/Destructor
-                 TdEstChain_WPM( unsigned int Seed );
+                 TdEstChain_WPM( unsigned int Seed, bool EnableIntervalSkipping );
                  TdEstChain_WPM( const TdEstChain_WPM& other );
                  virtual ~TdEstChain_WPM();
 
                  // Getters
-                 static TdEstimatorConfig   GetConfig_WPM_20MHz(unsigned int Seed);
-                 static TdEstimatorConfig   GetConfig_WPM_1MHz (unsigned int Seed);
-                 static TdEstimatorConfig   GetConfig_WPM_10kHz(unsigned int Seed);
-                 static TdEstimatorConfig   GetConfig_WPM_100Hz(unsigned int Seed);
+                 static TdEstimatorConfig   GetConfig_WPM_20MHz(unsigned int Seed, bool EnableIntervalSkipping);
+                 static TdEstimatorConfig   GetConfig_WPM_1MHz (unsigned int Seed, bool EnableIntervalSkipping);
+                 static TdEstimatorConfig   GetConfig_WPM_10kHz(unsigned int Seed, bool EnableIntervalSkipping);
+                 static TdEstimatorConfig   GetConfig_WPM_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
 
                  // Operators
                  virtual TdEstChain_WPM& operator= (const TdEstChain_WPM& other);
@@ -78,12 +78,12 @@ class TdOracle_AvgOsc20MHz : public TdOracle
          {
              public:
                  // Constructors/Destructor
-                 TdEstChain_WFM( unsigned int Seed );
+                 TdEstChain_WFM( unsigned int Seed, bool EnableIntervalSkipping );
                  TdEstChain_WFM( const TdEstChain_WFM& other );
                  virtual ~TdEstChain_WFM();
 
                  // Getters
-                 static TdEstimatorConfig   GetConfig_WFM_100Hz(unsigned int Seed);
+                 static TdEstimatorConfig   GetConfig_WFM_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
 
                  // Operators
                  virtual TdEstChain_WFM& operator= (const TdEstChain_WFM& other);
@@ -93,12 +93,12 @@ class TdOracle_AvgOsc20MHz : public TdOracle
          {
              public:
                  // Constructors/Destructor
-                 TdEstChain_FFM( unsigned int Seed );
+                 TdEstChain_FFM( unsigned int Seed, bool EnableIntervalSkipping );
                  TdEstChain_FFM( const TdEstChain_FFM& other );
                  virtual ~TdEstChain_FFM();
 
                  // Getters
-                 static TdEstimatorConfig   GetConfig_FFM_100Hz(unsigned int Seed);
+                 static TdEstimatorConfig   GetConfig_FFM_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
 
                  // Operators
                  virtual TdEstChain_FFM& operator= (const TdEstChain_FFM& other);
@@ -108,12 +108,12 @@ class TdOracle_AvgOsc20MHz : public TdOracle
          {
              public:
                  // Constructors/Destructor
-                 TdEstChain_RW( unsigned int Seed );
+                 TdEstChain_RW( unsigned int Seed, bool EnableIntervalSkipping );
                  TdEstChain_RW( const TdEstChain_RW& other );
                  virtual ~TdEstChain_RW();
 
                  // Getters
-                 static TdEstimatorConfig   GetConfig_RW_100Hz(unsigned int Seed);
+                 static TdEstimatorConfig   GetConfig_RW_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
 
                  // Operators
                  virtual TdEstChain_RW& operator= (const TdEstChain_RW& other);
@@ -132,7 +132,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
     public:
 
         // Constructors/Destructor
-        TdOracle_AvgOsc20MHz( unsigned int Seed );
+        TdOracle_AvgOsc20MHz( unsigned int Seed, bool EnableIntervalSkipping );
         TdOracle_AvgOsc20MHz( const TdOracle_AvgOsc20MHz& other );
         virtual ~TdOracle_AvgOsc20MHz();
 

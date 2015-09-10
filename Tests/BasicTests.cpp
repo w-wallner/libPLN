@@ -181,7 +181,7 @@ void    TestWpmTdVecGen()
 
     OutFile.open( FileName.c_str(), std::ifstream::out );
 
-    TdEstimatorConfig Conf = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz( 123 );
+    TdEstimatorConfig Conf = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz( 123, true );
     double  TickLen = 1.0L / Conf.SampleConf.f_s;
 
     GenericTdVecGen g( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );

@@ -118,9 +118,8 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     f_s         = Conf.SampleConf.f_s;
     TdVecLen    = Conf.SampleConf.TdVecLen;
 
-    T_val       = Conf.TimeConf.T_val;
-
-    IntervalSkippingEnabled = true;
+    T_val                   = Conf.TimeConf.T_val;
+    IntervalSkippingEnabled = Conf.TimeConf.EnableIntervalSkipping;
 
     // Resulting config
     TickLen     = 1.0L / f_s;

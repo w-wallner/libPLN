@@ -61,38 +61,39 @@ namespace AverageOscillator_20MHz
 // =========================================================================
 
 TdEstimatorConfig
-TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_FFM_100Hz(unsigned int Seed)
+TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_FFM_100Hz(unsigned int Seed, bool EnableIntervalSkipping)
 {
     TdEstimatorConfig   config;
 
-    config.SampleConf.f_s               = 20;
-    config.SampleConf.TdVecLen          = 5100;
+    config.SampleConf.f_s                   = 20;
+    config.SampleConf.TdVecLen              = 5100;
 
-    config.PLN_FilterImpl               = RECURSIVE_FILTER;
+    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd            = 6.4654117423164914448E-19;
-    config.PLN_FilterConf.alpha         = -1.0;
-    config.PLN_FilterConf.FilterLen     = 1000;
-    config.PLN_FilterConf.Seed          = Seed;
+    config.PLN_FilterConf.Qd                = 6.4654117423164914448E-19;
+    config.PLN_FilterConf.alpha             = -1.0;
+    config.PLN_FilterConf.FilterLen         = 1000;
+    config.PLN_FilterConf.Seed              = Seed;
 
-    config.HP_FilterConf.FilterType     = NO_FILTER;
-    config.HP_FilterConf.f_c_nom        = 0.01;
-    config.HP_FilterConf.FilterLen      = 5001;
-    config.HP_FilterConf.Cnt            = 1;
+    config.HP_FilterConf.FilterType         = NO_FILTER;
+    config.HP_FilterConf.f_c_nom            = 0.01;
+    config.HP_FilterConf.FilterLen          = 5001;
+    config.HP_FilterConf.Cnt                = 1;
 
-    config.InterpolConf.InterPolType    = CUBIC_SPLINE_INTERPOLATION;
+    config.InterpolConf.InterPolType        = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val               = 20;
+    config.TimeConf.T_val                   = 20;
+    config.TimeConf.EnableIntervalSkipping  = EnableIntervalSkipping;
 
-    config.PerformanceConf.ForgetTh     = 0;
+    config.PerformanceConf.ForgetTh         = 0;
 
     return config;
 }
 
-TdOracle_AvgOsc20MHz::TdEstChain_FFM::TdEstChain_FFM( unsigned int Seed )
+TdOracle_AvgOsc20MHz::TdEstChain_FFM::TdEstChain_FFM( unsigned int Seed, bool EnableIntervalSkipping )
 {
 
-    AddTdEstimator( GetConfig_FFM_100Hz(Seed + 0) );
+    AddTdEstimator( GetConfig_FFM_100Hz(Seed + 0, EnableIntervalSkipping) );
 }
 
 TdOracle_AvgOsc20MHz::TdEstChain_FFM::TdEstChain_FFM( const TdEstChain_FFM& other )
