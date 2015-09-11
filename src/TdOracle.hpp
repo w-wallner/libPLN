@@ -94,6 +94,13 @@ class TdOracle
         /// Constructor
         TdOracle();
 
+        /// Constructor using a single time deviation estimator chain
+        ///
+        /// \note This constructor is mainly for debugging purposes.
+        ///
+        /// \param c    Time deviation estimator chain
+        TdOracle( TdEstChain c );
+
         /// Copy constructor
         ///
         /// \param other    The instance that should be copied
@@ -102,6 +109,8 @@ class TdOracle
         /// Destructor
         virtual ~TdOracle();
 
+        // Init API
+        void    AddChain( TdEstChain c );
 
         // -----------------------------------------------------------------
         // Operators

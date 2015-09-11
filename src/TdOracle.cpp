@@ -74,6 +74,11 @@ TdOracle::TdOracle()
 {
 }
 
+TdOracle::TdOracle( TdEstChain c )
+{
+    AddChain( c );
+}
+
 TdOracle::TdOracle( const TdOracle& other )
 {
     for( std::vector<ChainVecEntry>::const_iterator it = other.ChainVec.begin(); it != other.ChainVec.end(); ++it )
@@ -89,6 +94,16 @@ TdOracle::TdOracle( const TdOracle& other )
 TdOracle::~TdOracle()
 {
     ClearChainStorage();
+}
+
+void
+TdOracle::AddChain( TdEstChain c )
+{
+    ChainVecEntry   e;
+
+    e.pChain        = new TdEstChain( c );
+
+    ChainVec.push_back( e );
 }
 
 // -----------------------------------------------------------------
