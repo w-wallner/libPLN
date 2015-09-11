@@ -182,9 +182,9 @@ TdEstChainTestBench()
     double  fs;
     double  dt;
     size_t  NumSamples;
-    double t_begin;
+    double  t;
 
-    t_begin = 0.0;
+    t = 0.0;
 
     fs = 40E6;
     fs = 4E6;
@@ -194,5 +194,5 @@ TdEstChainTestBench()
     NumSamples  = 100000;
     NumSamples  = 1000000;
 
-    SampleChain( c, t_begin, fs, NumSamples, true, true, "/main/td.txt" );
+    SampleChain( c, t, fs, NumSamples, true, true, "/main/td.txt" );
 }
