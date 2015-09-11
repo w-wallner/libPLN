@@ -413,3 +413,34 @@ void PreRecordedOracleBench()
     ResultFile.close();
     TdTraceFile.close();
 }
+
+void
+SkipVsNoSkipBench()
+{
+    cout << "Running " << __func__ << "()" << endl;
+
+    double          f_s;
+    size_t          NumSamples;
+    double          t;
+    unsigned int    Seed;
+    std::string     FilenameSkip;
+    std::string     FilenameNoSkip;
+
+    Seed            = 54321;
+    f_s             = 1E3;
+    NumSamples      = 1E5;
+    FilenameSkip    = "/main/td_skip.txt";
+    FilenameNoSkip  = "/main/td_no_skip.txt";
+
+    TdOracle_AvgOsc20MHz    SkipOsc  ( Seed, true  );
+    TdOracle_AvgOsc20MHz    NoSkipOsc( Seed, false );
+
+    cout << "Starting test case with skipping enabled ..." << endl;
+
+    t = 0;
+    SampleOracle( SkipOsc, t, f_s, NumSamples, true, true, FilenameSkip );
+
+    cout << "Starting test case with skipping disabled ..." << endl;
+    t = 0;
+    SampleOracle( NoSkipOsc, t, f_s, NumSamples, true, true, FilenameNoSkip );
+}

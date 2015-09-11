@@ -55,5 +55,6 @@ void    DetailedOracleBench();
 void    SpeedOracleBench();
 void    BurstOracleBench();
 void    PreRecordedOracleBench();
+void    SkipVsNoSkipBench();
 
 #endif
