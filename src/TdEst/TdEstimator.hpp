@@ -68,10 +68,11 @@ class TdEstimator
         // -----------------------------------------------------------------
         // Config
         // -----------------------------------------------------------------
-        double  f_s;                                ///< Simulated sampling frequnency (in hertz)
+        double  f_s;                                ///< Simulated sampling frequency (in hertz)
         double  TickLen;                            ///< Time (in seconds) between two simulated samples (i.g. inverse of f_s)
         double  T_val;                              ///< Time between two requested samples where this estimator considers its contribution valid
         size_t  TdVecLen;                           ///< Length of individual time deviation vectors
+        double  alpha;                              ///< Alpha value for this estimator
         size_t  MaxTdVecCnt;                        ///< Maximum number of TD vectors that is calculated in a loop (used for internal error detection)
         bool    IntervalSkippingEnabled;            ///< Specifies if the TD estimator may skip intervals and just guess a future request
 
@@ -173,6 +174,11 @@ class TdEstimator
         ///
         /// \return The configured sampling frequency
         double      Get_f_s();
+
+        /// Getter for alpha
+        ///
+        /// \return The alpha value of this estimator
+        double      GetAlpha();
 };
 
 // =========================================================================

@@ -117,6 +117,7 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     // Config
     f_s         = Conf.SampleConf.f_s;
     TdVecLen    = Conf.SampleConf.TdVecLen;
+    alpha       = Conf.PLN_FilterConf.alpha;
 
     T_val                   = Conf.TimeConf.T_val;
     IntervalSkippingEnabled = Conf.TimeConf.EnableIntervalSkipping;
@@ -172,6 +173,7 @@ TdEstimator::TdEstimator( const TdEstimator& other )
 : // Config
   f_s                       ( other.f_s          ),
   TickLen                   ( other.TickLen      ),
+  alpha                     ( other.alpha        ),
   T_val                     ( other.T_val        ),
   TdVecLen                  ( other.TdVecLen     ),
   MaxTdVecCnt               ( other.MaxTdVecCnt  ),
@@ -196,6 +198,7 @@ TdEstimator::operator=( const TdEstimator& other )
     // Config
     this->f_s                       = other.f_s;
     this->TickLen                   = other.TickLen;
+    this->alpha                     = other.alpha;
     this->T_val                     = other.T_val;
     this->TdVecLen                  = other.TdVecLen;
     this->MaxTdVecCnt               = other.MaxTdVecCnt;
@@ -295,4 +298,10 @@ double
 TdEstimator::Get_f_s()
 {
     return f_s;
+}
+
+double
+TdEstimator::GetAlpha()
+{
+    return alpha;
 }
