@@ -286,6 +286,10 @@ TdEstimator::EstimateTD( double t_now, double t_req )
 
         TD_nom  = TdVecStorage.GetRelativeTD( t_req );
     }
+    else
+    {
+        assert( false );
+    }
 
     TD_abs  = TD_nom / f_s;
 
