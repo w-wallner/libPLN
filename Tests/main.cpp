@@ -131,7 +131,7 @@ void RunEstimatorTest( int TestID )
     switch( TestID )
     {
         case 0:     EstimatorTestBench();       break;
-        case 1:     FileBench();                break;
+        case 1:     TdEstChainTestBench();      break;
 
         default:    ExitOnInvalidID();
                     break;
@@ -146,7 +146,7 @@ void RunOracleTest( int TestID )
         case 1:     DetailedOracleBench();      break;
         case 2:     SpeedOracleBench();         break;
         case 3:     BurstOracleBench();         break;
-        case 4:     PreRecordedOracleBench();    break;
+        case 4:     PreRecordedOracleBench();   break;
 
         default:    ExitOnInvalidID();
                     break;

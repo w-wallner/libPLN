@@ -51,6 +51,6 @@
 // =========================================================================
 
 void    EstimatorTestBench();
-void    FileBench();
+void    TdEstChainTestBench();
 
 #endif

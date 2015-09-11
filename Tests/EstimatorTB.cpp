@@ -141,7 +141,7 @@ EstimatorTestBench()
 }
 
 void
-FileBench()
+TdEstChainTestBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
