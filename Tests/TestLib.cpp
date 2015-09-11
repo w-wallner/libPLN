@@ -84,6 +84,7 @@ SampleOracle( TdOracle &o, double &t, double fs, size_t NumSamples, bool EnableO
     size_t      CntThStep;
     size_t      NextTh;
     ofstream    TdFile;
+    size_t      i;
 
     dt          = 1.0L / fs;
     CntThStep   = NumSamples / 10;
@@ -95,7 +96,7 @@ SampleOracle( TdOracle &o, double &t, double fs, size_t NumSamples, bool EnableO
         TdFile.precision( 30 );
     }
 
-    for( size_t i = 0; i < NumSamples; i ++ )
+    for( i = 0; i < NumSamples; i ++ )
     {
         TD  = o.EstimateTD( t, t );
 
@@ -108,12 +109,17 @@ SampleOracle( TdOracle &o, double &t, double fs, size_t NumSamples, bool EnableO
         {
             if( i >= NextTh )
             {
-                cout << "Calculated " << i << " samples (t = " << t << ")." << endl;
+                cout << "Calculated " << i << " of " << NumSamples << " samples (t = " << t << ")." << endl;
                 NextTh += CntThStep;
             }
         }
 
         t   += dt;
+    }
+
+    if( EnableOutput )
+    {
+        cout << "Calculated " << i << " of " << NumSamples << " samples (t = " << t << ")." << endl;
     }
 
     if( SaveSamples )
