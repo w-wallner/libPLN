@@ -151,6 +151,11 @@ TdEstChainTestBench()
     TdEstimatorConfig Conf_WPM_10kHz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz( 3, true );
     TdEstimatorConfig Conf_WPM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz( 4, true );
 
+    TdEstimatorConfig Conf_FPM_20MHz  = TdOracle_AvgOsc20MHz::TdEstChain_FPM::GetConfig_FPM_20MHz( 1, true );
+    TdEstimatorConfig Conf_FPM_1MHz   = TdOracle_AvgOsc20MHz::TdEstChain_FPM::GetConfig_FPM_1MHz ( 2, true );
+    TdEstimatorConfig Conf_FPM_10kHz  = TdOracle_AvgOsc20MHz::TdEstChain_FPM::GetConfig_FPM_10kHz( 3, true );
+    TdEstimatorConfig Conf_FPM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_FPM::GetConfig_FPM_100Hz( 4, true );
+
     TdEstimatorConfig Conf_WFM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_WFM::GetConfig_WFM_100Hz( 5, true );
 
     TdEstimatorConfig Conf_FFM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_FFM_100Hz( 6, true );
@@ -158,6 +163,7 @@ TdEstChainTestBench()
     TdEstimatorConfig Conf_RW_100Hz   = TdOracle_AvgOsc20MHz::TdEstChain_RW::GetConfig_RW_100Hz  ( 7, true );
 
     TdEstChain  WpmChain(FSA::ALPHA_WPM, 0);
+    TdEstChain  FpmChain(FSA::ALPHA_FPM, 0);
     TdEstChain  WfmChain(FSA::ALPHA_WFM, 0);
     TdEstChain  FfmChain(FSA::ALPHA_FFM, 0);
     TdEstChain  RwChain(FSA::ALPHA_RW, 0);
@@ -168,6 +174,11 @@ TdEstChainTestBench()
     WpmChain.AddTdEstimator( Conf_WPM_10kHz );
     WpmChain.AddTdEstimator( Conf_WPM_100Hz );
 
+    FpmChain.AddTdEstimator( Conf_FPM_20MHz );
+    FpmChain.AddTdEstimator( Conf_FPM_1MHz  );
+    FpmChain.AddTdEstimator( Conf_FPM_10kHz );
+    FpmChain.AddTdEstimator( Conf_FPM_100Hz );
+
     WfmChain.AddTdEstimator( Conf_WFM_100Hz );
 
     FfmChain.AddTdEstimator( Conf_FFM_100Hz );
@@ -175,9 +186,10 @@ TdEstChainTestBench()
     RwChain.AddTdEstimator( Conf_RW_100Hz );
 
     c = WpmChain;
-    c = WfmChain;
-    c = FfmChain;
-    c = RwChain;
+    //c = FpmChain;
+    //c = WfmChain;
+    //c = FfmChain;
+    //c = RwChain;
 
     double  fs;
     double  dt;
@@ -187,9 +199,9 @@ TdEstChainTestBench()
     t = 0.0;
 
     fs = 40E6;
-    fs = 4E6;
-    fs = 1E5;
-    fs = 400;
+    //fs = 4E6;
+    //fs = 1E5;
+    //fs = 400;
 
     NumSamples  = 100000;
     NumSamples  = 1000000;
