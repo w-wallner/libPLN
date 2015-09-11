@@ -72,6 +72,18 @@ TdEstChain::TdEstChain( double alpha, unsigned int SeedOffset )
     this->SeedOffset    = SeedOffset;
 }
 
+TdEstChain::TdEstChain( TdEstimator e, unsigned int SeedOffset )
+{
+    this->alpha         = e.GetAlpha();
+    this->SeedOffset    = SeedOffset;
+
+    ChainEntry  en;
+
+    en.pEst  = new TdEstimator( e );
+
+    Chain.push_back( en );
+}
+
 TdEstChain::TdEstChain( const TdEstChain& other )
 {
     this->alpha         = other.alpha;

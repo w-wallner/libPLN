@@ -103,7 +103,21 @@ class TdEstChain
         /// Constructor
         ///
         /// Creates an empty chain.
+        ///
+        /// \param alpha        The alpha value for this chain.
+        ///                     All estimators of this chain must have this alpha value.
+        /// \param SeedOffset   Seed offset for this chain.
         TdEstChain( double alpha, unsigned int SeedOffset );
+
+        /// Constructor
+        ///
+        /// Creates a chain with a single estimator.
+        ///
+        /// \note This constructor is mainly useful for debugging purposes.
+        ///
+        /// \param e            Time deviation estimator
+        /// \param SeedOffset   Seed offset for this chain
+        TdEstChain( TdEstimator e, unsigned int SeedOffset );
 
         /// Copy constructor
         ///
