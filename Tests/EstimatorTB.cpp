@@ -43,6 +43,7 @@
 #include "libPLN.hpp"
 #include "Utils/NumericTricks.hpp"
 #include "Examples/AverageOscillator_20MHz/AverageOscillator_20MHz.hpp"
+#include "TestLib.hpp"
 
 using namespace std;
 using namespace AverageOscillator_20MHz;
@@ -180,49 +181,18 @@ TdEstChainTestBench()
 
     double  fs;
     double  dt;
-    size_t  MaxCnt;
+    size_t  NumSamples;
+    double t_begin;
+
+    t_begin = 0.0;
 
     fs = 40E6;
     fs = 4E6;
     fs = 1E5;
     fs = 400;
-    dt = 1.0L / fs;
 
-    MaxCnt  = 100000;
-    MaxCnt  = 1000000;
+    NumSamples  = 100000;
+    NumSamples  = 1000000;
 
-    size_t CntThStep    = MaxCnt / 10;
-    size_t NextTh       = CntThStep;
-    bool PrintTh;
-
-    PrintTh = true;
-//    PrintTh = false;
-
-    ofstream    TdFile;
-
-    TdFile.open( "/main/td.txt" );
-
-    TdFile.precision( 30 );
-
-    double  t = 0.0;
-    double  TD;
-    for( size_t i = 0; i < MaxCnt; i ++ )
-    {
-        TD = c.EstimateTD( t, t );
-
-        TdFile << TD << endl;
-
-        if( PrintTh )
-        {
-            if( i >= NextTh )
-            {
-                cout << "Calculated " << i << " samples (t = " << t << ")." << endl;
-                NextTh += CntThStep;
-            }
-        }
-
-        t   += dt;
-    }
-
-    TdFile.close();
+    SampleChain( c, t_begin, fs, NumSamples, true, true, "/main/td.txt" );
 }
