@@ -162,9 +162,12 @@ TdEstChain::AddTdEstimator( TdEstimatorConfig Conf )
         throw std::invalid_argument( "Configured alpha value does not match existing value." );
     }
 
-    if( Conf.SampleConf.f_s >= Chain.rbegin()->pEst->Get_f_s() )
+    if( Chain.size() > 0 )
     {
-        throw std::invalid_argument( "Estimators can only be added in strictly decreasing order of sampling frequency." );
+        if( Conf.SampleConf.f_s >= Chain.rbegin()->pEst->Get_f_s() )
+        {
+            throw std::invalid_argument( "Estimators can only be added in strictly decreasing order of sampling frequency." );
+        }
     }
 
     ChainEntry  e;
