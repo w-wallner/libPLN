@@ -38,7 +38,7 @@
 // Includes
 // =========================================================================
 
-#include "TdOracle.hpp"
+#include "libPLN.hpp"
 
 namespace AverageOscillator_20MHz
 {
