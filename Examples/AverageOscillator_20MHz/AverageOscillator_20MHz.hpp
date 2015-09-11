@@ -74,6 +74,24 @@ class TdOracle_AvgOsc20MHz : public TdOracle
              virtual TdEstChain_WPM& operator= (const TdEstChain_WPM& other);
         };
 
+        class TdEstChain_FPM : public TdEstChain
+        {
+         public:
+             // Constructors/Destructor
+            TdEstChain_FPM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping );
+            TdEstChain_FPM( const TdEstChain_FPM& other );
+             virtual ~TdEstChain_FPM();
+
+             // Getters
+             static TdEstimatorConfig   GetConfig_FPM_20MHz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_FPM_1MHz (unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_FPM_10kHz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_FPM_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
+
+             // Operators
+             virtual TdEstChain_FPM& operator= (const TdEstChain_FPM& other);
+        };
+
         class TdEstChain_WFM : public TdEstChain
         {
          public:
