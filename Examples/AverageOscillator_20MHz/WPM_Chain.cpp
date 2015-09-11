@@ -71,7 +71,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz(unsigned int Seed, boo
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
     config.PLN_FilterConf.Qd                = 5.5360E-5;
-    config.PLN_FilterConf.alpha             = 2.0;
+    config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
     config.PLN_FilterConf.Seed              = Seed;
 
@@ -101,7 +101,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz(unsigned int Seed, bool
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
     config.PLN_FilterConf.Qd                = 9.2105E-09;
-    config.PLN_FilterConf.alpha             = 2.0;
+    config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
     config.PLN_FilterConf.Seed              = Seed;
 
@@ -131,7 +131,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz(unsigned int Seed, boo
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
     config.PLN_FilterConf.Qd                = 6.9200E-15;
-    config.PLN_FilterConf.alpha             = 2.0;
+    config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
     config.PLN_FilterConf.Seed              = Seed;
 
@@ -161,7 +161,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz(unsigned int Seed, boo
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
     config.PLN_FilterConf.Qd                = 6.9200E-21;
-    config.PLN_FilterConf.alpha             = 2.0;
+    config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
     config.PLN_FilterConf.Seed              = Seed;
 
@@ -181,7 +181,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz(unsigned int Seed, boo
 }
 
 TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
-    : TdEstChain( -2.0, SeedOffset )
+    : TdEstChain( FSA::ALPHA_WPM, SeedOffset )
 {
     AddTdEstimator( GetConfig_WPM_20MHz( Seed + SeedOffset + 0, EnableIntervalSkipping ) );
     AddTdEstimator( GetConfig_WPM_1MHz ( Seed + SeedOffset + 1, EnableIntervalSkipping ) );

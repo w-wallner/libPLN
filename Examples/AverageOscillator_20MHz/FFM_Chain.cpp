@@ -71,7 +71,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_FFM_100Hz(unsigned int Seed, boo
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
     config.PLN_FilterConf.Qd                = 6.4654117423164914448E-19;
-    config.PLN_FilterConf.alpha             = -1.0;
+    config.PLN_FilterConf.alpha             = FSA::ALPHA_FFM;
     config.PLN_FilterConf.FilterLen         = 1000;
     config.PLN_FilterConf.Seed              = Seed;
 
@@ -91,7 +91,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_FFM_100Hz(unsigned int Seed, boo
 }
 
 TdOracle_AvgOsc20MHz::TdEstChain_FFM::TdEstChain_FFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
-    : TdEstChain( -1.0, SeedOffset )
+    : TdEstChain( FSA::ALPHA_FFM, SeedOffset )
 {
 
     AddTdEstimator( GetConfig_FFM_100Hz( Seed + SeedOffset + 0, EnableIntervalSkipping ) );

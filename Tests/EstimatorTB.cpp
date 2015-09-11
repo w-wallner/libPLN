@@ -101,7 +101,7 @@ EstimatorTestBench()
 //    Conf.PLN_FilterImpl              = KASDIN_WALTER_FILTER;
 
     Conf.PLN_FilterConf.Qd           = 1E-18 * sqrt(100);
-    Conf.PLN_FilterConf.alpha        = 2.0;
+    Conf.PLN_FilterConf.alpha        = FSA::ALPHA_WPM;
     Conf.PLN_FilterConf.FilterLen    = 100;
     Conf.PLN_FilterConf.Seed         = 1234;
 
@@ -156,11 +156,11 @@ FileBench()
 
     TdEstimatorConfig Conf_RW_100Hz   = TdOracle_AvgOsc20MHz::TdEstChain_RW::GetConfig_RW_100Hz  ( 7, true );
 
-    TdEstChain  WpmChain(2.0, 0);
-    TdEstChain  WfmChain(0.0, 0);
-    TdEstChain  FfmChain(-1.0, 0);
-    TdEstChain  RwChain(-2.0, 0);
-    TdEstChain  c(0.0, 0);
+    TdEstChain  WpmChain(FSA::ALPHA_WPM, 0);
+    TdEstChain  WfmChain(FSA::ALPHA_WFM, 0);
+    TdEstChain  FfmChain(FSA::ALPHA_FFM, 0);
+    TdEstChain  RwChain(FSA::ALPHA_RW, 0);
+    TdEstChain  c(FSA::ALPHA_WFM, 0);
 
     WpmChain.AddTdEstimator( Conf_WPM_20MHz );
     WpmChain.AddTdEstimator( Conf_WPM_1MHz  );

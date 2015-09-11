@@ -136,7 +136,7 @@ void TestTdVecGen()
     PLN_FilterConf.FilterLen    = 10;
     PLN_FilterConf.Qd           = 10E-2;
     PLN_FilterConf.Seed         = 5432;
-    PLN_FilterConf.alpha        = -2.0;
+    PLN_FilterConf.alpha        = FSA::ALPHA_RW;
 
     HP_FilterConf.Cnt           = 1;
     HP_FilterConf.FilterLen     = 11;

@@ -100,6 +100,7 @@
 #include "TdEst/TdEstimator.hpp"
 #include "TdEstChain.hpp"
 #include "TdOracle.hpp"
+#include "Utils/FrequencyStabilityAnalysis.hpp"
 
 // =========================================================================
 // Defines

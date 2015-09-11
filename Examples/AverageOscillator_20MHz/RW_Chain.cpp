@@ -71,7 +71,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_RW::GetConfig_RW_100Hz(unsigned int Seed, bool 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
     config.PLN_FilterConf.Qd                = 2.8455E-21;
-    config.PLN_FilterConf.alpha             = -2.0;
+    config.PLN_FilterConf.alpha             = FSA::ALPHA_RW;
     config.PLN_FilterConf.FilterLen         = 10;
     config.PLN_FilterConf.Seed              = Seed + 0;
 
@@ -91,7 +91,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_RW::GetConfig_RW_100Hz(unsigned int Seed, bool 
 }
 
 TdOracle_AvgOsc20MHz::TdEstChain_RW::TdEstChain_RW( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
-    : TdEstChain( -2.0, SeedOffset )
+    : TdEstChain( FSA::ALPHA_RW, SeedOffset )
 {
     AddTdEstimator( GetConfig_RW_100Hz(Seed + 0, EnableIntervalSkipping) );
 }
