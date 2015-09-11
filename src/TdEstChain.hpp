@@ -66,15 +66,17 @@ class TdEstChain
         /// Entry in the time deviation estimator chain
         typedef struct
         {
-            TdEstimator     *pEst;      ///< Pointer to a time deviation estimator
+            TdEstimator     *pEst;              ///< Pointer to a time deviation estimator
         }
         ChainEntry;
 
         // -----------------------------------------------------------------
         // Config
         // -----------------------------------------------------------------
-        double              alpha;      ///< Alpha value for the type of powerlaw noise that the
-                                        ///< time deviviation values from this chain correspond to.
+        double              alpha;              ///< Alpha value for the type of powerlaw noise that the
+                                                ///< time deviviation values from this chain correspond to.
+
+        unsigned int        SeedOffset;         ///< Offset for this chain's seed values;
 
         // -----------------------------------------------------------------
         // Housekeeping
@@ -101,7 +103,7 @@ class TdEstChain
         /// Constructor
         ///
         /// Creates an empty chain.
-        TdEstChain();
+        TdEstChain( double alpha, unsigned int SeedOffset );
 
         /// Copy constructor
         ///

@@ -90,7 +90,8 @@ TdOracle_AvgOsc20MHz::TdEstChain_RW::GetConfig_RW_100Hz(unsigned int Seed, bool 
     return config;
 }
 
-TdOracle_AvgOsc20MHz::TdEstChain_RW::TdEstChain_RW( unsigned int Seed, bool EnableIntervalSkipping )
+TdOracle_AvgOsc20MHz::TdEstChain_RW::TdEstChain_RW( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
+    : TdEstChain( -2.0, SeedOffset )
 {
     AddTdEstimator( GetConfig_RW_100Hz(Seed + 0, EnableIntervalSkipping) );
 }

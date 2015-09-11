@@ -78,17 +78,13 @@ TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( unsigned int Seed, bool EnableInterv
     ChainVecEntry   FfmEntry;
     ChainVecEntry   RwEntry;
 
-    WpmEntry.pChain     = new TdEstChain_WPM( Seed + SeedOffsetWpmChain, EnableIntervalSkipping );
-    WpmEntry.SeedOffset = SeedOffsetWpmChain;
+    WpmEntry.pChain     = new TdEstChain_WPM( SeedOffsetWpmChain, Seed, EnableIntervalSkipping );
 
-    WfmEntry.pChain     = new TdEstChain_WFM( Seed + SeedOffsetWfmChain, EnableIntervalSkipping );
-    WfmEntry.SeedOffset = SeedOffsetWfmChain;
+    WfmEntry.pChain     = new TdEstChain_WFM( SeedOffsetWfmChain, Seed, EnableIntervalSkipping );
 
-    FfmEntry.pChain     = new TdEstChain_FFM( Seed + SeedOffsetFfmChain, EnableIntervalSkipping );
-    FfmEntry.SeedOffset = SeedOffsetFfmChain;
+    FfmEntry.pChain     = new TdEstChain_FFM( SeedOffsetFfmChain, Seed, EnableIntervalSkipping );
 
-    RwEntry.pChain      = new TdEstChain_RW ( Seed + SeedOffsetRwChain,  EnableIntervalSkipping );
-    RwEntry.SeedOffset  = SeedOffsetRwChain;
+    RwEntry.pChain      = new TdEstChain_RW ( SeedOffsetRwChain,  Seed, EnableIntervalSkipping );
 
     ChainVec.push_back( WpmEntry );
     ChainVec.push_back( WfmEntry );

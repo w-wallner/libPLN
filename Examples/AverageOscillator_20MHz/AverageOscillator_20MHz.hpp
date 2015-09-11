@@ -60,7 +60,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
         {
          public:
              // Constructors/Destructor
-             TdEstChain_WPM( unsigned int Seed, bool EnableIntervalSkipping );
+             TdEstChain_WPM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping );
              TdEstChain_WPM( const TdEstChain_WPM& other );
              virtual ~TdEstChain_WPM();
 
@@ -78,7 +78,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
         {
          public:
              // Constructors/Destructor
-             TdEstChain_WFM( unsigned int Seed, bool EnableIntervalSkipping );
+             TdEstChain_WFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping );
              TdEstChain_WFM( const TdEstChain_WFM& other );
              virtual ~TdEstChain_WFM();
 
@@ -93,7 +93,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
         {
          public:
              // Constructors/Destructor
-             TdEstChain_FFM( unsigned int Seed, bool EnableIntervalSkipping );
+             TdEstChain_FFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping );
              TdEstChain_FFM( const TdEstChain_FFM& other );
              virtual ~TdEstChain_FFM();
 
@@ -108,7 +108,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
         {
          public:
              // Constructors/Destructor
-             TdEstChain_RW( unsigned int Seed, bool EnableIntervalSkipping );
+             TdEstChain_RW( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping );
              TdEstChain_RW( const TdEstChain_RW& other );
              virtual ~TdEstChain_RW();
 

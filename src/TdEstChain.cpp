@@ -66,14 +66,17 @@ TdEstChain::ClearChain()
     Chain.clear();
 }
 
-TdEstChain::TdEstChain()
+TdEstChain::TdEstChain( double alpha, unsigned int SeedOffset )
 {
-    alpha    = -5;
+    this->alpha         = alpha;
+    this->SeedOffset    = SeedOffset;
 }
 
 TdEstChain::TdEstChain( const TdEstChain& other )
-    : alpha( other.alpha )
 {
+    this->alpha         = other.alpha;
+    this->SeedOffset    = other.SeedOffset;
+
     for( std::vector<ChainEntry>::const_iterator it = other.Chain.begin(); it != other.Chain.end(); ++it )
     {
         ChainEntry  e;
@@ -133,7 +136,7 @@ TdEstChain::SetSeed( unsigned int Seed )
 
     for( std::vector<ChainEntry>::iterator it = Chain.begin(); it < Chain.end(); ++it )
     {
-        it->pEst->SetSeed( Seed + Cnt );
+        it->pEst->SetSeed( Seed + SeedOffset + Cnt );
 
         Cnt ++;
     }
@@ -142,21 +145,14 @@ TdEstChain::SetSeed( unsigned int Seed )
 void
 TdEstChain::AddTdEstimator( TdEstimatorConfig Conf )
 {
-    if( Chain.size() == 0 )
+    if( Conf.PLN_FilterConf.alpha != alpha )
     {
-        alpha = Conf.PLN_FilterConf.alpha;
+        throw std::invalid_argument( "Configured alpha value does not match existing value." );
     }
-    else
-    {
-        if( Conf.PLN_FilterConf.alpha != alpha )
-        {
-            throw std::invalid_argument( "Configured alpha value does not match existing value." );
-        }
 
-        if( Conf.SampleConf.f_s >= Chain.rbegin()->pEst->Get_f_s() )
-        {
-            throw std::invalid_argument( "Estimators can only be added in strictly decreasing order of sampling frequency." );
-        }
+    if( Conf.SampleConf.f_s >= Chain.rbegin()->pEst->Get_f_s() )
+    {
+        throw std::invalid_argument( "Estimators can only be added in strictly decreasing order of sampling frequency." );
     }
 
     ChainEntry  e;

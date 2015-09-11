@@ -156,11 +156,11 @@ FileBench()
 
     TdEstimatorConfig Conf_RW_100Hz   = TdOracle_AvgOsc20MHz::TdEstChain_RW::GetConfig_RW_100Hz  ( 7, true );
 
-    TdEstChain  WpmChain;
-    TdEstChain  WfmChain;
-    TdEstChain  FfmChain;
-    TdEstChain  RwChain;
-    TdEstChain  c;
+    TdEstChain  WpmChain(2.0, 0);
+    TdEstChain  WfmChain(0.0, 0);
+    TdEstChain  FfmChain(-1.0, 0);
+    TdEstChain  RwChain(-2.0, 0);
+    TdEstChain  c(0.0, 0);
 
     WpmChain.AddTdEstimator( Conf_WPM_20MHz );
     WpmChain.AddTdEstimator( Conf_WPM_1MHz  );

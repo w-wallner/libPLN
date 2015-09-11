@@ -80,8 +80,7 @@ TdOracle::TdOracle( const TdOracle& other )
     {
         ChainVecEntry   e;
 
-        e.pChain        = new TdEstChain( *it->pChain );
-        e.SeedOffset    = it->SeedOffset;
+        e.pChain    = new TdEstChain( *it->pChain );
 
         ChainVec.push_back( e );
     }
@@ -105,8 +104,7 @@ TdOracle::operator=( const TdOracle& other )
     {
         ChainVecEntry   e;
 
-        e.pChain        = new TdEstChain( *it->pChain );
-        e.SeedOffset    = it->SeedOffset;
+        e.pChain    = new TdEstChain( *it->pChain );
 
         ChainVec.push_back( e );
     }
@@ -143,7 +141,7 @@ TdOracle::SetSeed( unsigned int Seed )
 {
     for( std::vector<ChainVecEntry>::const_iterator it = ChainVec.begin(); it != ChainVec.end(); ++it )
     {
-        it->pChain->SetSeed( Seed + it->SeedOffset );
+        it->pChain->SetSeed( Seed );
     }
 }
 

@@ -67,7 +67,6 @@ class TdOracle
         typedef struct
         {
             TdEstChain      *pChain;        ///< Pointer to a time deviation estimator chain
-            unsigned int    SeedOffset;     ///< Seed offset to have individual seeds for individual chains
         }
         ChainVecEntry;
 
