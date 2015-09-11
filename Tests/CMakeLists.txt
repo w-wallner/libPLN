@@ -14,7 +14,7 @@ else()
     
 endif()
 
-add_executable(TestBench EXCLUDE_FROM_ALL main.cpp NumericTests.cpp BasicTests.cpp EstimatorTB.cpp OracleTB.cpp)
+add_executable(TestBench EXCLUDE_FROM_ALL main.cpp NumericTests.cpp BasicTests.cpp EstimatorTB.cpp OracleTB.cpp TestLib.cpp)
                         
 target_include_directories(TestBench PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
                                             ${CMAKE_SOURCE_DIR}
