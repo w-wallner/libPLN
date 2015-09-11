@@ -165,14 +165,9 @@ void DetailedOracleBench()
     cout << "Running " << __func__ << "()" << endl;
 
     double          f_s;
-    double          dt;
     double          t;
     size_t          i;
-    size_t          Cnt;
-    size_t          MaxCnt;
-
-    size_t          NextPrintTh;
-    bool            EnablePrint;
+    size_t          NumSamples;
 
     std::string     OutputPath;
     std::string     Name;
@@ -185,16 +180,14 @@ void DetailedOracleBench()
     // Config
     OutputPath = "/main/Tmp/Benchmarks/";
 
-    EnablePrint     = true;
-
-    MaxCnt   = 100000;      // 10^5
-    MaxCnt   = 1000000;     // 10^6
-//    MaxCnt   = 10000000;    // 10^7
-//    MaxCnt   = 100000000;   // 10^8     Max @ Matlab
+    NumSamples   = 100000;      // 10^5
+//    NumSamples   = 1000000;     // 10^6
+//    NumSamples   = 10000000;    // 10^7
+//    NumSamples   = 100000000;   // 10^8     Max @ Matlab
 
     cout << OutputPath << endl;
 
-    t               = 0.0L;
+    t   = 0.0L;
 
     // Benchmark Oscillator
     for( i = 0; i < NumElements(DetailedBenchMarks); i ++ )
@@ -204,37 +197,14 @@ void DetailedOracleBench()
         Name    = DetailedBenchMarks[ i ].Name;
 
         // Init
-        NextPrintTh     = 0;
-        dt              = 1.0L / f_s;
         Filename        = OutputPath + "td_" + Name + ".txt";
 
         cout << endl;
         cout << "Starting benchmark " << i + 1 << "/" << NumElements(DetailedBenchMarks) << " for " << Name << endl;
         cout << "t = " << t << endl;
 
-        TdFile.open( Filename.c_str() );
-        TdFile.precision( 30 );
+        SampleOracle( o, t, f_s, NumSamples, true, true, Filename );
 
-        for( Cnt = 0; Cnt < MaxCnt; Cnt ++ )
-        {
-            double TD;
-
-            TD = o.EstimateTD( t, t );
-
-            TdFile << TD << endl;
-
-            t   += dt;
-
-            if( EnablePrint )
-            {
-                if( Cnt >= NextPrintTh )
-                {
-                    cout << "Calculated " << (double)Cnt / (double) MaxCnt * 100 << "% (t = " << t << ")." << endl;
-                    NextPrintTh += (MaxCnt/10);
-                }
-            }
-        }
-        TdFile.close();
         cout << "Finished benchmark for " << Name << endl;
     }
 }
