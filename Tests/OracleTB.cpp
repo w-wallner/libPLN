@@ -40,6 +40,7 @@
 #include "libPLN.hpp"
 #include "Examples/AverageOscillator_20MHz/AverageOscillator_20MHz.hpp"
 #include "Utils/NumericTricks.hpp"
+#include "TestLib.hpp"
 
 #include <fstream>
 #include <iostream>
@@ -132,18 +133,16 @@ void SimpleOracleBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-    double f_s;
-    double dt;
-    double t        = 0.0L;
-    size_t cnt      = 0;
-    size_t MaxCnt;
+    double  f_s;
+    size_t  NumSamples;
+    double  t;
 
-    MaxCnt   = 1000;      // 10^3
-//    MaxCnt   = 10000;      // 10^4
-//    MaxCnt   = 100000;      // 10^5
-//    MaxCnt   = 1000000;     // 10^6
-//    MaxCnt   = 10000000;    // 10^7
-//    MaxCnt   = 100000000;   // 10^8     Max @ Matlab
+    NumSamples   = 1000;      // 10^3
+//    NumSamples   = 10000;      // 10^4
+    NumSamples   = 100000;      // 10^5
+//    NumSamples   = 1000000;     // 10^6
+//    NumSamples   = 10000000;    // 10^7
+//    NumSamples   = 100000000;   // 10^8     Max @ Matlab
 
     f_s = 40E6;
     f_s =5E6;
@@ -154,44 +153,11 @@ void SimpleOracleBench()
 
 //    f_s = 250000;
 
-    dt  = 1.0L / f_s;
-
-    size_t CntThStep    = MaxCnt / 100;
-    size_t NextTh       = CntThStep;
-    bool PrintTh;
-
-    PrintTh = true;
-//    PrintTh = false;
-
-    ofstream    TdFile;
-    TdFile.open( "/main/td.txt" );
+    t = 0.0;
 
     TdOracle_AvgOsc20MHz o( 123, true );
 
-//    o.SetSeed( 1000 );
-//    o.SetSeed( 0 );
-
-    TdFile.precision( 30 );
-    for( cnt = 0; cnt < MaxCnt; cnt ++ )
-    {
-        double TD;
-
-        TD = o.EstimateTD( t, t );
-
-        TdFile << TD << endl;
-
-        t += dt;
-
-        if( PrintTh )
-        {
-            if( cnt >= NextTh )
-            {
-                cout << "Calculated " << (double)cnt / (double) MaxCnt * 100 << "% (t = " << t << ")." << endl;
-                NextTh += CntThStep;
-            }
-        }
-    }
-    TdFile.close();
+    SampleOracle( o, t, f_s, NumSamples, true, true, "/main/td.txt" );
 }
 
 void DetailedOracleBench()
