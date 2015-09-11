@@ -98,7 +98,7 @@ class TdOracle
         TdOracle( const TdOracle& other );
 
         /// Destructor
-        virtual ~TdOracle() = 0;
+        virtual ~TdOracle();
 
     public:
 
