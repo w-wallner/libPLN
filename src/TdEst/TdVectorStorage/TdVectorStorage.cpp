@@ -194,7 +194,11 @@ TdVectorStorage::operator= (const TdVectorStorage& other)
 void
 TdVectorStorage::AddTdVec( TdVector *pTdVec )
 {
-    if( pTdVec->GetBeginTime() != GetEndTime() )
+    if
+    (
+        ( !Storage.empty() ) &&
+        ( pTdVec->GetBeginTime() != GetEndTime() )
+    )
     {
         cout << "Current storage: " << endl;
         Print();
@@ -204,7 +208,7 @@ TdVectorStorage::AddTdVec( TdVector *pTdVec )
 
         std::ostringstream strs;
 
-        strs << "TdStorage: new vector does not continue time frame.";
+        strs << "TdStorage: new vector does not continue time frame. ";
         strs << "New BeginTime (" << pTdVec->GetBeginTime() << ")";
         strs << " does not match current EndTime (" << GetEndTime() << ")";
 
@@ -318,7 +322,17 @@ TdVectorStorage::ForgetPast( double t_now )
         return;
     }
 
-    size_t cnt = FindIndex( t_now );
+    size_t cnt = 0;
+
+    if( GetEndTime() < t_now )
+    {
+        cnt = Storage.size();
+    }
+    else
+    {
+        cnt = FindIndex( t_now );
+    }
+
     if( cnt == 0 )
     {
         return;
