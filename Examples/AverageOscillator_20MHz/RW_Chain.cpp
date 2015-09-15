@@ -96,22 +96,4 @@ TdOracle_AvgOsc20MHz::TdEstChain_RW::TdEstChain_RW( unsigned int SeedOffset, uns
     AddTdEstimator( GetConfig_RW_100Hz(Seed + 0, EnableIntervalSkipping) );
 }
 
-TdOracle_AvgOsc20MHz::TdEstChain_RW::TdEstChain_RW( const TdEstChain_RW& other )
-    : TdEstChain( other )
-{
-}
-
-TdOracle_AvgOsc20MHz::TdEstChain_RW::~TdEstChain_RW()
-{
-}
-
-TdOracle_AvgOsc20MHz::TdEstChain_RW&
-TdOracle_AvgOsc20MHz::TdEstChain_RW::operator= (const TdEstChain_RW& other)
-{
-    TdEstChain::operator=( other );
-
-    // By convention, always return *this
-    return *this;
-}
-
 }

@@ -189,22 +189,4 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int SeedOffset, u
     AddTdEstimator( GetConfig_WPM_100Hz( Seed + SeedOffset + 3, EnableIntervalSkipping ) );
 }
 
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( const TdEstChain_WPM& other )
-    : TdEstChain( other )
-{
-}
-
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::~TdEstChain_WPM()
-{
-}
-
-TdOracle_AvgOsc20MHz::TdEstChain_WPM&
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::operator= (const TdEstChain_WPM& other)
-{
-    TdEstChain::operator=( other );
-
-    // By convention, always return *this
-    return *this;
-}
-
 }

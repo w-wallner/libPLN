@@ -97,22 +97,4 @@ TdOracle_AvgOsc20MHz::TdEstChain_FFM::TdEstChain_FFM( unsigned int SeedOffset, u
     AddTdEstimator( GetConfig_FFM_100Hz( Seed + SeedOffset + 0, EnableIntervalSkipping ) );
 }
 
-TdOracle_AvgOsc20MHz::TdEstChain_FFM::TdEstChain_FFM( const TdEstChain_FFM& other )
-    : TdEstChain( other )
-{
-}
-
-TdOracle_AvgOsc20MHz::TdEstChain_FFM::~TdEstChain_FFM()
-{
-}
-
-TdOracle_AvgOsc20MHz::TdEstChain_FFM&
-TdOracle_AvgOsc20MHz::TdEstChain_FFM::operator= (const TdEstChain_FFM& other)
-{
-    TdEstChain::operator=( other );
-
-    // By convention, always return *this
-    return *this;
-}
-
 }
