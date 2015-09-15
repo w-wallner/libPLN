@@ -92,13 +92,4 @@ TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( unsigned int Seed, bool EnableInterv
     ChainVec.push_back( RwEntry  );
 }
 
-TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( const TdOracle_AvgOsc20MHz& other )
-    : TdOracle( other )
-{
-}
-
-TdOracle_AvgOsc20MHz::~TdOracle_AvgOsc20MHz()
-{
-}
-
 }

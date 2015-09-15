@@ -147,8 +147,6 @@ class TdOracle_AvgOsc20MHz : public TdOracle
 
         // Constructors/Destructor
         TdOracle_AvgOsc20MHz( unsigned int Seed, bool EnableIntervalSkipping );
-        TdOracle_AvgOsc20MHz( const TdOracle_AvgOsc20MHz& other );
-        virtual ~TdOracle_AvgOsc20MHz();
 };
 
 // =========================================================================
