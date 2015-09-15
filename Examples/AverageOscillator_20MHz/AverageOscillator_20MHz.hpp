@@ -114,7 +114,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
 
     private:
 
-         // Config
+        // Config
 
         // Resources
 

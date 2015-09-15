@@ -93,7 +93,6 @@ TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_FFM_100Hz(unsigned int Seed, boo
 TdOracle_AvgOsc20MHz::TdEstChain_FFM::TdEstChain_FFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
     : TdEstChain( FSA::ALPHA_FFM, SeedOffset )
 {
-
     AddTdEstimator( GetConfig_FFM_100Hz( Seed + SeedOffset + 0, EnableIntervalSkipping ) );
 }
 
