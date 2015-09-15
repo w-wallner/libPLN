@@ -61,7 +61,7 @@ namespace AverageOscillator_20MHz
 // =========================================================================
 
 TdEstimatorConfig
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz(unsigned int Seed, bool EnableIntervalSkipping)
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_20MHz(unsigned int Seed, bool EnableIntervalSkipping)
 {
     TdEstimatorConfig   config;
 
@@ -91,7 +91,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz(unsigned int Seed, boo
 }
 
 TdEstimatorConfig
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz(unsigned int Seed, bool EnableIntervalSkipping)
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_1MHz(unsigned int Seed, bool EnableIntervalSkipping)
 {
     TdEstimatorConfig   config;
 
@@ -121,7 +121,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz(unsigned int Seed, bool
 }
 
 TdEstimatorConfig
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz(unsigned int Seed, bool EnableIntervalSkipping)
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_10kHz(unsigned int Seed, bool EnableIntervalSkipping)
 {
     TdEstimatorConfig   config;
 
@@ -151,7 +151,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz(unsigned int Seed, boo
 }
 
 TdEstimatorConfig
-TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz(unsigned int Seed, bool EnableIntervalSkipping)
+TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping)
 {
     TdEstimatorConfig   config;
 
@@ -183,10 +183,10 @@ TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz(unsigned int Seed, boo
 TdOracle_AvgOsc20MHz::TdEstChain_WPM::TdEstChain_WPM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
     : TdEstChain( FSA::ALPHA_WPM, SeedOffset )
 {
-    AddTdEstimator( GetConfig_WPM_20MHz( Seed + SeedOffset + 0, EnableIntervalSkipping ) );
-    AddTdEstimator( GetConfig_WPM_1MHz ( Seed + SeedOffset + 1, EnableIntervalSkipping ) );
-    AddTdEstimator( GetConfig_WPM_10kHz( Seed + SeedOffset + 2, EnableIntervalSkipping ) );
-    AddTdEstimator( GetConfig_WPM_100Hz( Seed + SeedOffset + 3, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_20MHz( Seed + SeedOffset + 0, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_1MHz ( Seed + SeedOffset + 1, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_10kHz( Seed + SeedOffset + 2, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_100Hz( Seed + SeedOffset + 3, EnableIntervalSkipping ) );
 }
 
 }

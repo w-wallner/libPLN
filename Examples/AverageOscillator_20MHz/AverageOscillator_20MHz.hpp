@@ -63,10 +63,10 @@ class TdOracle_AvgOsc20MHz : public TdOracle
              TdEstChain_WPM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping );
 
              // Getters
-             static TdEstimatorConfig   GetConfig_WPM_20MHz(unsigned int Seed, bool EnableIntervalSkipping);
-             static TdEstimatorConfig   GetConfig_WPM_1MHz (unsigned int Seed, bool EnableIntervalSkipping);
-             static TdEstimatorConfig   GetConfig_WPM_10kHz(unsigned int Seed, bool EnableIntervalSkipping);
-             static TdEstimatorConfig   GetConfig_WPM_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_20MHz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_1MHz (unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_10kHz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
         };
 
         class TdEstChain_FPM : public TdEstChain
@@ -76,10 +76,10 @@ class TdOracle_AvgOsc20MHz : public TdOracle
             TdEstChain_FPM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping );
 
              // Getters
-             static TdEstimatorConfig   GetConfig_FPM_20MHz(unsigned int Seed, bool EnableIntervalSkipping);
-             static TdEstimatorConfig   GetConfig_FPM_1MHz (unsigned int Seed, bool EnableIntervalSkipping);
-             static TdEstimatorConfig   GetConfig_FPM_10kHz(unsigned int Seed, bool EnableIntervalSkipping);
-             static TdEstimatorConfig   GetConfig_FPM_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_20MHz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_1MHz (unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_10kHz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
         };
 
         class TdEstChain_WFM : public TdEstChain
@@ -89,7 +89,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
              TdEstChain_WFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping );
 
              // Getters
-             static TdEstimatorConfig   GetConfig_WFM_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
         };
 
         class TdEstChain_FFM : public TdEstChain
@@ -99,7 +99,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
              TdEstChain_FFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping );
 
              // Getters
-             static TdEstimatorConfig   GetConfig_FFM_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
         };
 
         class TdEstChain_RW : public TdEstChain
@@ -109,7 +109,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
              TdEstChain_RW( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping );
 
              // Getters
-             static TdEstimatorConfig   GetConfig_RW_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
         };
 
     private:
