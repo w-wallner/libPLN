@@ -51,6 +51,6 @@
 // =========================================================================
 
 void    EstimatorTestBench();
-void    TdEstChainTestBench();
+void    AvgOscChainTestBench();
 
 #endif

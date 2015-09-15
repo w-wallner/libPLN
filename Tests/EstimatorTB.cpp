@@ -142,7 +142,7 @@ EstimatorTestBench()
 }
 
 void
-TdEstChainTestBench()
+AvgOscChainTestBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
