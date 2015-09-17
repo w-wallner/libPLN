@@ -46,7 +46,7 @@
 #include "TestLib.hpp"
 
 using namespace std;
-using namespace AverageOscillator_20MHz;
+using namespace LibPLN_Examples;
 
 // =========================================================================
 // Defines

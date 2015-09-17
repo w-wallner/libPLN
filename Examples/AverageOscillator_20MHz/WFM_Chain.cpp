@@ -37,7 +37,7 @@
 
 #include "AverageOscillator_20MHz.hpp"
 
-namespace AverageOscillator_20MHz
+namespace LibPLN_Examples
 {
 
 // =========================================================================
