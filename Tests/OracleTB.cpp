@@ -155,7 +155,7 @@ void SimpleOracleBench()
 
     t = 0.0;
 
-    TdOracle_AvgOsc20MHz o( 123, true );
+    cAvgOsc20MHz o( 123, true );
 
     SampleOracle( o, t, f_s, NumSamples, true, true, "/main/td.txt" );
 }
@@ -174,8 +174,8 @@ void DetailedOracleBench()
     std::string     Filename;
 
     // Resources
-    TdOracle_AvgOsc20MHz    o( 54321, true );
-    ofstream                TdFile;
+    cAvgOsc20MHz    o( 54321, true );
+    ofstream        TdFile;
 
     // Config
     OutputPath = "/main/Tmp/Benchmarks/";
@@ -233,8 +233,8 @@ void SpeedOracleBench()
     std::string     Name;
 
     // Resources
-    TdOracle_AvgOsc20MHz    o( 54321, true );
-    ofstream                ResultFile;
+    cAvgOsc20MHz    o( 54321, true );
+    ofstream        ResultFile;
 
     // Config
     ResultFilename = "/main/speed_results.txt";
@@ -301,16 +301,16 @@ void BurstOracleBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-    TdOracle_AvgOsc20MHz    o( 2222, true );
-    double                  f_s;
-    double                  dt;
-    double                  t;
-    size_t                  Cnt;
+    cAvgOsc20MHz    o( 2222, true );
+    double          f_s;
+    double          dt;
+    double          t;
+    size_t          Cnt;
 
-    ofstream                ResultFile;
-    std::string             ResultFilename;
+    ofstream        ResultFile;
+    std::string     ResultFilename;
 
-    size_t                  i;
+    size_t          i;
 
     ResultFilename = "/main/burst_bench.txt";
     ResultFile.open( ResultFilename.c_str() );
@@ -344,16 +344,16 @@ void PreRecordedOracleBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-    TdOracle_AvgOsc20MHz    o( 0, true );
-    ifstream                ResultFile;
-    std::string             ResultFilename = "/main/CallLog.txt";
-    ofstream                TdTraceFile;
-    std::string             TdTraceFilename = "/main/TdTrace.txt";
-    double                  T_Now;
-    double                  T_Now_Latch;
-    double                  T_Req;
-    double                  TD;
-    size_t                  MaxLineCnt = 1000000;
+    cAvgOsc20MHz    o( 0, true );
+    ifstream        ResultFile;
+    std::string     ResultFilename = "/main/CallLog.txt";
+    ofstream        TdTraceFile;
+    std::string     TdTraceFilename = "/main/TdTrace.txt";
+    double          T_Now;
+    double          T_Now_Latch;
+    double          T_Req;
+    double          TD;
+    size_t          MaxLineCnt = 1000000;
 
 //    MaxLineCnt = 100000;
 
@@ -432,8 +432,8 @@ SkipVsNoSkipBench()
     FilenameSkip    = "/main/td_skip.txt";
     FilenameNoSkip  = "/main/td_no_skip.txt";
 
-    TdOracle_AvgOsc20MHz    SkipOsc  ( Seed, true  );
-    TdOracle_AvgOsc20MHz    NoSkipOsc( Seed, false );
+    cAvgOsc20MHz    SkipOsc  ( Seed, true  );
+    cAvgOsc20MHz    NoSkipOsc( Seed, false );
 
     cout << "Starting test case with skipping enabled ..." << endl;
 

@@ -51,7 +51,7 @@ namespace AverageOscillator_20MHz
 // Type definitions
 // =========================================================================
 
-class TdOracle_AvgOsc20MHz : public TdOracle
+class cAvgOsc20MHz : public TdOracle
 {
     public:
 
@@ -121,7 +121,7 @@ class TdOracle_AvgOsc20MHz : public TdOracle
     public:
 
         // Constructors/Destructor
-        TdOracle_AvgOsc20MHz( unsigned int Seed, bool EnableIntervalSkipping );
+        cAvgOsc20MHz( unsigned int Seed, bool EnableIntervalSkipping );
 };
 
 // =========================================================================

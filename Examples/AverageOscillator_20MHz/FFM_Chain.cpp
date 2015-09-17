@@ -61,7 +61,7 @@ namespace AverageOscillator_20MHz
 // =========================================================================
 
 TdEstimatorConfig
-TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping)
+cAvgOsc20MHz::TdEstChain_FFM::GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping)
 {
     TdEstimatorConfig   config;
 
@@ -90,7 +90,7 @@ TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_100Hz(unsigned int Seed, bool En
     return config;
 }
 
-TdOracle_AvgOsc20MHz::TdEstChain_FFM::TdEstChain_FFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
+cAvgOsc20MHz::TdEstChain_FFM::TdEstChain_FFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
     : TdEstChain( FSA::ALPHA_FFM, SeedOffset )
 {
     AddTdEstimator( GetConfig_100Hz( Seed + SeedOffset + 0, EnableIntervalSkipping ) );

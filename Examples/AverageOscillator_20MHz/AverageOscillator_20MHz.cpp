@@ -70,7 +70,7 @@ tSeedOffset;
 // Function definitions
 // =========================================================================
 
-TdOracle_AvgOsc20MHz::TdOracle_AvgOsc20MHz( unsigned int Seed, bool EnableIntervalSkipping )
+cAvgOsc20MHz::cAvgOsc20MHz( unsigned int Seed, bool EnableIntervalSkipping )
     : TdOracle()
 {
     ChainVecEntry   WpmEntry;

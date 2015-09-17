@@ -146,21 +146,21 @@ AvgOscChainTestBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-    TdEstimatorConfig Conf_WPM_20MHz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_20MHz( 1, true );
-    TdEstimatorConfig Conf_WPM_1MHz   = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_1MHz ( 2, true );
-    TdEstimatorConfig Conf_WPM_10kHz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_10kHz( 3, true );
-    TdEstimatorConfig Conf_WPM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_WPM::GetConfig_WPM_100Hz( 4, true );
+    TdEstimatorConfig Conf_WPM_20MHz  = cAvgOsc20MHz::TdEstChain_WPM::GetConfig_20MHz( 1, true );
+    TdEstimatorConfig Conf_WPM_1MHz   = cAvgOsc20MHz::TdEstChain_WPM::GetConfig_1MHz ( 2, true );
+    TdEstimatorConfig Conf_WPM_10kHz  = cAvgOsc20MHz::TdEstChain_WPM::GetConfig_10kHz( 3, true );
+    TdEstimatorConfig Conf_WPM_100Hz  = cAvgOsc20MHz::TdEstChain_WPM::GetConfig_100Hz( 4, true );
 
-    TdEstimatorConfig Conf_FPM_20MHz  = TdOracle_AvgOsc20MHz::TdEstChain_FPM::GetConfig_FPM_20MHz( 1, true );
-    TdEstimatorConfig Conf_FPM_1MHz   = TdOracle_AvgOsc20MHz::TdEstChain_FPM::GetConfig_FPM_1MHz ( 2, true );
-    TdEstimatorConfig Conf_FPM_10kHz  = TdOracle_AvgOsc20MHz::TdEstChain_FPM::GetConfig_FPM_10kHz( 3, true );
-    TdEstimatorConfig Conf_FPM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_FPM::GetConfig_FPM_100Hz( 4, true );
+    TdEstimatorConfig Conf_FPM_20MHz  = cAvgOsc20MHz::TdEstChain_FPM::GetConfig_20MHz( 1, true );
+    TdEstimatorConfig Conf_FPM_1MHz   = cAvgOsc20MHz::TdEstChain_FPM::GetConfig_1MHz ( 2, true );
+    TdEstimatorConfig Conf_FPM_10kHz  = cAvgOsc20MHz::TdEstChain_FPM::GetConfig_10kHz( 3, true );
+    TdEstimatorConfig Conf_FPM_100Hz  = cAvgOsc20MHz::TdEstChain_FPM::GetConfig_100Hz( 4, true );
 
-    TdEstimatorConfig Conf_WFM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_WFM::GetConfig_WFM_100Hz( 5, true );
+    TdEstimatorConfig Conf_WFM_100Hz  = cAvgOsc20MHz::TdEstChain_WFM::GetConfig_100Hz( 5, true );
 
-    TdEstimatorConfig Conf_FFM_100Hz  = TdOracle_AvgOsc20MHz::TdEstChain_FFM::GetConfig_FFM_100Hz( 6, true );
+    TdEstimatorConfig Conf_FFM_100Hz  = cAvgOsc20MHz::TdEstChain_FFM::GetConfig_100Hz( 6, true );
 
-    TdEstimatorConfig Conf_RW_100Hz   = TdOracle_AvgOsc20MHz::TdEstChain_RW::GetConfig_RW_100Hz  ( 7, true );
+    TdEstimatorConfig Conf_RW_100Hz   = cAvgOsc20MHz::TdEstChain_RW::GetConfig_100Hz  ( 7, true );
 
     TdEstChain  WpmChain(FSA::ALPHA_WPM, 0);
     TdEstChain  FpmChain(FSA::ALPHA_FPM, 0);
