@@ -31,8 +31,8 @@
 //
 // ============================================================================
 
-#ifndef AVERAGEOSCILLATOR_20MHZ_HPP_
-#define AVERAGEOSCILLATOR_20MHZ_HPP_
+#ifndef AVERAGE_OSCILLATOR_20MHZ_HPP_
+#define AVERAGE_OSCILLATOR_20MHZ_HPP_
 
 // =========================================================================
 // Includes
