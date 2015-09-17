@@ -45,7 +45,7 @@
 #include "TdVecGen/WfmTdVecGen.hpp"
 #include "TdVecGen/RwTdVecGen.hpp"
 
-#include "AverageOscillator_20MHz/AverageOscillator_20MHz.hpp"
+#include "Examples/AverageOscillator_20MHz/AverageOscillator_20MHz.hpp"
 
 #include <iostream>
 #include <fstream>
