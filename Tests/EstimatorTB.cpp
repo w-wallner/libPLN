@@ -43,6 +43,7 @@
 #include "libPLN.hpp"
 #include "Utils/NumericTricks.hpp"
 #include "Examples/AverageOscillator_20MHz/AverageOscillator_20MHz.hpp"
+#include "Examples/WatchQuartz_20MHz/WatchQuartz_20MHz.hpp"
 #include "TestLib.hpp"
 
 using namespace std;
@@ -188,6 +189,54 @@ AvgOscChainTestBench()
     c = WpmChain;
     //c = FpmChain;
     //c = WfmChain;
+    //c = FfmChain;
+    //c = RwChain;
+
+    double  fs;
+    double  dt;
+    size_t  NumSamples;
+    double  t;
+
+    t = 0.0;
+
+    fs = 40E6;
+    //fs = 4E6;
+    //fs = 1E5;
+    //fs = 400;
+
+    NumSamples  = 100000;
+    NumSamples  = 1000000;
+
+    SampleChain( c, t, fs, NumSamples, true, true, "/main/td.txt" );
+}
+
+void
+WatchChainTestBench()
+{
+    cout << "Running " << __func__ << "()" << endl;
+
+//    TdEstimatorConfig Conf_WFM_100Hz  = WatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100Hz( 5, true );
+
+    // WatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100Hz( 3, false );
+
+    cWatchQuartz_20MHz   w(1, false);
+
+//    ::TdEstChain_FFMa c2;
+
+//    TdEstimatorConfig Conf_FFM_100Hz  = WatchQuartz_20MHz::TdEstChain_FFM::GetConfig_100Hz( 6, true );
+
+//    TdEstimatorConfig Conf_RW_100Hz   = WatchQuartz_20MHz::TdEstChain_RW::GetConfig_100Hz  ( 7, true );
+
+    TdEstChain  WfmChain(FSA::ALPHA_WFM, 0);
+    TdEstChain  FfmChain(FSA::ALPHA_FFM, 0);
+    TdEstChain  RwChain(FSA::ALPHA_RW, 0);
+    TdEstChain  c(FSA::ALPHA_WFM, 0);
+
+//    WfmChain.AddTdEstimator( Conf_WFM_100Hz );
+//    FfmChain.AddTdEstimator( Conf_FFM_100Hz );
+//    RwChain.AddTdEstimator ( Conf_RW_100Hz );
+
+    c = WfmChain;
     //c = FfmChain;
     //c = RwChain;
 

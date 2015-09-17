@@ -132,6 +132,7 @@ void RunEstimatorTest( int TestID )
     {
         case 0:     EstimatorTestBench();       break;
         case 1:     AvgOscChainTestBench();     break;
+        case 2:     WatchChainTestBench();      break;
 
         default:    ExitOnInvalidID();
                     break;

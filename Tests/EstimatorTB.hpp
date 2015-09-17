@@ -52,5 +52,6 @@
 
 void    EstimatorTestBench();
 void    AvgOscChainTestBench();
+void    WatchChainTestBench();
 
 #endif
