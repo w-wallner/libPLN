@@ -90,6 +90,15 @@ SampleOracle( TdOracle &o, double &t, double fs, size_t NumSamples, bool EnableO
     CntThStep   = NumSamples / 10;
     NextTh      = CntThStep;
 
+    if( EnableOutput )
+    {
+        cout << "Sample configuration:" << endl;
+        cout << "Sampling frequency: " << fs << "Hz" << endl;
+        cout << "Step width: " << dt << "s" << endl;
+        cout << "Number of samples: " << NumSamples << endl;
+        cout << "T0: " << t << endl;
+    }
+
     if( SaveSamples )
     {
         TdFile.open( FileName.c_str() );
