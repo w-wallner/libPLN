@@ -147,44 +147,15 @@ AvgOscChainTestBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-    TdEstimatorConfig Conf_WPM_20MHz  = cAvgOsc20MHz::TdEstChain_WPM::GetConfig_20MHz( 1, true );
-    TdEstimatorConfig Conf_WPM_1MHz   = cAvgOsc20MHz::TdEstChain_WPM::GetConfig_1MHz ( 2, true );
-    TdEstimatorConfig Conf_WPM_10kHz  = cAvgOsc20MHz::TdEstChain_WPM::GetConfig_10kHz( 3, true );
-    TdEstimatorConfig Conf_WPM_100Hz  = cAvgOsc20MHz::TdEstChain_WPM::GetConfig_100Hz( 4, true );
+    unsigned int Seed = 1;
+    bool         Skip = true;
 
-    TdEstimatorConfig Conf_FPM_20MHz  = cAvgOsc20MHz::TdEstChain_FPM::GetConfig_20MHz( 1, true );
-    TdEstimatorConfig Conf_FPM_1MHz   = cAvgOsc20MHz::TdEstChain_FPM::GetConfig_1MHz ( 2, true );
-    TdEstimatorConfig Conf_FPM_10kHz  = cAvgOsc20MHz::TdEstChain_FPM::GetConfig_10kHz( 3, true );
-    TdEstimatorConfig Conf_FPM_100Hz  = cAvgOsc20MHz::TdEstChain_FPM::GetConfig_100Hz( 4, true );
-
-    TdEstimatorConfig Conf_WFM_100Hz  = cAvgOsc20MHz::TdEstChain_WFM::GetConfig_100Hz( 5, true );
-
-    TdEstimatorConfig Conf_FFM_100Hz  = cAvgOsc20MHz::TdEstChain_FFM::GetConfig_100Hz( 6, true );
-
-    TdEstimatorConfig Conf_RW_100Hz   = cAvgOsc20MHz::TdEstChain_RW::GetConfig_100Hz  ( 7, true );
-
-    TdEstChain  WpmChain(FSA::ALPHA_WPM, 0);
-    TdEstChain  FpmChain(FSA::ALPHA_FPM, 0);
-    TdEstChain  WfmChain(FSA::ALPHA_WFM, 0);
-    TdEstChain  FfmChain(FSA::ALPHA_FFM, 0);
-    TdEstChain  RwChain(FSA::ALPHA_RW, 0);
+    cAvgOsc20MHz::TdEstChain_WPM    WpmChain(10, Seed, Skip);
+    cAvgOsc20MHz::TdEstChain_FPM    FpmChain(20, Seed, Skip);
+    cAvgOsc20MHz::TdEstChain_WFM    WfmChain(30, Seed, Skip);
+    cAvgOsc20MHz::TdEstChain_FFM    FfmChain(40, Seed, Skip);
+    cAvgOsc20MHz::TdEstChain_RW     RwChain (50, Seed, Skip);
     TdEstChain  c(FSA::ALPHA_WFM, 0);
-
-    WpmChain.AddTdEstimator( Conf_WPM_20MHz );
-    WpmChain.AddTdEstimator( Conf_WPM_1MHz  );
-    WpmChain.AddTdEstimator( Conf_WPM_10kHz );
-    WpmChain.AddTdEstimator( Conf_WPM_100Hz );
-
-    FpmChain.AddTdEstimator( Conf_FPM_20MHz );
-    FpmChain.AddTdEstimator( Conf_FPM_1MHz  );
-    FpmChain.AddTdEstimator( Conf_FPM_10kHz );
-    FpmChain.AddTdEstimator( Conf_FPM_100Hz );
-
-    WfmChain.AddTdEstimator( Conf_WFM_100Hz );
-
-    FfmChain.AddTdEstimator( Conf_FFM_100Hz );
-
-    RwChain.AddTdEstimator( Conf_RW_100Hz );
 
     c = WpmChain;
     //c = FpmChain;
@@ -204,6 +175,7 @@ AvgOscChainTestBench()
     //fs = 1E5;
     //fs = 400;
 
+    NumSamples  = 10200;
     NumSamples  = 100000;
     NumSamples  = 1000000;
 
@@ -215,26 +187,13 @@ WatchChainTestBench()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-//    TdEstimatorConfig Conf_WFM_100Hz  = WatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100Hz( 5, true );
+    unsigned int Seed = 1;
+    bool         Skip = true;
 
-    // WatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100Hz( 3, false );
-
-    cWatchQuartz_20MHz   w(1, false);
-
-//    ::TdEstChain_FFMa c2;
-
-//    TdEstimatorConfig Conf_FFM_100Hz  = WatchQuartz_20MHz::TdEstChain_FFM::GetConfig_100Hz( 6, true );
-
-//    TdEstimatorConfig Conf_RW_100Hz   = WatchQuartz_20MHz::TdEstChain_RW::GetConfig_100Hz  ( 7, true );
-
-    TdEstChain  WfmChain(FSA::ALPHA_WFM, 0);
-    TdEstChain  FfmChain(FSA::ALPHA_FFM, 0);
-    TdEstChain  RwChain(FSA::ALPHA_RW, 0);
+    cWatchQuartz_20MHz::TdEstChain_WFM  WfmChain(10, Seed, Skip);
+    //cWatchQuartz_20MHz::TdEstChain_FFM  FfmChain(20, Seed, Skip);
+    //cWatchQuartz_20MHz::TdEstChain_RW   RwChain (30, Seed, Skip);
     TdEstChain  c(FSA::ALPHA_WFM, 0);
-
-//    WfmChain.AddTdEstimator( Conf_WFM_100Hz );
-//    FfmChain.AddTdEstimator( Conf_FFM_100Hz );
-//    RwChain.AddTdEstimator ( Conf_RW_100Hz );
 
     c = WfmChain;
     //c = FfmChain;
@@ -248,12 +207,22 @@ WatchChainTestBench()
     t = 0.0;
 
     fs = 40E6;
-    //fs = 4E6;
-    //fs = 1E5;
+    fs = 4E6;
+    fs = 1E5;
+    fs = 1E3;
+    fs = 2E2;
+    //fs = 1E2;
+    //fs = 1E1;
+    //fs = 1E0;
+    //fs = 1E-1;
     //fs = 400;
+    //fs = 1E-2;
 
-    NumSamples  = 100000;
-    NumSamples  = 1000000;
+    NumSamples  = 10200;
+//    NumSamples  = 100000;
+//    NumSamples  = 1000000;
+//    NumSamples  = 10000000;
+//    NumSamples  = 100000000;
 
     SampleChain( c, t, fs, NumSamples, true, true, "/main/td.txt" );
 }

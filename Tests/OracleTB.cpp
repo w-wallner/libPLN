@@ -39,6 +39,7 @@
 
 #include "libPLN.hpp"
 #include "Examples/AverageOscillator_20MHz/AverageOscillator_20MHz.hpp"
+#include "Examples/WatchQuartz_20MHz/WatchQuartz_20MHz.hpp"
 #include "Utils/NumericTricks.hpp"
 #include "TestLib.hpp"
 
@@ -141,7 +142,7 @@ void SimpleOracleBench()
 //    NumSamples   = 10000;      // 10^4
     NumSamples   = 100000;      // 10^5
 //    NumSamples   = 1000000;     // 10^6
-//    NumSamples   = 10000000;    // 10^7
+    NumSamples   = 10000000;    // 10^7
 //    NumSamples   = 100000000;   // 10^8     Max @ Matlab
 
     f_s = 40E6;
@@ -149,13 +150,17 @@ void SimpleOracleBench()
 //    f_s = 1E5;
 //    f_s = 1E4;
 //    f_s = 1E3;
-//    f_s = 1E1;
-
-//    f_s = 250000;
+    f_s = 1E1;
+    f_s = 1E-1;
 
     t = 0.0;
 
-    cAvgOsc20MHz o( 123, true );
+    cAvgOsc20MHz ao( 123, true );
+    cWatchQuartz_20MHz w( 123, true );
+    TdOracle o;
+
+    o = ao;
+    o = w;
 
     SampleOracle( o, t, f_s, NumSamples, true, true, "/main/td.txt" );
 }
