@@ -69,8 +69,40 @@ cWatchQuartz_20MHz::TdEstChain_RW::GetConfig_100Hz(unsigned int Seed, bool Enabl
     config.SampleConf.TdVecLen              = 5100;
 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
+//    config.PLN_FilterImpl                   = KASDIN_WALTER_FILTER;
 
-    config.PLN_FilterConf.Qd                = 2.8455E-21;
+    config.PLN_FilterConf.Qd                = 1.5E-22;
+    config.PLN_FilterConf.alpha             = FSA::ALPHA_RW;
+    config.PLN_FilterConf.FilterLen         = 1000;
+    config.PLN_FilterConf.Seed              = Seed + 0;
+
+    config.HP_FilterConf.FilterType         = BLACKMAN;
+    config.HP_FilterConf.FilterType         = NO_FILTER;
+    config.HP_FilterConf.f_c_nom            = 0.01;
+    config.HP_FilterConf.FilterLen          = 1001;
+    config.HP_FilterConf.Cnt                = 1;
+
+    config.InterpolConf.InterPolType        = CUBIC_SPLINE_INTERPOLATION;
+
+    config.TimeConf.T_val                   = 2000;
+    config.TimeConf.EnableIntervalSkipping  = EnableIntervalSkipping;
+
+    config.PerformanceConf.ForgetTh         = 0;
+
+    return config;
+}
+
+TdEstimatorConfig
+cWatchQuartz_20MHz::TdEstChain_RW::GetConfig_100mHz(unsigned int Seed, bool EnableIntervalSkipping)
+{
+    TdEstimatorConfig   config;
+
+    config.SampleConf.f_s                   = 200E-3;
+    config.SampleConf.TdVecLen              = 5100;
+
+    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
+
+    config.PLN_FilterConf.Qd                = 1.5E-22;
     config.PLN_FilterConf.alpha             = FSA::ALPHA_RW;
     config.PLN_FilterConf.FilterLen         = 10;
     config.PLN_FilterConf.Seed              = Seed + 0;
@@ -93,7 +125,8 @@ cWatchQuartz_20MHz::TdEstChain_RW::GetConfig_100Hz(unsigned int Seed, bool Enabl
 cWatchQuartz_20MHz::TdEstChain_RW::TdEstChain_RW( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
     : TdEstChain( FSA::ALPHA_RW, SeedOffset )
 {
-    AddTdEstimator( GetConfig_100Hz(Seed + 0, EnableIntervalSkipping) );
+    AddTdEstimator( GetConfig_100Hz (Seed + 0, EnableIntervalSkipping) );
+//    AddTdEstimator( GetConfig_100mHz(Seed + 1, EnableIntervalSkipping) );
 }
 
 }

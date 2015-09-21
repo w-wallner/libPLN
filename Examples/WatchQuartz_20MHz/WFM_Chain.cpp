@@ -70,7 +70,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_20MHz(unsigned int Seed, bool Enab
 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd                = 5.5360E-5;
+    config.PLN_FilterConf.Qd                = 1.44E-5;
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WFM;
     config.PLN_FilterConf.FilterLen         = 10;
     config.PLN_FilterConf.Seed              = Seed;
@@ -100,7 +100,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_1MHz(unsigned int Seed, bool Enabl
 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd                = 9.2105E-09;
+    config.PLN_FilterConf.Qd                = 7.92E-07;
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WFM;
     config.PLN_FilterConf.FilterLen         = 10;
     config.PLN_FilterConf.Seed              = Seed;
@@ -130,7 +130,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_10kHz(unsigned int Seed, bool Enab
 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd                = 6.9200E-15;
+    config.PLN_FilterConf.Qd                = 7.2E-09;
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WFM;
     config.PLN_FilterConf.FilterLen         = 10;
     config.PLN_FilterConf.Seed              = Seed;
@@ -160,12 +160,13 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100Hz(unsigned int Seed, bool Enab
 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd                = 6.9200E-21;
+    config.PLN_FilterConf.Qd                = 7.2E-11;
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WFM;
     config.PLN_FilterConf.FilterLen         = 10;
     config.PLN_FilterConf.Seed              = Seed;
 
-    config.HP_FilterConf.FilterType         = NO_FILTER;
+    config.HP_FilterConf.FilterType         = BLACKMAN;
+//    config.HP_FilterConf.FilterType         = NO_FILTER;
     config.HP_FilterConf.f_c_nom            = 0.01;
     config.HP_FilterConf.FilterLen          = 5001;
     config.HP_FilterConf.Cnt                = 1;
@@ -183,10 +184,10 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100Hz(unsigned int Seed, bool Enab
 cWatchQuartz_20MHz::TdEstChain_WFM::TdEstChain_WFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
     : TdEstChain( FSA::ALPHA_WFM, SeedOffset )
 {
-    AddTdEstimator( GetConfig_20MHz( Seed + SeedOffset + 0, EnableIntervalSkipping ) );
+//    AddTdEstimator( GetConfig_20MHz( Seed + SeedOffset + 0, EnableIntervalSkipping ) );
 //    AddTdEstimator( GetConfig_1MHz ( Seed + SeedOffset + 1, EnableIntervalSkipping ) );
 //    AddTdEstimator( GetConfig_10kHz( Seed + SeedOffset + 2, EnableIntervalSkipping ) );
-//    AddTdEstimator( GetConfig_100Hz( Seed + SeedOffset + 3, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_100Hz( Seed + SeedOffset + 3, EnableIntervalSkipping ) );
 }
 
 }
