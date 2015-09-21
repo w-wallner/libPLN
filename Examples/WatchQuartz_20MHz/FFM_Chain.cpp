@@ -61,7 +61,7 @@ namespace LibPLN_Examples
 // =========================================================================
 
 TdEstimatorConfig
-cWatchQuartz_20MHz::TdEstChain_FFMa::GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping)
+cWatchQuartz_20MHz::TdEstChain_FFM::GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping)
 {
     TdEstimatorConfig   config;
 
@@ -90,7 +90,7 @@ cWatchQuartz_20MHz::TdEstChain_FFMa::GetConfig_100Hz(unsigned int Seed, bool Ena
     return config;
 }
 
-cWatchQuartz_20MHz::TdEstChain_FFMa::TdEstChain_FFMa( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
+cWatchQuartz_20MHz::TdEstChain_FFM::TdEstChain_FFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
     : TdEstChain( FSA::ALPHA_FFM, SeedOffset )
 {
     AddTdEstimator( GetConfig_100Hz( Seed + SeedOffset + 0, EnableIntervalSkipping ) );

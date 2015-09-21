@@ -78,7 +78,7 @@ cWatchQuartz_20MHz::cWatchQuartz_20MHz( unsigned int Seed, bool EnableIntervalSk
     ChainVecEntry   RwEntry;
 
     WfmEntry.pChain = new TdEstChain_WFM( SeedOffsetWfmChain, Seed, EnableIntervalSkipping );
-    FfmEntry.pChain = new TdEstChain_FFMa( SeedOffsetFfmChain, Seed, EnableIntervalSkipping );
+    FfmEntry.pChain = new TdEstChain_FFM( SeedOffsetFfmChain, Seed, EnableIntervalSkipping );
     RwEntry.pChain  = new TdEstChain_RW ( SeedOffsetRwChain,  Seed, EnableIntervalSkipping );
 
     ChainVec.push_back( WfmEntry );
