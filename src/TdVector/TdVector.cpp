@@ -68,20 +68,17 @@ TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *p
     this->TickLen   = TickLen;
     this->TD_0      = TD_0;
 
+    TD[0]   = 0.0L;
+
     switch( DataType )
     {
         case FFD_DATA:
         {
-            TD[0]       = 0.0L;
-
             std::partial_sum( pData->begin(), pData->begin() + ValidLen, TD.begin()+1 );
             break;
         }
         case TD_DATA:
         {
-            TD[0]       = TD_0;
-            this->TD_0  = 0.0L;
-
             std::copy( pData->begin(), pData->begin() + ValidLen, TD.begin() + 1 );
             break;
         }

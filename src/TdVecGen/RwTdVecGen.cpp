@@ -62,31 +62,22 @@
 void
 RwTdVecGen::ResetRecursiveFilter()
 {
-    FFD_0   = 0.0L;
 }
 
 void
 RwTdVecGen::ApplyRecursiveFilter( FFT_RealVector *pw )
 {
     std::partial_sum( pw->begin(), pw->end(), pw->begin() );
-
-    std::transform( pw->begin(), pw->end(), pw->begin(),
-              bind2nd(std::plus<double>(), FFD_0) );
-
-    // Save last FDD value for the next iteration
-    FFD_0 = *pw->rbegin();
 }
 
 RwTdVecGen::RwTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
     : RecursiveTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf )
 {
     DataType    = TdVector::FFD_DATA;
-    FFD_0       = 0.0L;
 }
 
 RwTdVecGen::RwTdVecGen( const RwTdVecGen& other )
-    : RecursiveTdVecGen( other ),
-      FFD_0( other.FFD_0 )
+    : RecursiveTdVecGen( other )
 {
 }
 
@@ -104,8 +95,6 @@ RwTdVecGen&
 RwTdVecGen::operator=( const RwTdVecGen& other )
 {
     RecursiveTdVecGen::operator=( other );
-
-    this->FFD_0 = other.FFD_0;
 
     // By convention, always return *this
     return *this;

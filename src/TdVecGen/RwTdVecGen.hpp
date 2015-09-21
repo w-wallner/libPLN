@@ -67,8 +67,6 @@ class RwTdVecGen : public RecursiveTdVecGen
         // -----------------------------------------------------------------
         // House keeping
         // -----------------------------------------------------------------
-        double          FFD_0;      ///< Last value of the last FFD vector.
-                                    ///< This is the starting point for the next vector.
 
         // -----------------------------------------------------------------
         // Internal functions
