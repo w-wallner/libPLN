@@ -1,10 +1,9 @@
 
 add_library(PLN STATIC  TdEstChain.cpp
                         TdOracle.cpp
-                        DebugTools/VectorOutput.cpp
                         Filter/BmHpFilterImpResp.cpp
                         Filter/FilterImpResp.cpp
-                        Filter/FilterKernel.cpp 
+                        Filter/FilterKernel.cpp
                         Filter/KwFilterImpResp.cpp
                         TdEst/TdEstimator.cpp
                         TdEst/TdFixPoint.cpp

@@ -35,6 +35,8 @@
 
 #include "VectorTypes.hpp"
 
+using namespace std;
+
 // =========================================================================
 // Defines
 // =========================================================================
@@ -54,3 +56,87 @@
 // =========================================================================
 // Function definitions
 // =========================================================================
+
+std::ostream& operator<<(std::ostream& os, const RealVector& o)
+{
+    for( size_t i = 0; i < o.size(); i++ )
+    {
+        os << o[i];
+
+        if( i + 1 < o.size() )
+        {
+            os << ", ";
+        }
+    }
+
+    return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const ComplexVector& o)
+{
+    for( size_t i = 0; i < o.size(); i++ )
+    {
+        os << o[i].real();
+
+        if( o[i].imag() >= 0 )
+        {
+            os << " + ";
+        }
+        else
+        {
+            os << " - ";
+        }
+
+        os << abs(o[i].imag());
+        os << "i";
+
+        if( i + 1 < o.size() )
+        {
+            os << ", ";
+        }
+    }
+
+    return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const FFT_RealVector& o)
+{
+    for( size_t i = 0; i < o.size(); i++ )
+    {
+        os << o[i];
+
+        if( i + 1 < o.size() )
+        {
+            os << ", ";
+        }
+    }
+
+    return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const FFT_ComplexVector& o)
+{
+    for( size_t i = 0; i < o.size(); i++ )
+    {
+        os << o[i].real();
+
+        if( o[i].imag() >= 0 )
+        {
+            os << " + ";
+        }
+        else
+        {
+            os << " - ";
+        }
+
+        os << abs(o[i].imag());
+        os << "i";
+
+        if( i + 1 < o.size() )
+        {
+            os << ", ";
+        }
+    }
+
+    return os;
+}
