@@ -57,7 +57,7 @@ using namespace std;
 // Function definitions
 // =========================================================================
 
-std::ostream& operator<<(std::ostream& os, const std::vector<double>& o)
+std::ostream& operator<<(std::ostream& os, const RealVector& o)
 {
     for( size_t i = 0; i < o.size(); i++ )
     {
@@ -72,7 +72,7 @@ std::ostream& operator<<(std::ostream& os, const std::vector<double>& o)
     return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const std::vector< std::complex<double> >& o)
+std::ostream& operator<<(std::ostream& os, const ComplexVector& o)
 {
     for( size_t i = 0; i < o.size(); i++ )
     {

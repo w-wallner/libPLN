@@ -83,7 +83,7 @@ BmHpFilterImpResp::BmHpFilterImpResp( size_t FilterLen, double f_c_nom )
     }
 
     // Get Blackman window
-    std::vector<double> BlackmanWindow( FilterLen );
+    RealVector BlackmanWindow( FilterLen );
 
     for( size_t i = 0; i < FilterLen; i ++ )
     {

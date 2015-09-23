@@ -52,6 +52,12 @@ typedef std::vector<double, FFTW_Allocator<double> > FFT_RealVector;
 /// Vector for complex data using the FFTW allocator
 typedef std::vector<std::complex<double>, FFTW_Allocator< std::complex<double> > > FFT_ComplexVector;
 
+/// Vector for real data using the FFTW allocator
+typedef std::vector<double> RealVector;
+
+/// Vector for complex data using the FFTW allocator
+typedef std::vector< std::complex<double> > ComplexVector;
+
 // =========================================================================
 // Function declarations
 // =========================================================================

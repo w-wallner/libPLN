@@ -114,7 +114,7 @@ class WhiteNoiseGenerator
         ///                 FillLen must be smaller or equal to VecLen
         ///
         /// \return         The requested vector
-        std::vector<double> *GetStdVector( size_t VecLen, size_t FillLen );
+        RealVector          *GetStdVector( size_t VecLen, size_t FillLen );
 
         /// Returns a single random value from the configured distribution
         ///

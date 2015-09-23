@@ -54,8 +54,8 @@
 // Function declarations
 // =========================================================================
 
-std::ostream& operator<<(std::ostream& os, const std::vector<double>& o);
-std::ostream& operator<<(std::ostream& os, const std::vector< std::complex<double> >& o);
+std::ostream& operator<<(std::ostream& os, const RealVector& o);
+std::ostream& operator<<(std::ostream& os, const ComplexVector& o);
 
 std::ostream& operator<<(std::ostream& os, const FFT_RealVector& o);
 std::ostream& operator<<(std::ostream& os, const FFT_ComplexVector& o);

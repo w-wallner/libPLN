@@ -84,12 +84,12 @@ WhiteNoiseGenerator::GetFftVector( size_t VecLen, size_t FillLen )
     return pVec;
 }
 
-std::vector<double> *
+RealVector *
 WhiteNoiseGenerator::GetStdVector( size_t VecLen, size_t FillLen )
 {
     assert( FillLen <= VecLen );
 
-    std::vector<double> *pVec = new std::vector<double>(VecLen, 0.0);
+    RealVector *pVec = new RealVector(VecLen, 0.0);
 
     for( size_t i = 0; i < FillLen; i ++ )
     {
