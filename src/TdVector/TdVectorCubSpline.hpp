@@ -29,15 +29,14 @@
 //
 // ============================================================================
 
-#ifndef TDVECTORCUBSPLINE_HPP_
-#define TDVECTORCUBSPLINE_HPP_
+#ifndef TD_VECTOR_CUB_SPLINE_HPP_
+#define TD_VECTOR_CUB_SPLINE_HPP_
 
 // =========================================================================
 // Includes
 // =========================================================================
 
 #include "TdVector/TdVector.hpp"
-#include "Utils/FFT_Types.hpp"
 #include "Utils/spline.hpp"
 
 // =========================================================================
