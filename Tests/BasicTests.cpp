@@ -73,7 +73,8 @@ using namespace LibPLN_Examples;
 // Function definitions
 // =========================================================================
 
-void    TestTdVecStorage()
+void
+TestTdVecStorage()
 {
     cout << "Running " << __func__ << "()" << endl;
 
@@ -120,7 +121,8 @@ void    TestTdVecStorage()
     cout << "C[3.0] = " << C.GetRelativeTD( 3.0 ) << endl;
 }
 
-void TestTdVecGen()
+void
+TestTdVecGen()
 {
     cout << "Running " << __func__ << "()" << endl;
 
@@ -172,7 +174,8 @@ void TestTdVecGen()
     cout << endl;
 }
 
-void    TestWpmTdVecGen()
+void
+TestWpmTdVecGen()
 {
     cout << "Running " << __func__ << "()" << endl;
 
@@ -209,7 +212,8 @@ void    TestWpmTdVecGen()
     OutFile.close();
 }
 
-void TestTdEst()
+void
+TestTdEst()
 {
     cout << "Running " << __func__ << "()" << endl;
     cout << "(Nothing implemented yet)" << endl;
