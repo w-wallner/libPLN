@@ -57,63 +57,86 @@ using namespace std;
 // Function definitions
 // =========================================================================
 
-void
-PrintRealVector( std::string Name, std::vector<double> v )
+std::ostream& operator<<(std::ostream& os, const std::vector<double>& o)
 {
-    cout << Name << "(" << v.size() << "): ";
-
-    cout << "[";
-
-    size_t last = v.size() - 1;
-    for(size_t i = 0; i < v.size(); ++i)
+    for( size_t i = 0; i < o.size(); i++ )
     {
-        cout << v[i];
-        if (i != last)
+        cout << o[i];
+
+        if( i + 1 < o.size() )
         {
             cout << ", ";
         }
     }
-    cout << "]";
-    cout << endl;
+
+    return os;
 }
 
-void
-PrintCompVector( std::string Name, std::vector< std::complex<double> > v )
+std::ostream& operator<<(std::ostream& os, const std::vector< std::complex<double> >& o)
 {
-    cout << Name << "(" << v.size() << "): ";
-
-    cout << "[";
-
-    size_t last = v.size() - 1;
-    for(size_t i = 0; i < v.size(); ++i)
+    for( size_t i = 0; i < o.size(); i++ )
     {
-        cout << v[i].real();
-        if( v[i].imag() >= 0 )
+        os << o[i].real();
+
+        if( o[i].imag() >= 0 )
         {
-            cout << " + ";
+            os << " + ";
         }
         else
         {
-            cout << " - ";
+            os << " - ";
         }
-        cout << abs(v[i].imag()) << "i";
-        if (i != last)
+
+        os << abs(o[i].imag());
+        os << "i";
+
+        if( i + 1 < o.size() )
         {
             cout << ", ";
         }
     }
-    cout << "]";
-    cout << endl;
+
+    return os;
 }
 
-void
-PrintFftRealVector( std::string Name, FFT_RealVector v )
+std::ostream& operator<<(std::ostream& os, const FFT_RealVector& o)
 {
-    PrintRealVector( Name, std::vector< double >( v.begin(), v.end() ) );
+    for( size_t i = 0; i < o.size(); i++ )
+    {
+        os << o[i];
+
+        if( i + 1 < o.size() )
+        {
+            os << ", ";
+        }
+    }
+
+    return os;
 }
 
-void
-PrintFftCompVector( std::string Name, FFT_ComplexVector v )
+std::ostream& operator<<(std::ostream& os, const FFT_ComplexVector& o)
 {
-    PrintCompVector( Name, std::vector< std::complex<double> >( v.begin(), v.end() ) );
+    for( size_t i = 0; i < o.size(); i++ )
+    {
+        os << o[i].real();
+
+        if( o[i].imag() >= 0 )
+        {
+            os << " + ";
+        }
+        else
+        {
+            os << " - ";
+        }
+
+        os << abs(o[i].imag());
+        os << "i";
+
+        if( i + 1 < o.size() )
+        {
+            cout << ", ";
+        }
+    }
+
+    return os;
 }
