@@ -40,7 +40,6 @@
 
 #include "Utils/NumericTricks.hpp"
 #include "Utils/FFT.hpp"
-#include "DebugTools/VectorOutput.hpp"
 
 // =========================================================================
 // Defines

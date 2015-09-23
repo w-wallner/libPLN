@@ -39,7 +39,6 @@
 
 #include "TdVector/TdVectorLinear.hpp"
 #include "TdVector/TdVectorCubSpline.hpp"
-#include "DebugTools/VectorOutput.hpp"
 
 // =========================================================================
 // Defines
