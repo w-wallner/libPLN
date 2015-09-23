@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef WHITENOISEGENERATOR_HPP_
-#define WHITENOISEGENERATOR_HPP_
+#ifndef WHITE_NOISE_GENERATOR_HPP_
+#define WHITE_NOISE_GENERATOR_HPP_
 
 // =========================================================================
 // Includes
