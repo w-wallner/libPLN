@@ -179,9 +179,3 @@ FilterKernel::GetFFT_RealSize()
 {
     return FFT_RealSize;
 }
-
-void
-FilterKernel::Print( std::string Name )
-{
-    PrintFftCompVector( Name, H );
-}

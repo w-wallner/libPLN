@@ -133,13 +133,6 @@ class FilterKernel
         ///
         /// \return Length of the time domain data
         size_t  GetFFT_RealSize();
-
-        /// Prints the data of the filter kernel
-        ///
-        /// This function is only for debugging.
-        ///
-        /// \param Name Human-readable name of the filter that is printed
-        void    Print( std::string Name );
 };
 
 // =========================================================================
