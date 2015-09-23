@@ -21,8 +21,9 @@ add_library(PLN STATIC  TdEstChain.cpp
                         TdVector/TdVectorCubSpline.cpp
                         TdVector/TdVectorLinear.cpp
                         Utils/FFT.cpp
-                        Utils/NumericTricks.cpp 
-                        Utils/spline.cpp)                        
+                        Utils/NumericTricks.cpp
+                        Utils/spline.cpp
+                        Utils/VectorTypes.cpp)
 
 target_include_directories(PLN PUBLIC   ${CMAKE_CURRENT_SOURCE_DIR}
                                         ${CMAKE_SOURCE_DIR}
