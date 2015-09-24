@@ -20,6 +20,7 @@ add_library(PLN STATIC  TdEstChain.cpp
                         TdVecGen/WfmTdVecGen.cpp
                         TdVecGen/WpmTdVecGen.cpp
                         TdVecGen/WhiteNoiseGenerator/WhiteNoiseGenerator.cpp
+                        TdVecGen/TdVecGenFactory.cpp
                         TdVector/TdVector.cpp
                         TdVector/TdVectorCubSpline.cpp
                         TdVector/TdVectorLinear.cpp

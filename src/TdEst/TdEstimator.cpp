@@ -44,6 +44,7 @@
 #include "TdVecGen/WpmTdVecGen.hpp"
 #include "TdVecGen/WfmTdVecGen.hpp"
 #include "TdVecGen/RwTdVecGen.hpp"
+#include "TdVecGen/TdVecGenFactory.hpp"
 
 // =========================================================================
 // Defines
@@ -132,35 +133,8 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     }
 
     // Set up components
-    switch( Conf.PLN_FilterImpl )
-    {
-        case RECURSIVE_FILTER:
-        {
-            if( Conf.PLN_FilterConf.alpha == 2.0L )
-            {
-                pTdVecGen    = new WpmTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
-            }
-            else if( Conf.PLN_FilterConf.alpha == 0.0L )
-            {
-                pTdVecGen    = new WfmTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
-            }
-            else if( Conf.PLN_FilterConf.alpha == -2.0L )
-            {
-                pTdVecGen    = new RwTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
-            }
-            else
-            {
-                pTdVecGen    = new GenericTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
-            }
-            break;
-        }
-
-        case KASDIN_WALTER_FILTER:
-        {
-            pTdVecGen    = new GenericTdVecGen( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
-            break;
-        }
-    }
+    pTdVecGen = TdVecGenFactory::CreateTdVecGen( Conf.PLN_FilterImpl, Conf.SampleConf.TdVecLen, TickLen,
+                                                 Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
 
     // Init all components to a common starting point
     TdFixPoint  StartingPoint   = TdFixPoint( 0.0, 0.0 );
