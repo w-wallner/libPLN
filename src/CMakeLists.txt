@@ -7,6 +7,7 @@ add_library(PLN STATIC  TdEstChain.cpp
                         Filter/FilterImpResp.cpp
                         Filter/FilterKernel.cpp
                         Filter/KwFilterImpResp.cpp
+                        TdEst/TdEstConfig.cpp
                         TdEst/TdEstimator.cpp
                         TdEst/TdFixPoint.cpp
                         TdEst/TdGuess.cpp

@@ -37,6 +37,7 @@
 // =========================================================================
 
 #include <cstddef>
+#include <iostream>
 
 // =========================================================================
 // Defines
@@ -141,5 +142,16 @@ TdEstimatorConfig;
 // =========================================================================
 // Function declarations
 // =========================================================================
+
+std::ostream& operator<<(std::ostream& os, const SampleConfig_t& o);
+std::ostream& operator<<(std::ostream& os, const PLN_FilterImpl_t& o);
+std::ostream& operator<<(std::ostream& os, const PLN_FilterConfig_t& o);
+std::ostream& operator<<(std::ostream& os, const HP_FilterType_t& o);
+std::ostream& operator<<(std::ostream& os, const HP_FilterConfig_t& o);
+std::ostream& operator<<(std::ostream& os, const InterpolationType_t& o);
+std::ostream& operator<<(std::ostream& os, const InterpolationConfig_t& o);
+std::ostream& operator<<(std::ostream& os, const TimeConfig_t& o);
+std::ostream& operator<<(std::ostream& os, const PerformanceConfig_t& o);
+std::ostream& operator<<(std::ostream& os, const TdEstimatorConfig& o);
 
 #endif
