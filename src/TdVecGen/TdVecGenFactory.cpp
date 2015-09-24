@@ -40,6 +40,8 @@
 #include "WfmTdVecGen.hpp"
 #include "RwTdVecGen.hpp"
 
+#include "Utils/FrequencyStabilityAnalysis.hpp"
+
 // =========================================================================
 // Defines
 // =========================================================================
@@ -69,15 +71,15 @@ TdVecGenFactory::CreateTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t W
     {
         case RECURSIVE_FILTER:
         {
-            if( PLN_FilterConf.alpha == 2.0L )
+            if( PLN_FilterConf.alpha == FSA::ALPHA_WPM )
             {
                 pTdVecGen    = new WpmTdVecGen( SampleConf, WhiteNoiseConf, HP_FilterConf, InterpolConf );
             }
-            else if( PLN_FilterConf.alpha == 0.0L )
+            else if( PLN_FilterConf.alpha == FSA::ALPHA_WFM )
             {
                 pTdVecGen    = new WfmTdVecGen( SampleConf, WhiteNoiseConf, HP_FilterConf, InterpolConf );
             }
-            else if( PLN_FilterConf.alpha == -2.0L )
+            else if( PLN_FilterConf.alpha == FSA::ALPHA_RW )
             {
                 pTdVecGen    = new RwTdVecGen( SampleConf, WhiteNoiseConf, HP_FilterConf, InterpolConf );
             }
