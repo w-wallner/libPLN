@@ -69,6 +69,12 @@ typedef struct
 {
     unsigned int    Seed;       ///< Seed for the random number generator.
     double          Qd;         ///< Standard variance for the random number generator.
+}
+WhiteNoiseConfig_t;
+
+/// Configuration for the powerlaw noise generation process
+typedef struct
+{
     double          alpha;      ///< Exponent of the powerlaw noise. The power spectral density is proportional to f^alpha.
     size_t          FilterLen;  ///< Length of the Filter. Only meaningful for the KW filter implementation.
 }
@@ -131,6 +137,7 @@ PerformanceConfig_t;
 typedef struct
 {
     SampleConfig_t          SampleConf;             ///< Configuration for the simulated sampling process
+    WhiteNoiseConfig_t      WhiteNoiseConf;         ///< Configuration for the white noise generator
     PLN_FilterConfig_t      PLN_FilterConf;         ///< Configuration for the PLN filter
     PLN_FilterImpl_t        PLN_FilterImpl;         ///< Configuration for the PLN filter implementation
     HP_FilterConfig_t       HP_FilterConf;          ///< Configuration for the high pass filter
@@ -145,6 +152,7 @@ TdEstimatorConfig;
 // =========================================================================
 
 std::ostream& operator<<(std::ostream& os, const SampleConfig_t& o);
+std::ostream& operator<<(std::ostream& os, const WhiteNoiseConfig_t& o);
 std::ostream& operator<<(std::ostream& os, const PLN_FilterImpl_t& o);
 std::ostream& operator<<(std::ostream& os, const PLN_FilterConfig_t& o);
 std::ostream& operator<<(std::ostream& os, const HP_FilterType_t& o);

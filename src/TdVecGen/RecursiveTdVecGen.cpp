@@ -60,8 +60,8 @@
 // Function definitions
 // =========================================================================
 
-RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
-    : TdVecGen( TdVecLen, TickLen, PLN_FilterConf, InterpolConf )
+RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
+    : TdVecGen( TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, InterpolConf )
 {
     DataType    = TdVector::FFD_DATA;
 

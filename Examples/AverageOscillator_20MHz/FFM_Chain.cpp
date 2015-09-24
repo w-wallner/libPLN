@@ -70,10 +70,11 @@ cAvgOsc20MHz::TdEstChain_FFM::GetConfig_100Hz(unsigned int Seed, bool EnableInte
 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd                = 6.4654117423164914448E-19;
+    config.WhiteNoiseConf.Qd                = 6.4654117423164914448E-19;
+    config.WhiteNoiseConf.Seed              = Seed;
+
     config.PLN_FilterConf.alpha             = FSA::ALPHA_FFM;
     config.PLN_FilterConf.FilterLen         = 1000;
-    config.PLN_FilterConf.Seed              = Seed;
 
     config.HP_FilterConf.FilterType         = NO_FILTER;
     config.HP_FilterConf.f_c_nom            = 0.01;

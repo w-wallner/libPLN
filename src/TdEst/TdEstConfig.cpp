@@ -70,6 +70,18 @@ operator<<(std::ostream& os, const SampleConfig_t& o)
 }
 
 std::ostream&
+operator<<(std::ostream& os, const WhiteNoiseConfig_t& o)
+{
+    os << "[WhiteNoiseConfig]" << endl;
+    os << endl;
+    os << "Qd = " << o.Qd << endl;
+    os << "Seed = " << o.Seed << endl;
+    os << endl;
+
+    return os;
+}
+
+std::ostream&
 operator<<(std::ostream& os, const PLN_FilterImpl_t& o)
 {
     switch( o )
@@ -90,8 +102,6 @@ operator<<(std::ostream& os, const PLN_FilterConfig_t& o)
     os << "[PlnFilterConfig]" << endl;
     os << endl;
     os << "FilterLen = " << o.FilterLen << endl;
-    os << "Qd = " << o.Qd << endl;
-    os << "Seed = " << o.Seed << endl;
     os << "alpha = " << o.alpha << endl;
     os << endl;
 
@@ -179,6 +189,7 @@ operator<<(std::ostream& os, const PerformanceConfig_t& o)
 std::ostream&
 operator<<(std::ostream& os, const TdEstimatorConfig& o)
 {
+    os << o.WhiteNoiseConf;
     os << o.HP_FilterConf;
     os << o.InterpolConf;
     os << o.PLN_FilterConf;

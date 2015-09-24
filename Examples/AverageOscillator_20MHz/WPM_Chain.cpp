@@ -70,10 +70,11 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_20MHz(unsigned int Seed, bool EnableInte
 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd                = 5.5360E-5;
+    config.WhiteNoiseConf.Qd                = 5.5360E-5;
+    config.WhiteNoiseConf.Seed              = Seed;
+
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
-    config.PLN_FilterConf.Seed              = Seed;
 
     config.HP_FilterConf.FilterType         = BLACKMAN;
     config.HP_FilterConf.f_c_nom            = 0.024;
@@ -100,10 +101,11 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_1MHz(unsigned int Seed, bool EnableInter
 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd                = 9.2105E-09;
+    config.WhiteNoiseConf.Qd                = 9.2105E-09;
+    config.WhiteNoiseConf.Seed              = Seed;
+
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
-    config.PLN_FilterConf.Seed              = Seed;
 
     config.HP_FilterConf.FilterType         = BLACKMAN;
     config.HP_FilterConf.f_c_nom            = 0.004;
@@ -130,10 +132,11 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_10kHz(unsigned int Seed, bool EnableInte
 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd                = 6.9200E-15;
+    config.WhiteNoiseConf.Qd                = 6.9200E-15;
+    config.WhiteNoiseConf.Seed              = Seed;
+
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
-    config.PLN_FilterConf.Seed              = Seed;
 
     config.HP_FilterConf.FilterType         = BLACKMAN;
     config.HP_FilterConf.f_c_nom            = 0.0035;
@@ -160,10 +163,11 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_100Hz(unsigned int Seed, bool EnableInte
 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd                = 6.9200E-21;
+    config.WhiteNoiseConf.Qd                = 6.9200E-21;
+    config.WhiteNoiseConf.Seed              = Seed;
+
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
-    config.PLN_FilterConf.Seed              = Seed;
 
     config.HP_FilterConf.FilterType         = NO_FILTER;
     config.HP_FilterConf.f_c_nom            = 0.01;

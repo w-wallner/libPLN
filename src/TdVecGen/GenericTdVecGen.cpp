@@ -99,8 +99,8 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
     FfdVecLen   = H.GetFFT_RealSize();
 }
 
-GenericTdVecGen::GenericTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
-    : TdVecGen( TdVecLen, TickLen, PLN_FilterConf, InterpolConf )
+GenericTdVecGen::GenericTdVecGen( size_t TdVecLen, double TickLen, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
+    : TdVecGen( TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, InterpolConf )
 {
     SetUpPLNConvFilter( PLN_FilterConf, HP_FilterConf, TdVecLen );
 }

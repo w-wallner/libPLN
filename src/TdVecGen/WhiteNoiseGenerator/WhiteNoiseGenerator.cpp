@@ -60,8 +60,8 @@
 // Function definitions
 // =========================================================================
 
-WhiteNoiseGenerator::WhiteNoiseGenerator( unsigned int Seed, double Qd )
-    : eng(Seed), dist(0.0L, sqrt(Qd) ), gen(eng,dist)
+WhiteNoiseGenerator::WhiteNoiseGenerator( WhiteNoiseConfig_t WhiteNoiseConfig )
+    : eng(WhiteNoiseConfig.Seed), dist(0.0L, sqrt(WhiteNoiseConfig.Qd) ), gen(eng,dist)
 {
 }
 

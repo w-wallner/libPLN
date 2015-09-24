@@ -70,10 +70,11 @@ cAvgOsc20MHz::TdEstChain_WFM::GetConfig_100Hz(unsigned int Seed, bool EnableInte
 
     config.PLN_FilterImpl                   = RECURSIVE_FILTER;
 
-    config.PLN_FilterConf.Qd                = 4.5420E-17;
+    config.WhiteNoiseConf.Qd                = 4.5420E-17;
+    config.WhiteNoiseConf.Seed              = Seed;
+
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WFM;
     config.PLN_FilterConf.FilterLen         = 10;
-    config.PLN_FilterConf.Seed              = Seed;
 
     config.HP_FilterConf.FilterType         = NO_FILTER;
     config.HP_FilterConf.f_c_nom            = 0.01;

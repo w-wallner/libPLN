@@ -134,7 +134,7 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
 
     // Set up components
     pTdVecGen = TdVecGenFactory::CreateTdVecGen( Conf.PLN_FilterImpl, Conf.SampleConf.TdVecLen, TickLen,
-                                                 Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
+                                                 Conf.WhiteNoiseConf, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
 
     // Init all components to a common starting point
     TdFixPoint  StartingPoint   = TdFixPoint( 0.0, 0.0 );

@@ -61,7 +61,7 @@
 // =========================================================================
 
 TdVecGen*
-TdVecGenFactory::CreateTdVecGen( PLN_FilterImpl_t PLN_FilterImpl, size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
+TdVecGenFactory::CreateTdVecGen( PLN_FilterImpl_t PLN_FilterImpl, size_t TdVecLen, double TickLen, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
 {
     TdVecGen*   pTdVecGen = NULL;
 
@@ -71,19 +71,19 @@ TdVecGenFactory::CreateTdVecGen( PLN_FilterImpl_t PLN_FilterImpl, size_t TdVecLe
         {
             if( PLN_FilterConf.alpha == 2.0L )
             {
-                pTdVecGen    = new WpmTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
+                pTdVecGen    = new WpmTdVecGen( TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
             }
             else if( PLN_FilterConf.alpha == 0.0L )
             {
-                pTdVecGen    = new WfmTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
+                pTdVecGen    = new WfmTdVecGen( TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
             }
             else if( PLN_FilterConf.alpha == -2.0L )
             {
-                pTdVecGen    = new RwTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
+                pTdVecGen    = new RwTdVecGen( TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
             }
             else
             {
-                pTdVecGen    = new GenericTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
+                pTdVecGen    = new GenericTdVecGen( TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
             }
             break;
         }
@@ -91,7 +91,7 @@ TdVecGenFactory::CreateTdVecGen( PLN_FilterImpl_t PLN_FilterImpl, size_t TdVecLe
         default:
         case KASDIN_WALTER_FILTER:
         {
-            pTdVecGen    = new GenericTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
+            pTdVecGen    = new GenericTdVecGen( TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
             break;
         }
     }

@@ -57,8 +57,8 @@ class TdVecGenFactory
         // -----------------------------------------------------------------
 
         static TdVecGen*   CreateTdVecGen( PLN_FilterImpl_t PLN_FilterImpl, size_t TdVecLen, double TickLen,
-                                            PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf,
-                                            InterpolationConfig_t InterpolConf );
+                                            WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf,
+                                            HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
 };
 
 // =========================================================================

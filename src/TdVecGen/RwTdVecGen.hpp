@@ -88,9 +88,10 @@ class RwTdVecGen : public RecursiveTdVecGen
         ///
         /// \param TdVecLen         Length of TD vectors that should be created
         /// \param TickLen          Time (in seconds) between simulated TD samples
+        /// \param WhiteNoiseConf   White noise configuration
         /// \param PLN_FilterConf   Configuration for the PLN filtering process
         /// \param InterpolConfig   Interpolation configuration
-        RwTdVecGen( size_t TdVecLen, double TickLen, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
+        RwTdVecGen( size_t TdVecLen, double TickLen, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
 
         /// Copy constructor
         ///

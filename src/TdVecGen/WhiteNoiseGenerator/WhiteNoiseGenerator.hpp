@@ -44,6 +44,7 @@
 #include <boost/random/variate_generator.hpp>
 
 #include "Utils/VectorTypes.hpp"
+#include "TdEst/TdEstConfig.hpp"
 
 // =========================================================================
 // Defines
@@ -87,7 +88,7 @@ class WhiteNoiseGenerator
         ///
         /// \param Seed     The seed for the white noise generator
         /// \param Qd       The standard variance of the generated Gaussian noise
-        WhiteNoiseGenerator( unsigned int Seed, double Qd );
+        WhiteNoiseGenerator( WhiteNoiseConfig_t WhiteNoiseConfig );
 
         /// Destructor
         ~WhiteNoiseGenerator();

@@ -102,10 +102,11 @@ EstimatorTestBench()
     Conf.PLN_FilterImpl              = RECURSIVE_FILTER;
 //    Conf.PLN_FilterImpl              = KASDIN_WALTER_FILTER;
 
-    Conf.PLN_FilterConf.Qd           = 1E-18 * sqrt(100);
+    Conf.WhiteNoiseConf.Qd           = 1E-18 * sqrt(100);
+    Conf.WhiteNoiseConf.Seed         = 1234;
+
     Conf.PLN_FilterConf.alpha        = FSA::ALPHA_WPM;
     Conf.PLN_FilterConf.FilterLen    = 100;
-    Conf.PLN_FilterConf.Seed         = 1234;
 
     Conf.HP_FilterConf.FilterType    = BLACKMAN;
 //    Conf.HP_FilterConf.Type          = NO_FILTER;

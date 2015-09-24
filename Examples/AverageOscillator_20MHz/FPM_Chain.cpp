@@ -70,10 +70,11 @@ cAvgOsc20MHz::TdEstChain_FPM::GetConfig_20MHz(unsigned int Seed, bool EnableInte
 
     config.PLN_FilterImpl                   = KASDIN_WALTER_FILTER;
 
-    config.PLN_FilterConf.Qd                = 1.77743983746859E-5;
+    config.WhiteNoiseConf.Qd                = 1.77743983746859E-5;
+    config.WhiteNoiseConf.Seed              = Seed;
+
     config.PLN_FilterConf.alpha             = FSA::ALPHA_FPM;
     config.PLN_FilterConf.FilterLen         = 10;
-    config.PLN_FilterConf.Seed              = Seed;
 
     config.HP_FilterConf.FilterType         = BLACKMAN;
     config.HP_FilterConf.f_c_nom            = 0.024;
@@ -100,10 +101,11 @@ cAvgOsc20MHz::TdEstChain_FPM::GetConfig_1MHz(unsigned int Seed, bool EnableInter
 
     config.PLN_FilterImpl                   = KASDIN_WALTER_FILTER;
 
-    config.PLN_FilterConf.Qd                = 5.37675550834249E-8;
+    config.WhiteNoiseConf.Qd                = 5.37675550834249E-8;
+    config.WhiteNoiseConf.Seed              = Seed;
+
     config.PLN_FilterConf.alpha             = FSA::ALPHA_FPM;
     config.PLN_FilterConf.FilterLen         = 10;
-    config.PLN_FilterConf.Seed              = Seed;
 
     config.HP_FilterConf.FilterType         = BLACKMAN;
     config.HP_FilterConf.f_c_nom            = 0.004;
@@ -130,10 +132,11 @@ cAvgOsc20MHz::TdEstChain_FPM::GetConfig_10kHz(unsigned int Seed, bool EnableInte
 
     config.PLN_FilterImpl                   = KASDIN_WALTER_FILTER;
 
-    config.PLN_FilterConf.Qd                = 4.44359959367147E-12;
+    config.WhiteNoiseConf.Qd                = 4.44359959367147E-12;
+    config.WhiteNoiseConf.Seed              = Seed;
+
     config.PLN_FilterConf.alpha             = FSA::ALPHA_FPM;
     config.PLN_FilterConf.FilterLen         = 10;
-    config.PLN_FilterConf.Seed              = Seed;
 
     config.HP_FilterConf.FilterType         = BLACKMAN;
     config.HP_FilterConf.f_c_nom            = 0.0035;
@@ -160,10 +163,11 @@ cAvgOsc20MHz::TdEstChain_FPM::GetConfig_100Hz(unsigned int Seed, bool EnableInte
 
     config.PLN_FilterImpl                   = KASDIN_WALTER_FILTER;
 
-    config.PLN_FilterConf.Qd                = 4.44359959367147E-16;
+    config.WhiteNoiseConf.Qd                = 4.44359959367147E-16;
+    config.WhiteNoiseConf.Seed              = Seed;
+
     config.PLN_FilterConf.alpha             = FSA::ALPHA_FPM;
     config.PLN_FilterConf.FilterLen         = 10;
-    config.PLN_FilterConf.Seed              = Seed;
 
     config.HP_FilterConf.FilterType         = NO_FILTER;
     config.HP_FilterConf.f_c_nom            = 0.01;
