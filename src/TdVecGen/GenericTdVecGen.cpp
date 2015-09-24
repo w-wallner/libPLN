@@ -87,7 +87,7 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
 
             DebugSink.SaveHpFilterImpResp( &id );
 
-            H = cFilterKernel( TdVecLen, id );
+            H = cFilterKernel( TdVecLen, kw, id );
             break;
         }
 
