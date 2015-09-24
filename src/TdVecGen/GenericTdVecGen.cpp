@@ -70,6 +70,7 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
 {
     // Set up filter kernel
     KwFilterImpResp   kw( PLN_FilterConf.FilterLen, PLN_FilterConf.alpha );
+    DebugSink.SavePlnFilterImpResp( &kw );
 
     switch( HP_FilterConf.FilterType )
     {
@@ -102,7 +103,6 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
         }
     }
 
-    DebugSink.SavePlnFilterImpResp( &kw );
     DebugSink.SaveFilterKernel( H );
 
     FfdVecLen   = H.GetFFT_RealSize();
