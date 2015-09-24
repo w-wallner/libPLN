@@ -201,7 +201,11 @@ cDebugSink::SavePlnFilterImpResp( FilterImpResp *hp )
 {
     if( PlnFilterImpResp.IsEnabled() )
     {
-        PlnFilterImpResp.Stream() << hp->h();
+        PlnFilterImpResp.Stream() << "[PlnFilterImpResp]" << endl;
+        PlnFilterImpResp.Stream() << endl;
+        PlnFilterImpResp.Stream() << "FilterLen = " << hp->GetFilterLen() << endl;
+        PlnFilterImpResp.Stream() << "ReponseLen = " << hp->GetResponseLen() << endl;
+        PlnFilterImpResp.Stream() << "h = " << hp->h() << endl;
     }
 }
 
