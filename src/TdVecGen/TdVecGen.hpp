@@ -123,9 +123,8 @@ class TdVecGen
         ///
         /// \param SampleConf       Sampling configuration
         /// \param WhiteNoiseConf   White noise configuration
-        /// \param PLN_FilterConf   Configuration for the PLN filtering process
         /// \param InterpolConfig   Interpolation configuration
-        TdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, InterpolationConfig_t InterpolConf );
+        TdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, InterpolationConfig_t InterpolConf );
 
         /// Copy constructor
         ///

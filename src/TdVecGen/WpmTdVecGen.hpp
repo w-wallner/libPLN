@@ -80,9 +80,8 @@ class WpmTdVecGen : public RecursiveTdVecGen
         ///
         /// \param SampleConf       Sampling configuration
         /// \param WhiteNoiseConf   White noise configuration
-        /// \param PLN_FilterConf   Configuration for the PLN filtering process
         /// \param InterpolConfig   Interpolation configuration
-        WpmTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
+        WpmTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
 
         /// Copy constructor
         ///

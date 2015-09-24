@@ -109,7 +109,7 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
 }
 
 GenericTdVecGen::GenericTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
-    : TdVecGen( SampleConf, WhiteNoiseConf, PLN_FilterConf, InterpolConf )
+    : TdVecGen( SampleConf, WhiteNoiseConf, InterpolConf )
 {
     SetUpPLNConvFilter( PLN_FilterConf, HP_FilterConf, TdVecLen );
 }

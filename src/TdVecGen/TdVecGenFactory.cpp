@@ -71,15 +71,15 @@ TdVecGenFactory::CreateTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t W
         {
             if( PLN_FilterConf.alpha == 2.0L )
             {
-                pTdVecGen    = new WpmTdVecGen( SampleConf, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
+                pTdVecGen    = new WpmTdVecGen( SampleConf, WhiteNoiseConf, HP_FilterConf, InterpolConf );
             }
             else if( PLN_FilterConf.alpha == 0.0L )
             {
-                pTdVecGen    = new WfmTdVecGen( SampleConf, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
+                pTdVecGen    = new WfmTdVecGen( SampleConf, WhiteNoiseConf, HP_FilterConf, InterpolConf );
             }
             else if( PLN_FilterConf.alpha == -2.0L )
             {
-                pTdVecGen    = new RwTdVecGen( SampleConf, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
+                pTdVecGen    = new RwTdVecGen( SampleConf, WhiteNoiseConf, HP_FilterConf, InterpolConf );
             }
             else
             {
