@@ -115,12 +115,12 @@ FilterImpResp::Augment( size_t Cnt )
         return;
     }
 
-    FilterLen     = (FilterLen-1) * Cnt;
+    FilterLen = 1 + (FilterLen-1) * Cnt;
 
-    size_t  FFT_RealSize    = NumericTricks::nextPowerOf2( this->FilterLen );
+    size_t  FFT_RealSize    = NumericTricks::nextPowerOf2( FilterLen );
     size_t  FFT_CompSize    = FFT::MinFftComplexVectorSize( FFT_RealSize );
 
-    ResponseLen   = FFT_RealSize;
+    ResponseLen = FFT_RealSize;
 
     h_.resize( ResponseLen );
 
