@@ -80,10 +80,12 @@ RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, WhiteNois
         case IDENTITY:
         {
             IdentityFilterImpResp id( HP_FilterConf.FilterLen );
+            id.Augment( HP_FilterConf.Cnt );
+
+            DebugSink.SaveHpFilterImpResp( &id );
 
             H = cFilterKernel( TdVecLen, id );
 
-            DebugSink.SaveHpFilterImpResp( &id );
             DebugSink.SaveFilterKernel( H );
 
             EnableHpFilter  = true;
@@ -94,12 +96,12 @@ RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, WhiteNois
         case BLACKMAN:
         {
             BmHpFilterImpResp bm( HP_FilterConf.FilterLen, HP_FilterConf.f_c_nom );
-
             bm.Augment( HP_FilterConf.Cnt );
+
+            DebugSink.SaveHpFilterImpResp( &bm );
 
             H   = cFilterKernel( TdVecLen, bm );
 
-            DebugSink.SaveHpFilterImpResp( &bm );
             DebugSink.SaveFilterKernel( H );
 
             EnableHpFilter  = true;

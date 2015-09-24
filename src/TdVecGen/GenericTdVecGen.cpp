@@ -82,6 +82,9 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
         case IDENTITY:
         {
             IdentityFilterImpResp id( HP_FilterConf.FilterLen );
+            id.Augment( HP_FilterConf.Cnt );
+
+            DebugSink.SaveHpFilterImpResp( &id );
 
             H = cFilterKernel( TdVecLen, id );
             break;
@@ -90,13 +93,17 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
         case BLACKMAN:
         {
             BmHpFilterImpResp bm( HP_FilterConf.FilterLen, HP_FilterConf.f_c_nom );
-
             bm.Augment( HP_FilterConf.Cnt );
+
+            DebugSink.SaveHpFilterImpResp( &bm );
 
             H   = cFilterKernel( TdVecLen, kw, bm );
             break;
         }
     }
+
+    DebugSink.SavePlnFilterImpResp( &kw );
+    DebugSink.SaveFilterKernel( H );
 
     FfdVecLen   = H.GetFFT_RealSize();
 }
