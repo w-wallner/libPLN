@@ -148,6 +148,8 @@ TestTdVecGen()
     WhiteNoiseConf.Qd           = 10E-2;
     WhiteNoiseConf.Seed         = 5432;
 
+    PLN_FilterConf.Implementation  = RECURSIVE_FILTER;
+//    PLN_FilterConf.Implementation  = KASDIN_WALTER_FILTER;
     PLN_FilterConf.FilterLen    = 20;
     PLN_FilterConf.alpha        = FSA::ALPHA_WFM;
 
@@ -158,15 +160,12 @@ TestTdVecGen()
 //    HP_FilterConf.FilterType    = NO_FILTER;
     HP_FilterConf.f_c_nom       = 0.2;
 
-    FilterImpl  = RECURSIVE_FILTER;
-//    FilterImpl  = KASDIN_WALTER_FILTER;
-
     DebugSink.SaveHpFilterConfig( HP_FilterConf );
     DebugSink.SavePlnFilterConfig( PLN_FilterConf );
 
     InterpolConf.InterPolType   = CUBIC_SPLINE_INTERPOLATION;
 
-    TdVecGen *pA = TdVecGenFactory::CreateTdVecGen( FilterImpl, TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
+    TdVecGen *pA = TdVecGenFactory::CreateTdVecGen( TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
 
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << pA->GetNextVector()->GetEndTD() << endl;

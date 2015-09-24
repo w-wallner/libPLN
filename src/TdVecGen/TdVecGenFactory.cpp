@@ -61,11 +61,11 @@
 // =========================================================================
 
 TdVecGen*
-TdVecGenFactory::CreateTdVecGen( PLN_FilterImpl_t PLN_FilterImpl, size_t TdVecLen, double TickLen, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
+TdVecGenFactory::CreateTdVecGen( size_t TdVecLen, double TickLen, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
 {
     TdVecGen*   pTdVecGen = NULL;
 
-    switch( PLN_FilterImpl )
+    switch( PLN_FilterConf.Implementation )
     {
         case RECURSIVE_FILTER:
         {

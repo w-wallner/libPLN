@@ -68,11 +68,10 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_20MHz(unsigned int Seed, bool EnableInte
     config.SampleConf.f_s                   = 40E6;
     config.SampleConf.TdVecLen              = 5100;
 
-    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
-
     config.WhiteNoiseConf.Qd                = 5.5360E-5;
     config.WhiteNoiseConf.Seed              = Seed;
 
+    config.PLN_FilterConf.Implementation    = RECURSIVE_FILTER;
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
 
@@ -99,11 +98,10 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_1MHz(unsigned int Seed, bool EnableInter
     config.SampleConf.f_s                   = 22E5;
     config.SampleConf.TdVecLen              = 5100;
 
-    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
-
     config.WhiteNoiseConf.Qd                = 9.2105E-09;
     config.WhiteNoiseConf.Seed              = Seed;
 
+    config.PLN_FilterConf.Implementation    = RECURSIVE_FILTER;
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
 
@@ -130,11 +128,10 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_10kHz(unsigned int Seed, bool EnableInte
     config.SampleConf.f_s                   = 20E3;
     config.SampleConf.TdVecLen              = 5100;
 
-    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
-
     config.WhiteNoiseConf.Qd                = 6.9200E-15;
     config.WhiteNoiseConf.Seed              = Seed;
 
+    config.PLN_FilterConf.Implementation    = RECURSIVE_FILTER;
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
 
@@ -161,11 +158,10 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_100Hz(unsigned int Seed, bool EnableInte
     config.SampleConf.f_s                   = 200;
     config.SampleConf.TdVecLen              = 5100;
 
-    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
-
     config.WhiteNoiseConf.Qd                = 6.9200E-21;
     config.WhiteNoiseConf.Seed              = Seed;
 
+    config.PLN_FilterConf.Implementation    = RECURSIVE_FILTER;
     config.PLN_FilterConf.alpha             = FSA::ALPHA_WPM;
     config.PLN_FilterConf.FilterLen         = 10;
 

@@ -68,12 +68,11 @@ cWatchQuartz_20MHz::TdEstChain_RW::GetConfig_100Hz(unsigned int Seed, bool Enabl
     config.SampleConf.f_s                   = 200;
     config.SampleConf.TdVecLen              = 5100;
 
-    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
-//    config.PLN_FilterImpl                   = KASDIN_WALTER_FILTER;
-
     config.WhiteNoiseConf.Qd                = 1.5E-22;
     config.WhiteNoiseConf.Seed              = Seed + 0;
 
+    config.PLN_FilterConf.Implementation    = RECURSIVE_FILTER;
+//    config.PLN_FilterConf.Implementation    = KASDIN_WALTER_FILTER;
     config.PLN_FilterConf.alpha             = FSA::ALPHA_RW;
     config.PLN_FilterConf.FilterLen         = 1000;
 
@@ -101,11 +100,10 @@ cWatchQuartz_20MHz::TdEstChain_RW::GetConfig_100mHz(unsigned int Seed, bool Enab
     config.SampleConf.f_s                   = 200E-3;
     config.SampleConf.TdVecLen              = 5100;
 
-    config.PLN_FilterImpl                   = RECURSIVE_FILTER;
-
     config.WhiteNoiseConf.Qd                = 1.5E-22;
     config.WhiteNoiseConf.Seed              = Seed + 0;
 
+    config.PLN_FilterConf.Implementation    = RECURSIVE_FILTER;
     config.PLN_FilterConf.alpha             = FSA::ALPHA_RW;
     config.PLN_FilterConf.FilterLen         = 10;
 

@@ -101,6 +101,7 @@ operator<<(std::ostream& os, const PLN_FilterConfig_t& o)
 {
     os << "[PlnFilterConfig]" << endl;
     os << endl;
+    os << "Implementation = " << o.Implementation << endl;
     os << "FilterLen = " << o.FilterLen << endl;
     os << "alpha = " << o.alpha << endl;
     os << endl;
@@ -193,7 +194,6 @@ operator<<(std::ostream& os, const TdEstimatorConfig& o)
     os << o.HP_FilterConf;
     os << o.InterpolConf;
     os << o.PLN_FilterConf;
-    os << o.PLN_FilterImpl;
     os << o.PerformanceConf;
     os << o.SampleConf;
     os << o.TimeConf;
