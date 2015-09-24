@@ -1,6 +1,7 @@
 
 add_library(PLN STATIC  TdEstChain.cpp
                         TdOracle.cpp
+                        DebugTools/DebugConfig.cpp
                         DebugTools/DebugFileOutput.cpp
                         DebugTools/DebugSink.cpp
                         Filter/IdentityFilterImpResp.cpp
