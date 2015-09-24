@@ -80,11 +80,11 @@ std::ostream& operator<<(std::ostream& os, const ComplexVector& o)
 
         if( o[i].imag() >= 0 )
         {
-            os << " + ";
+            os << "+";
         }
         else
         {
-            os << " - ";
+            os << "-";
         }
 
         os << abs(o[i].imag());
@@ -122,11 +122,11 @@ std::ostream& operator<<(std::ostream& os, const FFT_ComplexVector& o)
 
         if( o[i].imag() >= 0 )
         {
-            os << " + ";
+            os << "+";
         }
         else
         {
-            os << " - ";
+            os << "-";
         }
 
         os << abs(o[i].imag());
