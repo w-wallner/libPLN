@@ -124,18 +124,18 @@ FilterImpResp::Augment( size_t Cnt )
 
     h_.resize( ResponseLen );
 
-    FFT_ComplexVector   H( FFT_CompSize );
-
-    FFT::RealFFT( h_, H );
+    FFT_ComplexVector   H1( FFT_CompSize );
+    FFT::RealFFT( h_, H1 );
+    FFT_ComplexVector   H2( H1 );
 
     for( size_t i = 1; i < Cnt; i++ )
     {
-        std::transform( H.begin(), H.end(),
-                        H.begin(), H.begin(),
+        std::transform( H2.begin(), H2.end(),
+                        H1.begin(), H2.begin(),
                         std::multiplies< std::complex< double > >() );
     }
 
-    FFT::ComplexFFT( H, h_ );
+    FFT::ComplexFFT( H2, h_ );
 
     double Scale = 1.0L / (double) FFT_RealSize;
 
