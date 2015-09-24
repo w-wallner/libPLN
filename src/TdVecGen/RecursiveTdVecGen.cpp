@@ -40,6 +40,8 @@
 #include "Filter/IdentityFilterImpResp.hpp"
 #include "Filter/BmHpFilterImpResp.hpp"
 
+#include "DebugTools/DebugSink.hpp"
+
 // =========================================================================
 // Defines
 // =========================================================================
@@ -81,6 +83,9 @@ RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, WhiteNois
 
             H = cFilterKernel( TdVecLen, id );
 
+            DebugSink.SaveHpFilterImpResp( &id );
+            DebugSink.SaveFilterKernel( H );
+
             EnableHpFilter  = true;
             FfdVecLen       = H.GetFFT_RealSize();
             break;
@@ -93,6 +98,9 @@ RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, WhiteNois
             bm.Augment( HP_FilterConf.Cnt );
 
             H   = cFilterKernel( TdVecLen, bm );
+
+            DebugSink.SaveHpFilterImpResp( &bm );
+            DebugSink.SaveFilterKernel( H );
 
             EnableHpFilter  = true;
             FfdVecLen       = H.GetFFT_RealSize();
@@ -131,12 +139,18 @@ RecursiveTdVecGen::GetNextVector()
     FFT_RealVector *pw;
     pw = WhiteNoiseGen.GetFftVector( FfdVecLen, TdVecLen );
 
+    DebugSink.SaveWhiteNoise( pw );
+
     if( EnableHpFilter )
     {
         ApplyConvFilter( pw );
     }
 
+    DebugSink.SaveHpFilteredNoise( pw );
+
     ApplyRecursiveFilter( pw );
+
+    DebugSink.SavePlnFilteredNoise( pw );
 
     TdVector *pTdVec  = ConstructTdVector( pw, DataType );
 

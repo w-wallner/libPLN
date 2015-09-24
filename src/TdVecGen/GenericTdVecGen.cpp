@@ -43,6 +43,8 @@
 #include "Filter/KwFilterImpResp.hpp"
 #include "Filter/BmHpFilterImpResp.hpp"
 
+#include "DebugTools/DebugSink.hpp"
+
 // =========================================================================
 // Defines
 // =========================================================================
@@ -135,6 +137,9 @@ GenericTdVecGen::GetNextVector()
     // Generate new FFD vector
     FFT_RealVector *pw;
     pw = WhiteNoiseGen.GetFftVector( FfdVecLen, TdVecLen );
+
+    // TODO: Debug
+    DebugSink.SaveWhiteNoise( pw );
 
     ApplyConvFilter( pw );
 
