@@ -30,8 +30,8 @@
 //
 // ============================================================================
 
-#ifndef KWFILTERIMPRESP_HPP_
-#define KWFILTERIMPRESP_HPP_
+#ifndef KW_FILTER_IMP_RESP_HPP_
+#define KW_FILTER_IMP_RESP_HPP_
 
 // =========================================================================
 // Includes
