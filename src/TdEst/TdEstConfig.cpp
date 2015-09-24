@@ -114,12 +114,15 @@ operator<<(std::ostream& os, const HP_FilterType_t& o)
 {
     switch( o )
     {
-        case BLACKMAN:   os << "BLACKMAN";
-                         break;
-        case NO_FILTER:  os << "NO_FILTER";
-                         break;
-        default:         os << "UNKNOWN_FILTER";
-                         break;
+
+        case NO_FILTER:     os << "NO_FILTER";
+                            break;
+        case IDENTITY:      os << "IDENTITY";
+                             break;
+        case BLACKMAN:      os << "BLACKMAN";
+                             break;
+        default:            os << "UNKNOWN_FILTER";
+                             break;
     }
     return os;
 }
