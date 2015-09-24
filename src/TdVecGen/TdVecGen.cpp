@@ -130,12 +130,12 @@ TdVecGen::ConstructTdVector( FFT_RealVector *pData, TdVector::TdVecDataType Data
     return pTdVec;
 }
 
-TdVecGen::TdVecGen( size_t TdVecLen, double TickLen, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, InterpolationConfig_t InterpolConf )
+TdVecGen::TdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, InterpolationConfig_t InterpolConf )
     : WhiteNoiseGen( WhiteNoiseConf )
 {
     // Set up config
-    this->TdVecLen          = TdVecLen;
-    this->TickLen           = TickLen;
+    this->TdVecLen          = SampleConf.TdVecLen;
+    this->TickLen           = 1.0L / SampleConf.f_s;
     this->IntpolType        = InterpolConf.InterPolType;
 
     this->Last_t_end        = 0.0L;

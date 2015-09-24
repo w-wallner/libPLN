@@ -70,8 +70,8 @@ RwTdVecGen::ApplyRecursiveFilter( FFT_RealVector *pw )
     std::partial_sum( pw->begin(), pw->end(), pw->begin() );
 }
 
-RwTdVecGen::RwTdVecGen( size_t TdVecLen, double TickLen, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
-    : RecursiveTdVecGen( TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf )
+RwTdVecGen::RwTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
+    : RecursiveTdVecGen( SampleConf, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf )
 {
     DataType    = TdVector::FFD_DATA;
 }

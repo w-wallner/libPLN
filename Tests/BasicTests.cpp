@@ -134,29 +134,28 @@ TestTdVecGen()
     DebugSink.SetFilePrefix( "Test" );
     DebugSink.EnableAll();
 
-    size_t TdVecLen;
-    double TickLen;
+    SampleConfig_t          SampleConf;
     WhiteNoiseConfig_t      WhiteNoiseConf;
     PLN_FilterConfig_t      PLN_FilterConf;
     HP_FilterConfig_t       HP_FilterConf;
     InterpolationConfig_t   InterpolConf;
     PLN_FilterImpl_t        FilterImpl;
 
-    TdVecLen = 200;
-    TickLen  = 1.0;
+    SampleConf.TdVecLen = 500;
+    SampleConf.f_s  = 1.0;
 
     WhiteNoiseConf.Qd           = 10E-2;
     WhiteNoiseConf.Seed         = 5432;
 
     PLN_FilterConf.Implementation  = RECURSIVE_FILTER;
-//    PLN_FilterConf.Implementation  = KASDIN_WALTER_FILTER;
-    PLN_FilterConf.FilterLen    = 20;
-    PLN_FilterConf.alpha        = FSA::ALPHA_WFM;
+    PLN_FilterConf.Implementation  = KASDIN_WALTER_FILTER;
+    PLN_FilterConf.FilterLen    = 50;
+    PLN_FilterConf.alpha        = FSA::ALPHA_FFM;
 
-    HP_FilterConf.Cnt           = 1;
-    HP_FilterConf.FilterLen     = 111;
+    HP_FilterConf.Cnt           = 7;
+    HP_FilterConf.FilterLen     = 7;
     HP_FilterConf.FilterType    = BLACKMAN;
-    HP_FilterConf.FilterType    = IDENTITY;
+//    HP_FilterConf.FilterType    = IDENTITY;
 //    HP_FilterConf.FilterType    = NO_FILTER;
     HP_FilterConf.f_c_nom       = 0.2;
 
@@ -165,7 +164,7 @@ TestTdVecGen()
 
     InterpolConf.InterPolType   = CUBIC_SPLINE_INTERPOLATION;
 
-    TdVecGen *pA = TdVecGenFactory::CreateTdVecGen( TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
+    TdVecGen *pA = TdVecGenFactory::CreateTdVecGen( SampleConf, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
 
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << pA->GetNextVector()->GetEndTD() << endl;
@@ -200,9 +199,8 @@ TestWpmTdVecGen()
     OutFile.open( FileName.c_str(), std::ifstream::out );
 
     TdEstimatorConfig Conf = cAvgOsc20MHz::TdEstChain_WPM::GetConfig_20MHz( 123, true );
-    double  TickLen = 1.0L / Conf.SampleConf.f_s;
 
-    GenericTdVecGen g( Conf.SampleConf.TdVecLen, TickLen, Conf.WhiteNoiseConf, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
+    GenericTdVecGen g( Conf.SampleConf, Conf.WhiteNoiseConf, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
 
     TdVector *pTdVec;
 

@@ -121,12 +121,11 @@ class TdVecGen
 
         /// Constructor
         ///
-        /// \param TdVecLen         Length of TD vectors that should be created
-        /// \param TickLen          Time (in seconds) between simulated TD samples
+        /// \param SampleConf       Sampling configuration
         /// \param WhiteNoiseConf   White noise configuration
         /// \param PLN_FilterConf   Configuration for the PLN filtering process
         /// \param InterpolConfig   Interpolation configuration
-        TdVecGen( size_t TdVecLen, double TickLen, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, InterpolationConfig_t InterpolConf );
+        TdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, InterpolationConfig_t InterpolConf );
 
         /// Copy constructor
         ///
