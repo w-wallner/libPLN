@@ -105,9 +105,28 @@ cDebugSink::SetFileSavePath( std::string FileSavePath )
 }
 
 void
+cDebugSink::EnableAll()
+{
+    EnableHpFilterConfigSaving();
+    EnablePlnFilterConfigSaving();
+    EnableHpFilterImpRespSaving();
+    EnablePlnFilterImpRespSaving();
+    EnableFilterKernelSaving();
+    EnableWhiteNoiseSaving();
+    EnablePlnFilteredNoiseSavind();
+    EnableHpFilteredNoiseSavind();
+}
+
+void
 cDebugSink::EnableHpFilterConfigSaving()
 {
     HpFilterConfig.Enable( GetFilePath( "HpFilterConfig.txt" ).c_str() );
+}
+
+void
+cDebugSink::EnablePlnFilterConfigSaving()
+{
+    PlnFilterConfig.Enable( GetFilePath( "PlnFilterConfig.txt" ).c_str() );
 }
 
 void
@@ -156,11 +175,24 @@ cDebugSink::SaveHpFilterConfig( HP_FilterConfig_t c )
 }
 
 void
+cDebugSink::SavePlnFilterConfig( PLN_FilterConfig_t c )
+{
+    if( PlnFilterConfig.IsEnabled() )
+    {
+        PlnFilterConfig.Stream() << c;
+    }
+}
+
+void
 cDebugSink::SaveHpFilterImpResp( FilterImpResp *hp )
 {
     if( HpFilterImpResp.IsEnabled() )
     {
-        HpFilterImpResp.Stream() << hp->h();
+        HpFilterImpResp.Stream() << "[HpFilterImpResp]" << endl;
+        HpFilterImpResp.Stream() << endl;
+        HpFilterImpResp.Stream() << "FilterLen = " << hp->GetFilterLen() << endl;
+        HpFilterImpResp.Stream() << "ReponseLen = " << hp->GetResponseLen() << endl;
+        HpFilterImpResp.Stream() << "h = " << hp->h() << endl;
     }
 }
 

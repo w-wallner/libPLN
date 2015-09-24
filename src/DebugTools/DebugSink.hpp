@@ -74,6 +74,7 @@ class cDebugSink
         // Resources
         //------------------------------------------------------------------
         cDebugFileOutput    HpFilterConfig;
+        cDebugFileOutput    PlnFilterConfig;
         cDebugFileOutput    HpFilterImpResp;
         cDebugFileOutput    PlnFilterImpResp;
         cDebugFileOutput    FilterKernel;
@@ -104,7 +105,10 @@ class cDebugSink
         void    SetFilePrefix( std::string FilePrefix );
         void    SetFileSavePath( std::string FileSavePath );
 
+        void    EnableAll();
+
         void    EnableHpFilterConfigSaving();
+        void    EnablePlnFilterConfigSaving();
         void    EnableHpFilterImpRespSaving();
         void    EnablePlnFilterImpRespSaving();
         void    EnableFilterKernelSaving();
@@ -113,6 +117,7 @@ class cDebugSink
         void    EnableHpFilteredNoiseSavind();
 
         void    SaveHpFilterConfig( HP_FilterConfig_t c );
+        void    SavePlnFilterConfig( PLN_FilterConfig_t c );
         void    SaveHpFilterImpResp( FilterImpResp *hp );
         void    SavePlnFilterImpResp( FilterImpResp *hp );
         void    SaveFilterKernel( cFilterKernel &H );
