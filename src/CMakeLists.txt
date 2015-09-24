@@ -3,6 +3,7 @@ add_library(PLN STATIC  TdEstChain.cpp
                         TdOracle.cpp
                         DebugTools/DebugFileOutput.cpp
                         DebugTools/DebugSink.cpp
+                        Filter/IdentityFilterImpResp.cpp
                         Filter/BmHpFilterImpResp.cpp
                         Filter/FilterImpResp.cpp
                         Filter/FilterKernel.cpp

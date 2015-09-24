@@ -77,6 +77,7 @@ PLN_FilterConfig_t;
 /// Enumeration to encode different available high pass filter types
 typedef enum
 {
+    IDENTITY,       ///< Identity filter
     BLACKMAN,       ///< Blackman window
     NO_FILTER,      ///< No filter
 }

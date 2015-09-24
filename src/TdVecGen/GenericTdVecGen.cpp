@@ -39,6 +39,7 @@
 
 #include <numeric>
 
+#include "Filter/IdentityFilterImpResp.hpp"
 #include "Filter/KwFilterImpResp.hpp"
 #include "Filter/BmHpFilterImpResp.hpp"
 
@@ -73,6 +74,14 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
         case NO_FILTER:
         {
             H   = cFilterKernel( TdVecLen, kw );
+            break;
+        }
+
+        case IDENTITY:
+        {
+            IdentityFilterImpResp id( HP_FilterConf.FilterLen );
+
+            H = cFilterKernel( TdVecLen, id );
             break;
         }
 

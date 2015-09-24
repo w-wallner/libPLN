@@ -37,6 +37,7 @@
 
 #include "RecursiveTdVecGen.hpp"
 
+#include "Filter/IdentityFilterImpResp.hpp"
 #include "Filter/BmHpFilterImpResp.hpp"
 
 // =========================================================================
@@ -71,6 +72,17 @@ RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, PLN_Filte
         {
             EnableHpFilter  = false;
             FfdVecLen       = TdVecLen;
+            break;
+        }
+
+        case IDENTITY:
+        {
+            IdentityFilterImpResp id( HP_FilterConf.FilterLen );
+
+            H = cFilterKernel( TdVecLen, id );
+
+            EnableHpFilter  = true;
+            FfdVecLen       = H.GetFFT_RealSize();
             break;
         }
 
