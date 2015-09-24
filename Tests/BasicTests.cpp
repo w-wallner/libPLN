@@ -143,15 +143,18 @@ TestTdVecGen()
     TdVecGenConf.WhiteNoiseConf.Seed         = 5432;
 
     TdVecGenConf.PLN_FilterConf.Implementation  = RECURSIVE_FILTER;
-//    TdVecGenConf.PLN_FilterConf.Implementation  = KASDIN_WALTER_FILTER;
+    TdVecGenConf.PLN_FilterConf.Implementation  = KASDIN_WALTER_FILTER;
     TdVecGenConf.PLN_FilterConf.FilterLen    = 50;
-    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_FFM;
     TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_WPM;
+    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_FPM;
+    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_WFM;
+    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_FFM;
+    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_RW;
 
     TdVecGenConf.HP_FilterConf.Cnt           = 7;
     TdVecGenConf.HP_FilterConf.FilterLen     = 7;
     TdVecGenConf.HP_FilterConf.FilterType    = BLACKMAN;
-    TdVecGenConf.HP_FilterConf.FilterType    = IDENTITY;
+//    TdVecGenConf.HP_FilterConf.FilterType    = IDENTITY;
 //    TdVecGenConf.HP_FilterConf.FilterType    = NO_FILTER;
     TdVecGenConf.HP_FilterConf.f_c_nom       = 0.2;
 
