@@ -246,7 +246,12 @@ cDebugSink::SaveFilterKernel( cFilterKernel &H )
 {
     if( FilterKernel.IsEnabled() )
     {
-        FilterKernel.Stream() << H.GetFilterKernel();
+        FilterKernel.Stream() << "[FilterKernel]" << endl;
+        FilterKernel.Stream() << endl;
+        FilterKernel.Stream() << "FilterLen = " << H.GetFilterLen() << endl;
+        FilterKernel.Stream() << "MaxDataLen = " << H.GetMaxDataLen() << endl;
+        FilterKernel.Stream() << "FFT_RealSize = " << H.GetFFT_RealSize() << endl;
+        FilterKernel.Stream() << "H = " << H.GetFilterKernel();
     }
 }
 
