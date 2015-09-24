@@ -55,6 +55,14 @@ typedef struct
 }
 SampleConfig_t;
 
+/// Configuration for the powerlaw noise generation process
+typedef struct
+{
+    unsigned int    Seed;       ///< Seed for the random number generator.
+    double          Qd;         ///< Standard variance for the random number generator.
+}
+WhiteNoiseConfig_t;
+
 /// Enumeration to encode different ways how powerlaw noise can
 /// be generated
 typedef enum
@@ -63,14 +71,6 @@ typedef enum
     KASDIN_WALTER_FILTER,       ///< Generic Filter as proposed by Kasdin and Walter
 }
 PLN_FilterImpl_t;
-
-/// Configuration for the powerlaw noise generation process
-typedef struct
-{
-    unsigned int    Seed;       ///< Seed for the random number generator.
-    double          Qd;         ///< Standard variance for the random number generator.
-}
-WhiteNoiseConfig_t;
 
 /// Configuration for the powerlaw noise generation process
 typedef struct
