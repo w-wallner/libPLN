@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef BLACKMANFILTERIMPRESP_HPP_
-#define BLACKMANFILTERIMPRESP_HPP_
+#ifndef BLACKMAN_FILTER_IMP_RESP_HPP_
+#define BLACKMAN_FILTER_IMP_RESP_HPP_
 
 // =========================================================================
 // Includes
