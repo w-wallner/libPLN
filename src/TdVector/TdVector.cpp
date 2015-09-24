@@ -38,6 +38,8 @@
 #include <cassert>
 #include <numeric>
 
+#include <iostream>
+
 // =========================================================================
 // Defines
 // =========================================================================
@@ -109,6 +111,13 @@ TdVector::operator=( const TdVector& other )
 
     // By convention, always return *this
     return *this;
+}
+
+std::ostream& operator<<(std::ostream& os, const TdVector& o)
+{
+    os << o.TD;
+
+    return os;
 }
 
 double

@@ -143,6 +143,8 @@ class TdVector
         /// Copy operator
         TdVector&  operator=( const TdVector& other );
 
+        friend std::ostream& operator<<(std::ostream& os, const TdVector& o);
+
         // -----------------------------------------------------------------
         // API
         // -----------------------------------------------------------------
