@@ -40,6 +40,8 @@
 #include "TdVector/TdVectorLinear.hpp"
 #include "TdVector/TdVectorCubSpline.hpp"
 
+#include "DebugTools/DebugSink.hpp"
+
 // =========================================================================
 // Defines
 // =========================================================================
@@ -133,6 +135,10 @@ TdVecGen::ConstructTdVector( FFT_RealVector *pData, TdVector::TdVecDataType Data
 TdVecGen::TdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, InterpolationConfig_t InterpolConf )
     : WhiteNoiseGen( WhiteNoiseConf )
 {
+    // Save config stuff for debugging purpose
+    DebugSink.SaveSampleConfig( SampleConf );
+    DebugSink.SaveWhiteNoiseConfig( WhiteNoiseConf );
+
     // Set up config
     this->TdVecLen          = SampleConf.TdVecLen;
     this->TickLen           = 1.0L / SampleConf.f_s;

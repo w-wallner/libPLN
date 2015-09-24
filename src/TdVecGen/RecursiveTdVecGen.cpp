@@ -65,6 +65,8 @@
 RecursiveTdVecGen::RecursiveTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
     : TdVecGen( SampleConf, WhiteNoiseConf, InterpolConf )
 {
+    DebugSink.SaveHpFilterConfig( HP_FilterConf );
+
     DataType    = TdVector::FFD_DATA;
 
     // Set up high pass convolution filter

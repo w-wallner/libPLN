@@ -159,9 +159,6 @@ TestTdVecGen()
 //    HP_FilterConf.FilterType    = NO_FILTER;
     HP_FilterConf.f_c_nom       = 0.2;
 
-    DebugSink.SaveHpFilterConfig( HP_FilterConf );
-    DebugSink.SavePlnFilterConfig( PLN_FilterConf );
-
     InterpolConf.InterPolType   = CUBIC_SPLINE_INTERPOLATION;
 
     TdVecGen *pA = TdVecGenFactory::CreateTdVecGen( SampleConf, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
