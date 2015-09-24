@@ -39,6 +39,7 @@
 #include "DebugFileOutput.hpp"
 
 #include "Utils/VectorTypes.hpp"
+#include "TdEst/TdEstConfig.hpp"
 #include "Filter/FilterImpResp.hpp"
 #include "Filter/FilterKernel.hpp"
 
@@ -72,6 +73,7 @@ class cDebugSink
         //------------------------------------------------------------------
         // Resources
         //------------------------------------------------------------------
+        cDebugFileOutput    HpFilterConfig;
         cDebugFileOutput    HpFilterImpResp;
         cDebugFileOutput    PlnFilterImpResp;
         cDebugFileOutput    FilterKernel;
@@ -102,6 +104,7 @@ class cDebugSink
         void    SetFilePrefix( std::string FilePrefix );
         void    SetFileSavePath( std::string FileSavePath );
 
+        void    EnableHpFilterConfigSaving();
         void    EnableHpFilterImpRespSaving();
         void    EnablePlnFilterImpRespSaving();
         void    EnableFilterKernelSaving();
@@ -109,6 +112,7 @@ class cDebugSink
         void    EnablePlnFilteredNoiseSavind();
         void    EnableHpFilteredNoiseSavind();
 
+        void    SaveHpFilterConfig( HP_FilterConfig_t c );
         void    SaveHpFilterImpResp( FilterImpResp *hp );
         void    SavePlnFilterImpResp( FilterImpResp *hp );
         void    SaveFilterKernel( cFilterKernel &H );

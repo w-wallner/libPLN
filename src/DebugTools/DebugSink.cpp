@@ -105,6 +105,12 @@ cDebugSink::SetFileSavePath( std::string FileSavePath )
 }
 
 void
+cDebugSink::EnableHpFilterConfigSaving()
+{
+    HpFilterConfig.Enable( GetFilePath( "HpFilterConfig.txt" ).c_str() );
+}
+
+void
 cDebugSink::EnableHpFilterImpRespSaving()
 {
     HpFilterImpResp.Enable( GetFilePath( "HpFilterImpResp.txt" ).c_str() );
@@ -138,6 +144,15 @@ void
 cDebugSink::EnableHpFilteredNoiseSavind()
 {
     HpFilteredNoise.Enable( GetFilePath( "HpFilteredNoise.txt" ).c_str() );
+}
+
+void
+cDebugSink::SaveHpFilterConfig( HP_FilterConfig_t c )
+{
+    if( HpFilterConfig.IsEnabled() )
+    {
+        HpFilterConfig.Stream() << c;
+    }
 }
 
 void
