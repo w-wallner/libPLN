@@ -44,6 +44,10 @@
 #include "TdVecGen/WpmTdVecGen.hpp"
 #include "TdVecGen/WfmTdVecGen.hpp"
 #include "TdVecGen/RwTdVecGen.hpp"
+#include "TdVecGen/TdVecGenFactory.hpp"
+
+#include "DebugTools/DebugConfig.hpp"
+#include "DebugTools/DebugSink.hpp"
 
 #include "Examples/AverageOscillator_20MHz/AverageOscillator_20MHz.hpp"
 
@@ -126,36 +130,47 @@ TestTdVecGen()
 {
     cout << "Running " << __func__ << "()" << endl;
 
+    DebugSink.SetFileSavePath( "/home/woife/" );
+    DebugSink.SetFilePrefix( "Test" );
+    DebugSink.EnableAll();
+
     size_t TdVecLen;
     double TickLen;
-    PLN_FilterConfig_t PLN_FilterConf;
-    HP_FilterConfig_t HP_FilterConf;
-    InterpolationConfig_t InterpolConf;
+    WhiteNoiseConfig_t      WhiteNoiseConf;
+    PLN_FilterConfig_t      PLN_FilterConf;
+    HP_FilterConfig_t       HP_FilterConf;
+    InterpolationConfig_t   InterpolConf;
+    PLN_FilterImpl_t        FilterImpl;
 
-    TdVecLen = 100;
+    TdVecLen = 200;
     TickLen  = 1.0;
 
-    PLN_FilterConf.FilterLen    = 10;
-    PLN_FilterConf.Qd           = 10E-2;
-    PLN_FilterConf.Seed         = 5432;
-    PLN_FilterConf.alpha        = FSA::ALPHA_RW;
+    WhiteNoiseConf.Qd           = 10E-2;
+    WhiteNoiseConf.Seed         = 5432;
+
+    PLN_FilterConf.FilterLen    = 20;
+    PLN_FilterConf.alpha        = FSA::ALPHA_WFM;
 
     HP_FilterConf.Cnt           = 1;
-    HP_FilterConf.FilterLen     = 11;
+    HP_FilterConf.FilterLen     = 111;
     HP_FilterConf.FilterType    = BLACKMAN;
-    HP_FilterConf.f_c_nom       = 0.5;
+    HP_FilterConf.FilterType    = IDENTITY;
+//    HP_FilterConf.FilterType    = NO_FILTER;
+    HP_FilterConf.f_c_nom       = 0.2;
+
+    FilterImpl  = RECURSIVE_FILTER;
+//    FilterImpl  = KASDIN_WALTER_FILTER;
+
+    DebugSink.SaveHpFilterConfig( HP_FilterConf );
+    DebugSink.SavePlnFilterConfig( PLN_FilterConf );
 
     InterpolConf.InterPolType   = CUBIC_SPLINE_INTERPOLATION;
 
-    TdVecGen *pA;
-
-    //pA = new GenericTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
-    //pA = new WpmTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
-    //pA = new WfmTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
-    pA = new RwTdVecGen( TdVecLen, TickLen, PLN_FilterConf, HP_FilterConf, InterpolConf );
+    TdVecGen *pA = TdVecGenFactory::CreateTdVecGen( FilterImpl, TdVecLen, TickLen, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
 
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << pA->GetNextVector()->GetEndTD() << endl;
+    /*
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << endl;
 
@@ -172,6 +187,7 @@ TestTdVecGen()
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << endl;
+    */
 }
 
 void
@@ -187,7 +203,7 @@ TestWpmTdVecGen()
     TdEstimatorConfig Conf = cAvgOsc20MHz::TdEstChain_WPM::GetConfig_20MHz( 123, true );
     double  TickLen = 1.0L / Conf.SampleConf.f_s;
 
-    GenericTdVecGen g( Conf.SampleConf.TdVecLen, TickLen, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
+    GenericTdVecGen g( Conf.SampleConf.TdVecLen, TickLen, Conf.WhiteNoiseConf, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
 
     TdVector *pTdVec;
 
