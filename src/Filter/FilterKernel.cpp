@@ -66,7 +66,7 @@
 // Function definitions
 // =========================================================================
 
-FilterKernel::FilterKernel()
+cFilterKernel::cFilterKernel()
 {
     MaxDataLen      = 0;
     FilterLen       = 0;
@@ -74,7 +74,7 @@ FilterKernel::FilterKernel()
     FFT_ComplexSize = 0;
 }
 
-FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h )
+cFilterKernel::cFilterKernel( size_t MaxDataLen, FilterImpResp &h )
 {
     this->MaxDataLen        = MaxDataLen;
     this->FilterLen         = h.GetFilterLen();
@@ -100,7 +100,7 @@ FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h )
                    std::bind1st(std::multiplies< std::complex<double> >(), Scale) );
 }
 
-FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 )
+cFilterKernel::cFilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 )
 {
     this->MaxDataLen        = MaxDataLen;
     this->FilterLen         = h1.GetFilterLen() + h2.GetFilterLen() - 1;
@@ -137,7 +137,7 @@ FilterKernel::FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp 
 }
 
 FFT_RealVector *
-FilterKernel::ApplyToSignal( FFT_RealVector *pw )
+cFilterKernel::ApplyToSignal( FFT_RealVector *pw )
 {
     FFT_ComplexVector *pW = fft.GetFrequencyDomain( pw );
 
@@ -162,19 +162,19 @@ FilterKernel::ApplyToSignal( FFT_RealVector *pw )
 }
 
 size_t
-FilterKernel::GetMaxDataLen()
+cFilterKernel::GetMaxDataLen()
 {
     return MaxDataLen;
 }
 
 size_t
-FilterKernel::GetFilterLen()
+cFilterKernel::GetFilterLen()
 {
     return FilterLen;
 }
 
 size_t
-FilterKernel::GetFFT_RealSize()
+cFilterKernel::GetFFT_RealSize()
 {
     return FFT_RealSize;
 }

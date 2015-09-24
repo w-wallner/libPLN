@@ -58,7 +58,7 @@
 /// This class implements a filter kernel (i.e. the filter impulse response
 /// in the frequency domain. The filter kernel can be used to apply the
 /// given filter to a signal.
-class FilterKernel
+class cFilterKernel
 {
     private:
 
@@ -75,7 +75,7 @@ class FilterKernel
     public:
 
         /// Default constructor, constructs an empty filter kernel.
-        FilterKernel();
+        cFilterKernel();
 
         /// Constructor to create a filter kernel from one filter impulse response.
         ///
@@ -90,7 +90,7 @@ class FilterKernel
         ///                     will be used.
         /// \param h            The filter impulse response from which the
         ///                     filter kernel will be created
-        FilterKernel( size_t MaxDataLen, FilterImpResp &h );
+        cFilterKernel( size_t MaxDataLen, FilterImpResp &h );
 
         /// Constructor to create a filter kernel from two filter impulse responses.
         ///
@@ -108,7 +108,7 @@ class FilterKernel
         ///                     filter kernel will be created
         /// \param h2           The second filter impulse response from which the
         ///                     filter kernel will be created
-        FilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 );
+        cFilterKernel( size_t MaxDataLen, FilterImpResp &h1, FilterImpResp &h2 );
 
         /// Apply the configured filter kernel to a signal
         ///

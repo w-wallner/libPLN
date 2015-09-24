@@ -80,7 +80,7 @@ RecursiveTdVecGen::RecursiveTdVecGen( size_t TdVecLen, double TickLen, PLN_Filte
 
             bm.Augment( HP_FilterConf.Cnt );
 
-            H   = FilterKernel( TdVecLen, bm );
+            H   = cFilterKernel( TdVecLen, bm );
 
             EnableHpFilter  = true;
             FfdVecLen       = H.GetFFT_RealSize();

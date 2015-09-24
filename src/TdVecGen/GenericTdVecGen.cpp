@@ -72,7 +72,7 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
     {
         case NO_FILTER:
         {
-            H   = FilterKernel( TdVecLen, kw );
+            H   = cFilterKernel( TdVecLen, kw );
             break;
         }
 
@@ -82,7 +82,7 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
 
             bm.Augment( HP_FilterConf.Cnt );
 
-            H   = FilterKernel( TdVecLen, kw, bm );
+            H   = cFilterKernel( TdVecLen, kw, bm );
             break;
         }
     }
