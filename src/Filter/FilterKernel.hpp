@@ -63,10 +63,10 @@ class cFilterKernel
     private:
 
         // Config
-        size_t  MaxDataLen;             ///< Maximum legth of data that will be filtered
+        size_t  MaxDataLen;             ///< Maximum length of data that will be filtered
         size_t  FilterLen;              ///< Filter length
         size_t  FFT_RealSize;           ///< Length of the vectors in the time domain (where the data is real)
-        size_t  FFT_ComplexSize;        ///< Length of the vectors in the frequency domain (wherer the data is complex)
+        size_t  FFT_ComplexSize;        ///< Length of the vectors in the frequency domain (where the data is complex)
 
         // Resources
         FFT_ComplexVector   H;          ///< Vector to store complex frequency domain data
