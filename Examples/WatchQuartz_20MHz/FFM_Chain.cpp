@@ -65,27 +65,27 @@ cWatchQuartz_20MHz::TdEstChain_FFM::GetConfig_100Hz(unsigned int Seed, bool Enab
 {
     TdEstimatorConfig   config;
 
-    config.SampleConf.f_s                   = 20;
-    config.SampleConf.TdVecLen              = 5100;
+    config.TdVecGenConf.SampleConf.f_s                  = 20;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 5100;
 
-    config.WhiteNoiseConf.Qd                = 6.4654117423164914448E-19;
-    config.WhiteNoiseConf.Seed              = Seed;
+    config.TdVecGenConf.WhiteNoiseConf.Qd               = 6.4654117423164914448E-19;
+    config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed;
 
-    config.PLN_FilterConf.Implementation    = RECURSIVE_FILTER;
-    config.PLN_FilterConf.alpha             = FSA::ALPHA_FFM;
-    config.PLN_FilterConf.FilterLen         = 1000;
+    config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
+    config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_FFM;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 1000;
 
-    config.HP_FilterConf.FilterType         = NO_FILTER;
-    config.HP_FilterConf.f_c_nom            = 0.01;
-    config.HP_FilterConf.FilterLen          = 5001;
-    config.HP_FilterConf.Cnt                = 1;
+    config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
+    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.01;
+    config.TdVecGenConf.HP_FilterConf.FilterLen         = 5001;
+    config.TdVecGenConf.HP_FilterConf.Cnt               = 1;
 
-    config.InterpolConf.InterPolType        = CUBIC_SPLINE_INTERPOLATION;
+    config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                   = 20;
-    config.TimeConf.EnableIntervalSkipping  = EnableIntervalSkipping;
+    config.TimeConf.T_val                               = 20;
+    config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
-    config.PerformanceConf.ForgetTh         = 0;
+    config.PerformanceConf.ForgetTh                     = 0;
 
     return config;
 }

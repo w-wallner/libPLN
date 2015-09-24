@@ -157,14 +157,14 @@ TdEstChain::SetSeed( unsigned int Seed )
 void
 TdEstChain::AddTdEstimator( TdEstimatorConfig Conf )
 {
-    if( Conf.PLN_FilterConf.alpha != alpha )
+    if( Conf.TdVecGenConf.PLN_FilterConf.alpha != alpha )
     {
         throw std::invalid_argument( "Configured alpha value does not match existing value." );
     }
 
     if( Chain.size() > 0 )
     {
-        if( Conf.SampleConf.f_s >= Chain.rbegin()->pEst->Get_f_s() )
+        if( Conf.TdVecGenConf.SampleConf.f_s >= Chain.rbegin()->pEst->Get_f_s() )
         {
             throw std::invalid_argument( "Estimators can only be added in strictly decreasing order of sampling frequency." );
         }

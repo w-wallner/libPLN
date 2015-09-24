@@ -116,9 +116,9 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
       LastResult( 0.0L, 0.0L )
 {
     // Config
-    f_s         = Conf.SampleConf.f_s;
-    TdVecLen    = Conf.SampleConf.TdVecLen;
-    alpha       = Conf.PLN_FilterConf.alpha;
+    f_s         = Conf.TdVecGenConf.SampleConf.f_s;
+    TdVecLen    = Conf.TdVecGenConf.SampleConf.TdVecLen;
+    alpha       = Conf.TdVecGenConf.PLN_FilterConf.alpha;
 
     T_val                   = Conf.TimeConf.T_val;
     IntervalSkippingEnabled = Conf.TimeConf.EnableIntervalSkipping;
@@ -133,8 +133,7 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     }
 
     // Set up components
-    pTdVecGen = TdVecGenFactory::CreateTdVecGen( Conf.SampleConf, Conf.WhiteNoiseConf,
-                                                 Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
+    pTdVecGen = TdVecGenFactory::CreateTdVecGen( Conf.TdVecGenConf );
 
     // Init all components to a common starting point
     TdFixPoint  StartingPoint   = TdFixPoint( 0.0, 0.0 );

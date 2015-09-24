@@ -65,27 +65,27 @@ cAvgOsc20MHz::TdEstChain_RW::GetConfig_100Hz(unsigned int Seed, bool EnableInter
 {
     TdEstimatorConfig   config;
 
-    config.SampleConf.f_s                   = 200;
-    config.SampleConf.TdVecLen              = 5100;
+    config.TdVecGenConf.SampleConf.f_s                  = 200;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 5100;
 
-    config.WhiteNoiseConf.Qd                = 2.8455E-21;
-    config.WhiteNoiseConf.Seed              = Seed + 0;
+    config.TdVecGenConf.WhiteNoiseConf.Qd               = 2.8455E-21;
+    config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed + 0;
 
-    config.PLN_FilterConf.Implementation    = RECURSIVE_FILTER;
-    config.PLN_FilterConf.alpha             = FSA::ALPHA_RW;
-    config.PLN_FilterConf.FilterLen         = 10;
+    config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
+    config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_RW;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
 
-    config.HP_FilterConf.FilterType         = NO_FILTER;
-    config.HP_FilterConf.f_c_nom            = 0.01;
-    config.HP_FilterConf.FilterLen          = 5001;
-    config.HP_FilterConf.Cnt                = 1;
+    config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
+    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.01;
+    config.TdVecGenConf.HP_FilterConf.FilterLen         = 5001;
+    config.TdVecGenConf.HP_FilterConf.Cnt               = 1;
 
-    config.InterpolConf.InterPolType        = CUBIC_SPLINE_INTERPOLATION;
+    config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                   = 2000;
-    config.TimeConf.EnableIntervalSkipping  = EnableIntervalSkipping;
+    config.TimeConf.T_val                               = 2000;
+    config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
-    config.PerformanceConf.ForgetTh         = 0;
+    config.PerformanceConf.ForgetTh                     = 0;
 
     return config;
 }

@@ -62,15 +62,13 @@
 // Function definitions
 // =========================================================================
 
-RecursiveTdVecGen::RecursiveTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
-    : TdVecGen( SampleConf, WhiteNoiseConf, InterpolConf )
+RecursiveTdVecGen::RecursiveTdVecGen( TdVecGenConfig_t Conf )
+    : TdVecGen( Conf )
 {
-    DebugSink.SaveHpFilterConfig( HP_FilterConf );
-
     DataType    = TdVector::FFD_DATA;
 
     // Set up high pass convolution filter
-    switch( HP_FilterConf.FilterType )
+    switch( Conf.HP_FilterConf.FilterType )
     {
         case NO_FILTER:
         {
@@ -81,8 +79,8 @@ RecursiveTdVecGen::RecursiveTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfi
 
         case IDENTITY:
         {
-            IdentityFilterImpResp id( HP_FilterConf.FilterLen );
-            id.Augment( HP_FilterConf.Cnt );
+            IdentityFilterImpResp id( Conf.HP_FilterConf.FilterLen );
+            id.Augment( Conf.HP_FilterConf.Cnt );
 
             DebugSink.SaveHpFilterImpResp( &id );
 
@@ -97,8 +95,8 @@ RecursiveTdVecGen::RecursiveTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfi
 
         case BLACKMAN:
         {
-            BmHpFilterImpResp bm( HP_FilterConf.FilterLen, HP_FilterConf.f_c_nom );
-            bm.Augment( HP_FilterConf.Cnt );
+            BmHpFilterImpResp bm( Conf.HP_FilterConf.FilterLen, Conf.HP_FilterConf.f_c_nom );
+            bm.Augment( Conf.HP_FilterConf.Cnt );
 
             DebugSink.SaveHpFilterImpResp( &bm );
 

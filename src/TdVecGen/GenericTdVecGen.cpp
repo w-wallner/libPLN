@@ -108,13 +108,10 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
     FfdVecLen   = H.GetFFT_RealSize();
 }
 
-GenericTdVecGen::GenericTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
-    : TdVecGen( SampleConf, WhiteNoiseConf, InterpolConf )
+GenericTdVecGen::GenericTdVecGen( TdVecGenConfig_t Conf )
+    : TdVecGen( Conf )
 {
-    DebugSink.SavePlnFilterConfig( PLN_FilterConf );
-    DebugSink.SaveHpFilterConfig( HP_FilterConf );
-
-    SetUpPLNConvFilter( PLN_FilterConf, HP_FilterConf, TdVecLen );
+    SetUpPLNConvFilter( Conf.PLN_FilterConf, Conf.HP_FilterConf, TdVecLen );
 }
 
 GenericTdVecGen::GenericTdVecGen( const GenericTdVecGen& other )

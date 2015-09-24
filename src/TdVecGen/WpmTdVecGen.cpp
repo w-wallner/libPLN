@@ -68,8 +68,8 @@ WpmTdVecGen::ApplyRecursiveFilter( FFT_RealVector *pw )
     // For WPM there is nothing to do here
 }
 
-WpmTdVecGen::WpmTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
-    : RecursiveTdVecGen( SampleConf, WhiteNoiseConf, HP_FilterConf, InterpolConf )
+WpmTdVecGen::WpmTdVecGen( TdVecGenConfig_t Conf )
+    : RecursiveTdVecGen( Conf )
 {
     DataType    = TdVector::TD_DATA;
 }

@@ -99,10 +99,8 @@ class RecursiveTdVecGen : public TdVecGen
 
         /// Constructor
         ///
-        /// \param SampleConf       Sampling configuration
-        /// \param WhiteNoiseConf   White noise configuration
-        /// \param InterpolConfig   Interpolation configuration
-        RecursiveTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
+        /// \param Conf     Configuration
+        RecursiveTdVecGen( TdVecGenConfig_t Conf );
 
         /// Copy constructor
         ///

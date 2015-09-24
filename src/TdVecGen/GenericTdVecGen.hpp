@@ -93,12 +93,8 @@ class GenericTdVecGen : public TdVecGen
         /// Creates a new instance of generic time deviation generator,
         /// based on the Kasdin/Walter powerlaw noise simulation approach.
         ///
-        /// \param SampleConf           Sampling configuration
-        /// \param WhiteNoiseConf       White noise configuration
-        /// \param PLN_FilterConf       Configuration for the powerlaw noise filter
-        /// \param HP_FilterConf        Configuration for the high pass filter
-        /// \param InterpolConf         Interpolation configuration
-        GenericTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf );
+        /// \param Conf     Configuration
+        GenericTdVecGen( TdVecGenConfig_t Conf );
 
         /// Copy constructor
         ///

@@ -121,10 +121,8 @@ class TdVecGen
 
         /// Constructor
         ///
-        /// \param SampleConf       Sampling configuration
-        /// \param WhiteNoiseConf   White noise configuration
-        /// \param InterpolConfig   Interpolation configuration
-        TdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, InterpolationConfig_t InterpolConf );
+        /// \param Conf     Configuration
+        TdVecGen( TdVecGenConfig_t Conf );
 
         /// Copy constructor
         ///

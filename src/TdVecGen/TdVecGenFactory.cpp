@@ -63,29 +63,30 @@
 // =========================================================================
 
 TdVecGen*
-TdVecGenFactory::CreateTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, PLN_FilterConfig_t PLN_FilterConf, HP_FilterConfig_t HP_FilterConf, InterpolationConfig_t InterpolConf )
+TdVecGenFactory::CreateTdVecGen( TdVecGenConfig_t Conf )
 {
     TdVecGen*   pTdVecGen = NULL;
 
-    switch( PLN_FilterConf.Implementation )
+    switch( Conf.PLN_FilterConf.Implementation )
     {
         case RECURSIVE_FILTER:
         {
-            if( PLN_FilterConf.alpha == FSA::ALPHA_WPM )
+            if( Conf.PLN_FilterConf.alpha == FSA::ALPHA_WPM )
             {
-                pTdVecGen    = new WpmTdVecGen( SampleConf, WhiteNoiseConf, HP_FilterConf, InterpolConf );
+                pTdVecGen    = new WpmTdVecGen( Conf );
             }
-            else if( PLN_FilterConf.alpha == FSA::ALPHA_WFM )
+            else if( Conf.PLN_FilterConf.alpha == FSA::ALPHA_WFM )
             {
-                pTdVecGen    = new WfmTdVecGen( SampleConf, WhiteNoiseConf, HP_FilterConf, InterpolConf );
+                pTdVecGen    = new WfmTdVecGen( Conf );
             }
-            else if( PLN_FilterConf.alpha == FSA::ALPHA_RW )
+            else if( Conf.PLN_FilterConf.alpha == FSA::ALPHA_RW )
             {
-                pTdVecGen    = new RwTdVecGen( SampleConf, WhiteNoiseConf, HP_FilterConf, InterpolConf );
+                pTdVecGen    = new RwTdVecGen( Conf );
             }
             else
             {
-                pTdVecGen    = new GenericTdVecGen( SampleConf, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
+                Conf.PLN_FilterConf.Implementation = KASDIN_WALTER_FILTER;
+                pTdVecGen    = new GenericTdVecGen( Conf );
             }
             break;
         }
@@ -93,7 +94,7 @@ TdVecGenFactory::CreateTdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t W
         default:
         case KASDIN_WALTER_FILTER:
         {
-            pTdVecGen    = new GenericTdVecGen( SampleConf, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
+            pTdVecGen    = new GenericTdVecGen( Conf );
             break;
         }
     }

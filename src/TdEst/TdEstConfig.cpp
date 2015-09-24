@@ -190,15 +190,22 @@ operator<<(std::ostream& os, const PerformanceConfig_t& o)
     return os;
 }
 
+std::ostream& operator<<(std::ostream& os, const TdVecGenConfig_t& o)
+{
+    os << o.SampleConf;
+    os << o.WhiteNoiseConf;
+    os << o.PLN_FilterConf;
+    os << o.HP_FilterConf;
+    os << o.InterpolConf;
+    os << endl;
+
+    return os;
+}
+
 std::ostream&
 operator<<(std::ostream& os, const TdEstimatorConfig& o)
 {
-    os << o.WhiteNoiseConf;
-    os << o.HP_FilterConf;
-    os << o.InterpolConf;
-    os << o.PLN_FilterConf;
     os << o.PerformanceConf;
-    os << o.SampleConf;
     os << o.TimeConf;
     os << endl;
 

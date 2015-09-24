@@ -95,29 +95,29 @@ EstimatorTestBench()
 
     TdEstimatorConfig Conf;
 
-    Conf.SampleConf.f_s                 = 1E3;
-    Conf.SampleConf.f_s                 = 1E1;
-    Conf.SampleConf.TdVecLen            = 1000;
+    Conf.TdVecGenConf.SampleConf.f_s                 = 1E3;
+    Conf.TdVecGenConf.SampleConf.f_s                 = 1E1;
+    Conf.TdVecGenConf.SampleConf.TdVecLen            = 1000;
 
-    Conf.WhiteNoiseConf.Qd              = 1E-18 * sqrt(100);
-    Conf.WhiteNoiseConf.Seed            = 1234;
+    Conf.TdVecGenConf.WhiteNoiseConf.Qd              = 1E-18 * sqrt(100);
+    Conf.TdVecGenConf.WhiteNoiseConf.Seed            = 1234;
 
-    Conf.PLN_FilterConf.Implementation  = RECURSIVE_FILTER;
-//    Conf.PLN_FilterConf.Implementation  = KASDIN_WALTER_FILTER;
+    Conf.TdVecGenConf.PLN_FilterConf.Implementation  = RECURSIVE_FILTER;
+//    Conf.TdVecGenConf.PLN_FilterConf.Implementation  = KASDIN_WALTER_FILTER;
 
-    Conf.PLN_FilterConf.alpha           = FSA::ALPHA_WPM;
-    Conf.PLN_FilterConf.FilterLen       = 100;
+    Conf.TdVecGenConf.PLN_FilterConf.alpha           = FSA::ALPHA_WPM;
+    Conf.TdVecGenConf.PLN_FilterConf.FilterLen       = 100;
 
-    Conf.HP_FilterConf.FilterType       = BLACKMAN;
-//    Conf.HP_FilterConf.Type             = NO_FILTER;
-    Conf.HP_FilterConf.f_c_nom          = 0.05;
-    Conf.HP_FilterConf.FilterLen        = 501;
-    Conf.HP_FilterConf.Cnt              = 1;
+    Conf.TdVecGenConf.HP_FilterConf.FilterType       = BLACKMAN;
+//    Conf.TdVecGenConf.HP_FilterConf.Type             = NO_FILTER;
+    Conf.TdVecGenConf.HP_FilterConf.f_c_nom          = 0.05;
+    Conf.TdVecGenConf.HP_FilterConf.FilterLen        = 501;
+    Conf.TdVecGenConf.HP_FilterConf.Cnt              = 1;
 
-    Conf.InterpolConf.InterPolType      = CUBIC_SPLINE_INTERPOLATION;
-    Conf.InterpolConf.InterPolType      = LINEAR_INTERPOLATION;
+    Conf.TdVecGenConf.InterpolConf.InterPolType      = CUBIC_SPLINE_INTERPOLATION;
+    Conf.TdVecGenConf.InterpolConf.InterPolType      = LINEAR_INTERPOLATION;
 
-    Conf.TimeConf.T_val                 = Conf.PLN_FilterConf.FilterLen * (1.0L/Conf.SampleConf.f_s);
+    Conf.TimeConf.T_val                 = Conf.TdVecGenConf.PLN_FilterConf.FilterLen * (1.0L/Conf.TdVecGenConf.SampleConf.f_s);
 
     Conf.PerformanceConf.ForgetTh       = 0;
 

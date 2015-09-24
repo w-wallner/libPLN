@@ -132,17 +132,19 @@ TdVecGen::ConstructTdVector( FFT_RealVector *pData, TdVector::TdVecDataType Data
     return pTdVec;
 }
 
-TdVecGen::TdVecGen( SampleConfig_t SampleConf, WhiteNoiseConfig_t WhiteNoiseConf, InterpolationConfig_t InterpolConf )
-    : WhiteNoiseGen( WhiteNoiseConf )
+TdVecGen::TdVecGen( TdVecGenConfig_t Conf )
+    : WhiteNoiseGen( Conf.WhiteNoiseConf )
 {
     // Save config stuff for debugging purpose
-    DebugSink.SaveSampleConfig( SampleConf );
-    DebugSink.SaveWhiteNoiseConfig( WhiteNoiseConf );
+    DebugSink.SaveSampleConfig( Conf.SampleConf );
+    DebugSink.SaveWhiteNoiseConfig( Conf.WhiteNoiseConf );
+    DebugSink.SavePlnFilterConfig( Conf.PLN_FilterConf );
+    DebugSink.SaveHpFilterConfig( Conf.HP_FilterConf );
 
     // Set up config
-    this->TdVecLen          = SampleConf.TdVecLen;
-    this->TickLen           = 1.0L / SampleConf.f_s;
-    this->IntpolType        = InterpolConf.InterPolType;
+    this->TdVecLen          = Conf.SampleConf.TdVecLen;
+    this->TickLen           = 1.0L / Conf.SampleConf.f_s;
+    this->IntpolType        = Conf.InterpolConf.InterPolType;
 
     this->Last_t_end        = 0.0L;
     this->LastRelativeTD    = 0.0L;

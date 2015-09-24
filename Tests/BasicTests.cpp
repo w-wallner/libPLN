@@ -134,34 +134,31 @@ TestTdVecGen()
     DebugSink.SetFilePrefix( "Test" );
     DebugSink.EnableAll();
 
-    SampleConfig_t          SampleConf;
-    WhiteNoiseConfig_t      WhiteNoiseConf;
-    PLN_FilterConfig_t      PLN_FilterConf;
-    HP_FilterConfig_t       HP_FilterConf;
-    InterpolationConfig_t   InterpolConf;
-    PLN_FilterImpl_t        FilterImpl;
+    TdVecGenConfig_t    TdVecGenConf;
 
-    SampleConf.TdVecLen = 500;
-    SampleConf.f_s  = 1.0;
+    TdVecGenConf.SampleConf.TdVecLen = 500;
+    TdVecGenConf.SampleConf.f_s  = 1.0;
 
-    WhiteNoiseConf.Qd           = 10E-2;
-    WhiteNoiseConf.Seed         = 5432;
+    TdVecGenConf.WhiteNoiseConf.Qd           = 10E-2;
+    TdVecGenConf.WhiteNoiseConf.Seed         = 5432;
 
-    PLN_FilterConf.Implementation  = RECURSIVE_FILTER;
-    PLN_FilterConf.Implementation  = KASDIN_WALTER_FILTER;
-    PLN_FilterConf.FilterLen    = 50;
-    PLN_FilterConf.alpha        = FSA::ALPHA_FFM;
+    TdVecGenConf.PLN_FilterConf.Implementation  = RECURSIVE_FILTER;
+//    TdVecGenConf.PLN_FilterConf.Implementation  = KASDIN_WALTER_FILTER;
+    TdVecGenConf.PLN_FilterConf.FilterLen    = 50;
+    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_FFM;
+    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_WPM;
 
-    HP_FilterConf.Cnt           = 7;
-    HP_FilterConf.FilterLen     = 7;
-    HP_FilterConf.FilterType    = BLACKMAN;
-//    HP_FilterConf.FilterType    = IDENTITY;
-//    HP_FilterConf.FilterType    = NO_FILTER;
-    HP_FilterConf.f_c_nom       = 0.2;
+    TdVecGenConf.HP_FilterConf.Cnt           = 7;
+    TdVecGenConf.HP_FilterConf.FilterLen     = 7;
+    TdVecGenConf.HP_FilterConf.FilterType    = BLACKMAN;
+    TdVecGenConf.HP_FilterConf.FilterType    = IDENTITY;
+//    TdVecGenConf.HP_FilterConf.FilterType    = NO_FILTER;
+    TdVecGenConf.HP_FilterConf.f_c_nom       = 0.2;
 
-    InterpolConf.InterPolType   = CUBIC_SPLINE_INTERPOLATION;
+    TdVecGenConf.InterpolConf.InterPolType   = CUBIC_SPLINE_INTERPOLATION;
 
-    TdVecGen *pA = TdVecGenFactory::CreateTdVecGen( SampleConf, WhiteNoiseConf, PLN_FilterConf, HP_FilterConf, InterpolConf );
+
+    TdVecGen *pA = TdVecGenFactory::CreateTdVecGen( TdVecGenConf );
 
     cout << pA->GetNextVector()->GetEndTD() << endl;
     cout << pA->GetNextVector()->GetEndTD() << endl;
@@ -197,7 +194,7 @@ TestWpmTdVecGen()
 
     TdEstimatorConfig Conf = cAvgOsc20MHz::TdEstChain_WPM::GetConfig_20MHz( 123, true );
 
-    GenericTdVecGen g( Conf.SampleConf, Conf.WhiteNoiseConf, Conf.PLN_FilterConf, Conf.HP_FilterConf, Conf.InterpolConf );
+    GenericTdVecGen g( Conf.TdVecGenConf );
 
     TdVector *pTdVec;
 

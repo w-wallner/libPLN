@@ -134,7 +134,7 @@ typedef struct
 }
 PerformanceConfig_t;
 
-/// Configuration for a time deviation estimator
+/// Performance configuration
 typedef struct
 {
     SampleConfig_t          SampleConf;             ///< Configuration for the simulated sampling process
@@ -142,6 +142,13 @@ typedef struct
     PLN_FilterConfig_t      PLN_FilterConf;         ///< Configuration for the PLN filter
     HP_FilterConfig_t       HP_FilterConf;          ///< Configuration for the high pass filter
     InterpolationConfig_t   InterpolConf;           ///< Configuration for the interpolation
+}
+TdVecGenConfig_t;
+
+/// Configuration for a time deviation estimator
+typedef struct
+{
+    TdVecGenConfig_t        TdVecGenConf;           ///< Configuration for time deviation vector generator
     TimeConfig_t            TimeConf;               ///< Configuration for timing relevant options
     PerformanceConfig_t     PerformanceConf;        ///< Configuration for performance relevant options
 }
@@ -161,6 +168,7 @@ std::ostream& operator<<(std::ostream& os, const InterpolationType_t& o);
 std::ostream& operator<<(std::ostream& os, const InterpolationConfig_t& o);
 std::ostream& operator<<(std::ostream& os, const TimeConfig_t& o);
 std::ostream& operator<<(std::ostream& os, const PerformanceConfig_t& o);
+std::ostream& operator<<(std::ostream& os, const TdVecGenConfig_t& o);
 std::ostream& operator<<(std::ostream& os, const TdEstimatorConfig& o);
 
 #endif

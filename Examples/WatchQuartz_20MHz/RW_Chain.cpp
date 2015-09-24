@@ -65,29 +65,29 @@ cWatchQuartz_20MHz::TdEstChain_RW::GetConfig_100Hz(unsigned int Seed, bool Enabl
 {
     TdEstimatorConfig   config;
 
-    config.SampleConf.f_s                   = 200;
-    config.SampleConf.TdVecLen              = 5100;
+    config.TdVecGenConf.SampleConf.f_s                  = 200;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 5100;
 
-    config.WhiteNoiseConf.Qd                = 1.5E-22;
-    config.WhiteNoiseConf.Seed              = Seed + 0;
+    config.TdVecGenConf.WhiteNoiseConf.Qd               = 1.5E-22;
+    config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed + 0;
 
-    config.PLN_FilterConf.Implementation    = RECURSIVE_FILTER;
-//    config.PLN_FilterConf.Implementation    = KASDIN_WALTER_FILTER;
-    config.PLN_FilterConf.alpha             = FSA::ALPHA_RW;
-    config.PLN_FilterConf.FilterLen         = 1000;
+    config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
+//    config.TdVecGenConf.PLN_FilterConf.Implementation   = KASDIN_WALTER_FILTER;
+    config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_RW;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 1000;
 
-    config.HP_FilterConf.FilterType         = BLACKMAN;
-    config.HP_FilterConf.FilterType         = NO_FILTER;
-    config.HP_FilterConf.f_c_nom            = 0.01;
-    config.HP_FilterConf.FilterLen          = 1001;
-    config.HP_FilterConf.Cnt                = 1;
+    config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
+    config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
+    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.01;
+    config.TdVecGenConf.HP_FilterConf.FilterLen         = 1001;
+    config.TdVecGenConf.HP_FilterConf.Cnt               = 1;
 
-    config.InterpolConf.InterPolType        = CUBIC_SPLINE_INTERPOLATION;
+    config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                   = 2000;
-    config.TimeConf.EnableIntervalSkipping  = EnableIntervalSkipping;
+    config.TimeConf.T_val                               = 2000;
+    config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
-    config.PerformanceConf.ForgetTh         = 0;
+    config.PerformanceConf.ForgetTh                     = 0;
 
     return config;
 }
@@ -97,27 +97,27 @@ cWatchQuartz_20MHz::TdEstChain_RW::GetConfig_100mHz(unsigned int Seed, bool Enab
 {
     TdEstimatorConfig   config;
 
-    config.SampleConf.f_s                   = 200E-3;
-    config.SampleConf.TdVecLen              = 5100;
+    config.TdVecGenConf.SampleConf.f_s                  = 200E-3;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 5100;
 
-    config.WhiteNoiseConf.Qd                = 1.5E-22;
-    config.WhiteNoiseConf.Seed              = Seed + 0;
+    config.TdVecGenConf.WhiteNoiseConf.Qd               = 1.5E-22;
+    config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed + 0;
 
-    config.PLN_FilterConf.Implementation    = RECURSIVE_FILTER;
-    config.PLN_FilterConf.alpha             = FSA::ALPHA_RW;
-    config.PLN_FilterConf.FilterLen         = 10;
+    config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
+    config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_RW;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
 
-    config.HP_FilterConf.FilterType         = NO_FILTER;
-    config.HP_FilterConf.f_c_nom            = 0.01;
-    config.HP_FilterConf.FilterLen          = 5001;
-    config.HP_FilterConf.Cnt                = 1;
+    config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
+    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.01;
+    config.TdVecGenConf.HP_FilterConf.FilterLen         = 5001;
+    config.TdVecGenConf.HP_FilterConf.Cnt               = 1;
 
-    config.InterpolConf.InterPolType        = CUBIC_SPLINE_INTERPOLATION;
+    config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                   = 2000;
-    config.TimeConf.EnableIntervalSkipping  = EnableIntervalSkipping;
+    config.TimeConf.T_val                               = 2000;
+    config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
-    config.PerformanceConf.ForgetTh         = 0;
+    config.PerformanceConf.ForgetTh                     = 0;
 
     return config;
 }
