@@ -73,6 +73,8 @@ class cDebugSink
         //------------------------------------------------------------------
         // Resources
         //------------------------------------------------------------------
+        cDebugFileOutput    SampleConfig;
+        cDebugFileOutput    WhiteNoiseConfig;
         cDebugFileOutput    HpFilterConfig;
         cDebugFileOutput    PlnFilterConfig;
         cDebugFileOutput    HpFilterImpResp;
@@ -107,6 +109,8 @@ class cDebugSink
 
         void    EnableAll();
 
+        void    EnableSampleConfigSaving();
+        void    EnableWhiteNoiseConfigSaving();
         void    EnableHpFilterConfigSaving();
         void    EnablePlnFilterConfigSaving();
         void    EnableHpFilterImpRespSaving();
@@ -116,6 +120,8 @@ class cDebugSink
         void    EnablePlnFilteredNoiseSavind();
         void    EnableHpFilteredNoiseSavind();
 
+        void    SaveSampleConfig( SampleConfig_t c );
+        void    SaveWhiteNoiseConfig( WhiteNoiseConfig_t c );
         void    SaveHpFilterConfig( HP_FilterConfig_t c );
         void    SavePlnFilterConfig( PLN_FilterConfig_t c );
         void    SaveHpFilterImpResp( FilterImpResp *hp );

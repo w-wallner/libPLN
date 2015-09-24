@@ -107,6 +107,8 @@ cDebugSink::SetFileSavePath( std::string FileSavePath )
 void
 cDebugSink::EnableAll()
 {
+    EnableSampleConfigSaving();
+    EnableWhiteNoiseConfigSaving();
     EnableHpFilterConfigSaving();
     EnablePlnFilterConfigSaving();
     EnableHpFilterImpRespSaving();
@@ -115,6 +117,18 @@ cDebugSink::EnableAll()
     EnableWhiteNoiseSaving();
     EnablePlnFilteredNoiseSavind();
     EnableHpFilteredNoiseSavind();
+}
+
+void
+cDebugSink::EnableSampleConfigSaving()
+{
+    SampleConfig.Enable( GetFilePath( "SampleConfig.txt" ).c_str() );
+}
+
+void
+cDebugSink::EnableWhiteNoiseConfigSaving()
+{
+    WhiteNoiseConfig.Enable( GetFilePath( "WhiteNoiseConfig.txt" ).c_str() );
 }
 
 void
@@ -163,6 +177,24 @@ void
 cDebugSink::EnableHpFilteredNoiseSavind()
 {
     HpFilteredNoise.Enable( GetFilePath( "HpFilteredNoise.txt" ).c_str() );
+}
+
+void
+cDebugSink::SaveSampleConfig( SampleConfig_t c )
+{
+    if( SampleConfig.IsEnabled() )
+    {
+        SampleConfig.Stream() << c;
+    }
+}
+
+void
+cDebugSink::SaveWhiteNoiseConfig( WhiteNoiseConfig_t c )
+{
+    if( WhiteNoiseConfig.IsEnabled() )
+    {
+        WhiteNoiseConfig.Stream() << c;
+    }
 }
 
 void
