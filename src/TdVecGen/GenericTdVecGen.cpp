@@ -111,7 +111,6 @@ GenericTdVecGen::Clone() const
     return new GenericTdVecGen(*this);
 }
 
-
 GenericTdVecGen&
 GenericTdVecGen::operator=( const GenericTdVecGen& other )
 {
