@@ -133,6 +133,8 @@ class cFilterKernel
         ///
         /// \return Length of the time domain data
         size_t  GetFFT_RealSize();
+
+        FFT_ComplexVector   &GetFilterKernel();
 };
 
 // =========================================================================

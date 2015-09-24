@@ -178,3 +178,9 @@ cFilterKernel::GetFFT_RealSize()
 {
     return FFT_RealSize;
 }
+
+FFT_ComplexVector&
+cFilterKernel::GetFilterKernel()
+{
+    return H;
+}
