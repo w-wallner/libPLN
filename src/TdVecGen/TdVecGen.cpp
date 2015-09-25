@@ -84,6 +84,7 @@ void
 TdVecGen::ResetConvFilter()
 {
    delete pLastFFD;
+   pLastFFD = NULL;
 }
 
 TdVector *
