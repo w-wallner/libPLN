@@ -140,21 +140,19 @@ RecursiveTdVecGen::GetNextVector()
     // Generate new FFD vector
     FFT_RealVector *pw;
     pw = WhiteNoiseGen.GetFftVector( FfdVecLen, TdVecLen );
-
     DebugSink.SaveWhiteNoise( pw );
+
+    ApplyRecursiveFilter( pw );
+    DebugSink.SavePlnFilteredNoise( pw );
 
     if( EnableHpFilter )
     {
         ApplyConvFilter( pw );
     }
-
     DebugSink.SaveHpFilteredNoise( pw );
 
-    ApplyRecursiveFilter( pw );
-
-    DebugSink.SavePlnFilteredNoise( pw );
-
     TdVector *pTdVec  = ConstructTdVector( pw, DataType );
+    DebugSink.SaveTimeDeviation( pTdVec );
 
     if( !EnableHpFilter )
     {

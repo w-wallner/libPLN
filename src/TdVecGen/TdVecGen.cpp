@@ -86,7 +86,8 @@ TdVecGen::ApplyConvFilter( FFT_RealVector *pw )
 
     // Handle overlapping convolution part
     std::transform( pw->begin(), pw->begin() + H.GetFilterLen(),
-                    pLastFFD->begin() + TdVecLen, pw->begin(), std::plus<double>() );
+                    pLastFFD->begin() + TdVecLen,
+                    pw->begin(), std::plus<double>() );
 
     // Remember FFD vector for next call
     delete pLastFFD;

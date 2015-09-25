@@ -36,6 +36,8 @@
 
 #include "WpmTdVecGen.hpp"
 
+#include <numeric>
+
 // =========================================================================
 // Defines
 // =========================================================================
@@ -59,24 +61,44 @@
 void
 WpmTdVecGen::ResetRecursiveFilter()
 {
-    // For WPM there is nothing to do here
+    FFD_0       = 0.0L;
+    initialized = false;
 }
 
 void
 WpmTdVecGen::ApplyRecursiveFilter( FFT_RealVector *pw )
 {
-    // For WPM there is nothing to do here
+    double  NextFFD_0 = (*pw)[TdVecLen-1];
+
+    std::adjacent_difference( pw->begin(), pw->begin() + TdVecLen, pw->begin() );
+
+    if( initialized )
+    {
+        (*pw)[0] = (*pw)[0] - FFD_0;
+    }
+    else
+    {
+        (*pw)[0] = 0.0;
+        initialized = true;
+    }
+
+    // Save last FFD value for the next iteration
+    FFD_0 = NextFFD_0;
 }
 
 WpmTdVecGen::WpmTdVecGen( TdVecGenConfig_t Conf )
     : RecursiveTdVecGen( Conf )
 {
-    DataType    = TdVector::TD_DATA;
+    DataType    = TdVector::FFD_DATA;
+    FFD_0       = 0.0L;
+    initialized = false;
 }
 
 WpmTdVecGen::WpmTdVecGen( const WpmTdVecGen& other )
     : RecursiveTdVecGen( other )
 {
+    this->FFD_0         = other.FFD_0;
+    this->initialized   = other.initialized;
 }
 
 WpmTdVecGen::~WpmTdVecGen()
@@ -93,6 +115,9 @@ WpmTdVecGen&
 WpmTdVecGen::operator=( const WpmTdVecGen& other )
 {
     RecursiveTdVecGen::operator=( other );
+
+    this->FFD_0         = other.FFD_0;
+    this->initialized   = other.initialized;
 
     // By convention, always return *this
     return *this;
