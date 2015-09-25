@@ -90,7 +90,7 @@ class TdVector
         ///                 Must fulfill t_beg <= t_req <= t_end
         ///
         /// \return         Interpolated TD at t_req
-        virtual double  InterpolateAt( double t_req ) = 0;
+        virtual double  InterpolateRelTD( double t_req ) = 0;
 
     public:
 
@@ -146,12 +146,12 @@ class TdVector
         /// Getter for the time deviation at the beginning of this TD vector
         ///
         /// \return Time deviation (in seconds) at the beginning of this TD vector
-        double  GetBeginTD();
+        double  GetBeginRelTD();
 
         /// Getter for the time deviation at the end of this TD vector
         ///
         /// \return Time deviation (in seconds) at the end of this TD vector
-        double  GetEndTD();
+        double  GetEndRelTD();
 
         /// Interpolates the TD in between samples in the time frame stored in this vector
         ///

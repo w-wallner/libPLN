@@ -246,7 +246,7 @@ TdVectorStorage::GetBeginTD()
     }
     else
     {
-        TD = (*Storage.begin())->GetBeginTD();
+        TD = (*Storage.begin())->GetBeginRelTD();
     }
 
     return TD;
@@ -280,7 +280,7 @@ TdVectorStorage::GetEndTD()
     }
     else
     {
-        TD = (*Storage.rbegin())->GetEndTD();
+        TD = (*Storage.rbegin())->GetEndRelTD();
     }
 
     return TD;

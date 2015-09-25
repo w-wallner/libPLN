@@ -56,7 +56,7 @@
 // =========================================================================
 
 double
-TdVectorCubSpline::InterpolateAt( double t_req )
+TdVectorCubSpline::InterpolateRelTD( double t_req )
 {
     if( State == UNINITIALIZED )
     {

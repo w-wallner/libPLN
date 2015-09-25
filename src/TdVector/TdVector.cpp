@@ -119,13 +119,13 @@ TdVector::GetEndTime()
 }
 
 double
-TdVector::GetBeginTD()
+TdVector::GetBeginRelTD()
 {
     return *TD.begin();
 }
 
 double
-TdVector::GetEndTD()
+TdVector::GetEndRelTD()
 {
     return *TD.rbegin();
 }
@@ -136,5 +136,5 @@ TdVector::GetRelativeTD( double t_req )
     assert( t_req >= t_beg );
     assert( t_req <= t_end );
 
-    return InterpolateAt( t_req );
+    return InterpolateRelTD( t_req );
 }

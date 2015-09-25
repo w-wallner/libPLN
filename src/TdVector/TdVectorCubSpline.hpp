@@ -90,7 +90,7 @@ class TdVectorCubSpline : public TdVector
         ///                 Must fulfill t_beg <= t_req <= t_end
         ///
         /// \return         Interpolated TD at t_req
-        double  InterpolateAt( double t_req );
+        double  InterpolateRelTD( double t_req );
 
     public:
 

@@ -56,7 +56,7 @@
 // =========================================================================
 
 double
-TdVectorLinear::InterpolateAt( double t_req )
+TdVectorLinear::InterpolateRelTD( double t_req )
 {
     double  t   = t_req - t_beg;
 

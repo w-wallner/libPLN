@@ -68,7 +68,7 @@ class TdVectorLinear : public TdVector
         ///                 Must fulfill t_beg <= t_req <= t_end
         ///
         /// \return         Interpolated TD at t_re
-        double  InterpolateAt( double t_req );
+        double  InterpolateRelTD( double t_req );
 
     public:
 

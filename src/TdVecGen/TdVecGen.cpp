@@ -109,7 +109,7 @@ TdVecGen::ConstructTdVector( FFT_RealVector *pData )
 
     // Remember TD vector endpoint
     Last_t_end  = pTdVec->GetEndTime();
-    LastRelativeTD = pTdVec->GetEndTD();
+    LastRelativeTD = pTdVec->GetEndRelTD();
 
     return pTdVec;
 }
