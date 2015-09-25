@@ -66,14 +66,6 @@ class TdVector
         // Types
         // -----------------------------------------------------------------
 
-        /// Enumeration to specify the type of the input data form which a TD vector is generated
-        typedef enum
-        {
-            FFD_DATA,       ///< The input data is Fractional Frequency Deviation data
-            TD_DATA,        ///< The input data is already Time Deviation data
-        }
-        TdVecDataType;
-
     protected:
 
         // -----------------------------------------------------------------
@@ -113,14 +105,7 @@ class TdVector
         /// \param TickLen      TickLen of the sampled vector (i.e. inverse of the sampling frequency)
         /// \param pData        Input data from which the TD vector is generated
         /// \param ValidLen     Length of the input data that is valid
-        /// \param DataType     Type of the input data
-        ///
-        /// Depending on the type of input data different operations are performed:
-        /// - FFD data: The FFD values are summed up, to get relative Time Deviation values.
-        ///             To get absolute TD values, the values need to be divided by the sample rate.
-        ///             This is done outside of this class.
-        /// - TD data:  No conversion is needed
-        TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType );
+        TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen );
 
         /// Copy constructor
         TdVector( const TdVector& other );

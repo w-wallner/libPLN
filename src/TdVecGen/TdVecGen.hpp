@@ -109,7 +109,7 @@ class TdVecGen
         ///
 
         /// \param
-        TdVector    *ConstructTdVector( FFT_RealVector *pData, TdVector::TdVecDataType DataType );
+        TdVector    *ConstructTdVector( FFT_RealVector *pData );
 
         // -----------------------------------------------------------------
         // Constructors

@@ -65,8 +65,6 @@
 RecursiveTdVecGen::RecursiveTdVecGen( TdVecGenConfig_t Conf )
     : TdVecGen( Conf )
 {
-    DataType    = TdVector::FFD_DATA;
-
     // Set up high pass convolution filter
     switch( Conf.HP_FilterConf.FilterType )
     {
@@ -113,8 +111,7 @@ RecursiveTdVecGen::RecursiveTdVecGen( TdVecGenConfig_t Conf )
 
 RecursiveTdVecGen::RecursiveTdVecGen( const RecursiveTdVecGen& other )
     : TdVecGen( other ),
-      EnableHpFilter( other.EnableHpFilter ),
-      DataType      ( other.DataType       )
+      EnableHpFilter( other.EnableHpFilter )
 {
 }
 
@@ -128,7 +125,6 @@ RecursiveTdVecGen::operator=( const RecursiveTdVecGen& other )
     TdVecGen::operator=( other );
 
     this->EnableHpFilter    = other.EnableHpFilter;
-    this->DataType          = other.DataType;
 
     // By convention, always return *this
     return *this;
@@ -151,7 +147,7 @@ RecursiveTdVecGen::GetNextVector()
     }
     DebugSink.SaveHpFilteredNoise( pw );
 
-    TdVector *pTdVec  = ConstructTdVector( pw, DataType );
+    TdVector *pTdVec  = ConstructTdVector( pw );
     DebugSink.SaveTimeDeviation( pTdVec );
 
     if( !EnableHpFilter )

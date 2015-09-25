@@ -60,7 +60,7 @@
 // Function definitions
 // =========================================================================
 
-TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType )
+TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen )
     : TD( ValidLen + 1 )
 {
     assert( pData->size() >= ValidLen );
@@ -72,19 +72,7 @@ TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *p
     TD[0]       = TD_0;
     (*pData)[0] = (*pData)[0]  + TD_0;
 
-    switch( DataType )
-    {
-        case FFD_DATA:
-        {
-            std::partial_sum( pData->begin(), pData->begin() + ValidLen, TD.begin()+1 );
-            break;
-        }
-        case TD_DATA:
-        {
-            std::copy( pData->begin(), pData->begin() + ValidLen, TD.begin() + 1 );
-            break;
-        }
-    }
+    std::partial_sum( pData->begin(), pData->begin() + ValidLen, TD.begin()+1 );
 }
 
 TdVector::TdVector( const TdVector& other )

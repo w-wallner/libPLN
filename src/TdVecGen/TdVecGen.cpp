@@ -88,7 +88,7 @@ TdVecGen::ResetConvFilter()
 }
 
 TdVector *
-TdVecGen::ConstructTdVector( FFT_RealVector *pData, TdVector::TdVecDataType DataType )
+TdVecGen::ConstructTdVector( FFT_RealVector *pData )
 {
     TdVector *pTdVec = NULL;
 
@@ -97,12 +97,12 @@ TdVecGen::ConstructTdVector( FFT_RealVector *pData, TdVector::TdVecDataType Data
         default:
         case LINEAR_INTERPOLATION:
         {
-            pTdVec    = new TdVectorLinear( Last_t_end, LastRelativeTD, TickLen, pData, TdVecLen, DataType );
+            pTdVec    = new TdVectorLinear( Last_t_end, LastRelativeTD, TickLen, pData, TdVecLen );
             break;
         }
         case CUBIC_SPLINE_INTERPOLATION:
         {
-            pTdVec    = new TdVectorCubSpline( Last_t_end, LastRelativeTD, TickLen, pData, TdVecLen, DataType );
+            pTdVec    = new TdVectorCubSpline( Last_t_end, LastRelativeTD, TickLen, pData, TdVecLen );
             break;
         }
     }

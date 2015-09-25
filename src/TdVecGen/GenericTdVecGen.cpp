@@ -149,7 +149,7 @@ GenericTdVecGen::GetNextVector()
     ApplyConvFilter( pw );
     DebugSink.SaveHpFilteredNoise( pw );
 
-    TdVector *pTdVec = ConstructTdVector( pw, TdVector::FFD_DATA );
+    TdVector *pTdVec = ConstructTdVector( pw );
     DebugSink.SaveTimeDeviation( pTdVec );
 
     return pTdVec;

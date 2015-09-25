@@ -78,8 +78,7 @@ class RecursiveTdVecGen : public TdVecGen
         // -----------------------------------------------------------------
         // Config
         // -----------------------------------------------------------------
-        bool                        EnableHpFilter;     ///< Configuration option to use a high pass filter
-        TdVector::TdVecDataType     DataType;           ///< How the generated noise data should be interpreted
+        bool    EnableHpFilter;     ///< Configuration option to use a high pass filter
 
         // -----------------------------------------------------------------
         // Internal functions

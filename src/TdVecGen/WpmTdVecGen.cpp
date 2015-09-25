@@ -89,7 +89,6 @@ WpmTdVecGen::ApplyRecursiveFilter( FFT_RealVector *pw )
 WpmTdVecGen::WpmTdVecGen( TdVecGenConfig_t Conf )
     : RecursiveTdVecGen( Conf )
 {
-    DataType    = TdVector::FFD_DATA;
     FFD_0       = 0.0L;
     initialized = false;
 }

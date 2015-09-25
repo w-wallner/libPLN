@@ -83,8 +83,7 @@ class TdVectorLinear : public TdVector
         /// \param TickLen      TickLen of the sampled vector (i.e. inverse of the sampling frequency)
         /// \param pData        Input data from which the TD vector is generated
         /// \param ValidLen     Length of the input data that is valid
-        /// \param DataType     Type of the input data
-        TdVectorLinear( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen, TdVecDataType DataType );
+        TdVectorLinear( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen );
 
         /// Copy constructor
         TdVectorLinear( const TdVectorLinear& other );
