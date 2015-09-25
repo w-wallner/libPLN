@@ -82,7 +82,6 @@ class TdVector
         double  TickLen;    ///< Tick length in seconds between two neighbouring TD samples
         double  t_beg;      ///< The time (in seconds) when this TD sample begins
         double  t_end;      ///< The time (in seconds) when this TD sample ends
-        double  TD_0;       ///< The initial TD at the begin of this sample
 
         // -----------------------------------------------------------------
         // Resources

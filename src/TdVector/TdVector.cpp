@@ -68,9 +68,9 @@ TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *p
     this->t_beg     = t_beg;
     this->t_end     = t_beg + TickLen * ValidLen;
     this->TickLen   = TickLen;
-    this->TD_0      = TD_0;
 
-    TD[0]   = 0.0L;
+    TD[0]       = TD_0;
+    (*pData)[0] = (*pData)[0]  + TD_0;
 
     switch( DataType )
     {
@@ -91,7 +91,6 @@ TdVector::TdVector( const TdVector& other )
     : TickLen( other.TickLen ),
       t_beg  ( other.t_beg   ),
       t_end  ( other.t_end   ),
-      TD_0   ( other.TD_0    ),
       TD     ( other.TD      )
 {
 }
@@ -106,7 +105,6 @@ TdVector::operator=( const TdVector& other )
     this->TickLen   = other.TickLen;
     this->t_beg     = other.t_beg;
     this->t_end     = other.t_end;
-    this->TD_0      = other.TD_0;
     this->TD        = other.TD;
 
     // By convention, always return *this
@@ -135,13 +133,13 @@ TdVector::GetEndTime()
 double
 TdVector::GetBeginTD()
 {
-    return *TD.begin() + TD_0;
+    return *TD.begin();
 }
 
 double
 TdVector::GetEndTD()
 {
-    return *TD.rbegin() + TD_0;
+    return *TD.rbegin();
 }
 
 double
@@ -150,5 +148,5 @@ TdVector::GetRelativeTD( double t_req )
     assert( t_req >= t_beg );
     assert( t_req <= t_end );
 
-    return TD_0 + InterpolateAt( t_req );
+    return InterpolateAt( t_req );
 }
