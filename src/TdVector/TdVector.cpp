@@ -60,7 +60,7 @@
 // Function definitions
 // =========================================================================
 
-TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen )
+TdVector::TdVector( double t_beg, double LastRelativeTD, double TickLen, FFT_RealVector *pData, size_t ValidLen )
     : TD( ValidLen + 1 )
 {
     assert( pData->size() >= ValidLen );
@@ -69,8 +69,8 @@ TdVector::TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *p
     this->t_end     = t_beg + TickLen * ValidLen;
     this->TickLen   = TickLen;
 
-    TD[0]       = TD_0;
-    (*pData)[0] = (*pData)[0]  + TD_0;
+    TD[0]       = LastRelativeTD;
+    (*pData)[0] = (*pData)[0]  + LastRelativeTD;
 
     std::partial_sum( pData->begin(), pData->begin() + ValidLen, TD.begin()+1 );
 }

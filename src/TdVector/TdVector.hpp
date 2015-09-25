@@ -100,12 +100,12 @@ class TdVector
 
         /// Constructor
         ///
-        /// \param t_beg        Time (in seconds) when this TD vector begins
-        /// \param TD_0         Initial time deviation (in seconds) at the beginning of this TD vector
-        /// \param TickLen      TickLen of the sampled vector (i.e. inverse of the sampling frequency)
-        /// \param pData        Input data from which the TD vector is generated
-        /// \param ValidLen     Length of the input data that is valid
-        TdVector( double t_beg, double TD_0, double TickLen, FFT_RealVector *pData, size_t ValidLen );
+        /// \param t_beg            Time (in seconds) when this TD vector begins
+        /// \param LastRelativeTD   Initial time deviation (in seconds) at the beginning of this TD vector
+        /// \param TickLen          TickLen of the sampled vector (i.e. inverse of the sampling frequency)
+        /// \param pData            Input data from which the TD vector is generated
+        /// \param ValidLen         Length of the input data that is valid
+        TdVector( double t_beg, double LastRelativeTD, double TickLen, FFT_RealVector *pData, size_t ValidLen );
 
         /// Copy constructor
         TdVector( const TdVector& other );
