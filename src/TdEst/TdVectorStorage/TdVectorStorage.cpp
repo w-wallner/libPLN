@@ -229,7 +229,7 @@ TdVectorStorage::GetBeginTime()
     }
     else
     {
-
+        t = (*Storage.begin())->GetBeginTime();
     }
 
     return t;
