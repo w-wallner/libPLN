@@ -136,7 +136,7 @@ TestTdVecGen()
     TdVecGenConfig_t    TdVecGenConf;
 
     TdVecGenConf.SampleConf.TdVecLen = 3000;
-    TdVecGenConf.SampleConf.f_s  = 1.0;
+    TdVecGenConf.SampleConf.f_s  = 20E-3;
 
     TdVecGenConf.WhiteNoiseConf.Qd           = 10E-2;
     TdVecGenConf.WhiteNoiseConf.Seed         = 5432;
