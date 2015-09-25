@@ -167,7 +167,7 @@ class TdVectorStorage
         /// \param t_req    Requested point in time (in seconds)
         ///
         /// \return         Interpolated time deviation value at the requested time.
-        double  GetRelativeTD( double t_req );
+        double  GetTD( double t_req );
 
         /// Forget data values from the past
         ///

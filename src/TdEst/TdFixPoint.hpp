@@ -3,7 +3,7 @@
 /// \file
 ///
 /// \brief  Implementation of 'fixpoints': ordered pairs of the form
-///         (real-time, relative time deviation).
+///         (real-time, time deviation).
 ///
 /// \ingroup module_td_estimator
 ///
@@ -46,10 +46,10 @@
 // =========================================================================
 
 /// Class to store fixpoints: ordered pairs of the form
-/// (real-time, relative time deviation).
+/// (real-time, time deviation).
 ///
 /// A fixpoint is an ordered pair consisting of the real time in seconds (t), and the
-/// relative time deviation (RelativeTD) that point in time.
+/// time deviation (TD) that point in time.
 class TdFixPoint
 {
     private:
@@ -57,8 +57,8 @@ class TdFixPoint
         // -----------------------------------------------------------------
         // Config
         // -----------------------------------------------------------------
-        double  t;                  ///< Real time (in seconds)
-        double  RelativeTD;         ///< Relative time deviation
+        double  t;          ///< Real time (in seconds)
+        double  TD;         ///< Time deviation
 
     public:
 
@@ -69,8 +69,8 @@ class TdFixPoint
         /// Constructor
         ///
         /// \param t            Real time (in seconds)
-        /// \param RelativeTD   Relative time deviation
-        TdFixPoint( double t, double RelativeTD );
+        /// \param TD           Time deviation
+        TdFixPoint( double t, double TD );
 
         /// Copy constructor
         ///
@@ -91,8 +91,8 @@ class TdFixPoint
         /// Getter for the real time stored in this fixpoint
         double  Get_t() const;
 
-        /// Getter for the  relative time deviation stored in this fixpoint
-        double  GetRelativeTD() const;
+        /// Getter for the time deviation stored in this fixpoint
+        double  GetTD() const;
 };
 
 // =========================================================================

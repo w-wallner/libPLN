@@ -144,15 +144,33 @@ class TdVector
         /// \return Time (in seconds) at the end of this TD vector
         double  GetEndTime();
 
+        /// Getter for the relative time deviation at the beginning of this TD vector
+        ///
+        /// \return Relative time deviation (in seconds) at the beginning of this TD vector
+        double  GetBeginRelTD();
+
+        /// Getter for the relative time deviation at the end of this TD vector
+        ///
+        /// \return Relative time deviation (in seconds) at the end of this TD vector
+        double  GetEndRelTD();
+
         /// Getter for the time deviation at the beginning of this TD vector
         ///
         /// \return Time deviation (in seconds) at the beginning of this TD vector
-        double  GetBeginRelTD();
+        double  GetBeginTD();
 
         /// Getter for the time deviation at the end of this TD vector
         ///
         /// \return Time deviation (in seconds) at the end of this TD vector
-        double  GetEndRelTD();
+        double  GetEndTD();
+
+        /// Interpolates the relative TD in between samples in the time frame stored in this vector
+        ///
+        /// \param t_req    Requested time where the should be interpolated.
+        ///                 Must fulfill t_beg <= t_req <= t_end
+        ///
+        /// \return         Interpolated relative TD at t_req
+        double  GetRelativeTD( double t_req );
 
         /// Interpolates the TD in between samples in the time frame stored in this vector
         ///
@@ -160,7 +178,7 @@ class TdVector
         ///                 Must fulfill t_beg <= t_req <= t_end
         ///
         /// \return         Interpolated TD at t_req
-        double  GetRelativeTD( double t_req );
+        double  GetTD( double t_req );
 };
 
 // =========================================================================

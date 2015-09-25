@@ -3,7 +3,7 @@
 /// \file
 ///
 /// \brief  Implementation of 'fixpoints': ordered pairs of the form
-///         (real-time, relative time deviation).
+///         (real-time, time deviation).
 ///
 /// \ingroup module_td_estimator
 ///
@@ -56,23 +56,23 @@
 // Function definitions
 // =========================================================================
 
-TdFixPoint::TdFixPoint( double t, double RelativeTD )
+TdFixPoint::TdFixPoint( double t, double TD )
 {
-    this->t             = t;
-    this->RelativeTD    = RelativeTD;
+    this->t     = t;
+    this->TD    = TD;
 }
 
 TdFixPoint::TdFixPoint( const TdFixPoint& other )
 {
-    this->t             = other.t;
-    this->RelativeTD    = other.RelativeTD;
+    this->t     = other.t;
+    this->TD    = other.TD;
 }
 
 TdFixPoint&
 TdFixPoint::operator= (const TdFixPoint& other)
 {
-    this->t             = other.t;
-    this->RelativeTD    = other.RelativeTD;
+    this->t     = other.t;
+    this->TD    = other.TD;
 
     // By convention, always return *this
     return *this;
@@ -85,8 +85,8 @@ TdFixPoint::Get_t() const
 }
 
 double
-TdFixPoint::GetRelativeTD() const
+TdFixPoint::GetTD() const
 {
-    return RelativeTD;
+    return TD;
 }
 

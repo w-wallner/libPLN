@@ -105,23 +105,23 @@ TestTdVecStorage()
         t0 += IntervalLen;
     }
 
-    cout << "pA[3.0] = " << pA->GetRelativeTD( 3.0 ) << endl;
+    cout << "pA[3.0] = " << pA->GetTD( 3.0 ) << endl;
 
     {
         TdVectorStorage     B(5);
 
         B = *pA;
 
-        cout << "B[3.0] = " << B.GetRelativeTD( 3.0 ) << endl;
+        cout << "B[3.0] = " << B.GetTD( 3.0 ) << endl;
     }
 
     TdVectorStorage     C(*pA);
 
-    cout << "pA[3.0] = " << pA->GetRelativeTD( 3.0 ) << endl;
+    cout << "pA[3.0] = " << pA->GetTD( 3.0 ) << endl;
 
     pA->ForgetPast( 95 );
 
-    cout << "C[3.0] = " << C.GetRelativeTD( 3.0 ) << endl;
+    cout << "C[3.0] = " << C.GetTD( 3.0 ) << endl;
 }
 
 void

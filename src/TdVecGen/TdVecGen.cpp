@@ -191,7 +191,7 @@ TdVecGen::ResetToFixPoint( TdFixPoint fp )
     ResetConvFilter();
 
     Last_t_end      = fp.Get_t();
-    LastRelativeTD  = fp.GetRelativeTD();
+    LastRelativeTD  = fp.GetTD();
 }
 
 void

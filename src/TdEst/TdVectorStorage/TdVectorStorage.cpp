@@ -242,11 +242,11 @@ TdVectorStorage::GetBeginTD()
 
     if( Storage.empty() )
     {
-        TD = fp.GetRelativeTD();
+        TD = fp.GetTD();
     }
     else
     {
-        TD = (*Storage.begin())->GetBeginRelTD();
+        TD = (*Storage.begin())->GetBeginTD();
     }
 
     return TD;
@@ -276,11 +276,11 @@ TdVectorStorage::GetEndTD()
 
     if( Storage.empty() )
     {
-        TD = fp.GetRelativeTD();
+        TD = fp.GetTD();
     }
     else
     {
-        TD = (*Storage.rbegin())->GetEndRelTD();
+        TD = (*Storage.rbegin())->GetEndTD();
     }
 
     return TD;
@@ -301,7 +301,7 @@ TdVectorStorage::ResetToFixPoint( TdFixPoint fp )
 }
 
 double
-TdVectorStorage::GetRelativeTD( double t_req )
+TdVectorStorage::GetTD( double t_req )
 {
     assert( t_req >= GetBeginTime() );
     assert( t_req <= GetEndTime() );
@@ -309,7 +309,7 @@ TdVectorStorage::GetRelativeTD( double t_req )
 
     // Find correct TD Vector and interpolate
     TdVector    *pTdVec = Storage[ FindIndex( t_req ) ];
-    double      TD      = pTdVec->GetRelativeTD( t_req );
+    double      TD      = pTdVec->GetTD( t_req );
 
     return TD;
 }

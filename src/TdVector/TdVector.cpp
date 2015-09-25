@@ -103,7 +103,15 @@ TdVector::operator=( const TdVector& other )
 
 std::ostream& operator<<(std::ostream& os, const TdVector& o)
 {
-    os << o.TD;
+    for( size_t i = 0; i < o.TD.size(); i++ )
+    {
+        os << o.TD[i] * o.TickLen;
+
+        if( i + 1 < o.TD.size() )
+        {
+            os << ", ";
+        }
+    }
 
     return os;
 }
@@ -133,10 +141,29 @@ TdVector::GetEndRelTD()
 }
 
 double
+TdVector::GetBeginTD()
+{
+    return GetBeginRelTD() * TickLen;
+}
+
+
+double
+TdVector::GetEndTD()
+{
+    return GetEndRelTD() * TickLen;
+}
+
+double
 TdVector::GetRelativeTD( double t_req )
 {
     assert( t_req >= t_beg );
     assert( t_req <= t_end );
 
     return InterpolateRelTD( t_req );
+}
+
+double
+TdVector::GetTD( double t_req )
+{
+    return GetRelativeTD( t_req ) * TickLen;
 }

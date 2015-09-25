@@ -210,7 +210,6 @@ TdEstimator::SetSeed( unsigned int Seed )
 double
 TdEstimator::EstimateTD( double t_now, double t_req )
 {
-    double  TD_nom;
     double  TD_abs;
 
     // Handle time issues
@@ -226,7 +225,7 @@ TdEstimator::EstimateTD( double t_now, double t_req )
     // Evaluate request
     if( t_req == LastResult.Get_t() )
     {
-        TD_nom  = LastResult.GetRelativeTD();
+        TD_abs  = LastResult.GetTD();
     }
     else if // Case 1: Request is in the distant future
     (
@@ -234,7 +233,11 @@ TdEstimator::EstimateTD( double t_now, double t_req )
         ( t_req > (TdVecStorage.GetEndTime() + T_val) )
     )
     {
+        double  TD_nom;
+
         TD_nom  = GuessFutureRelativeTD( t_req );
+
+        TD_abs  = TD_nom / f_s;
 
         // Check if our new guess may become valid immediately
         CheckLastGuess( t_now, false );
@@ -257,16 +260,14 @@ TdEstimator::EstimateTD( double t_now, double t_req )
             assert(( !IntervalSkippingEnabled ) || ( LoopCnt <= MaxCnt ) );
         }
 
-        TD_nom  = TdVecStorage.GetRelativeTD( t_req );
+        TD_abs  = TdVecStorage.GetTD( t_req );
     }
     else
     {
         assert( false );
     }
 
-    TD_abs  = TD_nom / f_s;
-
-    LastResult  = TdFixPoint( t_req, TD_nom );
+    LastResult  = TdFixPoint( t_req, TD_abs );
 
     return TD_abs;
 }
