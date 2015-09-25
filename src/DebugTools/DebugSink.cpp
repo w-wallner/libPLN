@@ -71,6 +71,7 @@ cDebugSink::GetFilePath( std::string FileName )
         ss << FilePrefix << "_";
     }
     ss << FileName;
+    ss << "." << FileType;
 
     return ss.str();
 }
@@ -81,6 +82,7 @@ cDebugSink::GetFilePath( std::string FileName )
 cDebugSink::cDebugSink()
 {
     FilePrefix      = "";
+    FileType        = "txt";
     FileSavePath    = "/main/";
 }
 
@@ -96,6 +98,12 @@ void
 cDebugSink::SetFilePrefix( std::string FilePrefix )
 {
     this->FilePrefix = FilePrefix;
+}
+
+void
+cDebugSink::SetFileType( std::string FileType )
+{
+    this->FileType = FileType;
 }
 
 void
@@ -117,66 +125,73 @@ cDebugSink::EnableAll()
     EnableWhiteNoiseSaving();
     EnablePlnFilteredNoiseSavind();
     EnableHpFilteredNoiseSavind();
+    EnableTimeDeviation();
 }
 
 void
 cDebugSink::EnableSampleConfigSaving()
 {
-    SampleConfig.Enable( GetFilePath( "SampleConfig.txt" ).c_str() );
+    SampleConfig.Enable( GetFilePath( "SampleConfig" ).c_str() );
 }
 
 void
 cDebugSink::EnableWhiteNoiseConfigSaving()
 {
-    WhiteNoiseConfig.Enable( GetFilePath( "WhiteNoiseConfig.txt" ).c_str() );
+    WhiteNoiseConfig.Enable( GetFilePath( "WhiteNoiseConfig" ).c_str() );
 }
 
 void
 cDebugSink::EnableHpFilterConfigSaving()
 {
-    HpFilterConfig.Enable( GetFilePath( "HpFilterConfig.txt" ).c_str() );
+    HpFilterConfig.Enable( GetFilePath( "HpFilterConfig" ).c_str() );
 }
 
 void
 cDebugSink::EnablePlnFilterConfigSaving()
 {
-    PlnFilterConfig.Enable( GetFilePath( "PlnFilterConfig.txt" ).c_str() );
+    PlnFilterConfig.Enable( GetFilePath( "PlnFilterConfig" ).c_str() );
 }
 
 void
 cDebugSink::EnableHpFilterImpRespSaving()
 {
-    HpFilterImpResp.Enable( GetFilePath( "HpFilterImpResp.txt" ).c_str() );
+    HpFilterImpResp.Enable( GetFilePath( "HpFilterImpResp" ).c_str() );
 }
 
 void
 cDebugSink::EnablePlnFilterImpRespSaving()
 {
-    PlnFilterImpResp.Enable( GetFilePath( "PlnFilterImpResp.txt" ).c_str() );
+    PlnFilterImpResp.Enable( GetFilePath( "PlnFilterImpResp" ).c_str() );
 }
 
 void
 cDebugSink::EnableFilterKernelSaving()
 {
-    FilterKernel.Enable( GetFilePath( "FilterKernel.txt" ).c_str() );
+    FilterKernel.Enable( GetFilePath( "FilterKernel" ).c_str() );
 }
 
 void
 cDebugSink::EnableWhiteNoiseSaving()
 {
-    WhiteNoise.Enable( GetFilePath( "WhiteNoise.txt" ).c_str() );
+    WhiteNoise.Enable( GetFilePath( "WhiteNoise" ).c_str() );
 }
 
 void
 cDebugSink::EnablePlnFilteredNoiseSavind()
 {
-    PlnFilteredNoise.Enable( GetFilePath( "PlnFilteredNoise.txt" ).c_str() );
+    PlnFilteredNoise.Enable( GetFilePath( "PlnFilteredNoise" ).c_str() );
 }
 
 void
 cDebugSink::EnableHpFilteredNoiseSavind()
 {
-    HpFilteredNoise.Enable( GetFilePath( "HpFilteredNoise.txt" ).c_str() );
+    HpFilteredNoise.Enable( GetFilePath( "HpFilteredNoise" ).c_str() );
+}
+
+void
+cDebugSink::EnableTimeDeviation()
+{
+    TimeDeviation.Enable( GetFilePath( "TimeDeviation" ).c_str() );
 }
 
 void
@@ -261,6 +276,7 @@ cDebugSink::SaveWhiteNoise( FFT_RealVector *pw )
     if( WhiteNoise.IsEnabled() )
     {
         WhiteNoise.Stream() << *pw;
+        WhiteNoise.Stream() << endl;
     }
 }
 
@@ -270,6 +286,7 @@ cDebugSink::SavePlnFilteredNoise( FFT_RealVector *pw )
     if( PlnFilteredNoise.IsEnabled() )
     {
         PlnFilteredNoise.Stream() << *pw;
+        PlnFilteredNoise.Stream() << endl;
     }
 }
 
@@ -279,5 +296,16 @@ cDebugSink::SaveHpFilteredNoise( FFT_RealVector *pw )
     if( HpFilteredNoise.IsEnabled() )
     {
         HpFilteredNoise.Stream() << *pw;
+        HpFilteredNoise.Stream() << endl;
+    }
+}
+
+void
+cDebugSink::SaveTimeDeviation( TdVector *pTD )
+{
+    if( TimeDeviation.IsEnabled() )
+    {
+        TimeDeviation.Stream() << *pTD;
+        TimeDeviation.Stream() << endl;
     }
 }

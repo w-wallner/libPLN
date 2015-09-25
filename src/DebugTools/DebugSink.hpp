@@ -42,6 +42,7 @@
 #include "TdEst/TdEstConfig.hpp"
 #include "Filter/FilterImpResp.hpp"
 #include "Filter/FilterKernel.hpp"
+#include "TdVector/TdVector.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -69,6 +70,7 @@ class cDebugSink
         //------------------------------------------------------------------
         std::string     FilePrefix;
         std::string     FileSavePath;
+        std::string     FileType;
 
         //------------------------------------------------------------------
         // Resources
@@ -83,6 +85,7 @@ class cDebugSink
         cDebugFileOutput    WhiteNoise;
         cDebugFileOutput    HpFilteredNoise;
         cDebugFileOutput    PlnFilteredNoise;
+        cDebugFileOutput    TimeDeviation;
 
         //------------------------------------------------------------------
         // Internal state
@@ -105,6 +108,7 @@ class cDebugSink
         // API
         //------------------------------------------------------------------
         void    SetFilePrefix( std::string FilePrefix );
+        void    SetFileType( std::string FileType );
         void    SetFileSavePath( std::string FileSavePath );
 
         void    EnableAll();
@@ -119,6 +123,7 @@ class cDebugSink
         void    EnableWhiteNoiseSaving();
         void    EnablePlnFilteredNoiseSavind();
         void    EnableHpFilteredNoiseSavind();
+        void    EnableTimeDeviation();
 
         void    SaveSampleConfig( SampleConfig_t c );
         void    SaveWhiteNoiseConfig( WhiteNoiseConfig_t c );
@@ -130,6 +135,7 @@ class cDebugSink
         void    SaveWhiteNoise( FFT_RealVector *pw );
         void    SavePlnFilteredNoise( FFT_RealVector *pw );
         void    SaveHpFilteredNoise( FFT_RealVector *pw );
+        void    SaveTimeDeviation( TdVector *pTD );
 };
 
 // =========================================================================
