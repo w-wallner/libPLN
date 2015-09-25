@@ -144,15 +144,13 @@ GenericTdVecGen::GetNextVector()
     // Generate new FFD vector
     FFT_RealVector *pw;
     pw = WhiteNoiseGen.GetFftVector( FfdVecLen, TdVecLen );
-
-    // TODO: Debug
     DebugSink.SaveWhiteNoise( pw );
 
     ApplyConvFilter( pw );
-
     DebugSink.SaveHpFilteredNoise( pw );
 
     TdVector *pTdVec = ConstructTdVector( pw, TdVector::FFD_DATA );
+    DebugSink.SaveTimeDeviation( pTdVec );
 
     return pTdVec;
 }
