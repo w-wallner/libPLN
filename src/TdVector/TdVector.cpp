@@ -60,14 +60,15 @@
 // Function definitions
 // =========================================================================
 
-TdVector::TdVector( double t_beg, double LastRelativeTD, double TickLen, FFT_RealVector *pData, size_t ValidLen )
+TdVector::TdVector( double t_beg, double LastRelativeTD, double f_s, FFT_RealVector *pData, size_t ValidLen )
     : TD( ValidLen + 1 )
 {
     assert( pData->size() >= ValidLen );
 
+    this->f_s       = f_s;
+    this->TickLen   = 1.0L / f_s;
     this->t_beg     = t_beg;
     this->t_end     = t_beg + TickLen * ValidLen;
-    this->TickLen   = TickLen;
 
     TD[0]       = LastRelativeTD;
     (*pData)[0] = (*pData)[0]  + LastRelativeTD;
@@ -76,7 +77,8 @@ TdVector::TdVector( double t_beg, double LastRelativeTD, double TickLen, FFT_Rea
 }
 
 TdVector::TdVector( const TdVector& other )
-    : TickLen( other.TickLen ),
+    : f_s    ( other.f_s     ),
+      TickLen( other.TickLen ),
       t_beg  ( other.t_beg   ),
       t_end  ( other.t_end   ),
       TD     ( other.TD      )

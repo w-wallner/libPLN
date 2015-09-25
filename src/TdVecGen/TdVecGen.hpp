@@ -75,7 +75,7 @@ class TdVecGen
         // -----------------------------------------------------------------
         // Config
         // -----------------------------------------------------------------
-        double                  TickLen;            ///< Time (in seconds) between two simulated TD values
+        double                  f_s;                ///< Sampling frequency (in Hertz)
         InterpolationType_t     IntpolType;         ///< Interpolation type for the generated TD vectors
         size_t                  TdVecLen;           ///< Length of the generated TD vectors
 

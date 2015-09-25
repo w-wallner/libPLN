@@ -70,8 +70,8 @@ TdVectorLinear::InterpolateRelTD( double t_req )
     return TD[idxl] + dy / dx * x;
 }
 
-TdVectorLinear::TdVectorLinear( double t_beg, double LastRelativeTD, double TickLen, FFT_RealVector *pData, size_t ValidLen )
-    : TdVector( t_beg, LastRelativeTD, TickLen, pData, ValidLen )
+TdVectorLinear::TdVectorLinear( double t_beg, double LastRelativeTD, double f_s, FFT_RealVector *pData, size_t ValidLen )
+    : TdVector( t_beg, LastRelativeTD, f_s, pData, ValidLen )
 {
 }
 

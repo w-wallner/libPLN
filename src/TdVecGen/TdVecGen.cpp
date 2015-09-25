@@ -97,12 +97,12 @@ TdVecGen::ConstructTdVector( FFT_RealVector *pData )
         default:
         case LINEAR_INTERPOLATION:
         {
-            pTdVec    = new TdVectorLinear( Last_t_end, LastRelativeTD, TickLen, pData, TdVecLen );
+            pTdVec    = new TdVectorLinear( Last_t_end, LastRelativeTD, f_s, pData, TdVecLen );
             break;
         }
         case CUBIC_SPLINE_INTERPOLATION:
         {
-            pTdVec    = new TdVectorCubSpline( Last_t_end, LastRelativeTD, TickLen, pData, TdVecLen );
+            pTdVec    = new TdVectorCubSpline( Last_t_end, LastRelativeTD, f_s, pData, TdVecLen );
             break;
         }
     }
@@ -125,7 +125,7 @@ TdVecGen::TdVecGen( TdVecGenConfig_t Conf )
 
     // Set up config
     this->TdVecLen          = Conf.SampleConf.TdVecLen;
-    this->TickLen           = 1.0L / Conf.SampleConf.f_s;
+    this->f_s               = Conf.SampleConf.f_s;
     this->IntpolType        = Conf.InterpolConf.InterPolType;
 
     this->Last_t_end        = 0.0L;
@@ -137,7 +137,7 @@ TdVecGen::TdVecGen( TdVecGenConfig_t Conf )
 
 TdVecGen::TdVecGen( const TdVecGen& other )
     : // Config
-      TickLen   ( other.TickLen     ),
+      f_s       ( other.f_s         ),
       IntpolType( other.IntpolType  ),
       TdVecLen  ( other.TdVecLen    ),
       // House keeping
@@ -167,7 +167,7 @@ TdVecGen&
 TdVecGen::operator=( const TdVecGen& other )
 {
     // Config
-    this->TickLen           = other.TickLen;
+    this->f_s               = other.f_s;
     this->IntpolType        = other.IntpolType;
     this->TdVecLen          = other.TdVecLen;
 

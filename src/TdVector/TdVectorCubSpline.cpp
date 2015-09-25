@@ -76,8 +76,8 @@ TdVectorCubSpline::InterpolateRelTD( double t_req )
     return s(t_req);
 }
 
-TdVectorCubSpline::TdVectorCubSpline( double t_beg, double LastRelativeTD, double TickLen, FFT_RealVector *pData, size_t ValidLen )
-    : TdVector( t_beg, LastRelativeTD, TickLen, pData, ValidLen )
+TdVectorCubSpline::TdVectorCubSpline( double t_beg, double LastRelativeTD, double f_s, FFT_RealVector *pData, size_t ValidLen )
+    : TdVector( t_beg, LastRelativeTD, f_s, pData, ValidLen )
 {
     State   = UNINITIALIZED;
 }
