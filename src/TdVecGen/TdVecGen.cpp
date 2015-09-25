@@ -63,31 +63,17 @@
 // =========================================================================
 
 void
-TdVecGen::InitConvFilter()
-{
-    if( ConvState == UNINITIALIZED )
-    {
-        // Set up Last FFD vector
-        pLastFFD = WhiteNoiseGen.GetFftVector( FfdVecLen, TdVecLen );
-
-        H.ApplyToSignal( pLastFFD );
-
-        ConvState = INITIALIZED;
-    }
-}
-
-void
 TdVecGen::ApplyConvFilter( FFT_RealVector *pw )
 {
-    // Startup of overlapping convolution
-    InitConvFilter();
-
     H.ApplyToSignal( pw );
 
     // Handle overlapping convolution part
-    std::transform( pw->begin(), pw->begin() + H.GetFilterLen(),
-                    pLastFFD->begin() + TdVecLen,
-                    pw->begin(), std::plus<double>() );
+    if( pLastFFD != NULL )
+    {
+        std::transform( pw->begin(), pw->begin() + H.GetFilterLen(),
+                        pLastFFD->begin() + TdVecLen,
+                        pw->begin(), std::plus<double>() );
+    }
 
     // Remember FFD vector for next call
     delete pLastFFD;
@@ -97,13 +83,7 @@ TdVecGen::ApplyConvFilter( FFT_RealVector *pw )
 void
 TdVecGen::ResetConvFilter()
 {
-    ConvState = UNINITIALIZED;
-
-    if( pLastFFD != NULL )
-    {
-        delete pLastFFD;
-        pLastFFD = NULL;
-    }
+   delete pLastFFD;
 }
 
 TdVector *
@@ -150,7 +130,6 @@ TdVecGen::TdVecGen( TdVecGenConfig_t Conf )
     this->Last_t_end        = 0.0L;
     this->LastRelativeTD    = 0.0L;
 
-    this->ConvState         = UNINITIALIZED;
     this->FfdVecLen         = 0;
     this->pLastFFD          = NULL;
 }
@@ -161,7 +140,6 @@ TdVecGen::TdVecGen( const TdVecGen& other )
       IntpolType( other.IntpolType  ),
       TdVecLen  ( other.TdVecLen    ),
       // House keeping
-      ConvState     ( other.ConvState   ),
       Last_t_end    ( other.Last_t_end  ),
       LastRelativeTD   ( other.LastRelativeTD ),
       FfdVecLen     ( other.FfdVecLen   ),
@@ -193,7 +171,6 @@ TdVecGen::operator=( const TdVecGen& other )
     this->TdVecLen          = other.TdVecLen;
 
     // House keeping
-    this->ConvState         = other.ConvState;
     this->Last_t_end        = other.Last_t_end;
     this->LastRelativeTD    = other.LastRelativeTD;
     this->FfdVecLen         = other.FfdVecLen;

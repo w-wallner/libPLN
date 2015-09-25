@@ -82,7 +82,6 @@ class TdVecGen
         // -----------------------------------------------------------------
         // House keeping
         // -----------------------------------------------------------------
-        ConvState_t             ConvState;          ///< Current state of the convolution
         double                  Last_t_end;         ///< Time (in seconds) at the end of the last generated TD vector
         double                  LastRelativeTD;     ///< Time deviation (in seconds) at the end of the last generated vector
         size_t                  FfdVecLen;          ///< Length of the Fractional Frequency Deviation vectors that are used to generate Time Deviation vectors
@@ -97,9 +96,6 @@ class TdVecGen
         // -----------------------------------------------------------------
         // Internal functions
         // -----------------------------------------------------------------
-
-        /// Initialize the convolution filter
-        void        InitConvFilter();
 
         /// Apply the convolution filter to a data vector
         ///
