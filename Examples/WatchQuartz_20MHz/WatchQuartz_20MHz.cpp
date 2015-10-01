@@ -83,7 +83,7 @@ cWatchQuartz_20MHz::cWatchQuartz_20MHz( unsigned int Seed, bool EnableIntervalSk
 
     ChainVec.push_back( WfmEntry );
 //    ChainVec.push_back( FfmEntry );
-//    ChainVec.push_back( RwEntry  );
+    ChainVec.push_back( RwEntry  );
 }
 
 }
