@@ -215,11 +215,10 @@ WatchChainTestBench()
     //fs = 1E2;
 //    fs = 1E1;
 //    fs = 4E0;
-    //fs = 1E-1;
-//    fs = 40E-3;
+    fs = 1E-1;
+    fs = 1E-3;
     //fs = 1E-2;
 
-    NumSamples  = 10200;
     NumSamples  = 1E5;
     NumSamples  = 1E6;
 //    NumSamples  = 1E7;

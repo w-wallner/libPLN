@@ -62,7 +62,6 @@ using namespace LibPLN_Examples;
 typedef struct
 {
     double          f_s;
-    std::string     Name;
 }
 DetailedBench;
 
@@ -129,6 +128,7 @@ void SimpleOracleBench()
 //    f_s = 1E3;
 //    f_s = 1E1;
     f_s = 2E-3;
+    f_s = 1E-2;
 
     t = 0.0;
 
