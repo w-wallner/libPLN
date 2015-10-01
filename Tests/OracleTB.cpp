@@ -77,39 +77,16 @@ BurstBench;
 // Global variables
 // =========================================================================
 
-DetailedBench   DetailedBenchMarks[]    =
+double   DetailedBenchMark_f_s[]    =
 {
-        {   5E6,    "5MHz"  },
-        {   2E6,    "2MHz"  },
-        {   1E6,    "1MHz"  },
-
-        {   50E0,   "50Hz"  },
-        {   20E0,   "20Hz"  },
-        {   10E0,   "10Hz"  },
-
-        {   500E3,  "500kHz"  },
-        {   200E3,  "200kHz"  },
-        {   100E3,  "100kHz"  },
-
-        {   50E6,   "50MHz"  },
-        {   20E6,   "20MHz"  },
-        {   10E6,   "10MHz"  },
-
-        {   50E3,   "50kHz"  },
-        {   20E3,   "20kHz"  },
-        {   10E3,   "10kHz"  },
-
-        {   5E3,    "5kHz"  },
-        {   2E3,    "2kHz"  },
-        {   1E3,    "1kHz"  },
-
-        {   500E0,  "500Hz"  },
-        {   200E0,  "200Hz"  },
-        {   100E0,  "100Hz"  },
-
-        {   5E0,    "5Hz"  },
-        {   2E0,    "2Hz"  },
-        {   1E0,    "1Hz"  },
+    50E6,    //20E6,   10E6,
+    5E6,     //2E6,    1E6,
+    500E3,   //200E3,  100E3,
+    50E3,    //20E3,   10E3,
+    5E3,     //2E3,    1E3,
+    500E0,   //200E0,  100E0,
+    50E0,    //20E0,   10E0,
+    5E0,     //2E0,    1E0,
 };
 
 BurstBench  BurstBenchMarks[] =
@@ -175,12 +152,11 @@ void DetailedOracleBench()
     size_t          NumSamples;
 
     std::string     OutputPath;
-    std::string     Name;
-    std::string     Filename;
+    std::string     FrequListFileName;
 
     // Resources
     cAvgOsc20MHz    o( 54321, true );
-    ofstream        TdFile;
+    ofstream        FrequList;
 
     // Config
     OutputPath = "/main/Tmp/Benchmarks/";
@@ -190,28 +166,34 @@ void DetailedOracleBench()
 //    NumSamples   = 10000000;    // 10^7
 //    NumSamples   = 100000000;   // 10^8     Max @ Matlab
 
-    cout << OutputPath << endl;
-
-    t   = 0.0L;
+    // Init
+    FrequListFileName = OutputPath + "FrequList.txt";
+    FrequList.open( FrequListFileName.c_str() );
 
     // Benchmark Oscillator
-    for( i = 0; i < NumElements(DetailedBenchMarks); i ++ )
+    t = 0.0L;
+    for( i = 0; i < NumElements(DetailedBenchMark_f_s); i ++ )
     {
+        std::string     Filename;
+
         // Read config
-        f_s     = DetailedBenchMarks[ i ].f_s;
-        Name    = DetailedBenchMarks[ i ].Name;
+        f_s     = DetailedBenchMark_f_s[ i ];
 
         // Init
-        Filename        = OutputPath + "td_" + Name + ".txt";
+        std::stringstream ss;
+        ss << OutputPath << "td_" << i << ".txt";
+        Filename        = ss.str();
 
         cout << endl;
-        cout << "Starting benchmark " << i + 1 << "/" << NumElements(DetailedBenchMarks) << " for " << Name << endl;
-        cout << "t = " << t << endl;
+        cout << "Starting benchmark " << i + 1 << "/" << NumElements(DetailedBenchMark_f_s) << " for " << f_s << endl;
 
+        FrequList << f_s << endl;
         SampleOracle( o, t, f_s, NumSamples, true, true, Filename );
 
-        cout << "Finished benchmark for " << Name << endl;
+        cout << "Finished benchmark for " << f_s << endl;
     }
+
+    FrequList.close();
 }
 
 void SpeedOracleBench()
@@ -257,17 +239,16 @@ void SpeedOracleBench()
     ResultFile.precision( 30 );
 
     // Benchmark Oscillator
-    for( i = 0; i < NumElements(DetailedBenchMarks); i ++ )
+    for( i = 0; i < NumElements(DetailedBenchMark_f_s); i ++ )
     {
         // Read config
-        f_s     = DetailedBenchMarks[ i ].f_s;
-        Name    = DetailedBenchMarks[ i ].Name;
+        f_s     = DetailedBenchMark_f_s[ i ];
 
         // Init
         dt              = 1.0L / f_s;
 
         cout << endl;
-        cout << "Starting benchmark for " << Name << endl;
+        cout << "Starting benchmark for " << f_s << endl;
         cout << "t = " << t << endl;
 
         time(&start);
@@ -295,8 +276,8 @@ void SpeedOracleBench()
         cout << "SimDuration: " << SimDuration << endl;
         cout << "Duration: " << Duration << endl;
 
-        ResultFile << Name << ", " << f_s << ", " << Duration << ", " << SimDuration << endl;
-        cout << "Finished benchmark for " << Name << endl;
+        ResultFile << f_s << ", " << Duration << ", " << SimDuration << endl;
+        cout << "Finished benchmark for " << f_s << endl;
     }
 
     ResultFile.close();
