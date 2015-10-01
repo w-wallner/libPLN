@@ -90,7 +90,8 @@ class cWatchQuartz_20MHz : public TdOracle
 
              // Getters
              static TdEstimatorConfig   GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
-             static TdEstimatorConfig   GetConfig_100mHz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_1Hz  (unsigned int Seed, bool EnableIntervalSkipping);
+
         };
 
     private:
