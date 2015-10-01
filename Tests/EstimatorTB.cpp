@@ -192,13 +192,13 @@ WatchChainTestBench()
     bool         Skip = true;
 
     cWatchQuartz_20MHz::TdEstChain_WFM  WfmChain(10, Seed, Skip);
-    //cWatchQuartz_20MHz::TdEstChain_FFM  FfmChain(20, Seed, Skip);
-    //cWatchQuartz_20MHz::TdEstChain_RW   RwChain (30, Seed, Skip);
+    cWatchQuartz_20MHz::TdEstChain_FFM  FfmChain(20, Seed, Skip);
+    cWatchQuartz_20MHz::TdEstChain_RW   RwChain (30, Seed, Skip);
     TdEstChain  c(FSA::ALPHA_WFM, 0);
 
-    c = WfmChain;
+    //c = WfmChain;
     //c = FfmChain;
-    //c = RwChain;
+    c = RwChain;
 
     double  fs;
     double  dt;
@@ -211,19 +211,19 @@ WatchChainTestBench()
     fs = 4E6;
     fs = 1E5;
     fs = 1E3;
-    fs = 2E2;
+    fs = 4E2;
     //fs = 1E2;
-    //fs = 1E1;
-    //fs = 1E0;
+//    fs = 1E1;
+//    fs = 4E0;
     //fs = 1E-1;
-    //fs = 400;
+//    fs = 40E-3;
     //fs = 1E-2;
 
     NumSamples  = 10200;
-//    NumSamples  = 100000;
-//    NumSamples  = 1000000;
-//    NumSamples  = 10000000;
-//    NumSamples  = 100000000;
+    NumSamples  = 1E5;
+    NumSamples  = 1E6;
+//    NumSamples  = 1E7;
+//    NumSamples  = 1E8;
 
     SampleChain( c, t, fs, NumSamples, true, true, "/main/td.txt" );
 }

@@ -139,10 +139,10 @@ void SimpleOracleBench()
     double  t;
 
     NumSamples   = 1000;      // 10^3
-//    NumSamples   = 10000;      // 10^4
-    NumSamples   = 100000;      // 10^5
-//    NumSamples   = 1000000;     // 10^6
-    NumSamples   = 10000000;    // 10^7
+    NumSamples   = 10000;      // 10^4
+//    NumSamples   = 100000;      // 10^5
+    NumSamples   = 1000000;     // 10^6
+//    NumSamples   = 10000000;    // 10^7
 //    NumSamples   = 100000000;   // 10^8     Max @ Matlab
 
     f_s = 40E6;
@@ -150,8 +150,8 @@ void SimpleOracleBench()
 //    f_s = 1E5;
 //    f_s = 1E4;
 //    f_s = 1E3;
-    f_s = 1E1;
-    f_s = 1E-1;
+//    f_s = 1E1;
+    f_s = 2E-3;
 
     t = 0.0;
 

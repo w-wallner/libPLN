@@ -135,34 +135,34 @@ TestTdVecGen()
 
     TdVecGenConfig_t    TdVecGenConf;
 
-    TdVecGenConf.SampleConf.TdVecLen = 3000;
+    TdVecGenConf.SampleConf.TdVecLen = 300;
     TdVecGenConf.SampleConf.f_s  = 20E-3;
 
     TdVecGenConf.WhiteNoiseConf.Qd           = 10E-2;
     TdVecGenConf.WhiteNoiseConf.Seed         = 5432;
 
-//    TdVecGenConf.PLN_FilterConf.Implementation  = RECURSIVE_FILTER;
+    TdVecGenConf.PLN_FilterConf.Implementation  = RECURSIVE_FILTER;
     TdVecGenConf.PLN_FilterConf.Implementation  = KASDIN_WALTER_FILTER;
-    TdVecGenConf.PLN_FilterConf.FilterLen    = 500;
+    TdVecGenConf.PLN_FilterConf.FilterLen    = 50;
     TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_WPM;
 //    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_FPM;
-    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_WFM;
+//    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_WFM;
     TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_FFM;
-    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_RW;
+//    TdVecGenConf.PLN_FilterConf.alpha        = FSA::ALPHA_RW;
 
     TdVecGenConf.HP_FilterConf.Cnt           = 1;
-    TdVecGenConf.HP_FilterConf.FilterLen     = 2001;
+    TdVecGenConf.HP_FilterConf.FilterLen     = 51;
     TdVecGenConf.HP_FilterConf.FilterType    = BLACKMAN;
 //    TdVecGenConf.HP_FilterConf.FilterType    = IDENTITY;
-    TdVecGenConf.HP_FilterConf.FilterType    = NO_FILTER;
-    TdVecGenConf.HP_FilterConf.f_c_nom       = 0.002;
+//    TdVecGenConf.HP_FilterConf.FilterType    = NO_FILTER;
+    TdVecGenConf.HP_FilterConf.f_c_nom       = 0.2;
 
     TdVecGenConf.InterpolConf.InterPolType   = CUBIC_SPLINE_INTERPOLATION;
     TdVecGenConf.InterpolConf.InterPolType   = LINEAR_INTERPOLATION;
 
     TdVecGen *pA = TdVecGenFactory::CreateTdVecGen( TdVecGenConf );
 
-    int NumVectors = 300;
+    int NumVectors = 10;
 
     for( int i = 0; i < NumVectors; i ++ )
     {
