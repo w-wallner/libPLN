@@ -69,7 +69,7 @@ cAvgOsc20MHz::TdEstChain_RW::GetConfig_100Hz(unsigned int Seed, bool EnableInter
     config.TdVecGenConf.SampleConf.TdVecLen             = 5100;
 
     config.TdVecGenConf.WhiteNoiseConf.Qd               = 2.8455E-21;
-    config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed + 0;
+    config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed;
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_RW;
