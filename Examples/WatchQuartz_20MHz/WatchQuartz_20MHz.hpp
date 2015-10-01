@@ -63,10 +63,13 @@ class cWatchQuartz_20MHz : public TdOracle
              TdEstChain_WFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping );
 
              // Getters
-             static TdEstimatorConfig   GetConfig_20MHz(unsigned int Seed, bool EnableIntervalSkipping);
-             static TdEstimatorConfig   GetConfig_1MHz (unsigned int Seed, bool EnableIntervalSkipping);
-             static TdEstimatorConfig   GetConfig_10kHz(unsigned int Seed, bool EnableIntervalSkipping);
-             static TdEstimatorConfig   GetConfig_100Hz(unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_20MHz (unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_1MHz  (unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_10kHz (unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_100Hz (unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_1Hz   (unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_10mHz (unsigned int Seed, bool EnableIntervalSkipping);
+             static TdEstimatorConfig   GetConfig_100uHz(unsigned int Seed, bool EnableIntervalSkipping);
         };
 
         class TdEstChain_FFM : public TdEstChain

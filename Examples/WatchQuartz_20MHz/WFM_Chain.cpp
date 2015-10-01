@@ -96,7 +96,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_1MHz(unsigned int Seed, bool Enabl
     TdEstimatorConfig   config;
 
     config.TdVecGenConf.SampleConf.f_s                  = 22E5;
-    config.TdVecGenConf.SampleConf.TdVecLen             = 5100;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 1100;
 
     config.TdVecGenConf.WhiteNoiseConf.Qd               = 7.92E-07;
     config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed;
@@ -156,7 +156,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100Hz(unsigned int Seed, bool Enab
     TdEstimatorConfig   config;
 
     config.TdVecGenConf.SampleConf.f_s                  = 200;
-    config.TdVecGenConf.SampleConf.TdVecLen             = 5100;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 510;
 
     config.TdVecGenConf.WhiteNoiseConf.Qd               = 7.2E-11;
     config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed;
@@ -166,14 +166,103 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100Hz(unsigned int Seed, bool Enab
     config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
-//    config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
-    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.01;
-    config.TdVecGenConf.HP_FilterConf.FilterLen         = 5001;
+    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.005;
+    config.TdVecGenConf.HP_FilterConf.FilterLen         = 501;
     config.TdVecGenConf.HP_FilterConf.Cnt               = 1;
 
     config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                               = 20;
+    config.TimeConf.T_val                               = 2;
+    config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
+
+    config.PerformanceConf.ForgetTh                     = 0;
+
+    return config;
+}
+
+TdEstimatorConfig
+cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_1Hz(unsigned int Seed, bool EnableIntervalSkipping)
+{
+    TdEstimatorConfig   config;
+
+    config.TdVecGenConf.SampleConf.f_s                  = 2;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 510;
+
+    config.TdVecGenConf.WhiteNoiseConf.Qd               = 7.2e-13;
+    config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed;
+
+    config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
+    config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WFM;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+
+    config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
+    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.005;
+    config.TdVecGenConf.HP_FilterConf.FilterLen         = 501;
+    config.TdVecGenConf.HP_FilterConf.Cnt               = 1;
+
+    config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
+
+    config.TimeConf.T_val                               = 200;
+    config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
+
+    config.PerformanceConf.ForgetTh                     = 0;
+
+    return config;
+}
+
+TdEstimatorConfig
+cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_10mHz(unsigned int Seed, bool EnableIntervalSkipping)
+{
+    TdEstimatorConfig   config;
+
+    config.TdVecGenConf.SampleConf.f_s                  = 20E-3;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 510;
+
+    config.TdVecGenConf.WhiteNoiseConf.Qd               = 7.2e-15;
+    config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed;
+
+    config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
+    config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WFM;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+
+    config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
+    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.005;
+    config.TdVecGenConf.HP_FilterConf.FilterLen         = 501;
+    config.TdVecGenConf.HP_FilterConf.Cnt               = 1;
+
+    config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
+
+    config.TimeConf.T_val                               = 20E3;
+    config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
+
+    config.PerformanceConf.ForgetTh                     = 0;
+
+    return config;
+}
+
+TdEstimatorConfig
+cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100uHz(unsigned int Seed, bool EnableIntervalSkipping)
+{
+    TdEstimatorConfig   config;
+
+    config.TdVecGenConf.SampleConf.f_s                  = 200E-6;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 510;
+
+    config.TdVecGenConf.WhiteNoiseConf.Qd               = 7.2e-17;
+    config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed;
+
+    config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
+    config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WFM;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+
+    config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
+    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.005;
+    config.TdVecGenConf.HP_FilterConf.FilterLen         = 501;
+    config.TdVecGenConf.HP_FilterConf.Cnt               = 1;
+
+    config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
+
+    config.TimeConf.T_val                               = 2E6;
     config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
     config.PerformanceConf.ForgetTh                     = 0;
@@ -184,10 +273,13 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100Hz(unsigned int Seed, bool Enab
 cWatchQuartz_20MHz::TdEstChain_WFM::TdEstChain_WFM( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
     : TdEstChain( FSA::ALPHA_WFM, SeedOffset )
 {
-//    AddTdEstimator( GetConfig_20MHz( Seed + SeedOffset + 0, EnableIntervalSkipping ) );
-//    AddTdEstimator( GetConfig_1MHz ( Seed + SeedOffset + 1, EnableIntervalSkipping ) );
-//    AddTdEstimator( GetConfig_10kHz( Seed + SeedOffset + 2, EnableIntervalSkipping ) );
-    AddTdEstimator( GetConfig_100Hz( Seed + SeedOffset + 3, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_20MHz ( Seed + SeedOffset + 0, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_1MHz  ( Seed + SeedOffset + 1, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_10kHz ( Seed + SeedOffset + 2, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_100Hz ( Seed + SeedOffset + 3, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_1Hz   ( Seed + SeedOffset + 4, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_10mHz ( Seed + SeedOffset + 5, EnableIntervalSkipping ) );
+    AddTdEstimator( GetConfig_100uHz( Seed + SeedOffset + 6, EnableIntervalSkipping ) );
 }
 
 }
