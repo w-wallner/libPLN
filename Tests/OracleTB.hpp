@@ -51,7 +51,8 @@
 // =========================================================================
 
 void    SimpleOracleBench();
-void    DetailedOracleBench();
+void    DetailedBench_AvgOsc();
+void    DetailedBench_WatchQuartz();
 void    SpeedOracleBench();
 void    BurstOracleBench();
 void    PreRecordedOracleBench();

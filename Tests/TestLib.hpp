@@ -56,4 +56,6 @@ void    SampleEstimator ( TdEstimator   e,  double &t, double fs, size_t NumSamp
 void    SampleChain     ( TdEstChain    c,  double &t, double fs, size_t NumSamples, bool EnableOutput, bool SaveSamples, std::string FileName );
 void    SampleOracle    ( TdOracle      &o, double &t, double fs, size_t NumSamples, bool EnableOutput, bool SaveSamples, std::string FileName );
 
+void    BenchmarkTdOracle( TdOracle o, std::vector<double> f_s, size_t NumSamples, std::string OutputPath );
+
 #endif

@@ -143,12 +143,13 @@ void RunOracleTest( int TestID )
 {
     switch( TestID )
     {
-        case 0:     SimpleOracleBench();        break;
-        case 1:     DetailedOracleBench();      break;
-        case 2:     SpeedOracleBench();         break;
-        case 3:     BurstOracleBench();         break;
-        case 4:     PreRecordedOracleBench();   break;
-        case 5:     SkipVsNoSkipBench();        break;
+        case 0:     SimpleOracleBench();            break;
+        case 1:     DetailedBench_AvgOsc();         break;
+        case 2:     DetailedBench_WatchQuartz();    break;
+        case 3:     SpeedOracleBench();             break;
+        case 4:     BurstOracleBench();             break;
+        case 5:     PreRecordedOracleBench();       break;
+        case 6:     SkipVsNoSkipBench();            break;
 
         default:    ExitOnInvalidID();
                     break;

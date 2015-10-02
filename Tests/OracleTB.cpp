@@ -62,12 +62,6 @@ using namespace LibPLN_Examples;
 typedef struct
 {
     double          f_s;
-}
-DetailedBench;
-
-typedef struct
-{
-    double          f_s;
     size_t          NumSamples;
 }
 BurstBench;
@@ -75,18 +69,6 @@ BurstBench;
 // =========================================================================
 // Global variables
 // =========================================================================
-
-double   DetailedBenchMark_f_s[]    =
-{
-    50E6,    //20E6,   10E6,
-    5E6,     //2E6,    1E6,
-    500E3,   //200E3,  100E3,
-    50E3,    //20E3,   10E3,
-    5E3,     //2E3,    1E3,
-    500E0,   //200E0,  100E0,
-    50E0,    //20E0,   10E0,
-    5E0,     //2E0,    1E0,
-};
 
 BurstBench  BurstBenchMarks[] =
 {
@@ -142,58 +124,80 @@ void SimpleOracleBench()
     SampleOracle( o, t, f_s, NumSamples, true, true, "/main/td.txt" );
 }
 
-void DetailedOracleBench()
+void DetailedBench_AvgOsc()
 {
     cout << "Running " << __func__ << "()" << endl;
 
-    double          f_s;
-    double          t;
-    size_t          i;
-    size_t          NumSamples;
+    double   FrequList[]    =
+    {
+        50E6,    //20E6,   10E6,
+        5E6,     //2E6,    1E6,
+        500E3,   //200E3,  100E3,
+        50E3,    //20E3,   10E3,
+        5E3,     //2E3,    1E3,
+        500E0,   //200E0,  100E0,
+        50E0,    //20E0,   10E0,
+        5E0,     //2E0,    1E0,
+    };
 
+    size_t          NumSamples;
     std::string     OutputPath;
-    std::string     FrequListFileName;
 
     // Resources
     cAvgOsc20MHz    o( 54321, true );
-    ofstream        FrequList;
 
     // Config
-    OutputPath = "/main/Tmp/Benchmarks/";
+    OutputPath = "/main/Tmp/Benchmarks/AvgOsc/";
 
     NumSamples   = 100000;      // 10^5
 //    NumSamples   = 1000000;     // 10^6
 //    NumSamples   = 10000000;    // 10^7
 //    NumSamples   = 100000000;   // 10^8     Max @ Matlab
 
-    // Init
-    FrequListFileName = OutputPath + "FrequList.txt";
-    FrequList.open( FrequListFileName.c_str() );
+    std::vector<double> f_s( FrequList, FrequList + NumElements(FrequList) );
 
-    // Benchmark Oscillator
-    t = 0.0L;
-    for( i = 0; i < NumElements(DetailedBenchMark_f_s); i ++ )
+    BenchmarkTdOracle( o, f_s, NumSamples, OutputPath );
+}
+
+void DetailedBench_WatchQuartz()
+{
+    cout << "Running " << __func__ << "()" << endl;
+
+    double   FrequList[]    =
     {
-        std::string     Filename;
+        //50E6,    //20E6,   10E6,
+        //5E6,     //2E6,    1E6,
+        //500E3,   //200E3,  100E3,
+        //50E3,    //20E3,   10E3,
+        //5E3,     //2E3,    1E3,
+        //500E0,   //200E0,  100E0,
+        //50E0,    //20E0,   10E0,
+        5E0,     //2E0,    1E0,
+        500E-3,   //200E-3,  100E-3,
+        50E-3,    //20E-3,   10E-3,
+        5E-3,     //2E-3,    1E-3,
+        500E-6,   //200E-6,  100E-6,
+        50E-6,    //20E-6,   10E-6,
+        5E-6,     //2E-6,    1E-6,
+    };
 
-        // Read config
-        f_s     = DetailedBenchMark_f_s[ i ];
+    size_t          NumSamples;
+    std::string     OutputPath;
 
-        // Init
-        std::stringstream ss;
-        ss << OutputPath << "td_" << i << ".txt";
-        Filename        = ss.str();
+    // Resources
+    cWatchQuartz_20MHz    o( 123, true );
 
-        cout << endl;
-        cout << "Starting benchmark " << i + 1 << "/" << NumElements(DetailedBenchMark_f_s) << " for " << f_s << endl;
+    // Config
+    OutputPath = "/main/Tmp/Benchmarks/WatchQuartz/";
 
-        FrequList << f_s << endl;
-        SampleOracle( o, t, f_s, NumSamples, true, true, Filename );
+    NumSamples   = 100000;      // 10^5
+    NumSamples   = 1000000;     // 10^6
+//    NumSamples   = 10000000;    // 10^7
+//    NumSamples   = 100000000;   // 10^8     Max @ Matlab
 
-        cout << "Finished benchmark for " << f_s << endl;
-    }
+    std::vector<double> f_s( FrequList, FrequList + NumElements(FrequList) );
 
-    FrequList.close();
+    BenchmarkTdOracle( o, f_s, NumSamples, OutputPath );
 }
 
 void SpeedOracleBench()
@@ -231,6 +235,18 @@ void SpeedOracleBench()
     MaxCnt   = 100000;      // 10^5
     //MaxCnt   = 1000000;     // 10^6
 
+    double   FrequList[]    =
+    {
+        50E6,    20E6,   10E6,
+        5E6,     2E6,    1E6,
+        500E3,   200E3,  100E3,
+        50E3,    20E3,   10E3,
+        5E3,     2E3,    1E3,
+        500E0,   200E0,  100E0,
+        50E0,    20E0,   10E0,
+        5E0,     2E0,    1E0,
+    };
+
     t               = 0.0L;
 
     MinDuration     = 180;
@@ -239,10 +255,10 @@ void SpeedOracleBench()
     ResultFile.precision( 30 );
 
     // Benchmark Oscillator
-    for( i = 0; i < NumElements(DetailedBenchMark_f_s); i ++ )
+    for( i = 0; i < NumElements(FrequList); i ++ )
     {
         // Read config
-        f_s     = DetailedBenchMark_f_s[ i ];
+        f_s     = FrequList[ i ];
 
         // Init
         dt              = 1.0L / f_s;

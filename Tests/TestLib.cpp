@@ -136,3 +136,33 @@ SampleOracle( TdOracle &o, double &t, double fs, size_t NumSamples, bool EnableO
         TdFile.close();
     }
 }
+
+void BenchmarkTdOracle( TdOracle o, std::vector<double> f_s, size_t NumSamples, std::string OutputPath )
+{
+    double  t;
+
+    std::string     FrequListFileName;
+    ofstream        FrequList;
+
+    // Init
+    FrequListFileName = OutputPath + "FrequList.txt";
+    FrequList.open( FrequListFileName.c_str() );
+
+    t = 0.0L;
+    size_t  i = 0;
+    for (std::vector<double>::iterator it = f_s.begin() ; it != f_s.end(); ++it, ++i)
+    {
+        // Init
+        std::stringstream ssFilename;
+        ssFilename << OutputPath << "td_" << i << ".txt";
+
+        cout << endl;
+        cout << "Starting benchmark " << i + 1 << "/" << f_s.size() << " for " << *it << endl;
+
+        FrequList << *it << endl;
+        SampleOracle( o, t, *it, NumSamples, true, true, ssFilename.str() );
+
+        cout << "Finished benchmark for " << *it << endl;
+    }
+    FrequList.close();
+}
