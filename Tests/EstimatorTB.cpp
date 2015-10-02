@@ -192,12 +192,10 @@ WatchChainTestBench()
     bool         Skip = true;
 
     cWatchQuartz_20MHz::TdEstChain_WFM  WfmChain(10, Seed, Skip);
-    cWatchQuartz_20MHz::TdEstChain_FFM  FfmChain(20, Seed, Skip);
     cWatchQuartz_20MHz::TdEstChain_RW   RwChain (30, Seed, Skip);
     TdEstChain  c(FSA::ALPHA_WFM, 0);
 
     //c = WfmChain;
-    //c = FfmChain;
     c = RwChain;
 
     double  fs;
