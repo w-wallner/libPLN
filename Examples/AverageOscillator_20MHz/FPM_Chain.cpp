@@ -96,7 +96,7 @@ cAvgOsc20MHz::TdEstChain_FPM::GetConfig_1MHz(unsigned int Seed, bool EnableInter
     TdEstimatorConfig   config;
 
     config.TdVecGenConf.SampleConf.f_s                  = 22E5;
-    config.TdVecGenConf.SampleConf.TdVecLen             = 5100;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 1100;
 
     config.TdVecGenConf.WhiteNoiseConf.Qd               = 5.37675550834249E-8;
     config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed;
@@ -126,7 +126,7 @@ cAvgOsc20MHz::TdEstChain_FPM::GetConfig_10kHz(unsigned int Seed, bool EnableInte
     TdEstimatorConfig   config;
 
     config.TdVecGenConf.SampleConf.f_s                   = 20E3;
-    config.TdVecGenConf.SampleConf.TdVecLen              = 5100;
+    config.TdVecGenConf.SampleConf.TdVecLen              = 520;
 
     config.TdVecGenConf.WhiteNoiseConf.Qd                = 4.44359959367147E-12;
     config.TdVecGenConf.WhiteNoiseConf.Seed              = Seed;
@@ -156,7 +156,7 @@ cAvgOsc20MHz::TdEstChain_FPM::GetConfig_100Hz(unsigned int Seed, bool EnableInte
     TdEstimatorConfig   config;
 
     config.TdVecGenConf.SampleConf.f_s                  = 200;
-    config.TdVecGenConf.SampleConf.TdVecLen             = 5100;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 500;
 
     config.TdVecGenConf.WhiteNoiseConf.Qd               = 4.44359959367147E-16;
     config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed;

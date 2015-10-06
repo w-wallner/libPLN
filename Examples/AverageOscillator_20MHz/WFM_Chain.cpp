@@ -66,7 +66,7 @@ cAvgOsc20MHz::TdEstChain_WFM::GetConfig_100Hz(unsigned int Seed, bool EnableInte
     TdEstimatorConfig   config;
 
     config.TdVecGenConf.SampleConf.f_s                  = 200;
-    config.TdVecGenConf.SampleConf.TdVecLen             = 5100;
+    config.TdVecGenConf.SampleConf.TdVecLen             = 510;
 
     config.TdVecGenConf.WhiteNoiseConf.Qd               = 4.5420E-17;
     config.TdVecGenConf.WhiteNoiseConf.Seed             = Seed;
