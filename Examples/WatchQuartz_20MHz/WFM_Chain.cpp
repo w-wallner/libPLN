@@ -73,7 +73,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_20MHz(unsigned int Seed, bool Enab
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WFM;
-    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.024;
@@ -103,7 +103,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_1MHz(unsigned int Seed, bool Enabl
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WFM;
-    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.004;
@@ -133,7 +133,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_10kHz(unsigned int Seed, bool Enab
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WFM;
-    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.0035;
@@ -163,7 +163,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100Hz(unsigned int Seed, bool Enab
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WFM;
-    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.005;
@@ -193,7 +193,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_1Hz(unsigned int Seed, bool Enable
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WFM;
-    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.005;
@@ -223,7 +223,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_10mHz(unsigned int Seed, bool Enab
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WFM;
-    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.005;
@@ -253,7 +253,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100uHz(unsigned int Seed, bool Ena
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WFM;
-    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.005;

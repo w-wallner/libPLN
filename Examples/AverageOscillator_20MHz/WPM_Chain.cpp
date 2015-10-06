@@ -73,7 +73,7 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_20MHz(unsigned int Seed, bool EnableInte
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WPM;
-    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.024;
@@ -103,7 +103,7 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_1MHz(unsigned int Seed, bool EnableInter
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WPM;
-    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.004;
@@ -133,7 +133,7 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_10kHz(unsigned int Seed, bool EnableInte
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WPM;
-    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.0035;
@@ -163,7 +163,7 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_100Hz(unsigned int Seed, bool EnableInte
 
     config.TdVecGenConf.PLN_FilterConf.Implementation   = RECURSIVE_FILTER;
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_WPM;
-    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
+    config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.01;
