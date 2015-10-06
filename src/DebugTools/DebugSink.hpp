@@ -40,9 +40,6 @@
 
 #include "Utils/VectorTypes.hpp"
 #include "TdEst/TdEstConfig.hpp"
-#include "Filter/FilterImpResp.hpp"
-#include "Filter/FilterKernel.hpp"
-#include "TdVector/TdVector.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -56,6 +53,10 @@ using namespace std;
 // =========================================================================
 // Type definitions
 // =========================================================================
+
+class FilterImpResp;
+class cFilterKernel;
+class TdVector;
 
 class cDebugSink
 {

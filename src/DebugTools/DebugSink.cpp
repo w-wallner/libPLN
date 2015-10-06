@@ -35,6 +35,10 @@
 
 #include "DebugSink.hpp"
 
+#include "Filter/FilterImpResp.hpp"
+#include "Filter/FilterKernel.hpp"
+#include "TdVector/TdVector.hpp"
+
 // =========================================================================
 // Defines
 // =========================================================================
