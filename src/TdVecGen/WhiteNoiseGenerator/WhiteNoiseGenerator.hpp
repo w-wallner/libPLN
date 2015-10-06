@@ -55,8 +55,8 @@
 // =========================================================================
 
 typedef boost::mt19937                     ENG;    ///< Mersenne Twister
-typedef boost::normal_distribution<double> DIST;   ///<  Normal Distribution
-typedef boost::variate_generator<ENG,DIST> GEN;    ///<  Variate generator
+typedef boost::normal_distribution<double> DIST;   ///< Normal Distribution
+typedef boost::variate_generator<ENG,DIST> GEN;    ///< Variate generator
 
 // =========================================================================
 // Function declarations
