@@ -54,7 +54,7 @@
 ///
 /// The class supports static operations for on-the-fly FFT operation,
 /// which is useful for one time calculations, and instanced operations
-/// that are useful for reoccurring calculations.
+/// that are useful for recurring calculations.
 ///
 /// \remark This class is intended to convert real time domain data to the
 /// frequency domain (where it will be complex) and vice versa.
