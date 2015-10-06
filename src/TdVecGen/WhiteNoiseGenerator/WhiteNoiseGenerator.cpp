@@ -61,12 +61,13 @@
 // =========================================================================
 
 WhiteNoiseGenerator::WhiteNoiseGenerator( WhiteNoiseConfig_t WhiteNoiseConfig )
-    : gen( ENG(WhiteNoiseConfig.Seed), DIST(0.0L, sqrt(WhiteNoiseConfig.Qd)) )
 {
+    pGen = new GEN( ENG(WhiteNoiseConfig.Seed), DIST(0.0L, sqrt(WhiteNoiseConfig.Qd)) );
 }
 
 WhiteNoiseGenerator::~WhiteNoiseGenerator()
 {
+    delete pGen;
 }
 
 FFT_RealVector *
@@ -78,7 +79,7 @@ WhiteNoiseGenerator::GetFftVector( size_t VecLen, size_t FillLen )
 
     for( size_t i = 0; i < FillLen; i ++ )
     {
-        (*pVec)[ i ]   = gen();
+        (*pVec)[ i ]   = (*pGen)();
     }
 
     return pVec;
@@ -93,7 +94,7 @@ WhiteNoiseGenerator::GetStdVector( size_t VecLen, size_t FillLen )
 
     for( size_t i = 0; i < FillLen; i ++ )
     {
-        (*pVec)[ i ]   = gen();
+        (*pVec)[ i ]   = (*pGen)();
     }
 
     return pVec;
@@ -102,11 +103,11 @@ WhiteNoiseGenerator::GetStdVector( size_t VecLen, size_t FillLen )
 void
 WhiteNoiseGenerator::SetSeed( unsigned int Seed )
 {
-    gen.engine() = ENG(Seed);
+    pGen->engine() = ENG(Seed);
 }
 
 double
 WhiteNoiseGenerator::GetRandomValue()
 {
-    return gen();
+    return (*pGen)();
 }

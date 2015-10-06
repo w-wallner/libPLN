@@ -74,7 +74,7 @@ class WhiteNoiseGenerator
         // -----------------------------------------------------------------
         // Resources
         // -----------------------------------------------------------------
-        GEN  gen;   ///< Variate generator
+        GEN  *pGen;   ///< Variate generator
 
     public:
 
