@@ -61,7 +61,7 @@
 // =========================================================================
 
 WhiteNoiseGenerator::WhiteNoiseGenerator( WhiteNoiseConfig_t WhiteNoiseConfig )
-    : eng(WhiteNoiseConfig.Seed), dist(0.0L, sqrt(WhiteNoiseConfig.Qd) ), gen(eng,dist)
+    : gen( ENG(WhiteNoiseConfig.Seed), DIST(0.0L, sqrt(WhiteNoiseConfig.Qd)) )
 {
 }
 
@@ -102,8 +102,7 @@ WhiteNoiseGenerator::GetStdVector( size_t VecLen, size_t FillLen )
 void
 WhiteNoiseGenerator::SetSeed( unsigned int Seed )
 {
-    eng.seed( Seed );
-    gen.engine() = eng;
+    gen.engine() = ENG(Seed);
 }
 
 double

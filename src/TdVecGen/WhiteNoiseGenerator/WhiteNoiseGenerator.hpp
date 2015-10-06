@@ -74,9 +74,7 @@ class WhiteNoiseGenerator
         // -----------------------------------------------------------------
         // Resources
         // -----------------------------------------------------------------
-        ENG  eng;       ///< Mersenne Twister
-        DIST dist;      ///<  Normal Distribution
-        GEN  gen;       ///<  Variate generator
+        GEN  gen;   ///< Variate generator
 
     public:
 
