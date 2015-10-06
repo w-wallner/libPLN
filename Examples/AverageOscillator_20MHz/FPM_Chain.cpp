@@ -167,8 +167,8 @@ cAvgOsc20MHz::TdEstChain_FPM::GetConfig_100Hz(unsigned int Seed, bool EnableInte
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.01;
-    config.TdVecGenConf.HP_FilterConf.FilterLen         = 5001;
-    config.TdVecGenConf.HP_FilterConf.Cnt               = 1;
+    config.TdVecGenConf.HP_FilterConf.FilterLen         = 0;
+    config.TdVecGenConf.HP_FilterConf.Cnt               = 0;
 
     config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 

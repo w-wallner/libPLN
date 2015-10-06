@@ -165,11 +165,10 @@ cWatchQuartz_20MHz::TdEstChain_RW::GetConfig_100uHz(unsigned int Seed, bool Enab
     config.TdVecGenConf.PLN_FilterConf.alpha            = FSA::ALPHA_RW;
     config.TdVecGenConf.PLN_FilterConf.FilterLen        = 10;
 
-    config.TdVecGenConf.HP_FilterConf.FilterType        = BLACKMAN;
     config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
     config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.005;
-    config.TdVecGenConf.HP_FilterConf.FilterLen         = 501;
-    config.TdVecGenConf.HP_FilterConf.Cnt               = 1;
+    config.TdVecGenConf.HP_FilterConf.FilterLen         = 0;
+    config.TdVecGenConf.HP_FilterConf.Cnt               = 0;
 
     config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
