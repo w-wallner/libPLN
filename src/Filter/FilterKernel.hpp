@@ -32,8 +32,8 @@
 //
 // ============================================================================
 
-#ifndef FILTERKERNEL_HPP_
-#define FILTERKERNEL_HPP_
+#ifndef FILTER_KERNEL_HPP_
+#define FILTER_KERNEL_HPP_
 
 // =========================================================================
 // Includes
