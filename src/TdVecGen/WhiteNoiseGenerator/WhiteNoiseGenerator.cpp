@@ -65,9 +65,24 @@ WhiteNoiseGenerator::WhiteNoiseGenerator( WhiteNoiseConfig_t WhiteNoiseConfig )
     pGen = new GEN( ENG(WhiteNoiseConfig.Seed), DIST(0.0L, sqrt(WhiteNoiseConfig.Qd)) );
 }
 
+WhiteNoiseGenerator::WhiteNoiseGenerator( const WhiteNoiseGenerator& other )
+{
+    pGen = (other.pGen != NULL) ? new GEN( *other.pGen ) : NULL;
+}
+
 WhiteNoiseGenerator::~WhiteNoiseGenerator()
 {
     delete pGen;
+    pGen = NULL;
+}
+
+WhiteNoiseGenerator&
+WhiteNoiseGenerator::operator=( const WhiteNoiseGenerator& other )
+{
+    pGen = (other.pGen != NULL) ? new GEN( *other.pGen ) : NULL;
+
+    // By convention, always return *this
+    return *this;
 }
 
 FFT_RealVector *

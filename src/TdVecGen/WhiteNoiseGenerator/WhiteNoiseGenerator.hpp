@@ -88,8 +88,24 @@ class WhiteNoiseGenerator
         /// \param Qd       The standard variance of the generated Gaussian noise
         WhiteNoiseGenerator( WhiteNoiseConfig_t WhiteNoiseConfig );
 
+        /// Copy constructor
+        ///
+        /// \param other    The instance that should be copied
+        WhiteNoiseGenerator( const WhiteNoiseGenerator& other );
+
         /// Destructor
         ~WhiteNoiseGenerator();
+
+        // -----------------------------------------------------------------
+        // Operators
+        // -----------------------------------------------------------------
+
+        /// Assignment operator
+        ///
+        /// \param other    The instance that should be assigned
+        ///
+        /// \return         An assigned instance
+        WhiteNoiseGenerator&  operator=( const WhiteNoiseGenerator& other );
 
         // -----------------------------------------------------------------
         // Noise generation functions
