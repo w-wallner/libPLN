@@ -40,6 +40,8 @@
 #include "TdVector/TdVectorLinear.hpp"
 #include "TdVector/TdVectorCubSpline.hpp"
 
+#include "TdVecGen/WhiteNoiseGenerator/WhiteNoiseGenerator.hpp"
+
 #include "DebugTools/DebugSink.hpp"
 
 // =========================================================================
@@ -115,7 +117,6 @@ TdVecGen::ConstructTdVector( FFT_RealVector *pData )
 }
 
 TdVecGen::TdVecGen( TdVecGenConfig_t Conf )
-    : WhiteNoiseGen( Conf.WhiteNoiseConf )
 {
     // Save config stuff for debugging purpose
     DebugSink.SaveSampleConfig( Conf.SampleConf );
@@ -133,6 +134,8 @@ TdVecGen::TdVecGen( TdVecGenConfig_t Conf )
 
     this->FfdVecLen         = 0;
     this->pLastFFD          = NULL;
+
+    this->pWNG              = new WhiteNoiseGenerator( Conf.WhiteNoiseConf );
 }
 
 TdVecGen::TdVecGen( const TdVecGen& other )
@@ -145,22 +148,17 @@ TdVecGen::TdVecGen( const TdVecGen& other )
       LastRelativeTD   ( other.LastRelativeTD ),
       FfdVecLen     ( other.FfdVecLen   ),
       // Resources
-      WhiteNoiseGen ( other.WhiteNoiseGen ),
       H             ( other.H             )
 {
-    if( other.pLastFFD != NULL )
-    {
-        pLastFFD    = new FFT_RealVector( *other.pLastFFD );
-    }
-    else
-    {
-        pLastFFD    = NULL;
-    }
+    pWNG        = (other.pWNG     != NULL) ? new WhiteNoiseGenerator( *other.pWNG ) : NULL;
+    pLastFFD    = (other.pLastFFD != NULL) ? new FFT_RealVector( *other.pLastFFD )  : NULL;
 }
 
 TdVecGen::~TdVecGen()
 {
     ResetConvFilter();
+
+    delete pWNG;
 }
 
 TdVecGen&
@@ -177,17 +175,9 @@ TdVecGen::operator=( const TdVecGen& other )
     this->FfdVecLen         = other.FfdVecLen;
 
     // Resources
-    this->WhiteNoiseGen     = other.WhiteNoiseGen;
     this->H                 = other.H;
-
-    if( other.pLastFFD != NULL )
-    {
-        this->pLastFFD      = new FFT_RealVector( *other.pLastFFD );
-    }
-    else
-    {
-        this->pLastFFD      = NULL;
-    }
+    this->pWNG              = (other.pWNG     != NULL) ? new WhiteNoiseGenerator( *other.pWNG ) : NULL;
+    this->pLastFFD          = (other.pLastFFD != NULL) ? new FFT_RealVector( *other.pLastFFD )  : NULL;
 
     // By convention, always return *this
     return *this;
@@ -205,11 +195,11 @@ TdVecGen::ResetToFixPoint( TdFixPoint fp )
 void
 TdVecGen::SetSeed( unsigned int Seed )
 {
-    WhiteNoiseGen.SetSeed( Seed );
+    pWNG->SetSeed( Seed );
 }
 
 double
 TdVecGen::GetEstimatedValue()
 {
-    return WhiteNoiseGen.GetRandomValue();
+    return pWNG->GetRandomValue();
 }

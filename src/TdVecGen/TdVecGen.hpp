@@ -40,7 +40,6 @@
 #include "TdVector/TdVector.hpp"
 #include "TdEst/TdFixPoint.hpp"
 #include "Filter/FilterKernel.hpp"
-#include "TdVecGen/WhiteNoiseGenerator/WhiteNoiseGenerator.hpp"
 
 // =========================================================================
 // Defines
@@ -49,6 +48,8 @@
 // =========================================================================
 // Type definitions
 // =========================================================================
+
+class WhiteNoiseGenerator;
 
 /// Generator for TdVectors
 class TdVecGen
@@ -89,7 +90,7 @@ class TdVecGen
         // -----------------------------------------------------------------
         // Resources
         // -----------------------------------------------------------------
-        WhiteNoiseGenerator     WhiteNoiseGen;      ///< White noise generator
+        WhiteNoiseGenerator     *pWNG;              ///< White noise generator
         cFilterKernel           H;                  ///< Filter kernel to shape the white noise
         FFT_RealVector          *pLastFFD;          ///< Pointer to the last generated Fractional Frequency Deviation vector
 

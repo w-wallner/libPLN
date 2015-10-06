@@ -42,6 +42,7 @@
 #include "Filter/IdentityFilterImpResp.hpp"
 #include "Filter/KwFilterImpResp.hpp"
 #include "Filter/BmHpFilterImpResp.hpp"
+#include "TdVecGen/WhiteNoiseGenerator/WhiteNoiseGenerator.hpp"
 
 #include "DebugTools/DebugSink.hpp"
 
@@ -143,7 +144,7 @@ GenericTdVecGen::GetNextVector()
 {
     // Generate new FFD vector
     FFT_RealVector *pw;
-    pw = WhiteNoiseGen.GetFftVector( FfdVecLen, TdVecLen );
+    pw = pWNG->GetFftVector( FfdVecLen, TdVecLen );
     DebugSink.SaveWhiteNoise( pw );
 
     ApplyConvFilter( pw );
