@@ -179,7 +179,15 @@ TdVecGen::operator=( const TdVecGen& other )
     // Resources
     this->WhiteNoiseGen     = other.WhiteNoiseGen;
     this->H                 = other.H;
-    this->pLastFFD          = new FFT_RealVector( *other.pLastFFD );
+
+    if( other.pLastFFD != NULL )
+    {
+        this->pLastFFD      = new FFT_RealVector( *other.pLastFFD );
+    }
+    else
+    {
+        this->pLastFFD      = NULL;
+    }
 
     // By convention, always return *this
     return *this;
