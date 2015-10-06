@@ -131,7 +131,7 @@ class cDebugSink
         void    SavePlnFilterConfig( PLN_FilterConfig_t c );
         void    SaveHpFilterImpResp( FilterImpResp *hp );
         void    SavePlnFilterImpResp( FilterImpResp *hp );
-        void    SaveFilterKernel( cFilterKernel &H );
+        void    SaveFilterKernel( cFilterKernel *pH );
         void    SaveWhiteNoise( FFT_RealVector *pw );
         void    SavePlnFilteredNoise( FFT_RealVector *pw );
         void    SaveHpFilteredNoise( FFT_RealVector *pw );

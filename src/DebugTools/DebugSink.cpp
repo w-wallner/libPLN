@@ -257,16 +257,16 @@ cDebugSink::SavePlnFilterImpResp( FilterImpResp *hp )
 }
 
 void
-cDebugSink::SaveFilterKernel( cFilterKernel &H )
+cDebugSink::SaveFilterKernel( cFilterKernel *pH )
 {
     if( FilterKernel.IsEnabled() )
     {
         FilterKernel.Stream() << "[FilterKernel]" << endl;
         FilterKernel.Stream() << endl;
-        FilterKernel.Stream() << "FilterLen = " << H.GetFilterLen() << endl;
-        FilterKernel.Stream() << "MaxDataLen = " << H.GetMaxDataLen() << endl;
-        FilterKernel.Stream() << "FFT_RealSize = " << H.GetFFT_RealSize() << endl;
-        FilterKernel.Stream() << "H = " << H.GetFilterKernel();
+        FilterKernel.Stream() << "FilterLen = " << pH->GetFilterLen() << endl;
+        FilterKernel.Stream() << "MaxDataLen = " << pH->GetMaxDataLen() << endl;
+        FilterKernel.Stream() << "FFT_RealSize = " << pH->GetFFT_RealSize() << endl;
+        FilterKernel.Stream() << "H = " << pH->GetFilterKernel();
     }
 }
 

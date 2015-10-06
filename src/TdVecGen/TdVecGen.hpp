@@ -91,7 +91,7 @@ class TdVecGen
         // Resources
         // -----------------------------------------------------------------
         WhiteNoiseGenerator     *pWNG;              ///< White noise generator
-        cFilterKernel           H;                  ///< Filter kernel to shape the white noise
+        cFilterKernel           *pH;                ///< Filter kernel to shape the white noise
         FFT_RealVector          *pLastFFD;          ///< Pointer to the last generated Fractional Frequency Deviation vector
 
         // -----------------------------------------------------------------

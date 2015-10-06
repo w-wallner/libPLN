@@ -77,7 +77,7 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
     {
         case NO_FILTER:
         {
-            H   = cFilterKernel( TdVecLen, kw );
+            pH = new cFilterKernel( TdVecLen, kw );
             break;
         }
 
@@ -88,7 +88,7 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
 
             DebugSink.SaveHpFilterImpResp( &id );
 
-            H = cFilterKernel( TdVecLen, kw, id );
+            pH = new cFilterKernel( TdVecLen, kw, id );
             break;
         }
 
@@ -99,14 +99,14 @@ GenericTdVecGen::SetUpPLNConvFilter( PLN_FilterConfig_t PLN_FilterConf, HP_Filte
 
             DebugSink.SaveHpFilterImpResp( &bm );
 
-            H   = cFilterKernel( TdVecLen, kw, bm );
+            pH = new cFilterKernel( TdVecLen, kw, bm );
             break;
         }
     }
 
-    DebugSink.SaveFilterKernel( H );
+    DebugSink.SaveFilterKernel( pH );
 
-    FfdVecLen   = H.GetFFT_RealSize();
+    FfdVecLen   = pH->GetFFT_RealSize();
 }
 
 GenericTdVecGen::GenericTdVecGen( TdVecGenConfig_t Conf )

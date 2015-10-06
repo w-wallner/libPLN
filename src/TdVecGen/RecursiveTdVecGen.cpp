@@ -83,12 +83,12 @@ RecursiveTdVecGen::RecursiveTdVecGen( TdVecGenConfig_t Conf )
 
             DebugSink.SaveHpFilterImpResp( &id );
 
-            H = cFilterKernel( TdVecLen, id );
+            pH = new cFilterKernel( TdVecLen, id );
 
-            DebugSink.SaveFilterKernel( H );
+            DebugSink.SaveFilterKernel( pH );
 
             EnableHpFilter  = true;
-            FfdVecLen       = H.GetFFT_RealSize();
+            FfdVecLen       = pH->GetFFT_RealSize();
             break;
         }
 
@@ -99,12 +99,12 @@ RecursiveTdVecGen::RecursiveTdVecGen( TdVecGenConfig_t Conf )
 
             DebugSink.SaveHpFilterImpResp( &bm );
 
-            H   = cFilterKernel( TdVecLen, bm );
+            pH = new cFilterKernel( TdVecLen, bm );
 
-            DebugSink.SaveFilterKernel( H );
+            DebugSink.SaveFilterKernel( pH );
 
             EnableHpFilter  = true;
-            FfdVecLen       = H.GetFFT_RealSize();
+            FfdVecLen       = pH->GetFFT_RealSize();
             break;
         }
     }

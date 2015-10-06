@@ -67,12 +67,12 @@
 void
 TdVecGen::ApplyConvFilter( FFT_RealVector *pw )
 {
-    H.ApplyToSignal( pw );
+    pH->ApplyToSignal( pw );
 
     // Handle overlapping convolution part
     if( pLastFFD != NULL )
     {
-        std::transform( pw->begin(), pw->begin() + H.GetFilterLen(),
+        std::transform( pw->begin(), pw->begin() + pH->GetFilterLen(),
                         pLastFFD->begin() + TdVecLen,
                         pw->begin(), std::plus<double>() );
     }
@@ -136,6 +136,7 @@ TdVecGen::TdVecGen( TdVecGenConfig_t Conf )
     this->pLastFFD          = NULL;
 
     this->pWNG              = new WhiteNoiseGenerator( Conf.WhiteNoiseConf );
+    this->pH                = NULL;
 }
 
 TdVecGen::TdVecGen( const TdVecGen& other )
@@ -145,12 +146,12 @@ TdVecGen::TdVecGen( const TdVecGen& other )
       TdVecLen  ( other.TdVecLen    ),
       // House keeping
       Last_t_end    ( other.Last_t_end  ),
-      LastRelativeTD   ( other.LastRelativeTD ),
-      FfdVecLen     ( other.FfdVecLen   ),
-      // Resources
-      H             ( other.H             )
+      LastRelativeTD( other.LastRelativeTD ),
+      FfdVecLen     ( other.FfdVecLen   )
 {
+    // Resources
     pWNG        = (other.pWNG     != NULL) ? new WhiteNoiseGenerator( *other.pWNG ) : NULL;
+    pH          = (other.pH       != NULL) ? new cFilterKernel( *other.pH )         : NULL;
     pLastFFD    = (other.pLastFFD != NULL) ? new FFT_RealVector( *other.pLastFFD )  : NULL;
 }
 
@@ -159,6 +160,7 @@ TdVecGen::~TdVecGen()
     ResetConvFilter();
 
     delete pWNG;
+    delete pH;
 }
 
 TdVecGen&
@@ -175,8 +177,8 @@ TdVecGen::operator=( const TdVecGen& other )
     this->FfdVecLen         = other.FfdVecLen;
 
     // Resources
-    this->H                 = other.H;
     this->pWNG              = (other.pWNG     != NULL) ? new WhiteNoiseGenerator( *other.pWNG ) : NULL;
+    this->pH                = (other.pH       != NULL) ? new cFilterKernel( *other.pH )         : NULL;
     this->pLastFFD          = (other.pLastFFD != NULL) ? new FFT_RealVector( *other.pLastFFD )  : NULL;
 
     // By convention, always return *this
