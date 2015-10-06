@@ -183,7 +183,7 @@ cWatchQuartz_20MHz::TdEstChain_RW::GetConfig_100uHz(unsigned int Seed, bool Enab
 cWatchQuartz_20MHz::TdEstChain_RW::TdEstChain_RW( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
     : TdEstChain( FSA::ALPHA_RW, SeedOffset )
 {
-    AddTdEstimator( GetConfig_100Hz(Seed + SeedOffset + 0, EnableIntervalSkipping) );
+    AddTdEstimator( GetConfig_100Hz (Seed + SeedOffset + 0, EnableIntervalSkipping) );
     AddTdEstimator( GetConfig_1Hz   (Seed + SeedOffset + 1, EnableIntervalSkipping) );
     AddTdEstimator( GetConfig_10mHz (Seed + SeedOffset + 2, EnableIntervalSkipping) );
     AddTdEstimator( GetConfig_100uHz(Seed + SeedOffset + 3, EnableIntervalSkipping) );
