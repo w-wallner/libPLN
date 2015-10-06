@@ -39,7 +39,6 @@
 #include "TdEst/TdEstConfig.hpp"
 #include "TdVector/TdVector.hpp"
 #include "TdEst/TdFixPoint.hpp"
-#include "Filter/FilterKernel.hpp"
 
 // =========================================================================
 // Defines
@@ -50,6 +49,7 @@
 // =========================================================================
 
 class WhiteNoiseGenerator;
+class cFilterKernel;
 
 /// Generator for TdVectors
 class TdVecGen

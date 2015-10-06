@@ -41,6 +41,7 @@
 #include "TdVector/TdVectorCubSpline.hpp"
 
 #include "TdVecGen/WhiteNoiseGenerator/WhiteNoiseGenerator.hpp"
+#include "Filter/FilterKernel.hpp"
 
 #include "DebugTools/DebugSink.hpp"
 

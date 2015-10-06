@@ -43,6 +43,7 @@
 #include "Filter/KwFilterImpResp.hpp"
 #include "Filter/BmHpFilterImpResp.hpp"
 #include "TdVecGen/WhiteNoiseGenerator/WhiteNoiseGenerator.hpp"
+#include "Filter/FilterKernel.hpp"
 
 #include "DebugTools/DebugSink.hpp"
 
