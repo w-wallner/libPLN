@@ -158,11 +158,11 @@ AvgOscChainTestBench()
     cAvgOsc20MHz::TdEstChain_RW     RwChain (50, Seed, Skip);
     TdEstChain  c(FSA::ALPHA_WFM, 0);
 
-    c = WpmChain;
+    //c = WpmChain;
     //c = FpmChain;
     //c = WfmChain;
     //c = FfmChain;
-    //c = RwChain;
+    c = RwChain;
 
     double  fs;
     double  dt;
@@ -174,11 +174,13 @@ AvgOscChainTestBench()
     fs = 40E6;
     //fs = 4E6;
     //fs = 1E5;
-    //fs = 400;
+    fs = 400;
+    fs = 100E-3;
 
     NumSamples  = 10200;
-    NumSamples  = 100000;
-    NumSamples  = 1000000;
+    NumSamples  = 1E5;
+    NumSamples  = 1E6;
+    //NumSamples  = 1E7;
 
     SampleChain( c, t, fs, NumSamples, true, true, "/main/td.txt" );
 }
