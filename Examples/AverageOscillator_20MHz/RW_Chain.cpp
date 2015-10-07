@@ -93,7 +93,7 @@ cAvgOsc20MHz::TdEstChain_RW::GetConfig_100Hz(unsigned int Seed, bool EnableInter
 cAvgOsc20MHz::TdEstChain_RW::TdEstChain_RW( unsigned int SeedOffset, unsigned int Seed, bool EnableIntervalSkipping )
     : TdEstChain( FSA::ALPHA_RW, SeedOffset )
 {
-    AddTdEstimator( GetConfig_100Hz(Seed + 0, EnableIntervalSkipping) );
+    AddTdEstimator( GetConfig_100Hz(Seed + SeedOffset + 0, EnableIntervalSkipping) );
 }
 
 }
