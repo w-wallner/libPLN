@@ -256,7 +256,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100uHz(unsigned int Seed, bool Ena
     config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
-    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.005;
+    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0;
     config.TdVecGenConf.HP_FilterConf.FilterLen         = 0;
     config.TdVecGenConf.HP_FilterConf.Cnt               = 0;
 

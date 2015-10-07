@@ -166,7 +166,7 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_100Hz(unsigned int Seed, bool EnableInte
     config.TdVecGenConf.PLN_FilterConf.FilterLen        = 0;
 
     config.TdVecGenConf.HP_FilterConf.FilterType        = NO_FILTER;
-    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0.01;
+    config.TdVecGenConf.HP_FilterConf.f_c_nom           = 0;
     config.TdVecGenConf.HP_FilterConf.FilterLen         = 0;
     config.TdVecGenConf.HP_FilterConf.Cnt               = 0;
 
