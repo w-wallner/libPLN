@@ -45,6 +45,7 @@
 #include "TdVecGen/WfmTdVecGen.hpp"
 #include "TdVecGen/RwTdVecGen.hpp"
 #include "TdVecGen/TdVecGenFactory.hpp"
+#include "Utils/ErrorHandling.hpp"
 
 // =========================================================================
 // Defines
@@ -111,6 +112,32 @@ TdEstimator::GuessFutureRelativeTD( double t_req )
     return RelativeTD;
 }
 
+double
+TdEstimator::CalcTval( TdEstimatorConfig Conf )
+{
+    double  f_s     = Conf.TdVecGenConf.SampleConf.f_s;
+    double  f_c_nom = Conf.TdVecGenConf.HP_FilterConf.f_c_nom;
+    double  T_val   = Conf.TimeConf.T_val;
+
+
+    if( (T_val == 0) && (f_c_nom == 0))
+    {
+        ExitOnFailure( "Invalid configuration: T_val and f_c_nom are both 0." );
+    }
+
+    if( T_val != 0 )
+    {
+        return Conf.TimeConf.T_val;
+    }
+    else
+    {
+        double  f_c     = f_s * f_c_nom;
+        double  T_c     = 1.0L / f_c;
+
+        return 2 * T_c;
+    }
+}
+
 TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     : TdVecStorage( Conf.PerformanceConf.ForgetTh ),
       LastResult( 0.0L, 0.0L )
@@ -119,8 +146,8 @@ TdEstimator::TdEstimator( TdEstimatorConfig Conf )
     f_s         = Conf.TdVecGenConf.SampleConf.f_s;
     TdVecLen    = Conf.TdVecGenConf.SampleConf.TdVecLen;
     alpha       = Conf.TdVecGenConf.PLN_FilterConf.alpha;
+    T_val       = CalcTval( Conf );
 
-    T_val                   = Conf.TimeConf.T_val;
     IntervalSkippingEnabled = Conf.TimeConf.EnableIntervalSkipping;
 
     // Resulting config

@@ -111,6 +111,13 @@ class TdEstimator
         /// \return         The estimated time deviation at that time.
         double  GuessFutureRelativeTD( double t_req );
 
+        /// Calculate the T_val parameter that is used to decide if an estimator may skip or not
+        ///
+        /// \param  Conf    Estimator config
+        ///
+        /// \return         Interval up to which an estimator is considered 'valid'
+        double  CalcTval( TdEstimatorConfig Conf );
+
     public:
 
         // -----------------------------------------------------------------
