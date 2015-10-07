@@ -82,7 +82,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_20MHz(unsigned int Seed, bool Enab
 
     config.TdVecGenConf.InterpolConf.InterPolType       = LINEAR_INTERPOLATION;
 
-    config.TimeConf.T_val                               = 2E-6;
+    config.TimeConf.T_val                               = 0;
     config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
     config.PerformanceConf.ForgetTh                     = 0;
@@ -112,7 +112,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_1MHz(unsigned int Seed, bool Enabl
 
     config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                               = 200E-6;
+    config.TimeConf.T_val                               = 0;
     config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
     config.PerformanceConf.ForgetTh                     = 0;
@@ -142,7 +142,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_10kHz(unsigned int Seed, bool Enab
 
     config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                               = 20E-3;
+    config.TimeConf.T_val                               = 0;
     config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
     config.PerformanceConf.ForgetTh                     = 0;
@@ -172,7 +172,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_100Hz(unsigned int Seed, bool Enab
 
     config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                               = 2;
+    config.TimeConf.T_val                               = 0;
     config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
     config.PerformanceConf.ForgetTh                     = 0;
@@ -202,7 +202,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_1Hz(unsigned int Seed, bool Enable
 
     config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                               = 200;
+    config.TimeConf.T_val                               = 0;
     config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
     config.PerformanceConf.ForgetTh                     = 0;
@@ -232,7 +232,7 @@ cWatchQuartz_20MHz::TdEstChain_WFM::GetConfig_10mHz(unsigned int Seed, bool Enab
 
     config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                               = 20E3;
+    config.TimeConf.T_val                               = 0;
     config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
     config.PerformanceConf.ForgetTh                     = 0;

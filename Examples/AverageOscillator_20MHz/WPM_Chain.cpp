@@ -82,7 +82,7 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_20MHz(unsigned int Seed, bool EnableInte
 
     config.TdVecGenConf.InterpolConf.InterPolType       = LINEAR_INTERPOLATION;
 
-    config.TimeConf.T_val                               = 2E-6;
+    config.TimeConf.T_val                               = 0;
     config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
     config.PerformanceConf.ForgetTh                     = 0;
@@ -112,7 +112,7 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_1MHz(unsigned int Seed, bool EnableInter
 
     config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                               = 200E-6;
+    config.TimeConf.T_val                               = 0;
     config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
     config.PerformanceConf.ForgetTh                     = 0;
@@ -142,7 +142,7 @@ cAvgOsc20MHz::TdEstChain_WPM::GetConfig_10kHz(unsigned int Seed, bool EnableInte
 
     config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                               = 20E-3;
+    config.TimeConf.T_val                               = 0;
     config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
     config.PerformanceConf.ForgetTh                     = 0;
