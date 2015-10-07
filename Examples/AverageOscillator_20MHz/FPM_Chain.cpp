@@ -172,7 +172,7 @@ cAvgOsc20MHz::TdEstChain_FPM::GetConfig_100Hz(unsigned int Seed, bool EnableInte
 
     config.TdVecGenConf.InterpolConf.InterPolType       = CUBIC_SPLINE_INTERPOLATION;
 
-    config.TimeConf.T_val                               = 20;
+    config.TimeConf.T_val                               = 10;
     config.TimeConf.EnableIntervalSkipping              = EnableIntervalSkipping;
 
     config.PerformanceConf.ForgetTh                     = 0;
