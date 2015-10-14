@@ -22,5 +22,6 @@ IF(UNIX AND CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")
 ENDIF()
 
 add_subdirectory(src)
-add_subdirectory(Tests)
 add_subdirectory(Examples)
+add_subdirectory(Tests)
+add_subdirectory(Demos)
