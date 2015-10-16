@@ -66,17 +66,23 @@ Examples
 
 Implementation of an oscillator with an Allan Deviation as given in:
 
-A Novel, High Resolution Oscillator Model for DES Systems
-Georg Gaderer, et al
-Proceedings of the Frequency Control Symposium, 2008
+    A Novel, High Resolution Oscillator Model for DES Systems
+    Georg Gaderer, et al
+    Proceedings of the Frequency Control Symposium, 2008
+
+TODO: PSD  
+TODO: ADEV
 
 ### Watch oscillator
 
 Implementation of an oscillator with an Allan Deviation as given in:
 
-The Accuracy and Stability of Quartz Watches
-Michael Lombardi
-Horological Journal, February 2008
+    The Accuracy and Stability of Quartz Watches
+    Michael Lombardi
+    Horological Journal, February 2008
+
+TODO: PSD  
+TODO: ADEV
 
 Documentation format
 -------------------------------
