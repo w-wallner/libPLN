@@ -653,7 +653,20 @@ PlnGenConfig::ParseProgramOptions( int argc, char *argv[] )
             ExitOnError( "Nominal cut-off frequency must be in the interval (0.0,1.0)" );
         }
 
-        ret.TdVecGenConfig.HP_FilterConf.FilterLen    = o.hp.length;
+        if( o.hp.length == 0 )
+        {
+            ret.TdVecGenConfig.HP_FilterConf.FilterLen    = 1001;
+
+            if( ret.verbose )
+            {
+                cout << "Using default high-pass filter length: " << ret.TdVecGenConfig.HP_FilterConf.FilterLen << endl;
+            }
+        }
+        else
+        {
+            ret.TdVecGenConfig.HP_FilterConf.FilterLen    = o.hp.length;
+        }
+
         ret.TdVecGenConfig.HP_FilterConf.Cnt          = 1;
     }
     else
