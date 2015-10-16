@@ -64,6 +64,11 @@
 FilterImpResp::FilterImpResp( size_t FilterLen )
     :h_( FilterLen, 0.0L )
 {
+    if( FilterLen == 0 )
+    {
+        throw std::invalid_argument( "Filter impulse response length must be larger than 0." );
+    }
+
     this->FilterLen     = FilterLen;
     this->ResponseLen   = FilterLen;
 }
