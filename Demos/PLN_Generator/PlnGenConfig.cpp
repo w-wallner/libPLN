@@ -67,7 +67,7 @@ const std::string    PlnGenConfig::verbose_desc         = "verbose";
 const std::string    PlnGenConfig::very_verbose_desc    = "very-verbose";
 
 // Sampling options
-const std::string    PlnGenConfig::fs_desc1             = "simulated-frequency";
+const std::string    PlnGenConfig::fs_desc1             = "sampling-frequency";
 const std::string    PlnGenConfig::fs_desc2             = "fs";
 
 // PLN filtering options
@@ -75,7 +75,7 @@ const std::string    PlnGenConfig::plnm_desc1           = "pln-filter-method";
 const std::string    PlnGenConfig::plnm_desc2           = "plnm";
 const std::string    PlnGenConfig::qd_desc              = "qd";
 const std::string    PlnGenConfig::alpha_desc           = "alpha";
-const std::string    PlnGenConfig::kwl_desc1            = "kw-filter-len";
+const std::string    PlnGenConfig::kwl_desc1            = "kw-filter-length";
 const std::string    PlnGenConfig::kwl_desc2            = "kwl";
 
 // HP filtering options
@@ -83,7 +83,7 @@ const std::string    PlnGenConfig::hpm_desc1            = "high-pass-filter-meth
 const std::string    PlnGenConfig::hpm_desc2            = "hpm";
 const std::string    PlnGenConfig::hpfc_desc1           = "high-pass-f-c-nom";
 const std::string    PlnGenConfig::hpfc_desc2           = "hpfc";
-const std::string    PlnGenConfig::hpl_desc1            = "high-pass-filter-len";
+const std::string    PlnGenConfig::hpl_desc1            = "high-pass-filter-length";
 const std::string    PlnGenConfig::hpl_desc2            = "hpl";
 
 // Interpolation options
