@@ -1,0 +1,7 @@
+*~
+Debug
+Release
+build*
+*.a
+*.so
+*.html

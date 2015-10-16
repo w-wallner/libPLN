@@ -1,0 +1,17 @@
+
+=====================================================================
+Image credits:
+=====================================================================
+
+---------------------------------------------------------------------
+Project logo:
+---------------------------------------------------------------------
+
+The project logo ('ProjectLogo.png') is a customized version of the
+'alarmd.png' file which is part of the Buttonized 4.0 icon set.
+
+The Buttonized icon theme is GPL licensed, and available at [1].
+
+References:
+
+[1] http://kde-look.org/content/show.php/?content=161553
