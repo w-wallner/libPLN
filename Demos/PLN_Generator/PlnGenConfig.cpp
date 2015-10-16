@@ -501,6 +501,12 @@ PlnGenConfig::ParseProgramOptions( int argc, char *argv[] )
 
     Options o = ReadOptions( argc, argv );
 
+    if( argc == 1 )
+    {
+        cout << "No parameters supplied, using default parameters, and enabling the verbose flag." << endl;
+        o.generic.verbose   = true;
+    }
+
     // Generic config
     ret.verbose     = o.generic.verbose | o.generic.very_verbose;
     ret.veryVerbose = o.generic.very_verbose;
