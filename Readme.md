@@ -85,15 +85,80 @@ Implementation of an oscillator with an Allan Deviation similar as the one given
 Documentation format
 -------------------------------
  
-The documentation files in this repository are written in [Markdown][1] (line ending *.md).
+The documentation files in this repository are written in [Markdown][3] (line ending *.md).
 They can be either read in a text editor, are converted to HTML using the markdown utility.
 
-[1]: https://daringfireball.net/projects/markdown/
+[3]: https://daringfireball.net/projects/markdown/
 
 Building
 ---------------------
 
-See the INSTALL file in the `Documentation` directory for details.
+### Supported platforms:
+
+Building was tested on Linux and Windows using Cygwin and MinGW.
+The software is designed to be portable, thus it is likely that it will work (maybe with small adjustments) also on other platforms.
+
+### Requirements:
+
+The project uses [CMake][2] as its build system.
+Additionally, it depends on
+
+* the [Boost][3] library
+* the [FFTW32][4] library
+
+These libraries need to be present on your system for a successful build.
+
+[2]: https://cmake.org/
+[3]: http://www.boost.org/
+[4]: http://www.fftw.org/
+
+### Building the library
+
+* Start the CMake GUI from a shell that has your compiler of choice in its path.
+*Remark:* The main motivation for the development of libPLN was to use it with the [OMNeT++ Discrete Event Simulator][5].
+If you would like to use libPLN on Windows with OMNeT++, you will have to make sure to use the compiler provided by OMNeT++ for the compilation of libPLN.
+OMNeT++ provides a shell with correctly configured PATHs that can be used for this purpose.
+
+[5]: https://omnetpp.org/
+
+* Choose standard UNIX Makefiles as the build target
+
+* Hit `Configure` in the CMake GUI.
+On Windows you will have to configure the paths to FFTW and Boost during the configuration stage.
+On Linux both should be found automatically if they are installed in a standard path.
+
+* Hit `Generate` in the CMake GUI.
+
+* Close CMake GUI.
+
+* Call `make` with one of the following targets:
+
+ * **`PLN`** Builds the basic `libPLN` library file (as static library)
+ * **`PLN_Examples`** Builds a library with the provided example oscillators, called `libPLN_Examles` (also built as static library)
+ * **`all`** Calls the `PLN` and `PLN_Examples` build targets
+ * **`install`** Installs `libPLN` and `libPLN_Examples` in the `lib/static` directory
+ * **`TestBench`** A test program used during development to catch regressions
+ * **`SimpleDemo`** A rather simple demo program to demonstrate the libPLN usage
+ * **`PLN_Generator`** A more sophisticated demo program implementing the simulations of continuously sampled time deviation samples
+
+Credits
+---------------------
+
+This library make heavy use of other open source projects.
+I would like to thank the respective authors for publishing their projects, they have helped me a lot!
+The used projects are:
+
+* FFTW: the Fastest Fourier Transform in the West  
+   http://www.fftw.org/
+
+* C++ Bricks interface for FFTW  
+   https://gitorious.org/cpp-bricks
+
+* Spline: a cubic spline implementation in C++  
+   http://kluge.in-chemnitz.de/opensource/spline/
+
+* Numeric tricks  
+   https://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
 
 License
 ---------------------
