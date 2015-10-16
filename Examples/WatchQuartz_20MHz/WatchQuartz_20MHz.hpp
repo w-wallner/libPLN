@@ -2,30 +2,37 @@
 ///
 /// \file
 ///
-/// \brief  TODO
+/// \brief  Examples of a watch quartz (low precision)
 ///
-/// TODO
+/// In the publication [1], the last figure shows the Allan Deviation of
+/// motor and quartz of several different watches.
+/// The Allan Deviation implemented in this example is shaped to match
+/// that of Watch B in the mentioned graph.
 ///
-/// \ingroup module_main
+/// [1]     The Accuracy and Stability of Quartz Watches
+///         Michael Lombardi
+///         Horological Journal, February 2008
+///
+/// \ingroup module_examples_watch_quartz
 ///
 // ============================================================================
 
 // ============================================================================
-// 
+//
 // Copyright 2015 Wolfgang Wallner (wolfgang-wallner AT gmx.at)
-// 
+//
 // This file is part of libPLN.
-// 
+//
 // libPLN is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License.com as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // libPLN is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License.com for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License.com
 // along with libPLN.  If not, see <http://www.gnu.org/licenses/>.
 //
