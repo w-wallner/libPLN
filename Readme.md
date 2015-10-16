@@ -59,7 +59,7 @@ An example for a generated noise vector is shown in the following image:
 
 ![PLN_Generator example](img/PLN_Generator_Example.png)
 
-Exmaples
+Examples
 -------------------------------
  
 ### Average oscillator 
