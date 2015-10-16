@@ -130,14 +130,17 @@ void DetailedBench_AvgOsc()
 
     double   FrequList[]    =
     {
-        50E6,    //20E6,   10E6,
-        5E6,     //2E6,    1E6,
-        500E3,   //200E3,  100E3,
-        50E3,    //20E3,   10E3,
-        5E3,     //2E3,    1E3,
-        500E0,   //200E0,  100E0,
-        50E0,    //20E0,   10E0,
-        5E0,     //2E0,    1E0,
+        50E6,    20E6,   10E6,
+        5E6,     2E6,    1E6,
+        500E3,   200E3,  100E3,
+        50E3,    20E3,   10E3,
+        5E3,     2E3,    1E3,
+        500E0,   200E0,  100E0,
+        50E0,    20E0,   10E0,
+        5E0,     2E0,    1E0,
+        500E-3,  200E-3, 100E-3,
+        50E-3,   200E-3, 10E-3,
+        5E-3,    2E-3,   1E-3,
     };
 
     size_t          NumSamples;
@@ -151,7 +154,7 @@ void DetailedBench_AvgOsc()
 
     NumSamples   = 100000;      // 10^5
 //    NumSamples   = 1000000;     // 10^6
-//    NumSamples   = 10000000;    // 10^7
+    NumSamples   = 10000000;    // 10^7
 //    NumSamples   = 100000000;   // 10^8     Max @ Matlab
 
     std::vector<double> f_s( FrequList, FrequList + NumElements(FrequList) );
@@ -165,20 +168,20 @@ void DetailedBench_WatchQuartz()
 
     double   FrequList[]    =
     {
-        //50E6,    //20E6,   10E6,
-        //5E6,     //2E6,    1E6,
-        //500E3,   //200E3,  100E3,
-        //50E3,    //20E3,   10E3,
-        //5E3,     //2E3,    1E3,
-        //500E0,   //200E0,  100E0,
-        //50E0,    //20E0,   10E0,
-        5E0,     //2E0,    1E0,
-        500E-3,   //200E-3,  100E-3,
-        50E-3,    //20E-3,   10E-3,
-        5E-3,     //2E-3,    1E-3,
-        500E-6,   //200E-6,  100E-6,
-        50E-6,    //20E-6,   10E-6,
-        5E-6,     //2E-6,    1E-6,
+        50E6,   20E6,   10E6,
+        5E6,    2E6,    1E6,
+        500E3,  200E3,  100E3,
+        50E3,   20E3,   10E3,
+        5E3,    2E3,    1E3,
+        500E0,  200E0,  100E0,
+        50E0,   20E0,   10E0,
+        5E0,    2E0,    1E0,
+        500E-3, 200E-3,  100E-3,
+        50E-3,  20E-3,   10E-3,
+        5E-3,   2E-3,    1E-3,
+        500E-6, 200E-6,  100E-6,
+        50E-6,  20E-6,   10E-6,
+        5E-6,   2E-6,    1E-6,
     };
 
     size_t          NumSamples;
@@ -192,7 +195,7 @@ void DetailedBench_WatchQuartz()
 
     NumSamples   = 100000;      // 10^5
     NumSamples   = 1000000;     // 10^6
-//    NumSamples   = 10000000;    // 10^7
+    NumSamples   = 10000000;    // 10^7
 //    NumSamples   = 100000000;   // 10^8     Max @ Matlab
 
     std::vector<double> f_s( FrequList, FrequList + NumElements(FrequList) );
