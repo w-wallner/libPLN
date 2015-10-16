@@ -57,32 +57,30 @@ This is a command line tool that uses libPLN to implement the simulation of cont
 For details on its usage, see its Readme and Manual documents.
 An example for a generated noise vector is shown in the following image:
 
-![PLN_Generator example](img/PLN_Generator_Example.png)
+![PLN_Generator example](img/Demos/PLN_Generator_Example.png)
 
 Examples
 -------------------------------
  
 ### Average oscillator 
 
-Implementation of an oscillator with an Allan Deviation as given in:
+Implementation of an oscillator with an Allan Deviation similar as the one given in:
 
     A Novel, High Resolution Oscillator Model for DES Systems
     Georg Gaderer, et al
     Proceedings of the Frequency Control Symposium, 2008
 
-TODO: PSD  
-TODO: ADEV
+![ADEV and PSD plot of AvgOscillator example](img/Examples/AvgOsc.png)
 
 ### Watch oscillator
 
-Implementation of an oscillator with an Allan Deviation as given in:
+Implementation of an oscillator with an Allan Deviation similar as the one given in:
 
     The Accuracy and Stability of Quartz Watches
     Michael Lombardi
     Horological Journal, February 2008
 
-TODO: PSD  
-TODO: ADEV
+![ADEV and PSD plot of WatchQuartz example](img/Examples/WatchQuartz.png)
 
 Documentation format
 -------------------------------
