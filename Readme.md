@@ -144,7 +144,7 @@ On Linux both should be found automatically if they are installed in a standard 
 Credits
 ---------------------
 
-This library make heavy use of other open source projects.
+This library makes heavy use of other open source projects.
 I would like to thank the respective authors for publishing their projects, they have helped me a lot!
 The used projects are:
 
