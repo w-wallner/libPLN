@@ -106,16 +106,11 @@ const std::string    PlnGenConfig::ofn_desc2            = "of";
 // Frequency dimension map for parser
 static const PlnGenConfig::DimensionMap_t FrequencyMap[] =
 {
-    {   "GHz",  1E9 },
-    {   "Ghz",  1E9 },
-    {   "ghz",  1E9 },
-    {   "MHz",  1E6 },
-    {   "Mhz",  1E6 },
-    {   "mhz",  1E6 },
-    {   "kHz",  1E3 },
-    {   "khz",  1E3 },
-    {   "Hz",   1E0 },
-    {   "hz",   1E0 },
+    {   "GHz",  1E9  },
+    {   "MHz",  1E6  },
+    {   "kHz",  1E3  },
+    {   "Hz",   1E0  },
+    {   "mHz",  1E-3 },
 };
 
 // =========================================================================
