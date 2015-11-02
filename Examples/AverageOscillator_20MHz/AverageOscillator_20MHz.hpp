@@ -35,8 +35,8 @@
 //
 // ============================================================================
 
-#ifndef AVERAGE_OSCILLATOR_20MHZ_HPP_
-#define AVERAGE_OSCILLATOR_20MHZ_HPP_
+#ifndef LIBPLN_EXAMPLES_AVERAGEOSCILLATOR_20MHZ_AVERAGEOSCILLATOR_20MHZ_HPP_
+#define LIBPLN_EXAMPLES_AVERAGEOSCILLATOR_20MHZ_AVERAGEOSCILLATOR_20MHZ_HPP_
 
 // =========================================================================
 // Includes

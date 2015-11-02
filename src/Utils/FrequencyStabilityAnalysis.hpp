@@ -30,9 +30,8 @@
 //
 // ============================================================================
 
-
-#ifndef SRC_UTILS_FREQUENCY_STABILITY_ANALYSIS_HPP_
-#define SRC_UTILS_FREQUENCY_STABILITY_ANALYSIS_HPP_
+#ifndef LIBPLN_SRC_UTILS_FREQUENCYSTABILITYANALYSIS_HPP_
+#define LIBPLN_SRC_UTILS_FREQUENCYSTABILITYANALYSIS_HPP_
 
 namespace FSA
 {

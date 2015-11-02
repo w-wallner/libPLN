@@ -38,8 +38,8 @@
 //
 // ============================================================================
 
-#ifndef WATCH_QUARTZ_20MHZ_HPP_
-#define WATCH_QUARTZ_20MHZ_HPP_
+#ifndef LIBPLN_EXAMPLES_WATCH_QUARTZ_20MHZ_WATCH_QUARTZ_20MHZ_HPP_
+#define LIBPLN_EXAMPLES_WATCH_QUARTZ_20MHZ_WATCH_QUARTZ_20MHZ_HPP_
 
 // =========================================================================
 // Includes

@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef VECTOR_TYPES_HPP_
-#define VECTOR_TYPES_HPP_
+#ifndef LIBPLN_SRC_UTILS_VECTOR_TYPES_HPP_
+#define LIBPLN_SRC_UTILS_VECTOR_TYPES_HPP_
 
 // =========================================================================
 // Includes
