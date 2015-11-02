@@ -76,8 +76,8 @@
 //
 // ============================================================================
 
-#ifndef LIBPLN_HPP_
-#define LIBPLN_HPP_
+#ifndef LIBPLN_SRC_LIBPLN_HPP_
+#define LIBPLN_SRC_LIBPLN_HPP_
 
 // =========================================================================
 // Includes

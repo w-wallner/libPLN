@@ -30,8 +30,8 @@
 //
 // ============================================================================
 
-#ifndef TDFIXPOINT_HPP_
-#define TDFIXPOINT_HPP_
+#ifndef LIBPLN_SRC_TDEST_TDFIXPOINT_HPP_
+#define LIBPLN_SRC_TDEST_TDFIXPOINT_HPP_
 
 // =========================================================================
 // Includes

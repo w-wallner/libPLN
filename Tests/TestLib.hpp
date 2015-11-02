@@ -31,8 +31,8 @@
 //
 // ============================================================================
 
-#ifndef TEST_LIB_HPP_
-#define TEST_LIB_HPP_
+#ifndef LIBPLN_TEST_TEST_LIB_HPP_
+#define LIBPLN_TEST_TEST_LIB_HPP_
 
 // =========================================================================
 // Includes

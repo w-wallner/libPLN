@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef DEBUG_CONFIG_HPP_
-#define DEBUG_CONFIG_HPP_
+#ifndef LIBPLN_SRC_DEBUGTOOLS_DEBUGCONFIG_HPP_
+#define LIBPLN_SRC_DEBUGTOOLS_DEBUGCONFIG_HPP_
 
 // =========================================================================
 // Includes

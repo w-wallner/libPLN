@@ -30,8 +30,8 @@
 //
 // ============================================================================
 
-#ifndef RW_TD_VEC_GEN_HPP_
-#define RW_TD_VEC_GEN_HPP_
+#ifndef LIBPLN_SRC_TDVECGEN_RWTDVECGEN_HPP_
+#define LIBPLN_SRC_TDVECGEN_RWTDVECGEN_HPP_
 
 // =========================================================================
 // Includes

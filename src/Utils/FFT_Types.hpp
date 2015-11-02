@@ -22,8 +22,8 @@
 //
 // ============================================================================
 
-#ifndef FFT_TYPES_HPP_
-#define FFT_TYPES_HPP_
+#ifndef LIBPLN_SRC_UTILS_FTTYPES_HPP_
+#define LIBPLN_SRC_UTILS_FTTYPES_HPP_
 
 // =========================================================================
 // Includes

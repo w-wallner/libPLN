@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef NUMERICTRICKS_HPP_
-#define NUMERICTRICKS_HPP_
+#ifndef LIBPLN_SRC_UTILS_NUMERICTRICKS_HPP_
+#define LIBPLN_SRC_UTILS_NUMERICTRICKS_HPP_
 
 // =========================================================================
 // Includes

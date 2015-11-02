@@ -31,8 +31,8 @@
 //
 // ============================================================================
 
-#ifndef ORACLETB_HPP_
-#define ORACLETB_HPP_
+#ifndef LIBPLN_TESTS_ORACLETB_HPP_
+#define LIBPLN_TESTS_ORACLETB_HPP_
 
 // =========================================================================
 // Includes

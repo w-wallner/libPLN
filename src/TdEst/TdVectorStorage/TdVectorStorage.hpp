@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef TDVECTORSTORAGE_HPP_
-#define TDVECTORSTORAGE_HPP_
+#ifndef LIBPLN_SRC_TDEST_TD_VECTOR_STORAGE_HPP_
+#define LIBPLN_SRC_TDEST_TD_VECTOR_STORAGE_HPP_
 
 // =========================================================================
 // Includes

@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef DEBUG_SINK_HPP_
-#define DEBUG_SINK_HPP_
+#ifndef LIBPLN_SRC_DEBUGTOOLS_DEBUGSINK_HPP_
+#define LIBPLN_SRC_DEBUGTOOLS_DEBUGSINK_HPP_
 
 // =========================================================================
 // Includes

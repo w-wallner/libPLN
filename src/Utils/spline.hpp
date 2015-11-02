@@ -35,8 +35,8 @@
 //
 // ============================================================================
 
-#ifndef _tk_spline_h
-#define _tk_spline_h
+#ifndef LIBPLN_SRC_UTILS_SPLIN_HPP_
+#define LIBPLN_SRC_UTILS_SPLIN_HPP_
 
 #include <cstdio>
 #include <cassert>

@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef WHITE_NOISE_GENERATOR_HPP_
-#define WHITE_NOISE_GENERATOR_HPP_
+#ifndef LIBPLN_SRC_TDVECGEN_WHITENOISEGENERATOR_HPP_
+#define LIBPLN_SRC_TDVECGEN_WHITENOISEGENERATOR_HPP_
 
 // =========================================================================
 // Includes

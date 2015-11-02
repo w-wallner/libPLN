@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef FILTERIMPRESP_HPP_
-#define FILTERIMPRESP_HPP_
+#ifndef LIBPLN_SRC_FILTER_FILTERIMPRESP_HPP_
+#define LIBPLN_SRC_FILTER_FILTERIMPRESP_HPP_
 
 // =========================================================================
 // Includes

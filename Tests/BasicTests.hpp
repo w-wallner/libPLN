@@ -31,8 +31,8 @@
 //
 // ============================================================================
 
-#ifndef BASICTESTS_HPP_
-#define BASICTESTS_HPP_
+#ifndef LIBPLN_TESTS_BASICTESTS_HPP_
+#define LIBPLN_TESTS_BASICTESTS_HPP_
 
 // =========================================================================
 // Includes

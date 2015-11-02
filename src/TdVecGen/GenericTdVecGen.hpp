@@ -31,8 +31,8 @@
 //
 // ============================================================================
 
-#ifndef TDVECGEN_GENERICTDVECGEN_HPP_
-#define TDVECGEN_GENERICTDVECGEN_HPP_
+#ifndef LIBPLN_SRC_TDVECGEN_GENERICTDVECGEN_HPP_
+#define LIBPLN_SRC_TDVECGEN_GENERICTDVECGEN_HPP_
 
 // =========================================================================
 // Includes

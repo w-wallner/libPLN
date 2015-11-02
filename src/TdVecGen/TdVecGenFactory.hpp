@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef TD_VEC_GEN_FACTORY_HPP_
-#define TD_VEC_GEN_FACTORY_HPP_
+#ifndef LIBPLN_SRC_TDVECGEN_TDVECGENFACTORY_HPP_
+#define LIBPLN_SRC_TDVECGEN_TDVECGENFACTORY_HPP_
 
 // =========================================================================
 // Includes

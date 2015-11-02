@@ -30,8 +30,8 @@
 //
 // ============================================================================
 
-#ifndef TDVECGEN_WPMTDVECGEN_HPP_
-#define TDVECGEN_WPMTDVECGEN_HPP_
+#ifndef LIBPLN_SRC_TDVECGEN_WPMTDVECGEN_HPP_
+#define LIBPLN_SRC_TDVECGEN_WPMTDVECGEN_HPP_
 
 // =========================================================================
 // Includes

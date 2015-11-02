@@ -31,8 +31,8 @@
 //
 // ============================================================================
 
-#ifndef LIBPLN_DEMOS_PLN_GEN_CONFIG_HPP_
-#define LIBPLN_DEMOS_PLN_GEN_CONFIG_HPP_
+#ifndef LIBPLN_DEMOS_PLNGENERATOR_PLNGENCONFIG_HPP_
+#define LIBPLN_DEMOS_PLNGENERATOR_PLNGENCONFIG_HPP_
 
 // =========================================================================
 // Includes

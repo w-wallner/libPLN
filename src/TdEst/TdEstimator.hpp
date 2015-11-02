@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef TD_ESTIMATOR_HPP_
-#define TD_ESTIMATOR_HPP_
+#ifndef LIBPLN_SRC_TDEST_TDESTIMATOR_HPP_
+#define LIBPLN_SRC_TDEST_TDESTIMATOR_HPP_
 
 // =========================================================================
 // Includes

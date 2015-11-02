@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef IDENTITY_FILTER_IMP_RESP_HPP_
-#define IDENTITY_FILTER_IMP_RESP_HPP_
+#ifndef LIBPLN_SRC_FILTER_IDENTITYFILTERIMPRESP_HPP_
+#define LIBPLN_SRC_FILTER_IDENTITYFILTERIMPRESP_HPP_
 
 // =========================================================================
 // Includes

@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef TD_VECTOR_CUB_SPLINE_HPP_
-#define TD_VECTOR_CUB_SPLINE_HPP_
+#ifndef LIBPLN_SRC_TDVECTOR_TDVECTORCUBSPLINE_HPP_
+#define LIBPLN_SRC_TDVECTOR_TDVECTORCUBSPLINE_HPP_
 
 // =========================================================================
 // Includes

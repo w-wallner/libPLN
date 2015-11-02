@@ -31,8 +31,8 @@
 //
 // ============================================================================
 
-#ifndef ESTIMATOR_TB_HPP_
-#define ESTIMATOR_TB_HPP_
+#ifndef LIBPLN_TESTS_ESTIMATORTB_HPP_
+#define LIBPLN_TESTS_ESTIMATORTB_HPP_
 
 // =========================================================================
 // Includes

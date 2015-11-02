@@ -30,8 +30,8 @@
 //
 // ============================================================================
 
-#ifndef TD_ORACLE_HPP_
-#define TD_ORACLE_HPP_
+#ifndef LIBPLN_SRC_TDORACLE_HPP_
+#define LIBPLN_SRC_TDORACLE_HPP_
 
 // =========================================================================
 // Includes

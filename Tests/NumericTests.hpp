@@ -31,8 +31,8 @@
 //
 // ============================================================================
 
-#ifndef NUMERIC_TESTS_HPP_
-#define NUMERIC_TESTS_HPP_
+#ifndef LIBPLN_TESTS_NUMERIC_TESTS_HPP_
+#define LIBPLN_TESTS_NUMERIC_TESTS_HPP_
 
 // =========================================================================
 // Includes

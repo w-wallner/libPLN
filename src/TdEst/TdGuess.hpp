@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef TDGUESS_HPP_
-#define TDGUESS_HPP_
+#ifndef LIBPLN_SRC_TDEST_TDGUESS_HPP_
+#define LIBPLN_SRC_TDEST_TDGUESS_HPP_
 
 // =========================================================================
 // Includes

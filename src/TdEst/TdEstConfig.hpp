@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef TD_EST_CONFIG_HPP_
-#define TD_EST_CONFIG_HPP_
+#ifndef LIBPLN_SRC_TDEST_TDESTCONFIG_HPP_
+#define LIBPLN_SRC_TDEST_TDESTCONFIG_HPP_
 
 // =========================================================================
 // Includes

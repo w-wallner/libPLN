@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef ERROR_HANDLING_HPP_
-#define ERROR_HANDLING_HPP_
+#ifndef LIBPLN_SRC_UTILS_ERRORHANDLING_HPP_
+#define LIBPLN_SRC_UTILS_ERRORHANDLING_HPP_
 
 // =========================================================================
 // Includes

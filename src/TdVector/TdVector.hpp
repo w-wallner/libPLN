@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef TD_VECTOR_HPP_
-#define TD_VECTOR_HPP_
+#ifndef LIBPLN_SRC_TDVECTOR_TDVECTOR_HPP_
+#define LIBPLN_SRC_TDVECTOR_TDVECTOR_HPP_
 
 // =========================================================================
 // Includes

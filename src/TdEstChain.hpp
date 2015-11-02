@@ -29,8 +29,8 @@
 //
 // ============================================================================
 
-#ifndef TD_EST_CHAIN_HPP_
-#define TD_EST_CHAIN_HPP_
+#ifndef LIBPLN_SRC_TDESTCHAIN_HPP_
+#define LIBPLN_SRC_TDESTCHAIN_HPP_
 
 // =========================================================================
 // Includes
