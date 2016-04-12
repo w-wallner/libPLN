@@ -1,5 +1,5 @@
 
-libPLN: a library for efficient Powerlaw Noise generation
+LibPLN: A Library for Efficient Powerlaw Noise Generation
 ==============================================================
 
 Project description
